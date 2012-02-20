@@ -1,0 +1,665 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D52D1185149A963200A8A310 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D52D1184149A963200A8A310 /* .gitignore */; };
+		D52E1DCC14B2975600C2C897 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D52E1DCB14B2975600C2C897 /* README.md */; };
+		D541C4451469C6C8002DB7F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4441469C6C8002DB7F4 /* UIKit.framework */; };
+		D541C4471469C6C8002DB7F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4461469C6C8002DB7F4 /* Foundation.framework */; };
+		D541C4491469C6C8002DB7F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4481469C6C8002DB7F4 /* CoreGraphics.framework */; };
+		D541C44F1469C6C8002DB7F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D541C44D1469C6C8002DB7F4 /* InfoPlist.strings */; };
+		D541C4511469C6C8002DB7F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4501469C6C8002DB7F4 /* main.m */; };
+		D541C4551469C6C8002DB7F4 /* PNEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */; };
+		D541C4581469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D541C4561469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard */; };
+		D541C45E1469C6C8002DB7F4 /* PNEPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C45D1469C6C8002DB7F4 /* PNEPadViewController.m */; };
+		D541C4661469C6C8002DB7F4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4651469C6C8002DB7F4 /* SenTestingKit.framework */; };
+		D541C4671469C6C8002DB7F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4441469C6C8002DB7F4 /* UIKit.framework */; };
+		D541C4681469C6C8002DB7F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4461469C6C8002DB7F4 /* Foundation.framework */; };
+		D541C4701469C6C8002DB7F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D541C46E1469C6C8002DB7F4 /* InfoPlist.strings */; };
+		D541C4731469C6C8002DB7F4 /* Petri_Net_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */; };
+		D5711EA21486894600BC5597 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */; };
+		D595E46614F2720C001D9B19 /* PNEPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E46514F2720C001D9B19 /* PNEPhoneViewController.m */; };
+		D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46714F27953001D9B19 /* Logo_iPad.png */; };
+		D595E46C14F279F8001D9B19 /* logo_iPhone_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46914F279F8001D9B19 /* logo_iPhone_big.png */; };
+		D595E46D14F279F8001D9B19 /* logo_iPhone_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */; };
+		D595E46E14F279F8001D9B19 /* logo_large.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46B14F279F8001D9B19 /* logo_large.png */; };
+		D595E47214F27BC8001D9B19 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E47114F27BC8001D9B19 /* Default-Portrait~ipad.png */; };
+		D595E47514F27D95001D9B19 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E47314F27D11001D9B19 /* Default-Landscape~ipad.png */; };
+		D595E47714F27EF4001D9B19 /* logo_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E47614F27EF4001D9B19 /* logo_iPad.png */; };
+		D595E47914F280D3001D9B19 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E47814F280D2001D9B19 /* Default.png */; };
+		D595E47B14F280DA001D9B19 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E47A14F280DA001D9B19 /* Default@2x.png */; };
+		D595E49814F28E64001D9B19 /* NSDictionary+SetEquals.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48614F28E64001D9B19 /* NSDictionary+SetEquals.m */; };
+		D595E49914F28E64001D9B19 /* PNArcInscription.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48814F28E64001D9B19 /* PNArcInscription.m */; };
+		D595E49A14F28E64001D9B19 /* PNElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48A14F28E64001D9B19 /* PNElement.m */; };
+		D595E49B14F28E64001D9B19 /* PNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48C14F28E64001D9B19 /* PNManager.m */; };
+		D595E49C14F28E64001D9B19 /* PNManager+DependencyRelations.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48D14F28E64001D9B19 /* PNManager+DependencyRelations.m */; };
+		D595E49D14F28E64001D9B19 /* PNMarking.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48F14F28E64001D9B19 /* PNMarking.m */; };
+		D595E49E14F28E64001D9B19 /* PNNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E49114F28E64001D9B19 /* PNNode.m */; };
+		D595E49F14F28E64001D9B19 /* PNPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E49314F28E64001D9B19 /* PNPlace.m */; };
+		D595E4A014F28E64001D9B19 /* PNToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E49514F28E64001D9B19 /* PNToken.m */; };
+		D595E4A114F28E64001D9B19 /* PNTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E49714F28E64001D9B19 /* PNTransition.m */; };
+		D595E4A814F28F7B001D9B19 /* PNETokenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4A314F28F7B001D9B19 /* PNETokenView.m */; };
+		D595E4A914F28F7B001D9B19 /* PNEView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4A514F28F7B001D9B19 /* PNEView.m */; };
+		D595E4AA14F28F7B001D9B19 /* PNEViewElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4A714F28F7B001D9B19 /* PNEViewElement.m */; };
+		D595E4AD14F290DF001D9B19 /* PNENodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4AC14F290DF001D9B19 /* PNENodeView.m */; };
+		D595E4B314F29157001D9B19 /* PNEArcView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B214F29157001D9B19 /* PNEArcView.m */; };
+		D595E4B614F29201001D9B19 /* PNEPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B514F29201001D9B19 /* PNEPlaceView.m */; };
+		D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B814F29218001D9B19 /* PNETransitionView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D541C4691469C6C8002DB7F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D541C4371469C6C8002DB7F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D541C43F1469C6C8002DB7F4;
+			remoteInfo = "Petri Net Editor";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D52D1184149A963200A8A310 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D52E1DCB14B2975600C2C897 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D541C4401469C6C8002DB7F4 /* Petri Net Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Petri Net Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D541C4441469C6C8002DB7F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D541C4461469C6C8002DB7F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D541C4481469C6C8002DB7F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D541C44C1469C6C8002DB7F4 /* Petri Net Editor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petri Net Editor-Info.plist"; sourceTree = "<group>"; };
+		D541C44E1469C6C8002DB7F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D541C4501469C6C8002DB7F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D541C4521469C6C8002DB7F4 /* Petri Net Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Petri Net Editor-Prefix.pch"; sourceTree = "<group>"; };
+		D541C4531469C6C8002DB7F4 /* PNEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PNEAppDelegate.h; sourceTree = "<group>"; };
+		D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PNEAppDelegate.m; sourceTree = "<group>"; };
+		D541C4571469C6C8002DB7F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		D541C45C1469C6C8002DB7F4 /* PNEPadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PNEPadViewController.h; sourceTree = "<group>"; };
+		D541C45D1469C6C8002DB7F4 /* PNEPadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PNEPadViewController.m; sourceTree = "<group>"; };
+		D541C4641469C6C8002DB7F4 /* Petri Net EditorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Petri Net EditorTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D541C4651469C6C8002DB7F4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D541C46D1469C6C8002DB7F4 /* Petri Net EditorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petri Net EditorTests-Info.plist"; sourceTree = "<group>"; };
+		D541C46F1469C6C8002DB7F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D541C4711469C6C8002DB7F4 /* Petri_Net_EditorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Petri_Net_EditorTests.h; sourceTree = "<group>"; };
+		D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Petri_Net_EditorTests.m; sourceTree = "<group>"; };
+		D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		D595E46414F2720C001D9B19 /* PNEPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEPhoneViewController.h; sourceTree = "<group>"; };
+		D595E46514F2720C001D9B19 /* PNEPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEPhoneViewController.m; sourceTree = "<group>"; };
+		D595E46714F27953001D9B19 /* Logo_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo_iPad.png; path = ../../Files/logo/Logo_iPad.png; sourceTree = "<group>"; };
+		D595E46914F279F8001D9B19 /* logo_iPhone_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_iPhone_big.png; path = ../../Files/logo/logo_iPhone_big.png; sourceTree = "<group>"; };
+		D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_iPhone_small.png; path = ../../Files/logo/logo_iPhone_small.png; sourceTree = "<group>"; };
+		D595E46B14F279F8001D9B19 /* logo_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_large.png; path = ../../Files/logo/logo_large.png; sourceTree = "<group>"; };
+		D595E47114F27BC8001D9B19 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		D595E47314F27D11001D9B19 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		D595E47614F27EF4001D9B19 /* logo_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_iPad.png; sourceTree = "<group>"; };
+		D595E47814F280D2001D9B19 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D595E47A14F280DA001D9B19 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D595E48514F28E64001D9B19 /* NSDictionary+SetEquals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SetEquals.h"; path = "kernel/NSDictionary+SetEquals.h"; sourceTree = "<group>"; };
+		D595E48614F28E64001D9B19 /* NSDictionary+SetEquals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SetEquals.m"; path = "kernel/NSDictionary+SetEquals.m"; sourceTree = "<group>"; };
+		D595E48714F28E64001D9B19 /* PNArcInscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNArcInscription.h; path = kernel/PNArcInscription.h; sourceTree = "<group>"; };
+		D595E48814F28E64001D9B19 /* PNArcInscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNArcInscription.m; path = kernel/PNArcInscription.m; sourceTree = "<group>"; };
+		D595E48914F28E64001D9B19 /* PNElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNElement.h; path = kernel/PNElement.h; sourceTree = "<group>"; };
+		D595E48A14F28E64001D9B19 /* PNElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNElement.m; path = kernel/PNElement.m; sourceTree = "<group>"; };
+		D595E48B14F28E64001D9B19 /* PNManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNManager.h; path = kernel/PNManager.h; sourceTree = "<group>"; };
+		D595E48C14F28E64001D9B19 /* PNManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNManager.m; path = kernel/PNManager.m; sourceTree = "<group>"; };
+		D595E48D14F28E64001D9B19 /* PNManager+DependencyRelations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PNManager+DependencyRelations.m"; path = "kernel/PNManager+DependencyRelations.m"; sourceTree = "<group>"; };
+		D595E48E14F28E64001D9B19 /* PNMarking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNMarking.h; path = kernel/PNMarking.h; sourceTree = "<group>"; };
+		D595E48F14F28E64001D9B19 /* PNMarking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNMarking.m; path = kernel/PNMarking.m; sourceTree = "<group>"; };
+		D595E49014F28E64001D9B19 /* PNNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNNode.h; path = kernel/PNNode.h; sourceTree = "<group>"; };
+		D595E49114F28E64001D9B19 /* PNNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNNode.m; path = kernel/PNNode.m; sourceTree = "<group>"; };
+		D595E49214F28E64001D9B19 /* PNPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNPlace.h; path = kernel/PNPlace.h; sourceTree = "<group>"; };
+		D595E49314F28E64001D9B19 /* PNPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNPlace.m; path = kernel/PNPlace.m; sourceTree = "<group>"; };
+		D595E49414F28E64001D9B19 /* PNToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNToken.h; path = kernel/PNToken.h; sourceTree = "<group>"; };
+		D595E49514F28E64001D9B19 /* PNToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNToken.m; path = kernel/PNToken.m; sourceTree = "<group>"; };
+		D595E49614F28E64001D9B19 /* PNTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNTransition.h; path = kernel/PNTransition.h; sourceTree = "<group>"; };
+		D595E49714F28E64001D9B19 /* PNTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNTransition.m; path = kernel/PNTransition.m; sourceTree = "<group>"; };
+		D595E4A214F28F7B001D9B19 /* PNETokenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETokenView.h; path = drawing/PNETokenView.h; sourceTree = "<group>"; };
+		D595E4A314F28F7B001D9B19 /* PNETokenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETokenView.m; path = drawing/PNETokenView.m; sourceTree = "<group>"; };
+		D595E4A414F28F7B001D9B19 /* PNEView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEView.h; path = drawing/PNEView.h; sourceTree = "<group>"; };
+		D595E4A514F28F7B001D9B19 /* PNEView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEView.m; path = drawing/PNEView.m; sourceTree = "<group>"; };
+		D595E4A614F28F7B001D9B19 /* PNEViewElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEViewElement.h; path = drawing/PNEViewElement.h; sourceTree = "<group>"; };
+		D595E4A714F28F7B001D9B19 /* PNEViewElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEViewElement.m; path = drawing/PNEViewElement.m; sourceTree = "<group>"; };
+		D595E4AB14F290DF001D9B19 /* PNENodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNENodeView.h; path = drawing/PNENodeView.h; sourceTree = "<group>"; };
+		D595E4AC14F290DF001D9B19 /* PNENodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNENodeView.m; path = drawing/PNENodeView.m; sourceTree = "<group>"; };
+		D595E4B114F29156001D9B19 /* PNEArcView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEArcView.h; path = drawing/PNEArcView.h; sourceTree = "<group>"; };
+		D595E4B214F29157001D9B19 /* PNEArcView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEArcView.m; path = drawing/PNEArcView.m; sourceTree = "<group>"; };
+		D595E4B414F29201001D9B19 /* PNEPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEPlaceView.h; path = drawing/PNEPlaceView.h; sourceTree = "<group>"; };
+		D595E4B514F29201001D9B19 /* PNEPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEPlaceView.m; path = drawing/PNEPlaceView.m; sourceTree = "<group>"; };
+		D595E4B714F29218001D9B19 /* PNETransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETransitionView.h; path = drawing/PNETransitionView.h; sourceTree = "<group>"; };
+		D595E4B814F29218001D9B19 /* PNETransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETransitionView.m; path = drawing/PNETransitionView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D541C43D1469C6C8002DB7F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D541C4451469C6C8002DB7F4 /* UIKit.framework in Frameworks */,
+				D541C4471469C6C8002DB7F4 /* Foundation.framework in Frameworks */,
+				D541C4491469C6C8002DB7F4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D541C4601469C6C8002DB7F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D541C4661469C6C8002DB7F4 /* SenTestingKit.framework in Frameworks */,
+				D541C4671469C6C8002DB7F4 /* UIKit.framework in Frameworks */,
+				D541C4681469C6C8002DB7F4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D541C4351469C6C8002DB7F4 = {
+			isa = PBXGroup;
+			children = (
+				D541C44A1469C6C8002DB7F4 /* Petri Net Editor */,
+				D541C4821469C6F9002DB7F4 /* Extra Files */,
+				D541C46B1469C6C8002DB7F4 /* Petri Net EditorTests */,
+				D541C4431469C6C8002DB7F4 /* Frameworks */,
+				D541C4411469C6C8002DB7F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D541C4411469C6C8002DB7F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D541C4401469C6C8002DB7F4 /* Petri Net Editor.app */,
+				D541C4641469C6C8002DB7F4 /* Petri Net EditorTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D541C4431469C6C8002DB7F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D541C4441469C6C8002DB7F4 /* UIKit.framework */,
+				D541C4461469C6C8002DB7F4 /* Foundation.framework */,
+				D541C4481469C6C8002DB7F4 /* CoreGraphics.framework */,
+				D541C4651469C6C8002DB7F4 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D541C44A1469C6C8002DB7F4 /* Petri Net Editor */ = {
+			isa = PBXGroup;
+			children = (
+				D595E47E14F28B09001D9B19 /* drawing */,
+				D541C4AB1469C782002DB7F4 /* Interface */,
+				D541C4831469C733002DB7F4 /* kernel */,
+				D541C44B1469C6C8002DB7F4 /* Supporting Files */,
+				D541C4531469C6C8002DB7F4 /* PNEAppDelegate.h */,
+				D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */,
+			);
+			path = "Petri Net Editor";
+			sourceTree = "<group>";
+		};
+		D541C44B1469C6C8002DB7F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D541C44C1469C6C8002DB7F4 /* Petri Net Editor-Info.plist */,
+				D541C44D1469C6C8002DB7F4 /* InfoPlist.strings */,
+				D541C4501469C6C8002DB7F4 /* main.m */,
+				D541C4521469C6C8002DB7F4 /* Petri Net Editor-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D541C46B1469C6C8002DB7F4 /* Petri Net EditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				D541C4711469C6C8002DB7F4 /* Petri_Net_EditorTests.h */,
+				D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */,
+				D541C46C1469C6C8002DB7F4 /* Supporting Files */,
+			);
+			path = "Petri Net EditorTests";
+			sourceTree = "<group>";
+		};
+		D541C46C1469C6C8002DB7F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D541C46D1469C6C8002DB7F4 /* Petri Net EditorTests-Info.plist */,
+				D541C46E1469C6C8002DB7F4 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D541C4821469C6F9002DB7F4 /* Extra Files */ = {
+			isa = PBXGroup;
+			children = (
+				D595E47D14F280FA001D9B19 /* Logo */,
+				D595E47C14F280E7001D9B19 /* Launch images */,
+				D52E1DCB14B2975600C2C897 /* README.md */,
+				D52D1184149A963200A8A310 /* .gitignore */,
+			);
+			name = "Extra Files";
+			sourceTree = "<group>";
+		};
+		D541C4831469C733002DB7F4 /* kernel */ = {
+			isa = PBXGroup;
+			children = (
+				D595E48514F28E64001D9B19 /* NSDictionary+SetEquals.h */,
+				D595E48614F28E64001D9B19 /* NSDictionary+SetEquals.m */,
+				D595E48714F28E64001D9B19 /* PNArcInscription.h */,
+				D595E48814F28E64001D9B19 /* PNArcInscription.m */,
+				D595E48914F28E64001D9B19 /* PNElement.h */,
+				D595E48A14F28E64001D9B19 /* PNElement.m */,
+				D595E48B14F28E64001D9B19 /* PNManager.h */,
+				D595E48C14F28E64001D9B19 /* PNManager.m */,
+				D595E48D14F28E64001D9B19 /* PNManager+DependencyRelations.m */,
+				D595E48E14F28E64001D9B19 /* PNMarking.h */,
+				D595E48F14F28E64001D9B19 /* PNMarking.m */,
+				D595E49014F28E64001D9B19 /* PNNode.h */,
+				D595E49114F28E64001D9B19 /* PNNode.m */,
+				D595E49214F28E64001D9B19 /* PNPlace.h */,
+				D595E49314F28E64001D9B19 /* PNPlace.m */,
+				D595E49414F28E64001D9B19 /* PNToken.h */,
+				D595E49514F28E64001D9B19 /* PNToken.m */,
+				D595E49614F28E64001D9B19 /* PNTransition.h */,
+				D595E49714F28E64001D9B19 /* PNTransition.m */,
+			);
+			name = kernel;
+			sourceTree = "<group>";
+		};
+		D541C4AB1469C782002DB7F4 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				D595E46314F271E0001D9B19 /* iPhone */,
+				D595E46214F271C8001D9B19 /* iPad */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		D595E46214F271C8001D9B19 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */,
+				D541C45C1469C6C8002DB7F4 /* PNEPadViewController.h */,
+				D541C45D1469C6C8002DB7F4 /* PNEPadViewController.m */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		D595E46314F271E0001D9B19 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				D541C4561469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard */,
+				D595E46414F2720C001D9B19 /* PNEPhoneViewController.h */,
+				D595E46514F2720C001D9B19 /* PNEPhoneViewController.m */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		D595E47C14F280E7001D9B19 /* Launch images */ = {
+			isa = PBXGroup;
+			children = (
+				D595E47A14F280DA001D9B19 /* Default@2x.png */,
+				D595E47814F280D2001D9B19 /* Default.png */,
+				D595E47314F27D11001D9B19 /* Default-Landscape~ipad.png */,
+				D595E47114F27BC8001D9B19 /* Default-Portrait~ipad.png */,
+			);
+			name = "Launch images";
+			sourceTree = "<group>";
+		};
+		D595E47D14F280FA001D9B19 /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				D595E47614F27EF4001D9B19 /* logo_iPad.png */,
+				D595E46914F279F8001D9B19 /* logo_iPhone_big.png */,
+				D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */,
+				D595E46B14F279F8001D9B19 /* logo_large.png */,
+				D595E46714F27953001D9B19 /* Logo_iPad.png */,
+			);
+			name = Logo;
+			sourceTree = "<group>";
+		};
+		D595E47E14F28B09001D9B19 /* drawing */ = {
+			isa = PBXGroup;
+			children = (
+				D595E4A414F28F7B001D9B19 /* PNEView.h */,
+				D595E4A514F28F7B001D9B19 /* PNEView.m */,
+				D595E4A614F28F7B001D9B19 /* PNEViewElement.h */,
+				D595E4A714F28F7B001D9B19 /* PNEViewElement.m */,
+				D595E4A214F28F7B001D9B19 /* PNETokenView.h */,
+				D595E4A314F28F7B001D9B19 /* PNETokenView.m */,
+				D595E4B114F29156001D9B19 /* PNEArcView.h */,
+				D595E4B214F29157001D9B19 /* PNEArcView.m */,
+				D595E4AB14F290DF001D9B19 /* PNENodeView.h */,
+				D595E4AC14F290DF001D9B19 /* PNENodeView.m */,
+				D595E4B414F29201001D9B19 /* PNEPlaceView.h */,
+				D595E4B514F29201001D9B19 /* PNEPlaceView.m */,
+				D595E4B714F29218001D9B19 /* PNETransitionView.h */,
+				D595E4B814F29218001D9B19 /* PNETransitionView.m */,
+			);
+			name = drawing;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D541C43F1469C6C8002DB7F4 /* Petri Net Editor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D541C4761469C6C8002DB7F4 /* Build configuration list for PBXNativeTarget "Petri Net Editor" */;
+			buildPhases = (
+				D541C43C1469C6C8002DB7F4 /* Sources */,
+				D541C43D1469C6C8002DB7F4 /* Frameworks */,
+				D541C43E1469C6C8002DB7F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Petri Net Editor";
+			productName = "Petri Net Editor";
+			productReference = D541C4401469C6C8002DB7F4 /* Petri Net Editor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D541C4631469C6C8002DB7F4 /* Petri Net EditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D541C4791469C6C8002DB7F4 /* Build configuration list for PBXNativeTarget "Petri Net EditorTests" */;
+			buildPhases = (
+				D541C45F1469C6C8002DB7F4 /* Sources */,
+				D541C4601469C6C8002DB7F4 /* Frameworks */,
+				D541C4611469C6C8002DB7F4 /* Resources */,
+				D541C4621469C6C8002DB7F4 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D541C46A1469C6C8002DB7F4 /* PBXTargetDependency */,
+			);
+			name = "Petri Net EditorTests";
+			productName = "Petri Net EditorTests";
+			productReference = D541C4641469C6C8002DB7F4 /* Petri Net EditorTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D541C4371469C6C8002DB7F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Vrije Universiteit Brussel";
+			};
+			buildConfigurationList = D541C43A1469C6C8002DB7F4 /* Build configuration list for PBXProject "Petri Net Editor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D541C4351469C6C8002DB7F4;
+			productRefGroup = D541C4411469C6C8002DB7F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D541C43F1469C6C8002DB7F4 /* Petri Net Editor */,
+				D541C4631469C6C8002DB7F4 /* Petri Net EditorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D541C43E1469C6C8002DB7F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D541C44F1469C6C8002DB7F4 /* InfoPlist.strings in Resources */,
+				D541C4581469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard in Resources */,
+				D5711EA21486894600BC5597 /* MainStoryboard_iPad.storyboard in Resources */,
+				D52D1185149A963200A8A310 /* .gitignore in Resources */,
+				D52E1DCC14B2975600C2C897 /* README.md in Resources */,
+				D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */,
+				D595E46C14F279F8001D9B19 /* logo_iPhone_big.png in Resources */,
+				D595E46D14F279F8001D9B19 /* logo_iPhone_small.png in Resources */,
+				D595E46E14F279F8001D9B19 /* logo_large.png in Resources */,
+				D595E47214F27BC8001D9B19 /* Default-Portrait~ipad.png in Resources */,
+				D595E47514F27D95001D9B19 /* Default-Landscape~ipad.png in Resources */,
+				D595E47714F27EF4001D9B19 /* logo_iPad.png in Resources */,
+				D595E47914F280D3001D9B19 /* Default.png in Resources */,
+				D595E47B14F280DA001D9B19 /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D541C4611469C6C8002DB7F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D541C4701469C6C8002DB7F4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D541C4621469C6C8002DB7F4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D541C43C1469C6C8002DB7F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D541C4511469C6C8002DB7F4 /* main.m in Sources */,
+				D541C4551469C6C8002DB7F4 /* PNEAppDelegate.m in Sources */,
+				D541C45E1469C6C8002DB7F4 /* PNEPadViewController.m in Sources */,
+				D595E46614F2720C001D9B19 /* PNEPhoneViewController.m in Sources */,
+				D595E49814F28E64001D9B19 /* NSDictionary+SetEquals.m in Sources */,
+				D595E49914F28E64001D9B19 /* PNArcInscription.m in Sources */,
+				D595E49A14F28E64001D9B19 /* PNElement.m in Sources */,
+				D595E49B14F28E64001D9B19 /* PNManager.m in Sources */,
+				D595E49C14F28E64001D9B19 /* PNManager+DependencyRelations.m in Sources */,
+				D595E49D14F28E64001D9B19 /* PNMarking.m in Sources */,
+				D595E49E14F28E64001D9B19 /* PNNode.m in Sources */,
+				D595E49F14F28E64001D9B19 /* PNPlace.m in Sources */,
+				D595E4A014F28E64001D9B19 /* PNToken.m in Sources */,
+				D595E4A114F28E64001D9B19 /* PNTransition.m in Sources */,
+				D595E4A814F28F7B001D9B19 /* PNETokenView.m in Sources */,
+				D595E4A914F28F7B001D9B19 /* PNEView.m in Sources */,
+				D595E4AA14F28F7B001D9B19 /* PNEViewElement.m in Sources */,
+				D595E4AD14F290DF001D9B19 /* PNENodeView.m in Sources */,
+				D595E4B314F29157001D9B19 /* PNEArcView.m in Sources */,
+				D595E4B614F29201001D9B19 /* PNEPlaceView.m in Sources */,
+				D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D541C45F1469C6C8002DB7F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D541C4731469C6C8002DB7F4 /* Petri_Net_EditorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D541C46A1469C6C8002DB7F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D541C43F1469C6C8002DB7F4 /* Petri Net Editor */;
+			targetProxy = D541C4691469C6C8002DB7F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D541C44D1469C6C8002DB7F4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D541C44E1469C6C8002DB7F4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D541C4561469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D541C4571469C6C8002DB7F4 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		D541C46E1469C6C8002DB7F4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D541C46F1469C6C8002DB7F4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D541C4741469C6C8002DB7F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D541C4751469C6C8002DB7F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D541C4771469C6C8002DB7F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Petri Net Editor/Petri Net Editor-Prefix.pch";
+				INFOPLIST_FILE = "Petri Net Editor/Petri Net Editor-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D541C4781469C6C8002DB7F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Petri Net Editor/Petri Net Editor-Prefix.pch";
+				INFOPLIST_FILE = "Petri Net Editor/Petri Net Editor-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D541C47A1469C6C8002DB7F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Petri Net Editor.app/Petri Net Editor";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Petri Net Editor/Petri Net Editor-Prefix.pch";
+				INFOPLIST_FILE = "Petri Net EditorTests/Petri Net EditorTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D541C47B1469C6C8002DB7F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Petri Net Editor.app/Petri Net Editor";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Petri Net Editor/Petri Net Editor-Prefix.pch";
+				INFOPLIST_FILE = "Petri Net EditorTests/Petri Net EditorTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D541C43A1469C6C8002DB7F4 /* Build configuration list for PBXProject "Petri Net Editor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D541C4741469C6C8002DB7F4 /* Debug */,
+				D541C4751469C6C8002DB7F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D541C4761469C6C8002DB7F4 /* Build configuration list for PBXNativeTarget "Petri Net Editor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D541C4771469C6C8002DB7F4 /* Debug */,
+				D541C4781469C6C8002DB7F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D541C4791469C6C8002DB7F4 /* Build configuration list for PBXNativeTarget "Petri Net EditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D541C47A1469C6C8002DB7F4 /* Debug */,
+				D541C47B1469C6C8002DB7F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D541C4371469C6C8002DB7F4 /* Project object */;
+}
