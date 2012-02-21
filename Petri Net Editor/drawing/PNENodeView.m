@@ -12,21 +12,21 @@
 
 @synthesize xOrig, yOrig, dimensions;
 
+- (id) init {
+    if (self = [super init])
+        dimensions = DIMENSION;
+    return self;
+}
+
+- (id) initWithElement:(PNNode*) pnElement{
+    if (self = [super initWithElement:pnElement])
+        dimensions = DIMENSION;
+    return self;
+}
+
 - (void) drawNode: (CGFloat) x yVal: (CGFloat) y{
     xOrig = x;
     yOrig = y;
-}
-
-- (id) init {
-    if (self = [super init])
-        dimensions = 10;
-    return self;
-}
-
-- (id) initWithElement:(id) pnElement{
-    if (self = [super initWithElement:pnElement])
-        dimensions = 10;
-    return self;
 }
 
 - (CGPoint) getTopEdge {
@@ -45,20 +45,52 @@
     return CGPointMake(xOrig + (dimensions / 2), yOrig + dimensions);
 }
 
-- (BOOL) isLower: (PNENodeView*) node{
+- (CGPoint) getLeftTopPoint {
+    return CGPointMake(xOrig, yOrig);
+    
+}
+- (CGPoint) getRightTopPoint {
+    return CGPointMake(xOrig + dimensions, yOrig);
+    
+}
+- (CGPoint) getLeftBottomPoint {
+    return CGPointMake(xOrig, yOrig + dimensions);
+    
+}
+- (CGPoint) getRightBottomPoint {
+    return CGPointMake(xOrig + dimensions, yOrig + dimensions);
+}
+
+- (BOOL) isLower: (PNENodeView*) node {
     return node.yOrig > yOrig + dimensions;
 }
 
-- (BOOL) isHigher: (PNENodeView*) node{
+- (BOOL) isHigher: (PNENodeView*) node {
     return node.yOrig + node.dimensions < yOrig;
 }
 
-- (BOOL) isLeft: (PNENodeView*) node{
+- (BOOL) isLeft: (PNENodeView*) node {
     return node.xOrig + node.dimensions < xOrig;
 }
 
-- (BOOL) isRight: (PNENodeView*) node{
+- (BOOL) isRight: (PNENodeView*) node {
     return node.xOrig > xOrig + dimensions;
+}
+
+- (BOOL) isLeftAndLower: (PNENodeView*) node {
+    return [self isLeft:node] && [self isLower:node];
+}
+
+- (BOOL) isRightAndLower: (PNENodeView*) node {
+    return [self isRight:node] && [self isLower:node];
+}
+
+- (BOOL) isLeftAndHigher: (PNENodeView*) node {
+    return [self isLeft:node] && [self isHigher:node];
+}
+
+- (BOOL) isRightAndHigher: (PNENodeView*) node {
+    return [self isRight:node] && [self isHigher:node];
 }
 
 - (void) multiplyDimension:(CGFloat)multiplier {

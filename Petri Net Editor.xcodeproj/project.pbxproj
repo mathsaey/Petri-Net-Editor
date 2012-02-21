@@ -22,6 +22,7 @@
 		D541C4681469C6C8002DB7F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4461469C6C8002DB7F4 /* Foundation.framework */; };
 		D541C4701469C6C8002DB7F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D541C46E1469C6C8002DB7F4 /* InfoPlist.strings */; };
 		D541C4731469C6C8002DB7F4 /* Petri_Net_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */; };
+		D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D557F63D14F303D7005DC543 /* PNEConstants.m */; };
 		D5711EA21486894600BC5597 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */; };
 		D595E46614F2720C001D9B19 /* PNEPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E46514F2720C001D9B19 /* PNEPhoneViewController.m */; };
 		D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46714F27953001D9B19 /* Logo_iPad.png */; };
@@ -84,6 +85,8 @@
 		D541C46F1469C6C8002DB7F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D541C4711469C6C8002DB7F4 /* Petri_Net_EditorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Petri_Net_EditorTests.h; sourceTree = "<group>"; };
 		D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Petri_Net_EditorTests.m; sourceTree = "<group>"; };
+		D557F63C14F303D7005DC543 /* PNEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEConstants.h; sourceTree = "<group>"; };
+		D557F63D14F303D7005DC543 /* PNEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEConstants.m; sourceTree = "<group>"; };
 		D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		D595E46414F2720C001D9B19 /* PNEPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEPhoneViewController.h; sourceTree = "<group>"; };
 		D595E46514F2720C001D9B19 /* PNEPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEPhoneViewController.m; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 				D541C44B1469C6C8002DB7F4 /* Supporting Files */,
 				D541C4531469C6C8002DB7F4 /* PNEAppDelegate.h */,
 				D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */,
+				D557F63C14F303D7005DC543 /* PNEConstants.h */,
+				D557F63D14F303D7005DC543 /* PNEConstants.m */,
 			);
 			path = "Petri Net Editor";
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 				D595E4B314F29157001D9B19 /* PNEArcView.m in Sources */,
 				D595E4B614F29201001D9B19 /* PNEPlaceView.m in Sources */,
 				D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */,
+				D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

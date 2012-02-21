@@ -6,11 +6,20 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
-#import "PNETransitionView.h"
+#import "PNArcInscription.h"
 #import "PNEViewElement.h"
-#import "PNEPlaceView.h"
+#import "PNEConstants.h"
+#import "PNENodeView.h"
 
-@interface PNEArcView : PNEViewElement
-- (void) drawArc;
+@interface PNEArcView : PNEViewElement {
+    
+    BOOL isInhibitor;
+    PNENodeView *fromNode;
+    PNENodeView *toNode;
+}
+
+- (void) reDrawArc;
+- (void) drawArc: (PNENodeView*) fromNode transition: (PNENodeView*) toNode;
+- (id) initWithElement:(PNArcInscription*) pnElement;
 
 @end

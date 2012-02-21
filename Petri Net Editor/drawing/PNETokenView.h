@@ -8,11 +8,16 @@
 
 #import "PNEPlaceView.h"
 #import "PNEViewElement.h"
-#import "../kernel/PNToken.h"
+#import "PNToken.h"
 
 
 @interface PNETokenView : PNEViewElement
 
+/*
+ 
+ Place altijd groter laten worden tot bepaald maximum, dan vervangen door zwarte token met wit cijfer langs de binnenkant
+ 
+ */
     
 
 @end

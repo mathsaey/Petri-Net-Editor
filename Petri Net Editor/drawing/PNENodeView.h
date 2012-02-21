@@ -7,6 +7,8 @@
 //
 
 #import "PNEViewElement.h"
+#import "PNEConstants.h"
+#import "PNNode.h"
 
 @interface PNENodeView : PNEViewElement {
     CGFloat xOrig; //X value of the top-left corner of the square
@@ -29,14 +31,24 @@
 - (CGPoint) getRightEdge;
 - (CGPoint) getBottomEdge;
 
+//Returns the corners of the square
+- (CGPoint) getLeftTopPoint;
+- (CGPoint) getRightTopPoint;
+- (CGPoint) getLeftBottomPoint;
+- (CGPoint) getRightBottomPoint;
+
 //Check how a given node is positioned in relation to the object
 - (BOOL) isLower: (PNENodeView*) node;
 - (BOOL) isHigher: (PNENodeView*) node;
 - (BOOL) isLeft: (PNENodeView*) node;
 - (BOOL) isRight: (PNENodeView*) node;
+- (BOOL) isLeftAndLower: (PNENodeView*) node;
+- (BOOL) isRightAndLower: (PNENodeView*) node;
+- (BOOL) isLeftAndHigher: (PNENodeView*) node;
+- (BOOL) isRightAndHigher: (PNENodeView*) node;
 
 
-- (id) initWithElement:(id) pnElement;
+- (id) initWithElement:(PNNode*) pnElement;
 - (void) multiplyDimension: (CGFloat) multiplier;
 
 @end

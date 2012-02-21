@@ -10,6 +10,8 @@
 
 
 #import <UIKit/UIKit.h>
+
+#import "PNEArcView.h"
 #import "PNEPlaceView.h"
 #import "PNEViewElement.h"
 #import "PNETransitionView.h"

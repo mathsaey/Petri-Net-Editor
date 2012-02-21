@@ -7,9 +7,23 @@
 //
 
 #import "PNENodeView.h"
+#import "PNPlace.h"
 
-@interface PNEPlaceView : PNENodeView
+@interface PNEPlaceView : PNENodeView {
+    CGFloat distanceFromMidPoint;
+    CGFloat midPointX;
+    CGFloat midPointY;
+}
 
+- (id) initWithElement:(PNPlace *)pnElement;
 - (void) drawNode:(CGFloat)x yVal:(CGFloat)y;
+
+- (CGPoint) getLeftTopPoint;
+- (CGPoint) getRightTopPoint;
+- (CGPoint) getLeftBottomPoint;
+- (CGPoint) getRightBottomPoint;
+
+- (void) multiplyDimension: (CGFloat) multiplier;
+
 
 @end

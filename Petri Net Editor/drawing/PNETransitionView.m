@@ -10,6 +10,17 @@
 
 @implementation PNETransitionView
 
+- (id) init {
+    if (self = [super init])
+        dimensions = TRANSITION_DIMENSION;
+    return self;
+}
+
+- (id) initWithElement:(PNTransition*) pnElement{
+    if (self = [super initWithElement:pnElement])
+        dimensions = TRANSITION_DIMENSION;
+    return self;
+}
 
 - (void) drawNode: (CGFloat) xVal yVal: (CGFloat) yVal {
     
