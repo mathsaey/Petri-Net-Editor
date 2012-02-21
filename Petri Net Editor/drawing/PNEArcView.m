@@ -36,6 +36,7 @@
 }
 
 - (void) completeDraw: (CGContextRef) context {
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextSetLineWidth(context, LINE_WIDTH);
     CGContextStrokePath(context);
 }
@@ -44,13 +45,26 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     [self prepareLine:context startpoint:startPoint endPoint:endPoint];
     
+    //Draw the arrow
+    
     [self completeDraw:context];
 }
 
 - (void) drawInhibitorArc: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [self prepareLine:context startpoint:startPoint endPoint:endPoint];
     
+    //Get the side of the square
+    CGFloat side = INHIBITOR_CIRCLE_RADIUS * 2 / sqrt(2);
+    //Calculate the origin point of the square
+    CGFloat sqOrigX = endPoint.x + side;
+    CGFloat sqOrigY = endPoint.y + side;
+    
+    //Create the square
+    CGRect rect = CGRectMake(sqOrigX, sqOrigY, side, side);
+    CGContextAddEllipseInRect(context, rect);
+    CGContextStrokePath(context);
+    
+    [self prepareLine:context startpoint:startPoint endPoint:CGPointMake(sqOrigX, sqOrigY)];
     [self completeDraw:context];
 }
 

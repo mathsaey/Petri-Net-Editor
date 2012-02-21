@@ -9,6 +9,12 @@
 // This file contains the constants used throughout the code
 
 const CGFloat LINE_WIDTH = 2;
+
 const CGFloat DIMENSION = 40;
 const CGFloat PLACE_DIMENSION = 40;
 const CGFloat TRANSITION_DIMENSION = 25;
+
+
+const CGFloat ARC_ARROW_HEIGHT = 3;
+const CGFloat ARC_ARROW_LENGTH = 4;
+const CGFloat INHIBITOR_CIRCLE_RADIUS = 10;

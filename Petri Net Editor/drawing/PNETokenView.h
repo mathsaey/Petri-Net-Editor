@@ -11,13 +11,12 @@
 #import "PNToken.h"
 
 
-@interface PNETokenView : PNEViewElement
+@interface PNETokenView : PNEViewElement {
+    PNEPlaceView* thePlace;
+    UIColor* tokenColor;
+}
 
-/*
- 
- Place altijd groter laten worden tot bepaald maximum, dan vervangen door zwarte token met wit cijfer langs de binnenkant
- 
- */
-    
+- (void) addTokenToPlace: (PNEPlaceView*) newPlace;
+- (id) initWithElement:(PNToken*)pnElement;
 
 @end

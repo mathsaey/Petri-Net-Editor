@@ -10,4 +10,22 @@
 
 @implementation PNETokenView
 
+- (void) dealloc {
+    [tokenColor dealloc];
+    [thePlace dealloc];
+    [super dealloc];
+}
+
+- (id) initWithElement:(PNToken*)pnElement {
+    if (self = [super initWithElement:pnElement])
+        tokenColor = pnElement.color;
+    return self;
+}
+
+- (void) addTokenToPlace: (PNEPlaceView*) newPlace {
+    
+}
+
+
+
 @end

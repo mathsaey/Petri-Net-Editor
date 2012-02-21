@@ -31,6 +31,7 @@
     
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextFillRect(context, rect);
+    CGContextStrokeRect(context, rect);
     
 }
 
