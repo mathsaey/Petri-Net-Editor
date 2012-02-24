@@ -7,8 +7,8 @@
 //
 
 #import "../kernel/PNPlace.h"
+#import "PNETokenView.h"
 #import "PNENodeView.h"
-@class PNETokenView;
 
 @interface PNEPlaceView : PNENodeView { 
     NSMutableArray *tokens;

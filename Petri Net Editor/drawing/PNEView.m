@@ -28,6 +28,7 @@
 - (void)drawRect:(CGRect)rect
 {
     PNEArcView *arc = [[PNEArcView alloc] init];
+    PNETokenView *token = [[PNETokenView alloc] init];
     PNEPlaceView *place = [[PNEPlaceView alloc] init];
     
     PNETransitionView *trans0 = [[PNETransitionView alloc] initWithView:self];
@@ -38,6 +39,13 @@
     PNETransitionView *trans5 = [[PNETransitionView alloc] initWithView:self];
     PNETransitionView *trans6 = [[PNETransitionView alloc] initWithView:self];
     PNETransitionView *trans7 = [[PNETransitionView alloc] initWithView:self];
+    
+    [place addToken:token];
+    [place addToken:token];
+    [place addToken:token];
+    [place addToken:token];
+    [place addToken:token];
+
     
     [place drawNode:CGPointMake(100, 100)];
     

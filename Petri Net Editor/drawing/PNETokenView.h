@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
-#import "PNEPlaceView.h"
 #import "PNEViewElement.h"
+#import "../PNEConstants.h"
 #import "../kernel/PNToken.h"
 
 
