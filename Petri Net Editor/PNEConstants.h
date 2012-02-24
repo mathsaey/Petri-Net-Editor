@@ -8,9 +8,10 @@
 
 // This file contains the constants used throughout the code
 
+extern int MAX_TOKENS;
+
 extern CGFloat LINE_WIDTH;
 
-extern CGFloat DIMENSION;
 extern CGFloat PLACE_DIMENSION;
 extern CGFloat TRANSITION_DIMENSION;
 

@@ -12,18 +12,13 @@
 
 - (void) dealloc {
     [tokenColor dealloc];
-    [thePlace dealloc];
     [super dealloc];
 }
 
-- (id) initWithElement:(PNToken*)pnElement {
-    if (self = [super initWithElement:pnElement])
+- (id) initWithValues: (PNToken*) pnElement superView: (PNEView*) view {
+    if (self = [super initWithValues:pnElement superView:view])
         tokenColor = pnElement.color;
     return self;
-}
-
-- (void) addTokenToPlace: (PNEPlaceView*) newPlace {
-    
 }
 
 

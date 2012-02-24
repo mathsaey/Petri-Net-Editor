@@ -17,7 +17,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [[NSArray alloc] init];
     }
     return self;
 }
@@ -31,18 +30,18 @@
     PNEArcView *arc = [[PNEArcView alloc] init];
     PNEPlaceView *place = [[PNEPlaceView alloc] init];
     
-    PNETransitionView *trans = [[PNETransitionView alloc] init];
-    PNETransitionView *trans1 = [[PNETransitionView alloc] init];
-    PNETransitionView *trans2 = [[PNETransitionView alloc] init];
-    PNETransitionView *trans3 = [[PNETransitionView alloc] init];
-    PNETransitionView *trans4 = [[PNETransitionView alloc] init];
-    PNETransitionView *trans5 = [[PNETransitionView alloc] init];
-    PNETransitionView *trans6 = [[PNETransitionView alloc] init];
-    PNETransitionView *trans7 = [[PNETransitionView alloc] init];
-
+    PNETransitionView *trans0 = [[PNETransitionView alloc] initWithView:self];
+    PNETransitionView *trans1 = [[PNETransitionView alloc] initWithView:self];
+    PNETransitionView *trans2 = [[PNETransitionView alloc] initWithView:self];
+    PNETransitionView *trans3 = [[PNETransitionView alloc] initWithView:self];
+    PNETransitionView *trans4 = [[PNETransitionView alloc] initWithView:self];
+    PNETransitionView *trans5 = [[PNETransitionView alloc] initWithView:self];
+    PNETransitionView *trans6 = [[PNETransitionView alloc] initWithView:self];
+    PNETransitionView *trans7 = [[PNETransitionView alloc] initWithView:self];
+    
     [place drawNode:100 yVal:100];
     
-    [trans drawNode:0 yVal:0];
+    [trans0 drawNode:0 yVal:0];
     [trans1 drawNode:0 yVal:100];
     [trans2 drawNode:0 yVal:200];
     [trans3 drawNode:100 yVal:0];
@@ -51,8 +50,7 @@
     [trans6 drawNode:200 yVal:200];
     [trans7 drawNode:100 yVal:200];
 
-    
-    [arc drawArc:place transition:trans];
+    [arc drawArc:place transition:trans0];
     [arc drawArc:place transition:trans1];
     [arc drawArc:place transition:trans2];
     [arc drawArc:place transition:trans3];

@@ -10,23 +10,13 @@
 
 @implementation PNEArcView
 
-- (id) init {
-    if (self = [super init])
-        isInhibitor = FALSE;
-    return self;
-}
-
-- (id) initWithElement:(PNArcInscription*) pnElement {
-    if (self = [super initWithElement:pnElement]) 
+- (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
+    if (self = [super initWithValues:pnElement superView:view]) 
     {
         if ([pnElement flowFunction] == INHIBITOR)
             isInhibitor = TRUE;
         else isInhibitor = FALSE;}
     return self;
-}
-
-- (void) dealloc {
-    [super dealloc];
 }
 
 - (void) prepareLine: (CGContextRef) context startpoint: (CGPoint) startPoint endPoint: (CGPoint) endPoint {

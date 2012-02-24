@@ -11,13 +11,20 @@
 @implementation PNETransitionView
 
 - (id) init {
-    if (self = [super init])
+    if (self = [super init]) {
+        dimensions = TRANSITION_DIMENSION;        
+    }
+    return self;
+}
+
+- (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
+    if (self = [super initWithValues:pnElement superView:view])
         dimensions = TRANSITION_DIMENSION;
     return self;
 }
 
-- (id) initWithElement:(PNTransition*) pnElement{
-    if (self = [super initWithElement:pnElement])
+- (id) initWithView:(PNEView*) view {
+    if (self = [super initWithView:view]) 
         dimensions = TRANSITION_DIMENSION;
     return self;
 }
@@ -28,12 +35,10 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);
-    
+
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextFillRect(context, rect);
-    CGContextStrokeRect(context, rect);
-    
-}
 
+}
 
 @end

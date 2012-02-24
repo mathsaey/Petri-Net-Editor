@@ -11,15 +11,28 @@
 @implementation PNEPlaceView
 
 - (id) init {
-    if (self = [super init]) 
+    if (self = [super init]) { 
+        [tokens init];
+        dimensions = PLACE_DIMENSION;}
+    return self;
+}
+
+- (id) initWithView:(PNEView*) view {
+    if (self = [super initWithView:view])
         dimensions = PLACE_DIMENSION;
     return self;
 }
 
-- (id) initWithElement:(PNNode*) pnElement{
-    if (self = [super initWithElement:pnElement]) 
-        dimensions = PLACE_DIMENSION;     
+- (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
+    if (self = [super initWithValues: pnElement superView: view]) {
+        [tokens init];
+        dimensions = PLACE_DIMENSION;} 
     return self;
+}
+
+- (void) dealloc {
+    [tokens dealloc];
+    [super dealloc];
 }
 
 - (void) updateMidPoint {

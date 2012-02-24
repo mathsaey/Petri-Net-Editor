@@ -12,15 +12,10 @@
 
 @synthesize xOrig, yOrig, dimensions;
 
-- (id) init {
-    if (self = [super init])
-        dimensions = DIMENSION;
-    return self;
-}
 
-- (id) initWithElement:(PNNode*) pnElement{
-    if (self = [super initWithElement:pnElement])
-        dimensions = DIMENSION;
+- (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
+    if (self = [super initWithValues:pnElement superView:view]) {
+    }
     return self;
 }
 

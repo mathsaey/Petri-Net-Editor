@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
+#import "../kernel/PNNode.h"
+#import "../PNEConstants.h"
 #import "PNEViewElement.h"
-#import "PNEConstants.h"
-#import "PNNode.h"
 
 @interface PNENodeView : PNEViewElement {
     CGFloat xOrig; //X value of the top-left corner of the square
@@ -47,8 +47,6 @@
 - (BOOL) isLeftAndHigher: (PNENodeView*) node;
 - (BOOL) isRightAndHigher: (PNENodeView*) node;
 
-
-- (id) initWithElement:(PNNode*) pnElement;
 - (void) multiplyDimension: (CGFloat) multiplier;
 
 @end

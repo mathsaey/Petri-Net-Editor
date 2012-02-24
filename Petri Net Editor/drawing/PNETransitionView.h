@@ -7,12 +7,8 @@
 //
 
 #import "PNENodeView.h"
-#import "PNTransition.h"
+#import "../kernel/PNTransition.h"
 
 @interface PNETransitionView : PNENodeView
-
-- (id) initWithElement:(PNTransition *)pnElement;
-- (void) drawNode: (CGFloat) x yVal: (CGFloat) y;
-
 
 @end

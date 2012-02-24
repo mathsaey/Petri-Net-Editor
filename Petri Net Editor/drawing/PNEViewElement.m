@@ -10,17 +10,33 @@
 
 @implementation PNEViewElement
 
-- (id) initWithElement:(id) pnElement {
-    if(self == [super init])
+- (id) initWithView:(PNEView*) view {
+    if(self = [super init])
+        superView = view;
+    return self;
+}
+
+- (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view {
+    if(self = [super init]) {
         element = pnElement;
-    
+        superView = view;}
     return self;
 }
 
 - (void) dealloc {
+    [touchView dealloc];
     [element dealloc];
     [super dealloc];
 }
 
+- (void) createTouchView: (CGRect) rect {
+    touchView = [[UIView alloc] initWithFrame:rect];
+    [superView addSubview:touchView];
+}
+
+- (void) addTouchResponder: (UIGestureRecognizer*) recognizer {
+    [touchView addGestureRecognizer:recognizer];
+}
 
 @end
+

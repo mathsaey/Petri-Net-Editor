@@ -8,15 +8,11 @@
 
 #import "PNEPlaceView.h"
 #import "PNEViewElement.h"
-#import "PNToken.h"
+#import "../kernel/PNToken.h"
 
 
 @interface PNETokenView : PNEViewElement {
-    PNEPlaceView* thePlace;
     UIColor* tokenColor;
 }
-
-- (void) addTokenToPlace: (PNEPlaceView*) newPlace;
-- (id) initWithElement:(PNToken*)pnElement;
 
 @end
