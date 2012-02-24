@@ -19,9 +19,9 @@
     return self;
 }
 
-- (void) drawNode: (CGFloat) x yVal: (CGFloat) y{
-    xOrig = x;
-    yOrig = y;
+- (void) drawNode: (CGPoint) origin {
+    xOrig = origin.x;
+    yOrig = origin.y;
 }
 
 - (CGPoint) getTopEdge {

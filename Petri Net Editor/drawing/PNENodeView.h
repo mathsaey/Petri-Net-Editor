@@ -23,7 +23,7 @@
 
 
 - (void) drawLabel;
-- (void) drawNode: (CGFloat) x yVal: (CGFloat) y;
+- (void) drawNode: (CGPoint) origin;
 
 //Returns the middle point of an edge of the square
 - (CGPoint) getTopEdge;

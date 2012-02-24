@@ -13,6 +13,7 @@ extern int MAX_TOKENS;
 extern CGFloat LINE_WIDTH;
 
 extern CGFloat PLACE_DIMENSION;
+extern CGFloat TOKEN_DIMENSION;
 extern CGFloat TRANSITION_DIMENSION;
 
 extern CGFloat ARC_ARROW_HEIGHT;

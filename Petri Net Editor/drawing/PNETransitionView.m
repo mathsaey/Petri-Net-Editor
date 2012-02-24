@@ -29,9 +29,8 @@
     return self;
 }
 
-- (void) drawNode: (CGFloat) xVal yVal: (CGFloat) yVal {
-    
-    [super drawNode:xVal yVal:yVal];
+- (void) drawNode: (CGPoint) origin {
+    [super drawNode:origin];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);

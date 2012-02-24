@@ -12,20 +12,22 @@
 
 - (id) init {
     if (self = [super init]) { 
-        [tokens init];
+        tokens = [[NSMutableArray alloc] init];
         dimensions = PLACE_DIMENSION;}
     return self;
 }
 
 - (id) initWithView:(PNEView*) view {
-    if (self = [super initWithView:view])
+    if (self = [super initWithView:view]) {
         dimensions = PLACE_DIMENSION;
+        tokens = [[NSMutableArray alloc] init];}
     return self;
 }
 
 - (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues: pnElement superView: view]) {
-        [tokens init];
+        tokens = [[NSMutableArray alloc] init];
+        //TODO: tokens van een plaats uit de kernel toevoegen
         dimensions = PLACE_DIMENSION;} 
     return self;
 }
@@ -63,8 +65,8 @@
 }
 
 
-- (void) drawNode:(CGFloat)x yVal:(CGFloat)y {
-    [super drawNode:x yVal:y];
+- (void) drawNode:(CGPoint) origin {
+    [super drawNode:origin];
     [self updateMidPoint];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -74,6 +76,15 @@
     CGContextAddEllipseInRect(context, rect);
     CGContextSetLineWidth(context, LINE_WIDTH);
     CGContextStrokePath(context);
+}
+
+- (void) addToken:(PNETokenView *)token {
+    [tokens addObject:token];
+}
+
+- (void) drawSingleToken {
+    PNETokenView *theToken = [tokens objectAtIndex:0];
+    [theToken drawToken:CGPointMake(midPointX - TOKEN_DIMENSION / 2, midPointY - TOKEN_DIMENSION / 2)];
 }
 
 @end

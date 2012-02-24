@@ -13,8 +13,8 @@ const int MAX_TOKENS = 3;
 const CGFloat LINE_WIDTH = 2;
 
 const CGFloat PLACE_DIMENSION = 40;
-const CGFloat TRANSITION_DIMENSION = 40;
-
+const CGFloat TOKEN_DIMENSION = 10;
+const CGFloat TRANSITION_DIMENSION = 25;
 
 const CGFloat ARC_ARROW_HEIGHT = 3;
 const CGFloat ARC_ARROW_LENGTH = 4;

@@ -39,16 +39,16 @@
     PNETransitionView *trans6 = [[PNETransitionView alloc] initWithView:self];
     PNETransitionView *trans7 = [[PNETransitionView alloc] initWithView:self];
     
-    [place drawNode:100 yVal:100];
+    [place drawNode:CGPointMake(100, 100)];
     
-    [trans0 drawNode:0 yVal:0];
-    [trans1 drawNode:0 yVal:100];
-    [trans2 drawNode:0 yVal:200];
-    [trans3 drawNode:100 yVal:0];
-    [trans4 drawNode:200 yVal:0];
-    [trans5 drawNode:200 yVal:100];
-    [trans6 drawNode:200 yVal:200];
-    [trans7 drawNode:100 yVal:200];
+    [trans0 drawNode:CGPointMake(0, 0)];
+    [trans1 drawNode:CGPointMake(0, 100)];
+    [trans2 drawNode:CGPointMake(0, 200)];
+    [trans3 drawNode:CGPointMake(100, 0)];
+    [trans4 drawNode:CGPointMake(200, 0)];
+    [trans5 drawNode:CGPointMake(200, 100)];
+    [trans6 drawNode:CGPointMake(200, 200)];
+    [trans7 drawNode:CGPointMake(100, 200)];
 
     [arc drawArc:place transition:trans0];
     [arc drawArc:place transition:trans1];

@@ -11,8 +11,8 @@
 #import "../kernel/PNToken.h"
 
 
-@interface PNETokenView : PNEViewElement {
-    UIColor* tokenColor;
-}
+@interface PNETokenView : PNEViewElement
+
+- (void) drawToken: (CGPoint) origin;
 
 @end
