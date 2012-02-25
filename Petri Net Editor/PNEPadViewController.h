@@ -15,6 +15,17 @@
     UIView *infoView;
     PNEView *petriNetView;
     UITextView *contextInformation;
+    
+    
+    UIToolbar *mainToolbar;
+    UIBarButtonItem *addButton;
+    
+    //Toolbar add buttons
+    UIToolbar *addToolbar;
+    UIBarButtonItem *backButton;
+    UIBarButtonItem *addArcButton;
+    UIBarButtonItem *addPlaceButton;
+    UIBarButtonItem *addTransitionButton;
 
 }
 
@@ -23,5 +34,16 @@
 @property (nonatomic, retain) IBOutlet PNEView *petriNetView;
 @property (nonatomic, retain) IBOutlet UITextView *contextInformation;
 
+@property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
+
+@property (nonatomic, retain) IBOutlet UIToolbar *addToolbar;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *addArcButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *addPlaceButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *addTransitionButton;
+
+- (IBAction)addButtonPress:(id)sender;
+- (IBAction)backButtonPress:(id)sender;
 
 @end

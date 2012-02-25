@@ -24,7 +24,4 @@
 /*
 Beginnen met alle plaatsen te zoeken en in array te plaatsen
  Alle transitions beginnen tekenen, elke arc die we tegenkomen tekenen
- 
- 
-
 */

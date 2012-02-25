@@ -11,6 +11,8 @@
 @implementation PNEPadViewController
 
 @synthesize petriNetView, infoView, contextInformation, log;
+@synthesize mainToolbar, addButton;
+@synthesize addToolbar, backButton, addArcButton, addPlaceButton, addTransitionButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -35,7 +37,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewWillAppear:animated];    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -70,5 +72,16 @@
 {
     return YES;
 }
+
+- (IBAction)addButtonPress:(id)sender {
+    mainToolbar.hidden = YES;
+    addToolbar.hidden = NO;
+}
+
+- (IBAction)backButtonPress:(id)sender {
+    mainToolbar.hidden = NO;
+    addToolbar.hidden = YES;
+}
+
 
 @end
