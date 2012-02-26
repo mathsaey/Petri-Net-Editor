@@ -173,9 +173,8 @@
     CGContextAddEllipseInRect(context, rect);
     CGContextSetLineWidth(context, LINE_WIDTH);
     CGContextStrokePath(context);
-    
+
     [self drawTokens];
-    
 }
 
 @end

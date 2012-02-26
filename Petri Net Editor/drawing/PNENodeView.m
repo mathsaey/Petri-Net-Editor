@@ -88,6 +88,18 @@
     return [self isRight:node] && [self isHigher:node];
 }
 
+- (BOOL) doesOverlap: (PNENodeView*) node {
+    return 
+    //Check if the origin of the node lies within the current node's rectangle
+    (xOrig <= node.xOrig && node.xOrig <= xOrig + dimensions &&
+    yOrig <= node.yOrig && node.yOrig <= yOrig + dimensions)
+    || //Check if the origin of the current node lies within the node's rectangle
+    (node.xOrig <= xOrig && xOrig <= node.xOrig + node.dimensions &&
+    node.yOrig <= yOrig && yOrig <= node.yOrig + node.dimensions);
+    
+    
+}
+
 - (void) multiplyDimension:(CGFloat)multiplier {
     dimensions = dimensions * multiplier;
 }

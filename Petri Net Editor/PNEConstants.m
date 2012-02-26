@@ -17,9 +17,7 @@ const CGFloat TOKEN_DISTANCE = 2;
 const CGFloat TOKEN_DIMENSION = 15;
 const CGFloat TRANSITION_DIMENSION = 25;
 
-const CGFloat ARC_ARROW_HEIGHT = 3;
-const CGFloat ARC_ARROW_LENGTH = 4;
-const CGFloat INHIBITOR_CIRCLE_RADIUS = 10;
+const CGFloat ARC_SQUARE_SIZE = 10;
 
 const CGFloat MAIN_FONT_SIZE = 20;
 const char *MAIN_FONT_NAME = "Helvetica Neue";

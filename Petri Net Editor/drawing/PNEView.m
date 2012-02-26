@@ -57,7 +57,7 @@
     [trans5 drawNode:CGPointMake(200, 100)];
     [trans6 drawNode:CGPointMake(200, 200)];
     [trans7 drawNode:CGPointMake(100, 200)];
-
+    
     [arc drawArc:place transition:trans0];
     [arc drawArc:place transition:trans1];
     [arc drawArc:place transition:trans2];

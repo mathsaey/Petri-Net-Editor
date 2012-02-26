@@ -17,6 +17,7 @@
     CGFloat midPointY;
 }
 
+- (void) drawTokens;
 - (void) addToken: (PNETokenView*) token;
 
 @end

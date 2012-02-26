@@ -46,6 +46,7 @@
 - (BOOL) isRightAndLower: (PNENodeView*) node;
 - (BOOL) isLeftAndHigher: (PNENodeView*) node;
 - (BOOL) isRightAndHigher: (PNENodeView*) node;
+- (BOOL) doesOverlap: (PNENodeView*) node;
 
 - (void) multiplyDimension: (CGFloat) multiplier;
 

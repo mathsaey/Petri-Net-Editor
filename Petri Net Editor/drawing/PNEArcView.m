@@ -19,43 +19,39 @@
     return self;
 }
 
-- (void) prepareLine: (CGContextRef) context startpoint: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
+- (void) drawLine: (CGContextRef) context startpoint: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, startPoint.x, startPoint.y);
     CGContextAddLineToPoint(context, endPoint.x, endPoint.y);
-}
-
-- (void) completeDraw: (CGContextRef) context {
+    
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextSetLineWidth(context, LINE_WIDTH);
     CGContextStrokePath(context);
 }
 
+- (CGRect) createRect: (CGContextRef) context lineStart: (CGPoint) lineStart lineStop: (CGPoint) lineStop {
+    
+}
+
+
 - (void) drawStandardArc: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [self prepareLine:context startpoint:startPoint endPoint:endPoint];
+    
+    CGFloat lineEndPointX;
+    CGFloat lineEndPointY;
+    
+    //if (startPoint.x - endPoint.x > 0
+    
+    [self drawLine:context startpoint:startPoint endPoint:endPoint];
     
     //Draw the arrow
-    
-    [self completeDraw:context];
-}
+    }
 
 - (void) drawInhibitorArc: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    [self drawLine:context startpoint:startPoint endPoint:endPoint];
     
-    //Get the side of the square
-    CGFloat side = INHIBITOR_CIRCLE_RADIUS * 2 / sqrt(2);
-    //Calculate the origin point of the square
-    CGFloat sqOrigX = endPoint.x + side;
-    CGFloat sqOrigY = endPoint.y + side;
     
-    //Create the square
-    CGRect rect = CGRectMake(sqOrigX, sqOrigY, side, side);
-    CGContextAddEllipseInRect(context, rect);
-    CGContextStrokePath(context);
-    
-    [self prepareLine:context startpoint:startPoint endPoint:CGPointMake(sqOrigX, sqOrigY)];
-    [self completeDraw:context];
 }
 
 //Checks which arc drawing function to call

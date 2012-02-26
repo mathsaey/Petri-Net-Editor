@@ -17,9 +17,7 @@ extern CGFloat TOKEN_DISTANCE;
 extern CGFloat TOKEN_DIMENSION;
 extern CGFloat TRANSITION_DIMENSION;
 
-extern CGFloat ARC_ARROW_HEIGHT;
-extern CGFloat ARC_ARROW_LENGTH;
-extern CGFloat INHIBITOR_CIRCLE_RADIUS;
+extern CGFloat ARC_SQUARE_SIZE;
 
 extern CGFloat MAIN_FONT_SIZE;
 extern char *MAIN_FONT_NAME;
