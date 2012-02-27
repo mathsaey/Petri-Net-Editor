@@ -29,6 +29,7 @@
     return self;
 }
 
+
 - (void) drawNode: (CGPoint) origin {
     [super drawNode:origin];
     
@@ -37,7 +38,6 @@
 
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextFillRect(context, rect);
-
 }
 
 @end

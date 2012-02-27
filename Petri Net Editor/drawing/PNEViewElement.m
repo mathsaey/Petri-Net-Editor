@@ -16,7 +16,7 @@
     return self;
 }
 
-- (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view {
+- (id) initWithElement: (PNElement*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         element = pnElement;
         superView = view;}
