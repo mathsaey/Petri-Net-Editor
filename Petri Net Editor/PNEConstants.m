@@ -12,10 +12,15 @@ const int MAX_TOKENS = 3;
 
 const CGFloat LINE_WIDTH = 2;
 
-const CGFloat PLACE_DIMENSION = 45;
+const CGFloat LABEL_DISTANCE = 5;
+
 const CGFloat TOKEN_DISTANCE = 2;
 const CGFloat TOKEN_DIMENSION = 15;
+
+const CGFloat PLACE_DIMENSION = 45;
 const CGFloat TRANSITION_DIMENSION = 25;
+
+const CGFloat HL_WIDTH = 5;
 
 const CGFloat ARC_RECT_SIZE = 30;
 

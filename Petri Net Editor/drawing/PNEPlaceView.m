@@ -117,7 +117,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSelectFont(context, MAIN_FONT_NAME, MAIN_FONT_SIZE, kCGEncodingMacRoman);
     
-    //Calculate the amount of tokens and convert it into a C string and calculate the string length
+    //Calculate the amount of tokens, convert it into a C string and calculate the string length
     NSUInteger tokenAmount = [tokens count];
     NSString *tempText = [NSString stringWithFormat:@"%d", tokenAmount];
     NSUInteger textLength = [tempText length];
@@ -162,6 +162,37 @@
     }
 }
 
+- (void) highlightNode {
+    [super highlightNode];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
+    CGContextAddEllipseInRect(context, rect);
+    CGContextSetLineWidth(context, HL_WIDTH / 2);
+    CGContextStrokePath(context);
+}
+
+//Needs a relook, quickly made before demo
+- (void) dimNode {
+    [super dimNode];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextAddEllipseInRect(context, rect);
+    CGContextSetLineWidth(context, HL_WIDTH + 1);
+    CGContextStrokePath(context);
+    
+    [self drawNode:CGPointMake(xOrig, yOrig)];
+}
+
+- (void)touchTest:(UIGestureRecognizer *)gestureRecognizer {
+    CGPoint tmp = [gestureRecognizer locationInView:superView];
+    NSLog([NSString stringWithFormat:@"Panposition: %d , %d \n", tmp.x, tmp.y]);
+
+}
+
 - (void) drawNode:(CGPoint) origin {
     [super drawNode:origin];
     [self updateMidPoint];
@@ -169,11 +200,16 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);
     
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextAddEllipseInRect(context, rect);
     CGContextSetLineWidth(context, LINE_WIDTH);
     CGContextStrokePath(context);
 
+    UIPanGestureRecognizer *test = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touchTest:)];
+    
+    [self createTouchView:rect];
+    [self addTouchResponder:test];
+    
     [self drawTokens];
 }
 

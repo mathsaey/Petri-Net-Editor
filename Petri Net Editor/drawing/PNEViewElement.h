@@ -16,14 +16,14 @@
     PNElement *element;
     PNEView *superView;
     UIView *touchView;
-}
+    }
 
 - (id) initWithView:(PNEView*) view;
 - (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view;
 
-//Adds a subview to handle touch events
+- (void) deleteTouchView;
+- (void) moveTouchView: (CGRect) rect;
 - (void) createTouchView: (CGRect) rect;
-//Add touch handles to the subview
 - (void) addTouchResponder: (UIGestureRecognizer*) recognizer;
 
 @end

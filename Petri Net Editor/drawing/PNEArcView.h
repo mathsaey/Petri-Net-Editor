@@ -13,8 +13,8 @@
 
 
 @interface PNEArcView : PNEViewElement {
-    
     BOOL isInhibitor;
+    
     PNENodeView *fromNode;
     PNENodeView *toNode;
 }
@@ -23,3 +23,12 @@
 - (void) drawArc: (PNENodeView*) fromNode transition: (PNENodeView*) toNode;
 
 @end
+
+
+
+/*
+Lijn tekenen loodrecht op pad via transformatie???
+ 
+ 
+ 
+*/

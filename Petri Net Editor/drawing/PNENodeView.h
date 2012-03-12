@@ -11,18 +11,25 @@
 #import "PNEViewElement.h"
 
 @interface PNENodeView : PNEViewElement {
+    BOOL isMarked;
+        
     CGFloat xOrig; //X value of the top-left corner of the square
     CGFloat yOrig; //Y value of the top-left corner of the square
+    
+    NSString *label;
     
     CGFloat dimensions; //Dimension of the square
 }
 
+@property (readonly) BOOL isMarked;
 @property (readonly) CGFloat xOrig;
 @property (readonly) CGFloat yOrig;
 @property (readonly) CGFloat dimensions;
 
 
+- (void) dimNode;
 - (void) drawLabel;
+- (void) highlightNode;
 - (void) drawNode: (CGPoint) origin;
 
 //Returns the middle point of an edge of the square

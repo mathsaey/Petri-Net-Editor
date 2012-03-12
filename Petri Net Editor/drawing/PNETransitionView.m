@@ -17,18 +17,36 @@
     return self;
 }
 
-- (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
-    if (self = [super initWithValues:pnElement superView:view])
-        dimensions = TRANSITION_DIMENSION;
-    return self;
-}
-
 - (id) initWithView:(PNEView*) view {
     if (self = [super initWithView:view]) 
         dimensions = TRANSITION_DIMENSION;
     return self;
 }
 
+- (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
+    if (self = [super initWithValues:pnElement superView:view])
+        dimensions = TRANSITION_DIMENSION;
+    return self;
+}
+
+- (void) highlightNode {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
+    CGContextSetLineWidth(context, HL_WIDTH);
+    CGContextStrokeRect(context, rect);
+}
+
+//Needs a relook, quickly made before demo
+- (void) dimNode {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextSetLineWidth(context, HL_WIDTH);
+    CGContextStrokeRect(context, rect);
+}
 
 - (void) drawNode: (CGPoint) origin {
     [super drawNode:origin];

@@ -11,17 +11,26 @@
 
 #import <UIKit/UIKit.h>
 
+#import "PNEView.h"
+
 #import "PNEArcView.h"
 #import "PNEPlaceView.h"
 #import "PNEViewElement.h"
 #import "PNETransitionView.h"
 
-@interface PNEView : UIView
+#import "../kernel/PNManager.h"
+
+
+@interface PNEView : UIView {
+    NSMutableArray *arcs;
+    NSMutableArray *places;
+    NSMutableArray *transitions;
+    
+    PNManager *manager;
+    
+    BOOL showLabels;
+}
+
+@property (atomic, readwrite) BOOL showLabels;
 
 @end
-
-
-/*
-Beginnen met alle plaatsen te zoeken en in array te plaatsen
- Alle transitions beginnen tekenen, elke arc die we tegenkomen tekenen
-*/

@@ -11,7 +11,7 @@
 @implementation PNEPadViewController
 
 @synthesize petriNetView, infoView, contextInformation, log;
-@synthesize mainToolbar, addButton;
+@synthesize mainToolbar, addButton, labelVisibility;
 @synthesize addToolbar, backButton, addArcButton, addPlaceButton, addTransitionButton;
 
 - (void)didReceiveMemoryWarning
@@ -83,5 +83,11 @@
     addToolbar.hidden = YES;
 }
 
+- (IBAction)labelVisibilityChanged:(id)sender {
+    if (labelVisibility.selectedSegmentIndex == 0)
+        petriNetView.showLabels = true;
+    else petriNetView.showLabels = false;
+    [petriNetView setNeedsDisplay];
+}
 
 @end

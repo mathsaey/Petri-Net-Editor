@@ -10,10 +10,18 @@
 
 @implementation PNETokenView
 
-- (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view {
+- (id) initWithView:(PNEView*) view {
+    if(self = [super init]) {
+        tokenColor = [UIColor blackColor];}
+    return self;
+}
+
+
+- (id) initWithValues: (PNToken*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         element = pnElement;
-        superView = view;}
+        superView = view;
+        tokenColor = pnElement.color;}
     return self;
 }
 
@@ -21,7 +29,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(origin.x, origin.y, TOKEN_DIMENSION, TOKEN_DIMENSION);
     
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor); //TODO: use internal token color
+    CGContextSetFillColorWithColor(context, tokenColor.CGColor);
     CGContextAddEllipseInRect(context, rect);
     CGContextFillPath(context);
     

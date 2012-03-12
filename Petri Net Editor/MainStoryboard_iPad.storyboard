@@ -67,6 +67,20 @@
                                             <action selector="addButtonPress:" destination="dPx-TF-z0D" id="3qf-Q8-rRF"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HJS-d0-wW9"/>
+                                    <barButtonItem style="plain" id="6Mn-Ey-oke">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="j1a-00-O1l">
+                                            <rect key="frame" x="554" y="7" width="207" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Show Labels"/>
+                                                <segment title="Hide Labels"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="labelVisibilityChanged:" destination="dPx-TF-z0D" eventType="valueChanged" id="ueB-Ts-zec"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -81,6 +95,7 @@
                         <outlet property="backButton" destination="K9S-vY-g8N" id="czk-dj-fEv"/>
                         <outlet property="contextInformation" destination="4FL-cU-e3i" id="gvb-zA-VW0"/>
                         <outlet property="infoView" destination="7gA-Ta-1ZD" id="7By-4z-WYH"/>
+                        <outlet property="labelVisibility" destination="j1a-00-O1l" id="YEl-4C-4jo"/>
                         <outlet property="log" destination="uGu-su-0gH" id="1DW-7P-VdM"/>
                         <outlet property="mainToolbar" destination="Qpq-6b-f2A" id="rma-JI-iDb"/>
                         <outlet property="petriNetView" destination="74w-vO-Kmt" id="RBN-Qh-tHe"/>
@@ -96,6 +111,7 @@
             <relationships>
                 <relationship kind="action" name="addButtonPress:"/>
                 <relationship kind="action" name="backButtonPress:"/>
+                <relationship kind="action" name="labelVisibilityChanged:"/>
                 <relationship kind="outlet" name="addArcButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="addPlaceButton" candidateClass="UIBarButtonItem"/>
@@ -104,6 +120,7 @@
                 <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="contextInformation" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="labelVisibility" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="log" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="mainToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>

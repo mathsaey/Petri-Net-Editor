@@ -16,7 +16,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        petriNetView.showLabels = false; //Labels are disabled on the iphone version
     }
     return self;
 }

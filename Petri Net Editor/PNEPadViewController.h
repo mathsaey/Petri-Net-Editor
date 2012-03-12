@@ -19,6 +19,7 @@
     
     UIToolbar *mainToolbar;
     UIBarButtonItem *addButton;
+    UISegmentedControl *labelVisibility;
     
     //Toolbar add buttons
     UIToolbar *addToolbar;
@@ -36,6 +37,7 @@
 
 @property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *labelVisibility;
 
 @property (nonatomic, retain) IBOutlet UIToolbar *addToolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
@@ -45,5 +47,7 @@
 
 - (IBAction)addButtonPress:(id)sender;
 - (IBAction)backButtonPress:(id)sender;
+
+- (IBAction)labelVisibilityChanged:(id)sender;
 
 @end

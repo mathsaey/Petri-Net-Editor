@@ -12,10 +12,15 @@ extern int MAX_TOKENS;
 
 extern CGFloat LINE_WIDTH;
 
-extern CGFloat PLACE_DIMENSION;
+extern CGFloat LABEL_DISTANCE;
+
 extern CGFloat TOKEN_DISTANCE;
 extern CGFloat TOKEN_DIMENSION;
+
+extern CGFloat PLACE_DIMENSION;
 extern CGFloat TRANSITION_DIMENSION;
+
+extern CGFloat HL_WIDTH;
 
 extern CGFloat ARC_RECT_SIZE;
 

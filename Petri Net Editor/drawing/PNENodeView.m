@@ -7,21 +7,54 @@
 //
 
 #import "PNENodeView.h"
+#import "PNEView.h"
 
 @implementation PNENodeView
 
-@synthesize xOrig, yOrig, dimensions;
+@synthesize xOrig, yOrig, dimensions, isMarked;
 
 
 - (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
+        isMarked = false;
+        label = pnElement.label;
     }
     return self;
+}
+
+- (void) highlightNode {
+    isMarked = true;
+}
+
+- (void) dimNode {
+    isMarked = false;
 }
 
 - (void) drawNode: (CGPoint) origin {
     xOrig = origin.x;
     yOrig = origin.y;
+    [self drawLabel];
+}
+
+- (void) drawLabel {
+    if (!superView.showLabels)
+        return;
+
+    //Prepare the text
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSelectFont(context, MAIN_FONT_NAME, MAIN_FONT_SIZE, kCGEncodingMacRoman);
+    
+    //Prepare the string
+    label = @"tmp";
+    NSUInteger textLength = [label length];
+    const char *tokenText = [label cStringUsingEncoding: [NSString defaultCStringEncoding]];
+    
+    //Inverse the text to makeup for the difference between the uikit and core graphics coordinate systems
+    CGAffineTransform flip = CGAffineTransformMakeScale(1, -1);
+    CGContextSetTextMatrix(context, flip);
+    
+    CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGContextShowTextAtPoint(context, [self getRightEdge].x + LABEL_DISTANCE , [self getRightEdge].y - LABEL_DISTANCE  , tokenText, textLength);
 }
 
 - (CGPoint) getTopEdge {

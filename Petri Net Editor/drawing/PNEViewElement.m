@@ -16,7 +16,7 @@
     return self;
 }
 
-- (id) initWithElement: (PNElement*) pnElement superView: (PNEView*) view {
+- (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         element = pnElement;
         superView = view;}
@@ -27,6 +27,16 @@
     [touchView dealloc];
     [element dealloc];
     [super dealloc];
+}
+
+- (void) moveTouchView:(CGRect)rect {
+    touchView.frame = rect;
+}
+
+- (void) deleteTouchView {
+    [touchView removeFromSuperview];
+    [touchView dealloc];
+    touchView = NULL;
 }
 
 - (void) createTouchView: (CGRect) rect {
