@@ -16,7 +16,6 @@
     return self;
 }
 
-
 - (id) initWithValues: (PNToken*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         element = pnElement;

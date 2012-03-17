@@ -19,10 +19,13 @@
     PNENodeView *toNode;
 }
 
+@property (retain, readwrite) PNENodeView *fromNode, *toNode;
+
 - (void) reDrawArc;
 - (void) drawArc: (PNENodeView*) fromNode transition: (PNENodeView*) toNode;
 
 @end
+
 
 
 

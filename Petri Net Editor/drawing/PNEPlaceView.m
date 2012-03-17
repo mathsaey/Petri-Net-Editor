@@ -7,6 +7,7 @@
 //
 
 #import "PNEPlaceView.h"
+#import "PNEView.h"
 
 @implementation PNEPlaceView
 
@@ -27,13 +28,20 @@
 - (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues: pnElement superView: view]) {
         tokens = [[NSMutableArray alloc] init];
-        //TODO: tokens van een plaats uit de kernel toevoegen
+        [superView.places addObject:self];
+        
+        //Add all the tokens
+        for (PNToken *token in pnElement.tokens) {
+            PNETokenView *tokenView = [[PNETokenView alloc] initWithValues:token superView:superView];
+            [self addToken:tokenView];}
+        
         dimensions = PLACE_DIMENSION;} 
     return self;
 }
 
 - (void) dealloc {
     [tokens dealloc];
+    [superView.places removeObject:self];
     [super dealloc];
 }
 
@@ -187,12 +195,6 @@
     [self drawNode:CGPointMake(xOrig, yOrig)];
 }
 
-- (void)touchTest:(UIGestureRecognizer *)gestureRecognizer {
-    CGPoint tmp = [gestureRecognizer locationInView:superView];
-    NSLog([NSString stringWithFormat:@"Panposition: %d , %d \n", tmp.x, tmp.y]);
-
-}
-
 - (void) drawNode:(CGPoint) origin {
     [super drawNode:origin];
     [self updateMidPoint];
@@ -205,18 +207,7 @@
     CGContextSetLineWidth(context, LINE_WIDTH);
     CGContextStrokePath(context);
 
-    UIPanGestureRecognizer *test = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touchTest:)];
-    
-    [self createTouchView:rect];
-    [self addTouchResponder:test];
-    
     [self drawTokens];
 }
 
 @end
-
-/*
-
- 
- 
-*/

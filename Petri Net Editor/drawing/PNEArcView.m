@@ -10,6 +10,8 @@
 
 @implementation PNEArcView
 
+@synthesize fromNode, toNode;
+
 - (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) 
     {
@@ -80,8 +82,6 @@
     
      */
     }
-
-
 
 //Calculates the start and end points of the arc
 - (void) calculateAttachmentPoints {

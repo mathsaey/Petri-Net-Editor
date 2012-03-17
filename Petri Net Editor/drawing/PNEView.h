@@ -25,12 +25,13 @@
     NSMutableArray *arcs;
     NSMutableArray *places;
     NSMutableArray *transitions;
-    
+        
     PNManager *manager;
     
     BOOL showLabels;
 }
 
 @property (atomic, readwrite) BOOL showLabels;
+@property (nonatomic, readwrite, assign) NSMutableArray *arcs, *places, *transitions;
 
 @end

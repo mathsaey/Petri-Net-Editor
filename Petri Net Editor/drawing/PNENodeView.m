@@ -18,6 +18,7 @@
     if (self = [super initWithValues:pnElement superView:view]) {
         isMarked = false;
         label = pnElement.label;
+        pnElement.view = self;
     }
     return self;
 }
@@ -45,7 +46,6 @@
     CGContextSelectFont(context, MAIN_FONT_NAME, MAIN_FONT_SIZE, kCGEncodingMacRoman);
     
     //Prepare the string
-    label = @"tmp";
     NSUInteger textLength = [label length];
     const char *tokenText = [label cStringUsingEncoding: [NSString defaultCStringEncoding]];
     

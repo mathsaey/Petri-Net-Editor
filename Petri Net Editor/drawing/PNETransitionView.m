@@ -7,6 +7,7 @@
 //
 
 #import "PNETransitionView.h"
+#import "PNEView.h"
 
 @implementation PNETransitionView
 
@@ -24,10 +25,49 @@
 }
 
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
-    if (self = [super initWithValues:pnElement superView:view])
+    if (self = [super initWithValues:pnElement superView:view]) {
+        [superView.transitions addObject:self];
         dimensions = TRANSITION_DIMENSION;
+    
+        //Get all the input arcs
+        for (PNPlace* fromPlace in pnElement.inputs) {
+            PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.inputs objectForKey:fromPlace] superView:superView]; 
+            [superView.arcs addObject:arcView];
+            arcView.toNode = self;
+            arcView.fromNode = fromPlace.view;
+        }
+        
+        //Do the same for the output arcs
+        for (PNPlace* toPlace in pnElement.outputs) {
+            PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.outputs objectForKey:toPlace] superView:superView]; 
+            [superView.arcs addObject:arcView];
+            arcView.fromNode = self;
+            arcView.toNode = toPlace.view;
+        }
+    }
     return self;
 }
+
+/*
+ - (void) createArc: (PNPlace*) placeKey trans: (PNTransition*) trans dictionary: (NSMutableDictionary*) dict isInput: (BOOL) isInput {
+ PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[dict objectForKey:placeKey] superView:superView];
+ [superView.arcs addObject:arcView];
+ if (isInput) {
+ arcView.toNode = trans.view;
+ arcView.fromNode = placeKey.view;}
+ else {
+ arcView.fromNode = trans.view;
+ arcView.toNode = placeKey.view;
+ }
+ }
+ */
+
+- (void) dealloc {
+    [superView.transitions removeObject:self];
+    [super dealloc];
+}
+
+
 
 - (void) highlightNode {
     CGContextRef context = UIGraphicsGetCurrentContext();
