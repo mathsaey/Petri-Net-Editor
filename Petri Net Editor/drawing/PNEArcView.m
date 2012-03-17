@@ -104,7 +104,7 @@
     if ([fromNode isHigher:toNode])
         return [self draw:[fromNode getTopEdge] endPoint:[toNode getBottomEdge]];
     
-    NSLog(@"CalculateAttachmentPoints (PNEArcView )could not find a suitable attachement point");
+    NSLog(@"CalculateAttachmentPoints (PNEArcView) could not find a suitable attachement point");
 }
 
 //Draws the arc without updating the from and to members

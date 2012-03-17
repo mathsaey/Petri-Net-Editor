@@ -85,7 +85,7 @@
     PNArcInscription* arc_4 = [[PNArcInscription alloc] initWithType:INHIBITOR];
     PNArcInscription* arc_5 = [[PNArcInscription alloc] initWithType:NORMAL];
 
-    [trans_1 addInput:arc_1 fromPlace:place_3];
+    [trans_1 addOutput:arc_1 toPlace:place_3];
     [trans_1 addInput:arc_2 fromPlace:place_2];
     [trans_2 addInput:arc_3 fromPlace:place_1];
     [trans_3 addInput:arc_4 fromPlace:place_2];

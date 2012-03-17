@@ -28,6 +28,7 @@
     if (self = [super initWithValues:pnElement superView:view]) {
         [superView.transitions addObject:self];
         dimensions = TRANSITION_DIMENSION;
+        pnElement.view = self;
     
         //Get all the input arcs
         for (PNPlace* fromPlace in pnElement.inputs) {
