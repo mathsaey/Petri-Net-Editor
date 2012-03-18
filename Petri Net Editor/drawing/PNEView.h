@@ -6,9 +6,6 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
-//This class represents the view where the Petri Net is drawn
-
-
 #import <UIKit/UIKit.h>
 
 #import "PNEView.h"
