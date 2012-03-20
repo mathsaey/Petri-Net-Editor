@@ -33,6 +33,8 @@
     xOrig = origin.x;
     yOrig = origin.y;
     [self drawLabel];
+    if (isMarked)
+        [self highlightNode];
 }
 
 - (void) drawLabel {
