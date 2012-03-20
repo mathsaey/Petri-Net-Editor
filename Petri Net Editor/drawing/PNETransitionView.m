@@ -24,6 +24,7 @@
     return self;
 }
 
+//TODO: add more abstractions
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         [superView.transitions addObject:self];
@@ -34,6 +35,11 @@
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.inputs objectForKey:fromPlace] superView:superView]; 
             [superView.arcs addObject:arcView];
             arcView.toNode = self;
+            
+            for (PNEPlaceView* placeView in superView.places) {
+                if (placeView.element.code == fromPlace.code)
+                    arcView.fromNode = placeView;
+            }
         }
         
         //Do the same for the output arcs
@@ -41,9 +47,22 @@
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.outputs objectForKey:toPlace] superView:superView]; 
             [superView.arcs addObject:arcView];
             arcView.fromNode = self;
+            
+            for (PNEPlaceView* placeView in superView.places) {
+                if (placeView.element.code == toPlace.code)
+                    arcView.toNode = placeView;
+            }
         }
     }
     return self;
+}
+
+- (PNEPlaceView*) findPlace: (PNPlace*) place {
+    for (PNEPlaceView* placeView in superView.places) {
+        if (placeView.element.code == place.code)
+            return placeView;
+    }
+    return NULL;
 }
 
 /*

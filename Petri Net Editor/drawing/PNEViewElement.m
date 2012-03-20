@@ -10,6 +10,8 @@
 
 @implementation PNEViewElement
 
+@synthesize element;
+
 - (id) initWithView:(PNEView*) view {
     if(self = [super init])
         superView = view;
