@@ -29,6 +29,7 @@
 - (void) dimNode;
 - (void) drawLabel;
 - (void) highlightNode;
+- (void) toggleHighlight;
 - (void) drawNode: (CGPoint) origin;
 
 //Returns the middle point of an edge of the square

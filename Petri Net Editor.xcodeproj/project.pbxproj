@@ -389,7 +389,7 @@
 		D541C4371469C6C8002DB7F4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Vrije Universiteit Brussel";
 			};
 			buildConfigurationList = D541C43A1469C6C8002DB7F4 /* Build configuration list for PBXProject "Petri Net Editor" */;

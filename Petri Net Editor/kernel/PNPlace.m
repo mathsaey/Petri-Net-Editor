@@ -26,6 +26,11 @@
 	return self;
 }
 
+- (void) dealloc {
+    [tokens release];
+    [super dealloc];
+}
+
 - (PNPlace *) copyWithName: (NSString *) nodeName {
 	PNPlace *newPlace = [[PNPlace alloc] init];
 	//newPlace = [super copy];
@@ -77,6 +82,7 @@
 - (void) addToken:(PNToken *)token {
 	NSArray *addTokens = [NSArray arrayWithObject:token];
 	[self addTokens:addTokens];
+    [addTokens release];
 }
 
 - (void) addTokens:(NSArray *)newTokens {

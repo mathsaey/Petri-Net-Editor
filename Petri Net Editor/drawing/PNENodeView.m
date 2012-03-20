@@ -23,10 +23,17 @@
 
 - (void) highlightNode {
     isMarked = true;
+    [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
 }
 
 - (void) dimNode {
     isMarked = false;
+    [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
+}
+
+- (void) toggleHighlight {
+    isMarked = !isMarked;
+    [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
 }
 
 - (void) drawNode: (CGPoint) origin {

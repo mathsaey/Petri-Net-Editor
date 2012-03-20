@@ -110,69 +110,32 @@
 
     
     
-    CGFloat PXVal = 0;
-    CGFloat TXVal = 0;
+    CGFloat PXVal = 200;
+    CGFloat TXVal = 200;
     
     for (PNEPlaceView* place in places) {
-        [place drawNode:CGPointMake(PXVal, 10)];
+        [place drawNode:CGPointMake(PXVal, 100)];
         PXVal += PLACE_DIMENSION + 50;
+        [place createTouchView:CGRectMake(place.xOrig, place.yOrig, place.dimensions, place.dimensions)];
+        
+        UITapGestureRecognizer *tmp = [[UITapGestureRecognizer alloc] initWithTarget:place action:@selector(toggleHighlight)];
+        [place addTouchResponder:tmp];
+        
     }
     
     for (PNETransitionView* trans in transitions) {
-        [trans drawNode:CGPointMake(TXVal, 30 + PLACE_DIMENSION + 100)];
+        [trans drawNode:CGPointMake(TXVal, 100 + PLACE_DIMENSION + 100)];
         TXVal += TRANSITION_DIMENSION + 50;
+        
+        [trans createTouchView:CGRectMake(trans.xOrig, trans.yOrig, trans.dimensions, trans.dimensions)];
+        
+        UITapGestureRecognizer *tmp = [[UITapGestureRecognizer alloc] initWithTarget:trans action:@selector(toggleHighlight)];
+        [trans addTouchResponder:tmp];
     }
     
     for (PNEArcView* arc in arcs) {
         [arc reDrawArc];
     }
-    
-    /*
-     PNEArcView *arc = [[PNEArcView alloc] init];
-    PNETokenView *token = [[PNETokenView alloc] init];
-    PNEPlaceView *place = [[PNEPlaceView alloc] initWithView:self];
-        
-    PNETransitionView *trans0 = [[PNETransitionView alloc] initWithView:self];
-    PNETransitionView *trans1 = [[PNETransitionView alloc] initWithView:self];
-    PNETransitionView *trans2 = [[PNETransitionView alloc] initWithView:self];
-    PNETransitionView *trans3 = [[PNETransitionView alloc] initWithView:self];
-    PNETransitionView *trans4 = [[PNETransitionView alloc] initWithView:self];
-    PNETransitionView *trans5 = [[PNETransitionView alloc] initWithView:self];
-    PNETransitionView *trans6 = [[PNETransitionView alloc] initWithView:self];
-    PNETransitionView *trans7 = [[PNETransitionView alloc] initWithView:self];
-    
-    [place addToken:token];
-    [place addToken:token];
-    [place addToken:token];
-    [place addToken:token];
-    //[place addToken:token];
-
-    
-    [place drawNode:CGPointMake(100, 100)];
-
-    [trans0 drawNode:CGPointMake(0, 0)];
-    [trans1 drawNode:CGPointMake(0, 100)];
-    [trans2 drawNode:CGPointMake(0, 200)];
-    [trans3 drawNode:CGPointMake(100, 0)];
-    [trans4 drawNode:CGPointMake(200, 0)];
-    [trans5 drawNode:CGPointMake(200, 100)];
-    [trans6 drawNode:CGPointMake(200, 200)];
-    [trans7 drawNode:CGPointMake(100, 200)];
-    
-    [trans0 drawLabel];
-    [trans1 drawLabel];
-    
-    //[trans6 highlightNode];
-    
-    [arc drawArc:place transition:trans0];
-    [arc drawArc:place transition:trans1];
-    [arc drawArc:place transition:trans2];
-    [arc drawArc:place transition:trans3];
-    [arc drawArc:place transition:trans4];
-    [arc drawArc:place transition:trans5];
-    [arc drawArc:place transition:trans6];
-    [arc drawArc:place transition:trans7]; 
-     */
     
 }
 
