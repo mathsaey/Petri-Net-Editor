@@ -106,9 +106,6 @@
     manager = themanager;
     
     [self loadKernel];
-
-
-    
     
     CGFloat PXVal = 200;
     CGFloat TXVal = 200;
