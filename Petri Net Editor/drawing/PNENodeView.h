@@ -26,7 +26,6 @@
 @property (readonly) CGFloat yOrig;
 @property (readonly) CGFloat dimensions;
 
-
 - (void) dimNode;
 - (void) drawLabel;
 - (void) highlightNode;

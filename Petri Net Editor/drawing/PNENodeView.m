@@ -13,7 +13,6 @@
 
 @synthesize xOrig, yOrig, dimensions, isMarked;
 
-
 - (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         isMarked = false;

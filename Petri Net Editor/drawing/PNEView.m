@@ -15,6 +15,7 @@
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
+        [manager retain];
         showLabels = true;
         arcs = [[NSMutableArray alloc] init];
         places = [[NSMutableArray alloc] init];
@@ -27,6 +28,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [manager retain];
         showLabels = true;
         arcs = [[NSMutableArray alloc] init];
         places = [[NSMutableArray alloc] init];
@@ -36,11 +38,11 @@
 }
 
 - (void) dealloc{
-    [arcs dealloc];
-    [places dealloc];
-    [transitions dealloc];
+    [arcs release];
+    [places release];
+    [transitions release];
     
-    [manager dealloc];
+    [manager release];
     [super dealloc];    
 }
 

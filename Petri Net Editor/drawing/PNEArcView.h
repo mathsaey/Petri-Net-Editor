@@ -19,19 +19,9 @@
     PNENodeView *toNode;
 }
 
-@property (retain, readwrite) PNENodeView *fromNode, *toNode;
+@property (readwrite, weak) PNENodeView *fromNode, *toNode;
 
 - (void) reDrawArc;
 - (void) drawArc: (PNENodeView*) fromNode transition: (PNENodeView*) toNode;
 
 @end
-
-
-
-
-/*
-Lijn tekenen loodrecht op pad via transformatie???
- 
- 
- 
-*/

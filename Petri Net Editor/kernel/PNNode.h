@@ -16,14 +16,14 @@
 
 @interface PNNode : PNElement {
 	NSString *label;
-	PNENodeView *view;
+	PNENodeView* view;
 }
 
 /**
  * Non unique label with which elements are tagged
  */
 @property(nonatomic, readwrite, copy) NSString * label;
-@property(nonatomic, readwrite, retain) PNENodeView *view;
+@property(nonatomic, readwrite, weak) PNENodeView* view;
 
 - (id) initWithName: (NSString *) newName;
 

@@ -14,13 +14,11 @@
 
 - (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) 
-    {
-        if ([pnElement flowFunction] == INHIBITOR)
+    {   if ([pnElement flowFunction] == INHIBITOR)
             isInhibitor = TRUE;
         else isInhibitor = FALSE;}
     return self;
 }
-
 
 //We draw an arc in 3 phases
 //We calculate a square that lies between the tonode and the end of the line
@@ -113,7 +111,6 @@
 }
 
 - (void) drawArc: (PNENodeView*) from transition: (PNENodeView*) to {
-    
     fromNode = from;
     toNode = to;
     [self calculateAttachmentPoints];   

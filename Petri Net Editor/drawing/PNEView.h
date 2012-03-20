@@ -29,6 +29,6 @@
 }
 
 @property (atomic, readwrite) BOOL showLabels;
-@property (nonatomic, readwrite, assign) NSMutableArray *arcs, *places, *transitions;
+@property (nonatomic, readonly) NSMutableArray *arcs, *places, *transitions;
 
 @end

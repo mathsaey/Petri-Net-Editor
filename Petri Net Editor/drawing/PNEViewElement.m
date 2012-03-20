@@ -18,14 +18,15 @@
 
 - (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
+        [element retain];
         element = pnElement;
         superView = view;}
     return self;
 }
 
 - (void) dealloc {
-    [touchView dealloc];
-    [element dealloc];
+    [self deleteTouchView];
+    [element release];
     [super dealloc];
 }
 
@@ -35,7 +36,7 @@
 
 - (void) deleteTouchView {
     [touchView removeFromSuperview];
-    [touchView dealloc];
+    [touchView release];
     touchView = NULL;
 }
 

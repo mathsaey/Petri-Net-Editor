@@ -28,14 +28,12 @@
     if (self = [super initWithValues:pnElement superView:view]) {
         [superView.transitions addObject:self];
         dimensions = TRANSITION_DIMENSION;
-        pnElement.view = self;
     
         //Get all the input arcs
         for (PNPlace* fromPlace in pnElement.inputs) {
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.inputs objectForKey:fromPlace] superView:superView]; 
             [superView.arcs addObject:arcView];
             arcView.toNode = self;
-            arcView.fromNode = fromPlace.view;
         }
         
         //Do the same for the output arcs
@@ -43,7 +41,6 @@
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.outputs objectForKey:toPlace] superView:superView]; 
             [superView.arcs addObject:arcView];
             arcView.fromNode = self;
-            arcView.toNode = toPlace.view;
         }
     }
     return self;

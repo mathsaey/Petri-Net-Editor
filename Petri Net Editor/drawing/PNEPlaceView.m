@@ -29,7 +29,6 @@
     if (self = [super initWithValues: pnElement superView: view]) {
         tokens = [[NSMutableArray alloc] init];
         [superView.places addObject:self];
-        pnElement.view = self;
         
         //Add all the tokens
         for (PNToken *token in pnElement.tokens) {
@@ -41,7 +40,7 @@
 }
 
 - (void) dealloc {
-    [tokens dealloc];
+    [tokens release];
     [superView.places removeObject:self];
     [super dealloc];
 }
