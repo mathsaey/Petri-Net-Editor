@@ -140,6 +140,7 @@
     [newPlace setLabel:[self label]];
     [newPlace setTokens:tokens];
     [newPlace setCapacity:capacity];
+    [newPlace setCode:code];
     return (newPlace);
 }
 @end
