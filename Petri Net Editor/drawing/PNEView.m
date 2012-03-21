@@ -11,6 +11,7 @@
 @implementation PNEView
 
 @synthesize showLabels;
+@synthesize manager;
 @synthesize arcs, places, transitions;
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
@@ -69,6 +70,9 @@
     PNPlace* place_1 = [[PNPlace alloc] initWithName:@"Place 1"];
     PNPlace* place_2 = [[PNPlace alloc] initWithName:@"Place 2"];
     PNPlace* place_3 = [[PNPlace alloc] initWithName:@"Place 3"];
+    PNPlace* place_4 = [[PNPlace alloc] initWithName:@"Place 4"];
+    PNPlace* place_5 = [[PNPlace alloc] initWithName:@"Place 5"];
+
     
     PNTransition* trans_1 = [[PNTransition alloc] initWithName:@"Trans 1"];
     PNTransition* trans_2 = [[PNTransition alloc] initWithName:@"Trans 2"];
@@ -83,12 +87,18 @@
     PNArcInscription* arc_3 = [[PNArcInscription alloc] initWithType:NORMAL];
     PNArcInscription* arc_4 = [[PNArcInscription alloc] initWithType:INHIBITOR];
     PNArcInscription* arc_5 = [[PNArcInscription alloc] initWithType:NORMAL];
+    PNArcInscription* arc_6 = [[PNArcInscription alloc] initWithType:NORMAL];
+    PNArcInscription* arc_7 = [[PNArcInscription alloc] initWithType:NORMAL];
+
 
     [trans_1 addOutput:arc_1 toPlace:place_3];
     [trans_1 addInput:arc_2 fromPlace:place_2];
     [trans_2 addInput:arc_3 fromPlace:place_1];
     [trans_3 addInput:arc_4 fromPlace:place_2];
-    [trans_2 addInput:arc_5 fromPlace:place_3];
+    [trans_2 addInput:arc_5 fromPlace:place_4];
+    [trans_1 addInput:arc_6 fromPlace:place_5];
+    [trans_3 addInput:arc_7 fromPlace:place_1];
+
 
     
     [place_1 addToken:token_1];
@@ -98,6 +108,9 @@
     [themanager addPlace:place_1];
     [themanager addPlace:place_2];
     [themanager addPlace:place_3];
+    [themanager addPlace:place_4];
+    [themanager addPlace:place_5];
+
     
     [themanager addTransition:trans_1];
     [themanager addTransition:trans_2];

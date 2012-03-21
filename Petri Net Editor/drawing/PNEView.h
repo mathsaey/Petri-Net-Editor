@@ -29,6 +29,7 @@
 }
 
 @property (atomic, readwrite) BOOL showLabels;
+@property (nonatomic, readonly) PNManager *manager;
 @property (nonatomic, readonly) NSMutableArray *arcs, *places, *transitions;
 
 @end

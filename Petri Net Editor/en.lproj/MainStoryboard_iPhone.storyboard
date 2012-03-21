@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="aMk-RC-ovW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="aMk-RC-ovW">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
     </dependencies>
     <scenes>
+        <!--Phone View Controller - Log-->
         <scene sceneID="auG-Ju-wL0">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ovj-Hg-bRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,7 +25,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Log" image="Bookmarks" id="mpQ-WN-zdO"/>
+                    <tabBarItem key="tabBarItem" title="Log" id="mpQ-WN-zdO"/>
                     <connections>
                         <outlet property="log" destination="l4v-wt-SlJ" id="K8k-H4-rjV"/>
                     </connections>
@@ -31,6 +33,7 @@
             </objects>
             <point key="canvasLocation" x="602" y="328"/>
         </scene>
+        <!--Phone View Controller - Petri Net-->
         <scene sceneID="Tsm-h8-1BS">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VoW-ku-sL6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -55,6 +58,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addButtonPress:" destination="7Yq-U1-QkZ" eventType="touchDown" id="ICz-sw-x3H"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -67,6 +73,7 @@
             </objects>
             <point key="canvasLocation" x="602" y="-237"/>
         </scene>
+        <!--Tab Bar Controller-->
         <scene sceneID="0ft-8M-1mz">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VOF-T2-Bfo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -86,19 +93,23 @@
             <point key="canvasLocation" x="68" y="46"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Bookmarks" width="16" height="16"/>
-    </resources>
     <classes>
-        <class className="PNEPhoneViewController" superclassName="UIViewController">
+        <class className="PNEPhoneViewController" superclassName="PNEViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEPhoneViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="log" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
-            </relationships>
         </class>
         <class className="PNEView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEView.h"/>
+        </class>
+        <class className="PNEViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addArcButtonPres:"/>
+                <relationship kind="action" name="addButtonPress:"/>
+                <relationship kind="action" name="addPlaceButtonPres:"/>
+                <relationship kind="action" name="addTransitionButtonPres:"/>
+                <relationship kind="outlet" name="log" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

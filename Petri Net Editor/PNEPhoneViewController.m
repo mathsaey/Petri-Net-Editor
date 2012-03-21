@@ -10,16 +10,11 @@
 
 @implementation PNEPhoneViewController
 
-@synthesize log, petriNetView;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)viewDidLoad
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        petriNetView.showLabels = false; //Labels are disabled on the iphone version
-    }
-    return self;
-}
+    [super viewDidLoad];
+    petriNetView.showLabels = false; //Labels are disabled on the iphone version
+    addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Place", @"Transition", @"Arc" , nil];}
 
 - (void)didReceiveMemoryWarning
 {
@@ -31,21 +26,6 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -56,6 +36,10 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (IBAction)addButtonPress:(id)sender {
+    [addOptionsSheet showInView:petriNetView];
 }
 
 @end

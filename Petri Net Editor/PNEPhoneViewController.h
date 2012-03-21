@@ -8,16 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "drawing/PNEView.h"
+#import "PNEViewController.h"
 
-@interface PNEPhoneViewController : UIViewController{
-    
-    UITextView *log;   
-    PNEView *petriNetView;
+
+@interface PNEPhoneViewController : PNEViewController {
+    UIActionSheet *addOptionsSheet;
 }
-
-@property (nonatomic, retain) IBOutlet UITextView *log;
-@property (nonatomic, retain) IBOutlet PNEView *petriNetView;
-
-
 
 @end

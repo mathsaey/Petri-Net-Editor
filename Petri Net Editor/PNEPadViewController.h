@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "drawing/PNEView.h"
+#import "PNEViewController.h"
 
-@interface PNEPadViewController : UIViewController{
+@interface PNEPadViewController : PNEViewController {
    
-    UITextView *log;
     UIView *infoView;
-    PNEView *petriNetView;
-    UITextView *contextInformation;
-    
+    UITextView *contextInformation;    
     
     UIToolbar *mainToolbar;
     UIBarButtonItem *addButton;
@@ -30,9 +28,7 @@
 
 }
 
-@property (nonatomic, retain) IBOutlet UITextView *log;
 @property (nonatomic, retain) IBOutlet UIView *infoView;
-@property (nonatomic, retain) IBOutlet PNEView *petriNetView;
 @property (nonatomic, retain) IBOutlet UITextView *contextInformation;
 
 @property (nonatomic, retain) IBOutlet UIToolbar *mainToolbar;
@@ -45,9 +41,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addPlaceButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addTransitionButton;
 
-- (IBAction)addButtonPress:(id)sender;
 - (IBAction)backButtonPress:(id)sender;
-
 - (IBAction)labelVisibilityChanged:(id)sender;
 
 @end

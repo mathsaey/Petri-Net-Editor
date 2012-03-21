@@ -10,7 +10,7 @@
 
 @implementation PNEPadViewController
 
-@synthesize petriNetView, infoView, contextInformation, log;
+@synthesize infoView, contextInformation;
 @synthesize mainToolbar, addButton, labelVisibility;
 @synthesize addToolbar, backButton, addArcButton, addPlaceButton, addTransitionButton;
 
