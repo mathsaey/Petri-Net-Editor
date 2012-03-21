@@ -12,7 +12,6 @@
 
 @synthesize infoView, contextInformation;
 @synthesize mainToolbar, addButton, labelVisibility;
-@synthesize addToolbar, backButton, addArcButton, addPlaceButton, addTransitionButton;
 
 - (void)didReceiveMemoryWarning
 {
@@ -25,7 +24,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidUnload
@@ -74,13 +72,7 @@
 }
 
 - (IBAction)addButtonPress:(id)sender {
-    mainToolbar.hidden = YES;
-    addToolbar.hidden = NO;
-}
-
-- (IBAction)backButtonPress:(id)sender {
-    mainToolbar.hidden = NO;
-    addToolbar.hidden = YES;
+    [addOptionsSheet showFromBarButtonItem:addButton animated:YES];
 }
 
 - (IBAction)labelVisibilityChanged:(id)sender {

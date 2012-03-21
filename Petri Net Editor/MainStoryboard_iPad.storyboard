@@ -45,33 +45,6 @@
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
                                 </accessibility>
                             </view>
-                            <toolbar hidden="YES" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Lpj-0p-cB4" userLabel="addToolbar">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <items>
-                                    <barButtonItem title="Back" id="K9S-vY-g8N">
-                                        <connections>
-                                            <action selector="backButtonPress:" destination="dPx-TF-z0D" id="ZYW-ai-JZH"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rK3-Rg-nNT"/>
-                                    <barButtonItem title="Place" id="wu4-mg-SwG">
-                                        <connections>
-                                            <action selector="addPlaceButtonPres:" destination="dPx-TF-z0D" id="pji-8G-1gG"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Transition" id="cPf-mU-He6">
-                                        <connections>
-                                            <action selector="addTransitionButtonPres:" destination="dPx-TF-z0D" id="lX6-4F-hgC"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Arc" id="CKc-dY-xTQ">
-                                        <connections>
-                                            <action selector="addArcButtonPres:" destination="dPx-TF-z0D" id="mp4-jX-uzi"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Qpq-6b-f2A" userLabel="mainToolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
@@ -101,12 +74,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="addArcButton" destination="CKc-dY-xTQ" id="LnF-Xc-7qd"/>
                         <outlet property="addButton" destination="ped-Cl-3Td" id="Cjw-W7-JJW"/>
-                        <outlet property="addPlaceButton" destination="wu4-mg-SwG" id="N58-Qk-0fE"/>
-                        <outlet property="addToolbar" destination="Lpj-0p-cB4" id="YBF-sO-D2d"/>
-                        <outlet property="addTransitionButton" destination="cPf-mU-He6" id="6Au-C6-4TU"/>
-                        <outlet property="backButton" destination="K9S-vY-g8N" id="czk-dj-fEv"/>
                         <outlet property="contextInformation" destination="4FL-cU-e3i" id="gvb-zA-VW0"/>
                         <outlet property="infoView" destination="7gA-Ta-1ZD" id="7By-4z-WYH"/>
                         <outlet property="labelVisibility" destination="j1a-00-O1l" id="YEl-4C-4jo"/>
@@ -120,13 +88,9 @@
         </scene>
     </scenes>
     <classes>
-        <class className="PNEPadViewController" superclassName="UIViewController">
+        <class className="PNEPadViewController" superclassName="PNEViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEPadViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addArcButtonPres:"/>
-                <relationship kind="action" name="addButtonPress:"/>
-                <relationship kind="action" name="addPlaceButtonPres:"/>
-                <relationship kind="action" name="addTransitionButtonPres:"/>
                 <relationship kind="action" name="backButtonPress:"/>
                 <relationship kind="action" name="labelVisibilityChanged:"/>
                 <relationship kind="outlet" name="addArcButton" candidateClass="UIBarButtonItem"/>
@@ -138,13 +102,22 @@
                 <relationship kind="outlet" name="contextInformation" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="labelVisibility" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="log" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="mainToolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
             </relationships>
         </class>
         <class className="PNEView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEView.h"/>
+        </class>
+        <class className="PNEViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addArcButtonPres:"/>
+                <relationship kind="action" name="addButtonPress:"/>
+                <relationship kind="action" name="addPlaceButtonPres:"/>
+                <relationship kind="action" name="addTransitionButtonPres:"/>
+                <relationship kind="outlet" name="log" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

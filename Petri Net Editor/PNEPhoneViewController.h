@@ -11,8 +11,6 @@
 #import "PNEViewController.h"
 
 
-@interface PNEPhoneViewController : PNEViewController {
-    UIActionSheet *addOptionsSheet;
-}
+@interface PNEPhoneViewController : PNEViewController
 
 @end

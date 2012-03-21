@@ -24,8 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+    addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Place", @"Transition", @"Arc" , nil];}
 
 - (void)viewDidUnload
 {

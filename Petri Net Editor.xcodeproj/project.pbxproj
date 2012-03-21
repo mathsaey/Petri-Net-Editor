@@ -88,6 +88,7 @@
 		D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Petri_Net_EditorTests.m; sourceTree = "<group>"; };
 		D54FCE081519EE5D002A03DD /* PNEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEViewController.h; sourceTree = "<group>"; };
 		D54FCE091519EE5D002A03DD /* PNEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEViewController.m; sourceTree = "<group>"; };
+		D55022D7151A1A8900A846C4 /* PNEHighlightProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEHighlightProtocol.h; path = drawing/PNEHighlightProtocol.h; sourceTree = "<group>"; };
 		D557F63C14F303D7005DC543 /* PNEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEConstants.h; sourceTree = "<group>"; };
 		D557F63D14F303D7005DC543 /* PNEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEConstants.m; sourceTree = "<group>"; };
 		D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
@@ -345,6 +346,7 @@
 				D595E4B514F29201001D9B19 /* PNEPlaceView.m */,
 				D595E4B714F29218001D9B19 /* PNETransitionView.h */,
 				D595E4B814F29218001D9B19 /* PNETransitionView.m */,
+				D55022D7151A1A8900A846C4 /* PNEHighlightProtocol.h */,
 			);
 			name = drawing;
 			sourceTree = "<group>";

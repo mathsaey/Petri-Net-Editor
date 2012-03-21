@@ -6,11 +6,12 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
+#import "PNEHighlightProtocol.h"
 #import "../kernel/PNNode.h"
 #import "../PNEConstants.h"
 #import "PNEViewElement.h"
 
-@interface PNENodeView : PNEViewElement {
+@interface PNENodeView : PNEViewElement <PNEHighlightProtocol> {
     BOOL isMarked;
         
     CGFloat xOrig; //X value of the top-left corner of the square

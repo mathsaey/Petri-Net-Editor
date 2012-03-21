@@ -14,7 +14,7 @@
 {
     [super viewDidLoad];
     petriNetView.showLabels = false; //Labels are disabled on the iphone version
-    addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Place", @"Transition", @"Arc" , nil];}
+}
 
 - (void)didReceiveMemoryWarning
 {

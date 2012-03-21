@@ -15,6 +15,7 @@
 
     UITextView *log;
     PNEView *petriNetView;
+    UIActionSheet *addOptionsSheet;
 }
 
 @property (nonatomic, readonly) IBOutlet UITextView *log;
