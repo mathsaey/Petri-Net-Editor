@@ -36,6 +36,8 @@
     CGFloat xDistance;
     CGFloat yDistance;
     
+    //TODO: review this part
+    
     //Calculate the x and y distances between the start and endpoint
     if (startPoint.x < endPoint.x)
         xDistance = endPoint.x - startPoint.x;
@@ -49,7 +51,7 @@
     if (startPoint.y < endPoint.y && startPoint.x < endPoint.x)
         startAngle = M_PI_2 + atan(yDistance/xDistance);
     if (startPoint.y < endPoint.y && startPoint.x > endPoint.x) 
-        startAngle = atan(yDistance/xDistance) - M_PI;
+        startAngle = M_PI_2 - atan(yDistance/xDistance);
     if (startPoint.y > endPoint.y && startPoint.x > endPoint.x)
         startAngle = atan(yDistance/xDistance) + M_PI_2;
     if (startPoint.y > endPoint.y && startPoint.x < endPoint.x) 
@@ -65,12 +67,8 @@
     CGContextAddLineToPoint(context, endPoint.x, endPoint.y);
 
     //Fill the arrow
-    //CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-    //CGContextFillPath(context);
-    
-    CGContextStrokePath(context);
-
-    
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextFillPath(context);    
 }
 
 - (void) drawCircle: (CGPoint) startPoint endPoint: (CGPoint) endPoint {

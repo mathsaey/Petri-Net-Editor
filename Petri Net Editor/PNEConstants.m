@@ -21,7 +21,7 @@ const CGFloat TRANSITION_DIMENSION = 25;
 
 const CGFloat HL_WIDTH = 5;
 
-const CGFloat ARC_END_SIZE = 20;
+const CGFloat ARC_END_SIZE = 10;
 
 const CGFloat MAIN_FONT_SIZE = 20;
 const char *MAIN_FONT_NAME = "Helvetica Neue";
