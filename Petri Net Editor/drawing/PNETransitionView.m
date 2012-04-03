@@ -84,9 +84,8 @@
     [super dealloc];
 }
 
-
-
-- (void) highlightNode {
+- (void) highlight {
+    [super highlight];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
     
@@ -96,7 +95,8 @@
 }
 
 //Needs a relook, quickly made before demo
-- (void) dimNode {
+- (void) dim {
+    [super dim];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
     

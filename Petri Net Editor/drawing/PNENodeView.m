@@ -21,12 +21,12 @@
     return self;
 }
 
-- (void) highlightNode {
+- (void) highlight {
     isMarked = true;
     [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
 }
 
-- (void) dimNode {
+- (void) dim {
     isMarked = false;
     [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
 }
@@ -41,7 +41,7 @@
     yOrig = origin.y;
     [self drawLabel];
     if (isMarked)
-        [self highlightNode];
+        [self highlight];
 }
 
 - (void) drawLabel {

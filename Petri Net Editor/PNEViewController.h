@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "drawing/PNEView.h"
 
-@interface PNEViewController : UIViewController {
+@interface PNEViewController : UIViewController <UIActionSheetDelegate> {
 
     UITextView *log;
     PNEView *petriNetView;

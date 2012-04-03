@@ -36,6 +36,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+    //TODO: Make rotate redraw the petri net
 }
 
 - (IBAction)addButtonPress:(id)sender {

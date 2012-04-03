@@ -44,7 +44,7 @@
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" id="loy-OD-Fgf" userLabel="Petri Net" customClass="PNEView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="419"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KP5-zc-NfM">

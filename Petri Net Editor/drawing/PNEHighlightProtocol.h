@@ -6,8 +6,15 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
+// This protocol ensures that a certain element can be highlighted
+
 #import <Foundation/Foundation.h>
 
-@protocol PNEHighlightProtocol <NSObject>
+@protocol PNEHighlightProtocol <NSObject> 
+
+@required
+- (void) highlight;
+- (void) dim;
+- (void) toggleHighlight;
 
 @end
