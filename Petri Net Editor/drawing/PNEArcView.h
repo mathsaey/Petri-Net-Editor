@@ -16,6 +16,7 @@
 
 @interface PNEArcView : PNEViewElement <PNEHighlightProtocol> {
     BOOL isInhibitor;
+    BOOL isMarked;
     
     PNENodeView *fromNode;
     PNENodeView *toNode;
