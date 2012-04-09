@@ -10,12 +10,6 @@
 
 @implementation PNETokenView
 
-- (id) initWithView:(PNEView*) view {
-    if(self = [super init]) {
-        tokenColor = [UIColor blackColor];}
-    return self;
-}
-
 - (id) initWithValues: (PNToken*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         element = pnElement;

@@ -32,4 +32,6 @@
 @property (nonatomic, readonly) PNManager *manager;
 @property (nonatomic, readonly) NSMutableArray *arcs, *places, *transitions;
 
+- (void) loadKernel;
+
 @end

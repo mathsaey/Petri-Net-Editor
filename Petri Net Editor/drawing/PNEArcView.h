@@ -22,9 +22,7 @@
     PNENodeView *toNode;
 }
 
-@property (readwrite, weak) PNENodeView *fromNode, *toNode;
-
-- (void) reDrawArc;
-- (void) drawArc: (PNENodeView*) fromNode transition: (PNENodeView*) toNode;
+- (void) drawArc;
+- (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode;
 
 @end

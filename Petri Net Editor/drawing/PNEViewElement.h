@@ -20,7 +20,6 @@
 
 @property (readonly) PNElement *element;
 
-- (id) initWithView:(PNEView*) view;
 - (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view;
 
 - (void) deleteTouchView;

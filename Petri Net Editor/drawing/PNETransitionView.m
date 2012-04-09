@@ -11,47 +11,21 @@
 
 @implementation PNETransitionView
 
-- (id) init {
-    if (self = [super init]) {
-        dimensions = TRANSITION_DIMENSION;        
-    }
-    return self;
-}
-
-- (id) initWithView:(PNEView*) view {
-    if (self = [super initWithView:view]) 
-        dimensions = TRANSITION_DIMENSION;
-    return self;
-}
-
-//TODO: add more abstractions
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         [superView.transitions addObject:self];
         dimensions = TRANSITION_DIMENSION;
     
         //Get all the input arcs
-        for (PNPlace* fromPlace in pnElement.inputs) {
+        for (PNPlace* fromPlace in [pnElement.inputs allKeys]) {
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.inputs objectForKey:fromPlace] superView:superView]; 
-            [superView.arcs addObject:arcView];
-            arcView.toNode = self;
-            
-            for (PNEPlaceView* placeView in superView.places) {
-                if (placeView.element.code == fromPlace.code)
-                    arcView.fromNode = placeView;
-            }
+            [arcView setNodes:fromPlace.view toNode:self];
         }
         
         //Do the same for the output arcs
-        for (PNPlace* toPlace in pnElement.outputs) {
+        for (PNPlace* toPlace in [pnElement.outputs allKeys]) {
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.outputs objectForKey:toPlace] superView:superView]; 
-            [superView.arcs addObject:arcView];
-            arcView.fromNode = self;
-            
-            for (PNEPlaceView* placeView in superView.places) {
-                if (placeView.element.code == toPlace.code)
-                    arcView.toNode = placeView;
-            }
+            [arcView setNodes:self toNode:toPlace.view];
         }
     }
     return self;

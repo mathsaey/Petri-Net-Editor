@@ -17,6 +17,7 @@
     if (self = [super initWithValues:pnElement superView:view]) {
         isMarked = false;
         label = pnElement.label;
+        pnElement.view = self;
     }
     return self;
 }

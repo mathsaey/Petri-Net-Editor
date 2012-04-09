@@ -7,18 +7,21 @@
 //
 
 #import "PNEArcView.h"
+#import "PNEView.h"
 
 @implementation PNEArcView
 
-@synthesize fromNode, toNode;
-
 - (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) 
-    {   if ([pnElement flowFunction] == INHIBITOR)
-            isInhibitor = TRUE;
-        else isInhibitor = FALSE;
-        isMarked = false;}
+    {   isInhibitor = [pnElement flowFunction] == INHIBITOR;
+        isMarked = false;
+        [superView.arcs addObject:self];}
     return self;
+}
+
+- (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode {
+    fromNode = newFromNode;
+    toNode = newToNode;
 }
 
 - (void) toggleHighlight {
@@ -169,15 +172,8 @@
     NSLog(@"CalculateAttachmentPoints (PNEArcView) could not find a suitable attachement point");
 }
 
-//Draws the arc without updating the from and to members
-- (void) reDrawArc {
+- (void) drawArc {
     [self calculateAttachmentPoints];
-}
-
-- (void) drawArc: (PNENodeView*) from transition: (PNENodeView*) to {
-    fromNode = from;
-    toNode = to;
-    [self calculateAttachmentPoints];   
 }
 
 @end

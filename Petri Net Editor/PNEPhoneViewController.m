@@ -33,10 +33,10 @@
     // e.g. self.myOutlet = nil;
 }
 
+//Petri net enkel weergeven in horizontale modus? Log in verticale modus 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
-    //TODO: Make rotate redraw the petri net
 }
 
 - (IBAction)addButtonPress:(id)sender {

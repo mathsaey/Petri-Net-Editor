@@ -12,12 +12,6 @@
 
 @synthesize element;
 
-- (id) initWithView:(PNEView*) view {
-    if(self = [super init])
-        superView = view;
-    return self;
-}
-
 - (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         [element retain];

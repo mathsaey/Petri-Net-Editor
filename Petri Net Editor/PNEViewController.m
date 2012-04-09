@@ -41,35 +41,27 @@
     NSLog(@"Abstract version of addButtonPress (PNEViewController) called!");
 }
 
-- (IBAction)addArcButtonPres:(id)sender {
-    printf("Placeholder! \n");
-}
-
-- (IBAction)addPlaceButtonPres:(id)sender {
-    printf("Placeholder! \n");
-}
-
-- (IBAction)addTransitionButtonPres:(id)sender {
-    printf("Placeholder! \n");
-}
-
-
 //Action sheet delegate method
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
-            printf("Add place placeholder \n"); //place
+            printf("Add place placeholder \n");
+            PNPlace *newPlace = [[PNPlace alloc] initWithName:@"New Place"];
+            [petriNetView.manager addPlace:newPlace];
             break;
         case 1:
-            printf("Add Transition placeholder \n"); //Transition
+            printf("Add Transition placeholder, initialiser makes the next addition crash \n");
+            PNTransition *newTrans = [[PNTransition alloc] initWithName:@"New Transition"];
+            [petriNetView.manager addTransition:newTrans];
             break;
         case 2: 
             printf("Add Arc placeholder \n"); //Arc
             break;
-        default:
-            printf("no idx");
-            break;
     };
+    
+    if (buttonIndex != [actionSheet cancelButtonIndex]) {
+        [petriNetView loadKernel];
+    }
 }
 
 @end
