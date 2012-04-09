@@ -23,8 +23,4 @@
 
 - (IBAction)addButtonPress:(id)sender;
 
-- (IBAction)addArcButtonPres:(id)sender;
-- (IBAction)addPlaceButtonPres:(id)sender;
-- (IBAction)addTransitionButtonPres:(id)sender;
-
 @end

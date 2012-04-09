@@ -11,6 +11,8 @@
 
 @implementation PNEPlaceView
 
+#pragma mark - Lifecycle
+
 - (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues: pnElement superView: view]) {
         tokens = [[NSMutableArray alloc] init];
@@ -31,17 +33,34 @@
     [super dealloc];
 }
 
-- (void) updateMidPoint {
-    midPointX = xOrig + dimensions / 2;
-    midPointY = yOrig + dimensions / 2;
-    distanceFromMidPoint = (dimensions/2) / sqrt(2);
+#pragma mark - Highlight protocol implementation
+
+- (void) highlight {
+    [super highlight];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
+    CGContextAddEllipseInRect(context, rect);
+    CGContextSetLineWidth(context, HL_WIDTH / 2);
+    CGContextStrokePath(context);
 }
 
-- (void) multiplyDimension: (CGFloat) multiplier {
-    [super multiplyDimension:multiplier];
-    [self updateMidPoint];
+//Needs a relook, quickly made before demo
+- (void) dim {
+    [super dim];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextAddEllipseInRect(context, rect);
+    CGContextSetLineWidth(context, HL_WIDTH + 1);
+    CGContextStrokePath(context);
+    
+    [self drawNode:CGPointMake(xOrig, yOrig)];
 }
 
+#pragma mark - Arc attachement point functions
 
 - (CGPoint) getLeftTopPoint {
    return CGPointMake(midPointX - distanceFromMidPoint, midPointY - distanceFromMidPoint);
@@ -58,9 +77,24 @@
     return CGPointMake(midPointX + distanceFromMidPoint, midPointY + distanceFromMidPoint);
 }
 
+#pragma mark - Help functions
+
+- (void) updateMidPoint {
+    midPointX = xOrig + dimensions / 2;
+    midPointY = yOrig + dimensions / 2;
+    distanceFromMidPoint = (dimensions/2) / sqrt(2);
+}
+
+- (void) multiplyDimension: (CGFloat) multiplier {
+    [super multiplyDimension:multiplier];
+    [self updateMidPoint];
+}
+
 - (void) addToken:(PNETokenView *)token {
     [tokens addObject:token];
 }
+
+#pragma mark - Drawing code
 
 - (void) drawSingleToken {
     PNETokenView *theToken = [tokens objectAtIndex:0];
@@ -154,31 +188,6 @@
             [self drawMultipleTokens];
             break;
     }
-}
-
-- (void) highlight {
-    [super highlight];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
-    CGContextAddEllipseInRect(context, rect);
-    CGContextSetLineWidth(context, HL_WIDTH / 2);
-    CGContextStrokePath(context);
-}
-
-//Needs a relook, quickly made before demo
-- (void) dim {
-    [super dim];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
-    CGContextAddEllipseInRect(context, rect);
-    CGContextSetLineWidth(context, HL_WIDTH + 1);
-    CGContextStrokePath(context);
-    
-    [self drawNode:CGPointMake(xOrig, yOrig)];
 }
 
 - (void) drawNode:(CGPoint) origin {

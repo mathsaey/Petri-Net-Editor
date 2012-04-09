@@ -53,6 +53,7 @@
 	[super viewDidDisappear:animated];
 }
 
+#pragma mark View rotating behaviour
 
 -(void)rotatePad:(UIInterfaceOrientation)nextOrientation
 {
@@ -70,6 +71,9 @@
 {
     return YES;
 }
+
+#pragma mark - Action responders
+
 
 - (IBAction)addButtonPress:(id)sender {
     [addOptionsSheet showFromBarButtonItem:addButton animated:YES];

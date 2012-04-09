@@ -12,6 +12,8 @@
 
 @synthesize log, petriNetView;
 
+#pragma mark - Initialisers
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -21,6 +23,8 @@
     return self;
 }
 
+#pragma mark - View lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,13 +33,17 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    [petriNetView release];
+    [log release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    NSLog(@"Abstract version of shouldAutorotateToInterfaceOrientation (PNEViewController) called!");
+    return false;
 }
+
+#pragma mark - Action responders
 
 - (IBAction)addButtonPress:(id)sender {
     NSLog(@"Abstract version of addButtonPress (PNEViewController) called!");
@@ -45,23 +53,15 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
-            printf("Add place placeholder \n");
-            PNPlace *newPlace = [[PNPlace alloc] initWithName:@"New Place"];
-            [petriNetView.manager addPlace:newPlace];
+            [petriNetView addPlace];
             break;
         case 1:
-            printf("Add Transition placeholder, initialiser makes the next addition crash \n");
-            PNTransition *newTrans = [[PNTransition alloc] initWithName:@"New Transition"];
-            [petriNetView.manager addTransition:newTrans];
+            [petriNetView addTransition];
             break;
         case 2: 
-            printf("Add Arc placeholder \n"); //Arc
+            [petriNetView addArc];
             break;
     };
-    
-    if (buttonIndex != [actionSheet cancelButtonIndex]) {
-        [petriNetView loadKernel];
-    }
 }
 
 @end

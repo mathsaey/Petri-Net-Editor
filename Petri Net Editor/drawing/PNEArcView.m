@@ -11,6 +11,8 @@
 
 @implementation PNEArcView
 
+#pragma mark - Lifecycle
+
 - (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) 
     {   isInhibitor = [pnElement flowFunction] == INHIBITOR;
@@ -24,10 +26,14 @@
     toNode = newToNode;
 }
 
+#pragma mark - Highlight protocol implementation
+
 - (void) toggleHighlight {
     isMarked = !isMarked;
     [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
 }
+
+#pragma mark - Drawing code
 
 - (void) drawArrow: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
     CGContextRef context = UIGraphicsGetCurrentContext();

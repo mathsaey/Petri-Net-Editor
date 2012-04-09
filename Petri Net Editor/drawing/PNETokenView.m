@@ -10,6 +10,8 @@
 
 @implementation PNETokenView
 
+#pragma mark - Lifecycle
+
 - (id) initWithValues: (PNToken*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         element = pnElement;
@@ -17,6 +19,8 @@
         tokenColor = pnElement.color;}
     return self;
 }
+
+#pragma mark - Drawing
 
 - (void) drawToken: (CGPoint) origin {
     CGContextRef context = UIGraphicsGetCurrentContext();

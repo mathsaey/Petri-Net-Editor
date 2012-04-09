@@ -32,6 +32,11 @@
 @property (nonatomic, readonly) PNManager *manager;
 @property (nonatomic, readonly) NSMutableArray *arcs, *places, *transitions;
 
+//Methods called from the view controller
+- (void) addArc;
+- (void) addPlace;
+- (void) addTransition;
+
 - (void) loadKernel;
 
 @end

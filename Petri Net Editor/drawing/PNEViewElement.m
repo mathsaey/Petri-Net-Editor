@@ -12,6 +12,8 @@
 
 @synthesize element;
 
+#pragma mark - Lifecycle
+
 - (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         [element retain];
@@ -25,6 +27,8 @@
     [element release];
     [super dealloc];
 }
+
+#pragma mark - Touch logic
 
 - (void) moveTouchView:(CGRect)rect {
     touchView.frame = rect;

@@ -13,6 +13,8 @@
 
 @synthesize xOrig, yOrig, dimensions, isMarked;
 
+#pragma mark - Lifecycle
+
 - (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         isMarked = false;
@@ -21,6 +23,8 @@
     }
     return self;
 }
+
+#pragma mark - Highlight protocol implementation
 
 - (void) highlight {
     isMarked = true;
@@ -37,33 +41,7 @@
     [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
 }
 
-- (void) drawNode: (CGPoint) origin {
-    xOrig = origin.x;
-    yOrig = origin.y;
-    [self drawLabel];
-    if (isMarked)
-        [self highlight];
-}
-
-- (void) drawLabel {
-    if (!superView.showLabels)
-        return;
-
-    //Prepare the text
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSelectFont(context, MAIN_FONT_NAME, MAIN_FONT_SIZE, kCGEncodingMacRoman);
-    
-    //Prepare the string
-    NSUInteger textLength = [label length];
-    const char *tokenText = [label cStringUsingEncoding: [NSString defaultCStringEncoding]];
-    
-    //Inverse the text to makeup for the difference between the uikit and core graphics coordinate systems
-    CGAffineTransform flip = CGAffineTransformMakeScale(1, -1);
-    CGContextSetTextMatrix(context, flip);
-    
-    CGContextSetTextDrawingMode(context, kCGTextFill);
-    CGContextShowTextAtPoint(context, [self getRightEdge].x + LABEL_DISTANCE , [self getRightEdge].y - LABEL_DISTANCE  , tokenText, textLength);
-}
+#pragma mark - Arc attachement point functions
 
 - (CGPoint) getTopEdge {
     return CGPointMake(xOrig + (dimensions / 2) , yOrig);
@@ -129,6 +107,8 @@
     return [self isRight:node] && [self isHigher:node];
 }
 
+#pragma mark - Help functions
+
 - (BOOL) doesOverlap: (PNENodeView*) node {
     return 
     //Check if the origin of the node lies within the current node's rectangle
@@ -137,12 +117,40 @@
     || //Check if the origin of the current node lies within the node's rectangle
     (node.xOrig <= xOrig && xOrig <= node.xOrig + node.dimensions &&
     node.yOrig <= yOrig && yOrig <= node.yOrig + node.dimensions);
-    
-    
 }
 
 - (void) multiplyDimension:(CGFloat)multiplier {
     dimensions = dimensions * multiplier;
+}
+
+#pragma mark - Drawing code
+
+- (void) drawNode: (CGPoint) origin {
+    xOrig = origin.x;
+    yOrig = origin.y;
+    [self drawLabel];
+    if (isMarked)
+        [self highlight];
+}
+
+- (void) drawLabel {
+    if (!superView.showLabels)
+        return;
+    
+    //Prepare the text
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSelectFont(context, MAIN_FONT_NAME, MAIN_FONT_SIZE, kCGEncodingMacRoman);
+    
+    //Prepare the string
+    NSUInteger textLength = [label length];
+    const char *tokenText = [label cStringUsingEncoding: [NSString defaultCStringEncoding]];
+    
+    //Inverse the text to makeup for the difference between the uikit and core graphics coordinate systems
+    CGAffineTransform flip = CGAffineTransformMakeScale(1, -1);
+    CGContextSetTextMatrix(context, flip);
+    
+    CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGContextShowTextAtPoint(context, [self getRightEdge].x + LABEL_DISTANCE , [self getRightEdge].y - LABEL_DISTANCE  , tokenText, textLength);
 }
 
 @end

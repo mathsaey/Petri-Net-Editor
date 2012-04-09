@@ -11,18 +11,22 @@
 
 @implementation PNETransitionView
 
+#pragma mark - Lifecycle
+
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         [superView.transitions addObject:self];
         dimensions = TRANSITION_DIMENSION;
     
         //Get all the input arcs
+        [pnElement.inputs retain];
         for (PNPlace* fromPlace in [pnElement.inputs allKeys]) {
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.inputs objectForKey:fromPlace] superView:superView]; 
             [arcView setNodes:fromPlace.view toNode:self];
         }
-        
+            
         //Do the same for the output arcs
+        [pnElement.outputs retain];
         for (PNPlace* toPlace in [pnElement.outputs allKeys]) {
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.outputs objectForKey:toPlace] superView:superView]; 
             [arcView setNodes:self toNode:toPlace.view];
@@ -31,32 +35,12 @@
     return self;
 }
 
-- (PNEPlaceView*) findPlace: (PNPlace*) place {
-    for (PNEPlaceView* placeView in superView.places) {
-        if (placeView.element.code == place.code)
-            return placeView;
-    }
-    return NULL;
-}
-
-/*
- - (void) createArc: (PNPlace*) placeKey trans: (PNTransition*) trans dictionary: (NSMutableDictionary*) dict isInput: (BOOL) isInput {
- PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[dict objectForKey:placeKey] superView:superView];
- [superView.arcs addObject:arcView];
- if (isInput) {
- arcView.toNode = trans.view;
- arcView.fromNode = placeKey.view;}
- else {
- arcView.fromNode = trans.view;
- arcView.toNode = placeKey.view;
- }
- }
- */
-
 - (void) dealloc {
     [superView.transitions removeObject:self];
     [super dealloc];
 }
+
+#pragma mark - Highlight protocol implementation
 
 - (void) highlight {
     [super highlight];
@@ -78,6 +62,8 @@
     CGContextSetLineWidth(context, HL_WIDTH);
     CGContextStrokeRect(context, rect);
 }
+
+#pragma mark - Drawing code
 
 - (void) drawNode: (CGPoint) origin {
     [super drawNode:origin];

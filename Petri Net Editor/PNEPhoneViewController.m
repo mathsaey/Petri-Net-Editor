@@ -10,6 +10,8 @@
 
 @implementation PNEPhoneViewController
 
+#pragma mark - View lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -18,26 +20,23 @@
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
-
-#pragma mark - View lifecycle
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
+
+#pragma mark View rotating behaviour
 
 //Petri net enkel weergeven in horizontale modus? Log in verticale modus 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
 }
+
+#pragma mark - Action responders
 
 - (IBAction)addButtonPress:(id)sender {
     [addOptionsSheet showInView:petriNetView];
