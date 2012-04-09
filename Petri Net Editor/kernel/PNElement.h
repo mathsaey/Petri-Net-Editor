@@ -14,6 +14,6 @@
     NSValue *code;
 }
 
-@property(nonatomic,readwrite, assign) NSValue *code;
+@property(nonatomic,readonly) NSValue *code;
 
 @end

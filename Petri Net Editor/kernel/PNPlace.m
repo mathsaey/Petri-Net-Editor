@@ -140,12 +140,6 @@
  * Auxiliary method need to pass it as parameter of NSMutableDictionary (a hashmap)
  */
 -(id) copyWithZone: (NSZone *) zone {
-    PNPlace *newPlace = [[PNPlace allocWithZone:zone] init];
-    //   NSLog(@"_copy: %@", [newPlace self]);
-    [newPlace setLabel:[self label]];
-    [newPlace setTokens:tokens];
-    [newPlace setCapacity:capacity];
-    [newPlace setCode:code];
-    return (newPlace);
+    return [self retain];
 }
 @end
