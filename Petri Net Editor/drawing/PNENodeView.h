@@ -13,11 +13,12 @@
 
 @interface PNENodeView : PNEViewElement <PNEHighlightProtocol> {
     BOOL isMarked;
-        
+    
     CGFloat xOrig; //X value of the top-left corner of the square
     CGFloat yOrig; //Y value of the top-left corner of the square
     
     NSString *label;
+    NSMutableArray *neighbours; //Contains references to all the neightbours of the node
     
     CGFloat dimensions; //Dimension of the square
 }
@@ -26,9 +27,13 @@
 @property (readonly) CGFloat xOrig;
 @property (readonly) CGFloat yOrig;
 @property (readonly) CGFloat dimensions;
+@property (readonly) NSMutableArray* neighbours;
 
 - (void) drawLabel;
 - (void) drawNode: (CGPoint) origin;
+
+- (void) addNeighbour: (PNENodeView*) node;
+- (int) countOfNeighbours;
 
 //Returns the middle point of an edge of the square
 - (CGPoint) getTopEdge;

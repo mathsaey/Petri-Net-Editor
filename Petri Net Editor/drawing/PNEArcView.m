@@ -24,13 +24,16 @@
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode {
     fromNode = newFromNode;
     toNode = newToNode;
+    
+    [fromNode addNeighbour:toNode];
+    [toNode addNeighbour:fromNode];
 }
 
 #pragma mark - Highlight protocol implementation
 
 - (void) toggleHighlight {
     isMarked = !isMarked;
-    [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
+    [superView setNeedsDisplay];
 }
 
 #pragma mark - Drawing code

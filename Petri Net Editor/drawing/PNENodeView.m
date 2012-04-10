@@ -11,7 +11,7 @@
 
 @implementation PNENodeView
 
-@synthesize xOrig, yOrig, dimensions, isMarked;
+@synthesize xOrig, yOrig, dimensions, isMarked, neighbours;
 
 #pragma mark - Lifecycle
 
@@ -27,18 +27,12 @@
 #pragma mark - Highlight protocol implementation
 
 - (void) highlight {
-    isMarked = true;
-    [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
+    NSLog(@"Abstract version of highlight (PNENodeView) called");
 }
 
-- (void) dim {
-    isMarked = false;
-    [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
-}
-
-- (void) toggleHighlight {
+- (void) toggleHighlightStatus {
     isMarked = !isMarked;
-    [superView setNeedsDisplay]; //TODO: make this only change the highlightrect
+    [superView setNeedsDisplay]; 
 }
 
 #pragma mark - Arc attachement point functions
@@ -108,6 +102,14 @@
 }
 
 #pragma mark - Help functions
+
+- (void) addNeighbour: (PNENodeView*) node {
+    [neighbours addObject:node];
+}
+
+- (int) countOfNeighbours {
+    return [neighbours count];
+}
 
 - (BOOL) doesOverlap: (PNENodeView*) node {
     return 

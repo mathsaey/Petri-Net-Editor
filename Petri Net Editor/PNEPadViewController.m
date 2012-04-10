@@ -13,6 +13,10 @@
 @synthesize infoView, contextInformation;
 @synthesize mainToolbar, addButton, labelVisibility;
 
+//debug code
+@synthesize testButton;
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -84,6 +88,13 @@
         petriNetView.showLabels = true;
     else petriNetView.showLabels = false;
     [petriNetView setNeedsDisplay];
+}
+
+
+#pragma mark - Test code
+
+- (IBAction)testButtonFire:(id)sender {
+    [petriNetView updateKernel];
 }
 
 @end

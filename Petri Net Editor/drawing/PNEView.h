@@ -38,5 +38,6 @@
 - (void) addTransition;
 
 - (void) loadKernel;
+- (void) updateKernel;
 
 @end

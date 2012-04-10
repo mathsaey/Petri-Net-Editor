@@ -14,7 +14,6 @@
 
 @required
 - (void) highlight;
-- (void) dim;
-- (void) toggleHighlight;
+- (void) toggleHighlightStatus;
 
 @end

@@ -54,15 +54,20 @@
 #pragma mark - External input
 
 - (void) addArc {
-    
+    //pick 2 nodes
+    //Add gesture recognizers to all nodes, remove them afterwards
 }
 
 - (void) addPlace {
-    
+    PNPlace *newPlace = [[PNPlace alloc] initWithName:@"New Place"];
+    [manager addPlace:newPlace];
+    [self loadKernel];
 }
 
 - (void) addTransition {
-    
+    PNTransition *newTrans = [[PNTransition alloc] initWithName:@"New Transition"];
+    [manager addTransition:newTrans];
+    [self loadKernel];
 }
 
 - (void) drawFromKernel: (PNManager*) kernel {
@@ -89,6 +94,13 @@
     [self setNeedsDisplay];
 }
 
+//Only updates the tokens after firing a transition
+- (void) updateKernel {
+    for (PNEPlaceView* place in places) {
+        [place updatePlace];
+    }
+}
+
 - (void)drawRect:(CGRect)rect
 {   CGFloat PXVal = 200;
     CGFloat TXVal = 200;
@@ -98,7 +110,7 @@
         PXVal += PLACE_DIMENSION + 50;
         [place createTouchView:CGRectMake(place.xOrig, place.yOrig, place.dimensions, place.dimensions)];
         
-        UITapGestureRecognizer *tmp = [[UITapGestureRecognizer alloc] initWithTarget:place action:@selector(toggleHighlight)];
+        UITapGestureRecognizer *tmp = [[UITapGestureRecognizer alloc] initWithTarget:place action:@selector(toggleHighlightStatus)];
         [place addTouchResponder:tmp];
         
     }
@@ -109,7 +121,7 @@
         
         [trans createTouchView:CGRectMake(trans.xOrig, trans.yOrig, trans.dimensions, trans.dimensions)];
         
-        UITapGestureRecognizer *tmp = [[UITapGestureRecognizer alloc] initWithTarget:trans action:@selector(toggleHighlight)];
+        UITapGestureRecognizer *tmp = [[UITapGestureRecognizer alloc] initWithTarget:trans action:@selector(toggleHighlightStatus)];
         [trans addTouchResponder:tmp];
     }
     
@@ -147,7 +159,7 @@
         [place_2 addToken:token_3];
         
         PNArcInscription* arc_1 = [[PNArcInscription alloc] initWithType:NORMAL];
-        PNArcInscription* arc_2 = [[PNArcInscription alloc] initWithType:NORMAL];
+        PNArcInscription* arc_2 = [[PNArcInscription alloc] initWithType:INHIBITOR];
         PNArcInscription* arc_3 = [[PNArcInscription alloc] initWithType:NORMAL];
         PNArcInscription* arc_4 = [[PNArcInscription alloc] initWithType:NORMAL];
         PNArcInscription* arc_5 = [[PNArcInscription alloc] initWithType:NORMAL];

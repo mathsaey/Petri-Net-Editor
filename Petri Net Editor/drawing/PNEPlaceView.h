@@ -10,13 +10,14 @@
 #import "PNETokenView.h"
 #import "PNENodeView.h"
 
-@interface PNEPlaceView : PNENodeView { 
+@interface PNEPlaceView : PNENodeView {
     NSMutableArray *tokens;
     CGFloat distanceFromMidPoint;
     CGFloat midPointX;
     CGFloat midPointY;
 }
 
+- (void) updatePlace;
 - (void) addToken: (PNETokenView*) token;
 
 @end

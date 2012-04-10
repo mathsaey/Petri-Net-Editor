@@ -3,7 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
         <!--Pad View Controller-->
@@ -54,6 +54,11 @@
                                             <action selector="addButtonPress:" destination="dPx-TF-z0D" id="3qf-Q8-rRF"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Testbutton" id="Ks2-NN-dql">
+                                        <connections>
+                                            <action selector="testButtonFire:" destination="dPx-TF-z0D" id="SHi-ST-uDB"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="HJS-d0-wW9"/>
                                     <barButtonItem style="plain" id="6Mn-Ey-oke">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="j1a-00-O1l">
@@ -81,6 +86,7 @@
                         <outlet property="log" destination="uGu-su-0gH" id="1DW-7P-VdM"/>
                         <outlet property="mainToolbar" destination="Qpq-6b-f2A" id="rma-JI-iDb"/>
                         <outlet property="petriNetView" destination="74w-vO-Kmt" id="RBN-Qh-tHe"/>
+                        <outlet property="testButton" destination="Ks2-NN-dql" id="qR6-em-pwg"/>
                     </connections>
                 </viewController>
             </objects>
@@ -91,18 +97,14 @@
         <class className="PNEPadViewController" superclassName="PNEViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEPadViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backButtonPress:"/>
                 <relationship kind="action" name="labelVisibilityChanged:"/>
-                <relationship kind="outlet" name="addArcButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="testButtonFire:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="addPlaceButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="addToolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="addTransitionButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="contextInformation" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="labelVisibility" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="mainToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="testButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="PNEView" superclassName="UIView">
@@ -111,10 +113,7 @@
         <class className="PNEViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addArcButtonPres:"/>
                 <relationship kind="action" name="addButtonPress:"/>
-                <relationship kind="action" name="addPlaceButtonPres:"/>
-                <relationship kind="action" name="addTransitionButtonPres:"/>
                 <relationship kind="outlet" name="log" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
             </relationships>

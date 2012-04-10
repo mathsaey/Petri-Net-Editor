@@ -43,22 +43,10 @@
 #pragma mark - Highlight protocol implementation
 
 - (void) highlight {
-    [super highlight];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
     
     CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
-    CGContextSetLineWidth(context, HL_WIDTH);
-    CGContextStrokeRect(context, rect);
-}
-
-//Needs a relook, quickly made before demo
-- (void) dim {
-    [super dim];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextSetLineWidth(context, HL_WIDTH);
     CGContextStrokeRect(context, rect);
 }

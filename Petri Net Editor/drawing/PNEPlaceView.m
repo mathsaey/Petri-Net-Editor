@@ -36,7 +36,6 @@
 #pragma mark - Highlight protocol implementation
 
 - (void) highlight {
-    [super highlight];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
     
@@ -46,19 +45,6 @@
     CGContextStrokePath(context);
 }
 
-//Needs a relook, quickly made before demo
-- (void) dim {
-    [super dim];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
-    CGContextAddEllipseInRect(context, rect);
-    CGContextSetLineWidth(context, HL_WIDTH + 1);
-    CGContextStrokePath(context);
-    
-    [self drawNode:CGPointMake(xOrig, yOrig)];
-}
 
 #pragma mark - Arc attachement point functions
 
@@ -92,6 +78,15 @@
 
 - (void) addToken:(PNETokenView *)token {
     [tokens addObject:token];
+}
+
+- (void) updatePlace {
+    [tokens removeAllObjects];
+    
+    for (PNToken *token in [element tokens]) {
+        PNETokenView *tokenView = [[PNETokenView alloc] initWithValues:token superView:superView];
+        [self addToken:tokenView];}
+    
 }
 
 #pragma mark - Drawing code
@@ -191,8 +186,8 @@
 }
 
 - (void) drawNode:(CGPoint) origin {
-    [super drawNode:origin];
     [self updateMidPoint];
+    [super drawNode:origin];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);
