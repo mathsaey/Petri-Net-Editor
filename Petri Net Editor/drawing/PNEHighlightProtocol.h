@@ -13,7 +13,10 @@
 @protocol PNEHighlightProtocol <NSObject> 
 
 @required
-- (void) highlight;
+- (void) drawHighlight;
+
 - (void) toggleHighlightStatus;
+- (void) highlight;
+- (void) dim;
 
 @end

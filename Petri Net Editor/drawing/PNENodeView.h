@@ -24,15 +24,21 @@
 }
 
 @property (readonly) BOOL isMarked;
-@property (readonly) CGFloat xOrig;
-@property (readonly) CGFloat yOrig;
+@property (readwrite) CGFloat xOrig;
+@property (readwrite) CGFloat yOrig;
 @property (readonly) CGFloat dimensions;
 @property (readonly) NSMutableArray* neighbours;
 
 - (void) drawLabel;
 - (void) drawNode: (CGPoint) origin;
 
+//Touch responders
+- (void) handleTapGesture: (UITapGestureRecognizer *) gesture;
+- (void)handlePanGesture:(UIPanGestureRecognizer *) gesture;
+
+//Keeps track of other connected nodes
 - (void) addNeighbour: (PNENodeView*) node;
+- (BOOL) isConnected: (PNENodeView*) node;
 - (int) countOfNeighbours;
 
 //Returns the middle point of an edge of the square

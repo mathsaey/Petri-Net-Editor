@@ -31,8 +31,18 @@
 
 #pragma mark - Highlight protocol implementation
 
-- (void) toggleHighlight {
+- (void) toggleHighlightStatus {
     isMarked = !isMarked;
+    [superView setNeedsDisplay]; 
+}
+
+- (void) highlight {
+    isMarked = true;
+    [superView setNeedsDisplay];
+}
+
+- (void) dim {
+    isMarked = false;
     [superView setNeedsDisplay];
 }
 

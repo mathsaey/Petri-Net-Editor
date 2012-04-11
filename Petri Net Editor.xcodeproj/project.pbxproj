@@ -52,6 +52,7 @@
 		D595E4B314F29157001D9B19 /* PNEArcView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B214F29157001D9B19 /* PNEArcView.m */; };
 		D595E4B614F29201001D9B19 /* PNEPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B514F29201001D9B19 /* PNEPlaceView.m */; };
 		D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B814F29218001D9B19 /* PNETransitionView.m */; };
+		D5CA939F1535C10200720106 /* PNEView+PNEGraphDrawingCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CA939E1535C10100720106 /* PNEView+PNEGraphDrawingCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,8 @@
 		D595E4B514F29201001D9B19 /* PNEPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEPlaceView.m; path = drawing/PNEPlaceView.m; sourceTree = "<group>"; };
 		D595E4B714F29218001D9B19 /* PNETransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETransitionView.h; path = drawing/PNETransitionView.h; sourceTree = "<group>"; };
 		D595E4B814F29218001D9B19 /* PNETransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETransitionView.m; path = drawing/PNETransitionView.m; sourceTree = "<group>"; };
+		D5CA939D1535C10100720106 /* PNEView+PNEGraphDrawingCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PNEView+PNEGraphDrawingCategory.h"; path = "drawing/PNEView+PNEGraphDrawingCategory.h"; sourceTree = "<group>"; };
+		D5CA939E1535C10100720106 /* PNEView+PNEGraphDrawingCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PNEView+PNEGraphDrawingCategory.m"; path = "drawing/PNEView+PNEGraphDrawingCategory.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +337,17 @@
 			children = (
 				D595E4A414F28F7B001D9B19 /* PNEView.h */,
 				D595E4A514F28F7B001D9B19 /* PNEView.m */,
+				D5CA939D1535C10100720106 /* PNEView+PNEGraphDrawingCategory.h */,
+				D5CA939E1535C10100720106 /* PNEView+PNEGraphDrawingCategory.m */,
+				D5CA93A11535C11300720106 /* Elements */,
+				D55022D7151A1A8900A846C4 /* PNEHighlightProtocol.h */,
+			);
+			name = drawing;
+			sourceTree = "<group>";
+		};
+		D5CA93A11535C11300720106 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
 				D595E4A614F28F7B001D9B19 /* PNEViewElement.h */,
 				D595E4A714F28F7B001D9B19 /* PNEViewElement.m */,
 				D595E4A214F28F7B001D9B19 /* PNETokenView.h */,
@@ -346,9 +360,8 @@
 				D595E4B514F29201001D9B19 /* PNEPlaceView.m */,
 				D595E4B714F29218001D9B19 /* PNETransitionView.h */,
 				D595E4B814F29218001D9B19 /* PNETransitionView.m */,
-				D55022D7151A1A8900A846C4 /* PNEHighlightProtocol.h */,
 			);
-			name = drawing;
+			name = Elements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,6 +506,7 @@
 				D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */,
 				D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */,
 				D54FCE0A1519EE5D002A03DD /* PNEViewController.m in Sources */,
+				D5CA939F1535C10200720106 /* PNEView+PNEGraphDrawingCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

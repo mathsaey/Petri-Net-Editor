@@ -12,7 +12,7 @@
 
 @synthesize showLabels;
 @synthesize manager;
-@synthesize arcs, places, transitions;
+@synthesize arcs, nodes;
 
 #pragma mark - Lifecycle
 
@@ -22,8 +22,7 @@
         [manager retain];
         showLabels = true;
         arcs = [[NSMutableArray alloc] init];
-        places = [[NSMutableArray alloc] init];
-        transitions = [[NSMutableArray alloc] init];
+        nodes = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -36,16 +35,14 @@
         [manager retain];
         showLabels = true;
         arcs = [[NSMutableArray alloc] init];
-        places = [[NSMutableArray alloc] init];
-        transitions = [[NSMutableArray alloc] init];
+        nodes = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void) dealloc{
     [arcs release];
-    [places release];
-    [transitions release];
+    [nodes release];
     
     [manager release];
     [super dealloc];    
@@ -75,12 +72,11 @@
     [self loadKernel];
 }
 
-#pragma mark - Drawing logic
+#pragma mark - Kernel converting
 
 - (void) loadKernel {
     [arcs removeAllObjects];
-    [places removeAllObjects];
-    [transitions removeAllObjects];
+    [nodes removeAllObjects];
      
     //Load all Places
     for (PNPlace* place in manager.places) {
@@ -96,48 +92,14 @@
 
 //Only updates the tokens after firing a transition
 - (void) updateKernel {
-    for (PNEPlaceView* place in places) {
+    for (PNEPlaceView* place in nodes) {
         [place updatePlace];
     }
 }
 
-- (void)drawRect:(CGRect)rect
-{   CGFloat PXVal = 200;
-    CGFloat TXVal = 200;
-    
-    for (PNEPlaceView* place in places) {
-        [place drawNode:CGPointMake(PXVal, 100)];
-        PXVal += PLACE_DIMENSION + 50;
-        [place createTouchView:CGRectMake(place.xOrig, place.yOrig, place.dimensions, place.dimensions)];
-        
-        UITapGestureRecognizer *tmp = [[UITapGestureRecognizer alloc] initWithTarget:place action:@selector(toggleHighlightStatus)];
-        [place addTouchResponder:tmp];
-        
-    }
-    
-    for (PNETransitionView* trans in transitions) {
-        [trans drawNode:CGPointMake(TXVal, 100 + PLACE_DIMENSION + 100)];
-        TXVal += TRANSITION_DIMENSION + 50;
-        
-        [trans createTouchView:CGRectMake(trans.xOrig, trans.yOrig, trans.dimensions, trans.dimensions)];
-        
-        UITapGestureRecognizer *tmp = [[UITapGestureRecognizer alloc] initWithTarget:trans action:@selector(toggleHighlightStatus)];
-        [trans addTouchResponder:tmp];
-    }
-    
-    for (PNEArcView* arc in arcs) {
-        [arc drawArc];
-    }
-    
-}
-
 #pragma mark - TestCode
 
-- (void) insertData {
-    static bool isFirst = true;
-    
-    if (isFirst) {
-        
+- (void) insertData {        
         PNPlace* place_1 = [[PNPlace alloc] initWithName:@"Place 1"];
         PNPlace* place_2 = [[PNPlace alloc] initWithName:@"Place 2"];
         PNPlace* place_3 = [[PNPlace alloc] initWithName:@"Place 3"];
@@ -182,9 +144,8 @@
         [manager addTransition:trans_1];
         [manager addTransition:trans_2];
         [manager addTransition:trans_3]; 
-        
-        isFirst = false;
-    }
+    
+    [self loadKernel];
 }
 
 @end

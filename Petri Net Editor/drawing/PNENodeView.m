@@ -24,15 +24,40 @@
     return self;
 }
 
+#pragma mark - Touch responders
+
+- (void) handleTapGesture: (UITapGestureRecognizer *) gesture {
+    [self toggleHighlightStatus];
+    [superView setNeedsDisplay];
+}
+
+- (void)handlePanGesture:(UIPanGestureRecognizer *) gesture {
+    CGPoint tmp = [gesture locationInView:superView];
+    xOrig = tmp.x;
+    yOrig = tmp.y;
+    [superView setNeedsDisplay];
+}
+
+
 #pragma mark - Highlight protocol implementation
 
-- (void) highlight {
-    NSLog(@"Abstract version of highlight (PNENodeView) called");
+- (void) drawHighlight {
+    NSLog(@"Abstract version of drawHighlight (PNENodeView) called");
 }
 
 - (void) toggleHighlightStatus {
     isMarked = !isMarked;
     [superView setNeedsDisplay]; 
+}
+
+- (void) highlight {
+    isMarked = true;
+    [superView setNeedsDisplay];
+}
+
+- (void) dim {
+    isMarked = false;
+    [superView setNeedsDisplay];
 }
 
 #pragma mark - Arc attachement point functions
@@ -111,6 +136,10 @@
     return [neighbours count];
 }
 
+- (BOOL) isConnected: (PNENodeView*) node {
+    return [neighbours containsObject:node];
+}
+
 - (BOOL) doesOverlap: (PNENodeView*) node {
     return 
     //Check if the origin of the node lies within the current node's rectangle
@@ -128,11 +157,20 @@
 #pragma mark - Drawing code
 
 - (void) drawNode: (CGPoint) origin {
+    if (origin.x + dimensions > superView.bounds.size.width)
+        origin.x = superView.bounds.size.width - dimensions;
+    if (origin.y + dimensions > superView.bounds.size.height)
+        origin.y = superView.bounds.size.height - dimensions;
+    if (origin.y < 0)
+        origin.y = 0;
+    
     xOrig = origin.x;
     yOrig = origin.y;
     [self drawLabel];
     if (isMarked)
-        [self highlight];
+        [self drawHighlight];
+    [self moveTouchView:CGRectMake(origin.x, origin.y, dimensions, dimensions)];
+
 }
 
 - (void) drawLabel {

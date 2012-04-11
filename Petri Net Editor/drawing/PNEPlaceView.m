@@ -16,7 +16,7 @@
 - (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues: pnElement superView: view]) {
         tokens = [[NSMutableArray alloc] init];
-        [superView.places addObject:self];
+        [superView.nodes addObject:self];
         
         //Add all the tokens
         for (PNToken *token in pnElement.tokens) {
@@ -29,19 +29,19 @@
 
 - (void) dealloc {
     [tokens release];
-    [superView.places removeObject:self];
+    [superView.nodes removeObject:self];
     [super dealloc];
 }
 
 #pragma mark - Highlight protocol implementation
 
-- (void) highlight {
+- (void) drawHighlight {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
+    CGRect rect = CGRectMake(xOrig - HL_LINE_WIDTH / 2, yOrig - HL_LINE_WIDTH / 2, dimensions + HL_LINE_WIDTH, dimensions + HL_LINE_WIDTH);
     
     CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
     CGContextAddEllipseInRect(context, rect);
-    CGContextSetLineWidth(context, HL_WIDTH / 2);
+    CGContextSetLineWidth(context, HL_LINE_WIDTH / 2);
     CGContextStrokePath(context);
 }
 
@@ -186,8 +186,8 @@
 }
 
 - (void) drawNode:(CGPoint) origin {
-    [self updateMidPoint];
     [super drawNode:origin];
+    [self updateMidPoint];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);

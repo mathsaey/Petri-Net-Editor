@@ -17,7 +17,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" id="74w-vO-Kmt" userLabel="Petri Net" customClass="PNEView">
                                 <rect key="frame" x="0.0" y="44" width="768" height="697"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                             </view>

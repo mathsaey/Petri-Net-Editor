@@ -15,7 +15,7 @@
 
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
-        [superView.transitions addObject:self];
+        [superView.nodes addObject:self];
         dimensions = TRANSITION_DIMENSION;
     
         //Get all the input arcs
@@ -36,18 +36,18 @@
 }
 
 - (void) dealloc {
-    [superView.transitions removeObject:self];
+    [superView.nodes removeObject:self];
     [super dealloc];
 }
 
 #pragma mark - Highlight protocol implementation
 
-- (void) highlight {
+- (void) drawHighlight {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(xOrig - HL_WIDTH / 2, yOrig - HL_WIDTH / 2, dimensions + HL_WIDTH, dimensions + HL_WIDTH);
+    CGRect rect = CGRectMake(xOrig - HL_LINE_WIDTH / 2, yOrig - HL_LINE_WIDTH / 2, dimensions + HL_LINE_WIDTH, dimensions + HL_LINE_WIDTH);
     
     CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
-    CGContextSetLineWidth(context, HL_WIDTH);
+    CGContextSetLineWidth(context, HL_LINE_WIDTH);
     CGContextStrokeRect(context, rect);
 }
 

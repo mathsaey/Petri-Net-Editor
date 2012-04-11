@@ -64,6 +64,8 @@
     if(UIDeviceOrientationIsPortrait(nextOrientation))
         infoView.hidden = NO;
     else infoView.hidden = YES;
+    
+    [petriNetView setNeedsDisplay];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -94,7 +96,8 @@
 #pragma mark - Test code
 
 - (IBAction)testButtonFire:(id)sender {
-    [petriNetView updateKernel];
+    [petriNetView insertData];
+    [petriNetView calculatePositions];
 }
 
 @end

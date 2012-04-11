@@ -20,8 +20,7 @@
 
 @interface PNEView : UIView {
     NSMutableArray *arcs;
-    NSMutableArray *places;
-    NSMutableArray *transitions;
+    NSMutableArray *nodes;
         
     PNManager *manager;
     
@@ -30,7 +29,7 @@
 
 @property (atomic, readwrite) BOOL showLabels;
 @property (nonatomic, readonly) PNManager *manager;
-@property (nonatomic, readonly) NSMutableArray *arcs, *places, *transitions;
+@property (nonatomic, readonly) NSMutableArray *arcs, *nodes;
 
 //Methods called from the view controller
 - (void) addArc;
@@ -39,5 +38,9 @@
 
 - (void) loadKernel;
 - (void) updateKernel;
+
+
+//Testing code
+- (void) insertData;
 
 @end
