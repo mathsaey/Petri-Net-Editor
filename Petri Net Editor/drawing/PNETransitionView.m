@@ -15,6 +15,8 @@
 
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
+        [nodeOptions addButtonWithTitle:@"Fire Transition"];
+        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
         [superView.nodes addObject:self];
         dimensions = TRANSITION_DIMENSION;
     
@@ -40,6 +42,24 @@
     [super dealloc];
 }
 
+#pragma mark - Options sheet methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+    
+    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
+        [superView.manager removeTransition:element];
+        [superView loadKernel];
+    }
+    
+    else if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Fire Transition") {
+        //[superView.manager fireTransition:self.element];
+        //[superView updatePlaces];
+                
+    }
+}
+
+
 #pragma mark - Highlight protocol implementation
 
 - (void) drawHighlight {
@@ -53,9 +73,8 @@
 
 #pragma mark - Drawing code
 
-- (void) drawNode: (CGPoint) origin {
-    [super drawNode:origin];
-    
+- (void) drawNode {  
+    [super drawNode];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);
 

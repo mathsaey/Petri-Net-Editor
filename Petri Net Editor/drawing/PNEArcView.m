@@ -16,7 +16,6 @@
 - (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) 
     {   isInhibitor = [pnElement flowFunction] == INHIBITOR;
-        isMarked = false;
         [superView.arcs addObject:self];}
     return self;
 }
@@ -27,23 +26,6 @@
     
     [fromNode addNeighbour:toNode];
     [toNode addNeighbour:fromNode];
-}
-
-#pragma mark - Highlight protocol implementation
-
-- (void) toggleHighlightStatus {
-    isMarked = !isMarked;
-    [superView setNeedsDisplay]; 
-}
-
-- (void) highlight {
-    isMarked = true;
-    [superView setNeedsDisplay];
-}
-
-- (void) dim {
-    isMarked = false;
-    [superView setNeedsDisplay];
 }
 
 #pragma mark - Drawing code

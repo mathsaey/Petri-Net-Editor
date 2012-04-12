@@ -9,14 +9,12 @@
 #import "../kernel/PNArcInscription.h"
 #import "../PNEConstants.h"
 
-#import "PNEHighlightProtocol.h"
 #import "PNEViewElement.h"
 #import "PNENodeView.h"
 
 
-@interface PNEArcView : PNEViewElement <PNEHighlightProtocol> {
+@interface PNEArcView : PNEViewElement {
     BOOL isInhibitor;
-    BOOL isMarked;
     
     PNENodeView *fromNode;
     PNENodeView *toNode;

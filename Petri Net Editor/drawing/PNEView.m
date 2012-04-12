@@ -10,9 +10,10 @@
 
 @implementation PNEView
 
-@synthesize showLabels;
-@synthesize manager;
 @synthesize arcs, nodes;
+@synthesize showLabels;
+@synthesize controller;
+@synthesize manager;
 
 #pragma mark - Lifecycle
 
@@ -87,13 +88,52 @@
         [[PNETransitionView alloc] initWithValues:trans superView:self];
     }
     
-    [self setNeedsDisplay];
+    [self calculatePositions];
 }
 
 //Only updates the tokens after firing a transition
-- (void) updateKernel {
+- (void) updatePlaces {
     for (PNEPlaceView* place in nodes) {
         [place updatePlace];
+    }
+    [self setNeedsDisplay];
+}
+
+#pragma mark - Drawing Code
+
+//Redraws the entire graph, should only be used after loading a kernel
+- (void) calculatePositions {
+    CGFloat horizontalDistance = 100;
+    CGPoint currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
+    
+    for (PNENodeView* node in nodes) {
+        [node moveNode:currentLocation];
+        
+        if (currentLocation.x >= self.bounds.size.width) {
+            currentLocation.x = self.bounds.origin.x + horizontalDistance;
+            currentLocation.y += 100;
+        }
+        else currentLocation.x += horizontalDistance;
+        
+        //Add touch responders
+        [node createTouchView:CGRectMake(node.xOrig, node.yOrig, node.dimensions, node.dimensions)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:node action:@selector(handleTapGesture:)];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:node action:@selector(handlePanGesture:)];
+        UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:node action:@selector(handleLongGesture:)];
+        [node addTouchResponder:tap];
+        [node addTouchResponder:pan];
+        [node addTouchResponder:hold];
+    }
+    
+    [self setNeedsDisplay];
+}
+
+- (void)drawRect:(CGRect)rect {
+    for (PNENodeView* node in nodes) {
+        [node drawNode];
+    }
+    for (PNEArcView* arc in arcs) {
+        [arc drawArc];
     }
 }
 

@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
-#import "PNEHighlightProtocol.h"
 #import "../kernel/PNNode.h"
 #import "../PNEConstants.h"
 #import "PNEViewElement.h"
 
-@interface PNENodeView : PNEViewElement <PNEHighlightProtocol> {
+@interface PNENodeView : PNEViewElement <UIActionSheetDelegate, UIAlertViewDelegate> {
     BOOL isMarked;
+    UIActionSheet *nodeOptions;
     
     CGFloat xOrig; //X value of the top-left corner of the square
     CGFloat yOrig; //Y value of the top-left corner of the square
@@ -24,15 +24,24 @@
 }
 
 @property (readonly) BOOL isMarked;
-@property (readwrite) CGFloat xOrig;
-@property (readwrite) CGFloat yOrig;
+@property (readonly) CGFloat xOrig;
+@property (readonly) CGFloat yOrig;
 @property (readonly) CGFloat dimensions;
 @property (readonly) NSMutableArray* neighbours;
 
+//Drawing
 - (void) drawLabel;
-- (void) drawNode: (CGPoint) origin;
+- (void) drawNode;
+- (void) moveNode: (CGPoint) origin;
+
+//Highlighting
+- (void) drawHighlight;
+- (void) toggleHighlightStatus;
+- (void) highlight;
+- (void) dim;
 
 //Touch responders
+- (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture;
 - (void) handleTapGesture: (UITapGestureRecognizer *) gesture;
 - (void)handlePanGesture:(UIPanGestureRecognizer *) gesture;
 
@@ -64,6 +73,7 @@
 - (BOOL) isRightAndHigher: (PNENodeView*) node;
 - (BOOL) doesOverlap: (PNENodeView*) node;
 
+- (void) updateOrigin: (CGPoint) newOrigin;
 - (void) multiplyDimension: (CGFloat) multiplier;
 
 @end

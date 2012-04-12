@@ -17,6 +17,12 @@
 
 - (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
+        //Initialise the action sheet, 
+        //we initialise the cancel button later so it appears at the bottom
+        nodeOptions = [[UIActionSheet alloc] 
+                       initWithTitle:@"Options:" delegate:self 
+                       cancelButtonTitle:nil destructiveButtonTitle:@"Delete" 
+                       otherButtonTitles: @"Change label", nil];
         isMarked = false;
         label = pnElement.label;
         pnElement.view = self;
@@ -24,7 +30,16 @@
     return self;
 }
 
+- (void) dealloc {
+    [super dealloc];
+    [neighbours release];
+}
+
 #pragma mark - Touch responders
+
+- (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
+    [nodeOptions showFromRect:touchView.bounds inView:touchView animated:true];
+}
 
 - (void) handleTapGesture: (UITapGestureRecognizer *) gesture {
     [self toggleHighlightStatus];
@@ -33,9 +48,29 @@
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *) gesture {
     CGPoint tmp = [gesture locationInView:superView];
-    xOrig = tmp.x;
-    yOrig = tmp.y;
+    [self moveNode:tmp];
     [superView setNeedsDisplay];
+}
+
+#pragma mark Option sheet methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Change label") {
+        UIAlertView *popup = [[UIAlertView alloc] initWithTitle:@"Name" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+        popup.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [popup textFieldAtIndex:0].placeholder = label;
+        [popup show];
+    }
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        NSString *newLabel = [alertView textFieldAtIndex:0].text;
+        [label release];
+        [newLabel retain];
+        label = newLabel;
+        [superView setNeedsDisplay];
+    }
 }
 
 
@@ -154,9 +189,21 @@
     dimensions = dimensions * multiplier;
 }
 
+- (void) updateOrigin: (CGPoint) newOrigin {
+    xOrig = newOrigin.x;
+    yOrig = newOrigin.y;
+}
+
 #pragma mark - Drawing code
 
-- (void) drawNode: (CGPoint) origin {
+- (void) drawNode {
+    [self drawLabel];
+    if (isMarked)
+        [self drawHighlight];
+}
+
+- (void) moveNode: (CGPoint) origin {
+    //checks if the node does not go out of bounds
     if (origin.x + dimensions > superView.bounds.size.width)
         origin.x = superView.bounds.size.width - dimensions;
     if (origin.y + dimensions > superView.bounds.size.height)
@@ -166,11 +213,8 @@
     
     xOrig = origin.x;
     yOrig = origin.y;
-    [self drawLabel];
-    if (isMarked)
-        [self drawHighlight];
+    
     [self moveTouchView:CGRectMake(origin.x, origin.y, dimensions, dimensions)];
-
 }
 
 - (void) drawLabel {

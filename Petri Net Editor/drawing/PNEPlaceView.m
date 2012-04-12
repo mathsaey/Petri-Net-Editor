@@ -15,6 +15,7 @@
 
 - (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues: pnElement superView: view]) {
+        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
         tokens = [[NSMutableArray alloc] init];
         [superView.nodes addObject:self];
         
@@ -33,6 +34,10 @@
     [super dealloc];
 }
 
+- (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
+    [nodeOptions showFromRect:touchView.bounds inView:touchView animated:true];
+}
+
 #pragma mark - Highlight protocol implementation
 
 - (void) drawHighlight {
@@ -45,6 +50,16 @@
     CGContextStrokePath(context);
 }
 
+#pragma mark - Options sheet methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+    
+    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
+        [superView.manager removePlace:element];
+        [superView loadKernel];
+    }
+}
 
 #pragma mark - Arc attachement point functions
 
@@ -185,9 +200,13 @@
     }
 }
 
-- (void) drawNode:(CGPoint) origin {
-    [super drawNode:origin];
+- (void) moveNode:(CGPoint)origin {
+    [super moveNode:origin];
     [self updateMidPoint];
+}
+
+- (void) drawNode {
+    [super drawNode];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);
