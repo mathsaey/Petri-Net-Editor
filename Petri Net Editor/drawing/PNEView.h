@@ -19,9 +19,9 @@
 #import "PNEViewController.h"
 
 @interface PNEView : UIView {
-    PNEViewController *controller; 
     NSMutableArray *arcs;
-    NSMutableArray *nodes;
+    NSMutableArray *places;
+    NSMutableArray *transitions;
         
     PNManager *manager;
     
@@ -30,8 +30,7 @@
 
 @property (atomic, readwrite) BOOL showLabels;
 @property (nonatomic, readonly) PNManager *manager;
-@property (nonatomic, readonly) NSMutableArray *arcs, *nodes;
-@property (nonatomic, readonly) PNEViewController *controller;
+@property (nonatomic, readonly) NSMutableArray *arcs, *places, *transitions;
 
 //Methods called from the view controller
 - (void) addArc;
@@ -40,7 +39,6 @@
 
 - (void) loadKernel;
 - (void) updatePlaces;
-
 
 //Testing code
 - (void) insertData;

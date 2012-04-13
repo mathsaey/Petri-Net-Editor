@@ -11,57 +11,64 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Htg-Ao-HAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="dPx-TF-z0D" customClass="PNEPadViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="z8b-BB-ybR">
+                    <view key="view" contentMode="scaleToFill" id="z8b-BB-ybR" userLabel="mainView">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="74w-vO-Kmt" userLabel="Petri Net" customClass="PNEView">
-                                <rect key="frame" x="0.0" y="44" width="768" height="697"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <gestureRecognizers/>
-                            </view>
-                            <view userInteractionEnabled="NO" contentMode="bottom" id="7gA-Ta-1ZD" userLabel="InfoView">
-                                <rect key="frame" x="0.0" y="741" width="768" height="263"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <view contentMode="scaleToFill" id="9IG-n5-RNL">
+                                <rect key="frame" x="0.0" y="44" width="768" height="960"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="Fired Transition" id="uGu-su-0gH" userLabel="Log">
-                                        <rect key="frame" x="320" y="20" width="415" height="214"/>
+                                    <view userInteractionEnabled="NO" contentMode="bottom" id="7gA-Ta-1ZD" userLabel="InfoView">
+                                        <rect key="frame" x="0.0" y="697" width="768" height="263"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="Current context: aContext" id="4FL-cU-e3i" userLabel="ContextInformation">
-                                        <rect key="frame" x="20" y="20" width="292" height="223"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="Fired Transition" id="uGu-su-0gH" userLabel="Log">
+                                                <rect key="frame" x="320" y="20" width="415" height="214"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="Current context: aContext" id="4FL-cU-e3i" userLabel="ContextInformation">
+                                                <rect key="frame" x="20" y="20" width="292" height="223"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
+                                        </accessibility>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="74w-vO-Kmt" userLabel="Petri Net" customClass="PNEView">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="713"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
-                                </accessibility>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Qpq-6b-f2A" userLabel="mainToolbar">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="3jV-Kp-Fd2" userLabel="mainToolbar">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <items>
-                                    <barButtonItem title="Add" id="ped-Cl-3Td">
+                                    <barButtonItem title="Add" id="Rec-hz-fOY">
                                         <connections>
-                                            <action selector="addButtonPress:" destination="dPx-TF-z0D" id="3qf-Q8-rRF"/>
+                                            <action selector="addButtonPress:" destination="dPx-TF-z0D" id="inN-oj-BxM"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Testbutton" id="Ks2-NN-dql">
+                                    <barButtonItem title="Testbutton" id="7ui-9M-xGw">
                                         <connections>
-                                            <action selector="testButtonFire:" destination="dPx-TF-z0D" id="SHi-ST-uDB"/>
+                                            <action selector="testButtonFire:" destination="dPx-TF-z0D" id="jRh-iU-tHI"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HJS-d0-wW9"/>
-                                    <barButtonItem style="plain" id="6Mn-Ey-oke">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="j1a-00-O1l">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="OuB-28-vAU"/>
+                                    <barButtonItem style="plain" id="BHX-KZ-zRg">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="rQ8-B7-0Rm">
                                             <rect key="frame" x="554" y="7" width="207" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
@@ -69,7 +76,7 @@
                                                 <segment title="Hide Labels"/>
                                             </segments>
                                             <connections>
-                                                <action selector="labelVisibilityChanged:" destination="dPx-TF-z0D" eventType="valueChanged" id="ueB-Ts-zec"/>
+                                                <action selector="labelVisibilityChanged:" destination="dPx-TF-z0D" eventType="valueChanged" id="NZw-Qf-j5X"/>
                                             </connections>
                                         </segmentedControl>
                                     </barButtonItem>
@@ -79,14 +86,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="ped-Cl-3Td" id="Cjw-W7-JJW"/>
                         <outlet property="contextInformation" destination="4FL-cU-e3i" id="gvb-zA-VW0"/>
                         <outlet property="infoView" destination="7gA-Ta-1ZD" id="7By-4z-WYH"/>
-                        <outlet property="labelVisibility" destination="j1a-00-O1l" id="YEl-4C-4jo"/>
+                        <outlet property="labelVisibility" destination="rQ8-B7-0Rm" id="lF8-k4-zb9"/>
                         <outlet property="log" destination="uGu-su-0gH" id="1DW-7P-VdM"/>
-                        <outlet property="mainToolbar" destination="Qpq-6b-f2A" id="rma-JI-iDb"/>
                         <outlet property="petriNetView" destination="74w-vO-Kmt" id="RBN-Qh-tHe"/>
-                        <outlet property="testButton" destination="Ks2-NN-dql" id="qR6-em-pwg"/>
                     </connections>
                 </viewController>
             </objects>

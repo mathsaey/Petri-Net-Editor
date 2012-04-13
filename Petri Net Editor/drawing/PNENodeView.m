@@ -35,7 +35,24 @@
     [neighbours release];
 }
 
-#pragma mark - Touch responders
+#pragma mark - Touch logic
+
+- (void) createTouchZone {
+    touchView = [[UIView alloc] initWithFrame:CGRectMake(xOrig, yOrig, dimensions, dimensions)];
+    [superView addSubview:touchView];
+}
+
+- (void) updateTouchZone {
+    touchView.frame = CGRectMake(xOrig, yOrig, dimensions, dimensions);
+}
+
+- (void) removeTouchZone {
+    [touchView release];
+}
+
+- (void) addTouchResponder:(UIGestureRecognizer *)recognizer {
+    [touchView addGestureRecognizer:recognizer];
+}
 
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
     [nodeOptions showFromRect:touchView.bounds inView:touchView animated:true];
@@ -214,7 +231,7 @@
     xOrig = origin.x;
     yOrig = origin.y;
     
-    [self moveTouchView:CGRectMake(origin.x, origin.y, dimensions, dimensions)];
+    [self updateTouchZone];
 }
 
 - (void) drawLabel {
@@ -227,14 +244,14 @@
     
     //Prepare the string
     NSUInteger textLength = [label length];
-    const char *tokenText = [label cStringUsingEncoding: [NSString defaultCStringEncoding]];
+    const char *labelText = [label cStringUsingEncoding: [NSString defaultCStringEncoding]];
     
     //Inverse the text to makeup for the difference between the uikit and core graphics coordinate systems
     CGAffineTransform flip = CGAffineTransformMakeScale(1, -1);
     CGContextSetTextMatrix(context, flip);
     
     CGContextSetTextDrawingMode(context, kCGTextFill);
-    CGContextShowTextAtPoint(context, [self getRightEdge].x + LABEL_DISTANCE , [self getRightEdge].y - LABEL_DISTANCE  , tokenText, textLength);
+    CGContextShowTextAtPoint(context, [self getRightEdge].x + LABEL_DISTANCE , [self getRightEdge].y - LABEL_DISTANCE  , labelText, textLength);
 }
 
 @end

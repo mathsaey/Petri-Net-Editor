@@ -17,7 +17,7 @@
     if (self = [super initWithValues:pnElement superView:view]) {
         [nodeOptions addButtonWithTitle:@"Fire Transition"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
-        [superView.nodes addObject:self];
+        [superView.transitions addObject:self];
         dimensions = TRANSITION_DIMENSION;
     
         //Get all the input arcs
@@ -38,7 +38,7 @@
 }
 
 - (void) dealloc {
-    [superView.nodes removeObject:self];
+    [superView.transitions removeObject:self];
     [super dealloc];
 }
 

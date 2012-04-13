@@ -23,30 +23,28 @@
 }
 
 - (void) dealloc {
-    [self deleteTouchView];
+    [self removeTouchZone];
     [element release];
     [super dealloc];
 }
 
 #pragma mark - Touch logic
 
-- (void) moveTouchView:(CGRect)rect {
-    touchView.frame = rect;
+- (void) updateTouchZone {
+    NSLog(@"Abstract version of updateTouchViewLocation (PNEViewElement) called!");
 }
 
-- (void) deleteTouchView {
-    [touchView removeFromSuperview];
-    [touchView release];
-    touchView = NULL;
+- (void) createTouchZone {
+    NSLog(@"Abstract version of createTouchView (PNEViewElement) called!");
 }
 
-- (void) createTouchView: (CGRect) rect {
-    touchView = [[UIView alloc] initWithFrame:rect];
-    [superView addSubview:touchView];
+- (void) removeTouchZone {
+    NSLog(@"Abstract version of removeTouchView (PNEViewElement) called!");
+
 }
 
 - (void) addTouchResponder: (UIGestureRecognizer*) recognizer {
-    [touchView addGestureRecognizer:recognizer];
+    NSLog(@"Abstract version of addTouchResponder (PNEViewElement) called!");
 }
 
 @end

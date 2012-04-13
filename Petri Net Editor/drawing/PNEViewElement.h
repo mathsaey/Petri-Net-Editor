@@ -15,16 +15,15 @@
 @interface PNEViewElement : NSObject {
     PNElement *element;
     PNEView *superView;
-    UIView *touchView;
     }
 
 @property (readonly) PNElement *element;
 
 - (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view;
 
-- (void) deleteTouchView;
-- (void) moveTouchView: (CGRect) rect;
-- (void) createTouchView: (CGRect) rect;
+- (void) removeTouchZone;
+- (void) createTouchZone;
+- (void) updateTouchZone;
 - (void) addTouchResponder: (UIGestureRecognizer*) recognizer;
 
 @end

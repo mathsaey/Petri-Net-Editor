@@ -10,9 +10,8 @@
 
 @implementation PNEView
 
-@synthesize arcs, nodes;
+@synthesize arcs, places, transitions;
 @synthesize showLabels;
-@synthesize controller;
 @synthesize manager;
 
 #pragma mark - Lifecycle
@@ -23,7 +22,8 @@
         [manager retain];
         showLabels = true;
         arcs = [[NSMutableArray alloc] init];
-        nodes = [[NSMutableArray alloc] init];
+        places = [[NSMutableArray alloc] init];
+        transitions = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -36,14 +36,16 @@
         [manager retain];
         showLabels = true;
         arcs = [[NSMutableArray alloc] init];
-        nodes = [[NSMutableArray alloc] init];
+        places = [[NSMutableArray alloc] init];
+        transitions = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void) dealloc{
     [arcs release];
-    [nodes release];
+    [places release];
+    [transitions release];
     
     [manager release];
     [super dealloc];    
@@ -77,7 +79,8 @@
 
 - (void) loadKernel {
     [arcs removeAllObjects];
-    [nodes removeAllObjects];
+    [places removeAllObjects];
+    [transitions removeAllObjects];
      
     //Load all Places
     for (PNPlace* place in manager.places) {
@@ -93,7 +96,7 @@
 
 //Only updates the tokens after firing a transition
 - (void) updatePlaces {
-    for (PNEPlaceView* place in nodes) {
+    for (PNEPlaceView* place in places) {
         [place updatePlace];
     }
     [self setNeedsDisplay];
@@ -106,7 +109,7 @@
     CGFloat horizontalDistance = 100;
     CGPoint currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
     
-    for (PNENodeView* node in nodes) {
+    for (PNEPlaceView* node in places) {
         [node moveNode:currentLocation];
         
         if (currentLocation.x >= self.bounds.size.width) {
@@ -116,7 +119,7 @@
         else currentLocation.x += horizontalDistance;
         
         //Add touch responders
-        [node createTouchView:CGRectMake(node.xOrig, node.yOrig, node.dimensions, node.dimensions)];
+        [node createTouchZone];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:node action:@selector(handleTapGesture:)];
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:node action:@selector(handlePanGesture:)];
         UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:node action:@selector(handleLongGesture:)];
@@ -125,13 +128,36 @@
         [node addTouchResponder:hold];
     }
     
+    for (PNETransitionView* trans in transitions) {
+        [trans moveNode:currentLocation];
+        
+        if (currentLocation.x >= self.bounds.size.width) {
+            currentLocation.x = self.bounds.origin.x + horizontalDistance;
+            currentLocation.y += 100;
+        }
+        else currentLocation.x += horizontalDistance;
+        
+        //Add touch responders
+        [trans createTouchZone];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:trans action:@selector(handleTapGesture:)];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:trans action:@selector(handlePanGesture:)];
+        UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:trans action:@selector(handleLongGesture:)];
+        [trans addTouchResponder:tap];
+        [trans addTouchResponder:pan];
+        [trans addTouchResponder:hold];
+    }
+    
     [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect {
-    for (PNENodeView* node in nodes) {
-        [node drawNode];
+    for (PNEPlaceView* place in places) {
+        [place drawNode];
     }
+    for (PNETransitionView* transition in transitions) {
+        [transition drawNode];
+    }
+    
     for (PNEArcView* arc in arcs) {
         [arc drawArc];
     }
@@ -164,10 +190,6 @@
         PNArcInscription* arc_2 = [[PNArcInscription alloc] initWithType:INHIBITOR];
         PNArcInscription* arc_3 = [[PNArcInscription alloc] initWithType:NORMAL];
         PNArcInscription* arc_4 = [[PNArcInscription alloc] initWithType:NORMAL];
-        PNArcInscription* arc_5 = [[PNArcInscription alloc] initWithType:NORMAL];
-        PNArcInscription* arc_6 = [[PNArcInscription alloc] initWithType:NORMAL];
-        PNArcInscription* arc_7 = [[PNArcInscription alloc] initWithType:NORMAL];
-        
         
         [trans_1 addInput:arc_3 fromPlace:place_2];
         [trans_2 addOutput:arc_1 toPlace:place_1];

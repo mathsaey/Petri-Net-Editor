@@ -16,8 +16,16 @@
 - (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) 
     {   isInhibitor = [pnElement flowFunction] == INHIBITOR;
-        [superView.arcs addObject:self];}
+        [superView.arcs addObject:self];
+        weight = [pnElement flowFunction];
+        touchViews = [[NSMutableArray alloc] init];
+    }
     return self;
+}
+
+- (void) dealloc {
+    [touchViews dealloc];
+    [super dealloc];
 }
 
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode {
@@ -28,6 +36,8 @@
     [toNode addNeighbour:fromNode];
 }
 
+#pragma mark - Touch logic
+
 #pragma mark - Drawing code
 
 - (void) drawArrow: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
@@ -37,19 +47,9 @@
     //The angle of the start of the back of the arrow with the x-axis
     CGFloat startAngle;
     
-    CGFloat xDistance;
-    CGFloat yDistance;
-    
-    //TODO: review this part
-    
     //Calculate the x and y distances between the start and endpoint
-    if (startPoint.x < endPoint.x)
-        xDistance = endPoint.x - startPoint.x;
-    else xDistance = startPoint.x - endPoint.x;
-    
-    if (startPoint.y < endPoint.y)
-        yDistance = endPoint.y - startPoint.y;
-    else yDistance = startPoint.y - endPoint.y;
+    CGFloat xDistance = MAX(startPoint.x, endPoint.x) - MIN(startPoint.x, endPoint.x);
+    CGFloat yDistance = MAX(startPoint.y, endPoint.y) - MIN(startPoint.y, endPoint.y);
     
     //Calculate the angle
     if (startPoint.y < endPoint.y && startPoint.x < endPoint.x)
@@ -81,14 +81,8 @@
     
     CGPoint midPoint;
     
-    //Calculate the midpoint of the circle
-    if (startPoint.x < endPoint.x)
-        midPoint.x = startPoint.x + (endPoint.x - startPoint.x) / 2;
-    else midPoint.x = endPoint.x + (startPoint.x - endPoint.x) / 2;
-    
-    if (startPoint.y < endPoint.y)
-        midPoint.y = startPoint.y + (endPoint.y - startPoint.y) / 2;
-    else midPoint.y = endPoint.y + (startPoint.y - endPoint.y) /2;
+    midPoint.x = MIN(startPoint.x, endPoint.x) + (MAX(startPoint.x, endPoint.x) - MIN(startPoint.x, endPoint.x)) / 2;
+    midPoint.y = MIN(startPoint.y, endPoint.y) + (MAX(startPoint.y, endPoint.y) - MIN(startPoint.y, endPoint.y)) / 2;
         
     //Create the circle
     CGContextAddArc(context, midPoint.x, midPoint.y, ARC_END_SIZE / 2, 0, M_PI * 2, 0);
@@ -147,7 +141,34 @@
         [self drawCircle:lineEnd endPoint:endPoint];
     else [self drawArrow:lineEnd endPoint:endPoint];
     
+    //Draw the weight
+    [self drawWeight:startPoint endPoint:endPoint];
+    
     }
+
+- (void) drawWeight: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
+    if (!superView.showLabels || (weight == 0 && isInhibitor) || weight == 1)
+        return;
+    
+    //Prepare the text
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSelectFont(context, MAIN_FONT_NAME, MAIN_FONT_SIZE, kCGEncodingMacRoman);
+    
+    //Prepare the string
+    NSString *weightString = [NSString stringWithFormat:@"%d", weight];
+    NSUInteger textLength = [weightString length];
+    const char *weightText = [weightString cStringUsingEncoding: [NSString defaultCStringEncoding]];
+    
+    //Inverse the text to makeup for the difference between the uikit and core graphics coordinate systems
+    CGAffineTransform flip = CGAffineTransformMakeScale(1, -1);
+    CGContextSetTextMatrix(context, flip);
+    
+    CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGFloat xVal = MIN(startPoint.x, endPoint.x) + (MAX(startPoint.x, endPoint.x) - MIN(startPoint.x, endPoint.x)) / 2;
+    CGFloat yVal = MIN(startPoint.y, endPoint.y) + (MAX(startPoint.y, endPoint.y) - MIN(startPoint.y, endPoint.y)) / 2;
+    
+    CGContextShowTextAtPoint(context, xVal + LABEL_DISTANCE , yVal - LABEL_DISTANCE  , weightText, textLength);
+}
 
 //Calculates the start and end points of the arc
 - (void) calculateAttachmentPoints {

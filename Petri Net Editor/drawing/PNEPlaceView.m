@@ -17,7 +17,7 @@
     if (self = [super initWithValues: pnElement superView: view]) {
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
         tokens = [[NSMutableArray alloc] init];
-        [superView.nodes addObject:self];
+        [superView.places addObject:self];
         
         //Add all the tokens
         for (PNToken *token in pnElement.tokens) {
@@ -30,7 +30,7 @@
 
 - (void) dealloc {
     [tokens release];
-    [superView.nodes removeObject:self];
+    [superView.places removeObject:self];
     [super dealloc];
 }
 

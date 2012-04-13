@@ -12,6 +12,7 @@
 
 @interface PNENodeView : PNEViewElement <UIActionSheetDelegate, UIAlertViewDelegate> {
     BOOL isMarked;
+    UIView *touchView;
     UIActionSheet *nodeOptions;
     
     CGFloat xOrig; //X value of the top-left corner of the square

@@ -15,9 +15,12 @@
 
 @interface PNEArcView : PNEViewElement {
     BOOL isInhibitor;
+    int weight;
     
     PNENodeView *fromNode;
     PNENodeView *toNode;
+    
+    NSMutableArray *touchViews;
 }
 
 - (void) drawArc;

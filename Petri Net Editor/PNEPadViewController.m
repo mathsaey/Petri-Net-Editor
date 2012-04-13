@@ -97,7 +97,6 @@
 
 - (IBAction)testButtonFire:(id)sender {
     [petriNetView insertData];
-    [petriNetView calculatePositions];
 }
 
 @end
