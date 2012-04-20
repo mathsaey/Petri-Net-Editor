@@ -44,7 +44,7 @@ static PNManager *sharedManager = nil;
 }
 
 //- (void)release {
-//    // No op (singleton can't be released)
+   // No op (singleton can't be released)
 //}
 
 - (id)init {

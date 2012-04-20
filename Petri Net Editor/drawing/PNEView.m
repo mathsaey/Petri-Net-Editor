@@ -54,8 +54,27 @@
 #pragma mark - External input
 
 - (void) addArc {
-    //pick 2 nodes
-    //Add gesture recognizers to all nodes, remove them afterwards
+    if (!isAddingArc) {
+        [self dimNodes];
+        [self setNeedsDisplay];
+        isAddingArc = true;}
+    else isAddingArc = false;
+}
+
+- (void) finishAddingArc: (BOOL) isPlaceFirst {
+    PNArcInscription *arc = [[PNArcInscription alloc] initWithType:NORMAL];
+    
+    if (isPlaceFirst)
+        [arcTrans.element addInput: arc fromPlace: arcPlace.element];
+    else [arcTrans.element addOutput: arc toPlace: arcPlace.element];
+    
+    isAddingArc = false;
+    arcPlace = NULL;
+    arcTrans = NULL;
+    
+    [self dimNodes];
+    [self loadKernel];
+    
 }
 
 - (void) addPlace {
@@ -70,9 +89,54 @@
     [self loadKernel];
 }
 
+- (void) placeTapped: (PNEPlaceView*) place {
+    if (isAddingArc) {
+        
+        if (arcPlace != NULL) [arcPlace dim];
+        [place highlight];
+        
+        arcPlace = place;
+        if (arcTrans != NULL)
+            [self finishAddingArc:FALSE];
+    }
+    else [place toggleHighlightStatus];
+}
+
+- (void) transitionTapped: (PNETransitionView*) trans {
+    if (isAddingArc) {
+
+        if (arcTrans != NULL) [arcTrans dim];
+        [trans highlight];
+        
+        arcTrans = trans;
+        if (arcPlace != NULL)
+            [self finishAddingArc:TRUE];
+    }
+}
+
 - (void) drawFromKernel: (PNManager*) kernel {
     manager = kernel;
     [self loadKernel];
+}
+
+- (UIImage *) getPetriNetImage {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, [[UIScreen mainScreen] scale]);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *pnImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return pnImage;
+}
+
+#pragma mark - Help functions
+
+- (void) dimNodes {
+    for (PNENodeView *node in places) {
+        [node dim];
+    }
+    for (PNENodeView *node in transitions) {
+        [node dim];
+    }
 }
 
 #pragma mark - Kernel converting
@@ -81,14 +145,21 @@
     [arcs removeAllObjects];
     [places removeAllObjects];
     [transitions removeAllObjects];
-     
-    //Load all Places
+    
     for (PNPlace* place in manager.places) {
-        [[PNEPlaceView alloc] initWithValues:place superView:self];
+        CGPoint location;
+        if (place.view != NULL)
+            location = CGPointMake(place.view.xOrig, place.view.yOrig);
+        else location = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
+        [[[PNEPlaceView alloc] initWithValues:place superView:self] moveNode:location];
     }
-    //Load all transitions    
+    
     for (PNTransition* trans in manager.transitions) {
-        [[PNETransitionView alloc] initWithValues:trans superView:self];
+        CGPoint location;
+        if (trans.view != NULL)
+            location = CGPointMake(trans.view.xOrig, trans.view.yOrig);
+        else location = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
+        [[[PNETransitionView alloc] initWithValues:trans superView:self] moveNode:location];
     }
     
     [self calculatePositions];
@@ -104,47 +175,34 @@
 
 #pragma mark - Drawing Code
 
+- (void) placeNode: (CGPoint*) position node: (PNENodeView*) node {    
+    if (position->x + node.dimensions > self.bounds.size.width) {
+        position->x = START_OFFSET_X;
+        position->y += 100;
+    }
+    [node moveNode:*position];
+}
+
 //Redraws the entire graph, should only be used after loading a kernel
 - (void) calculatePositions {
-    CGFloat horizontalDistance = 100;
     CGPoint currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
+    CGFloat horizontalDistance = 100;
     
-    for (PNEPlaceView* node in places) {
-        [node moveNode:currentLocation];
-        
-        if (currentLocation.x >= self.bounds.size.width) {
-            currentLocation.x = self.bounds.origin.x + horizontalDistance;
-            currentLocation.y += 100;
+    for (PNEPlaceView* place in places) {
+        if (place.isDrawn) {
+            [self placeNode:&currentLocation node:place];
+            currentLocation.x += horizontalDistance;
         }
-        else currentLocation.x += horizontalDistance;
-        
-        //Add touch responders
-        [node createTouchZone];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:node action:@selector(handleTapGesture:)];
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:node action:@selector(handlePanGesture:)];
-        UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:node action:@selector(handleLongGesture:)];
-        [node addTouchResponder:tap];
-        [node addTouchResponder:pan];
-        [node addTouchResponder:hold];
     }
     
+    currentLocation.y += 100;
+    currentLocation.x = START_OFFSET_X;
+    
     for (PNETransitionView* trans in transitions) {
-        [trans moveNode:currentLocation];
-        
-        if (currentLocation.x >= self.bounds.size.width) {
-            currentLocation.x = self.bounds.origin.x + horizontalDistance;
-            currentLocation.y += 100;
+        if (trans.isDrawn) {
+            [self placeNode:&currentLocation node:trans];
+            currentLocation.x += horizontalDistance;
         }
-        else currentLocation.x += horizontalDistance;
-        
-        //Add touch responders
-        [trans createTouchZone];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:trans action:@selector(handleTapGesture:)];
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:trans action:@selector(handlePanGesture:)];
-        UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:trans action:@selector(handleLongGesture:)];
-        [trans addTouchResponder:tap];
-        [trans addTouchResponder:pan];
-        [trans addTouchResponder:hold];
     }
     
     [self setNeedsDisplay];
@@ -157,7 +215,6 @@
     for (PNETransitionView* transition in transitions) {
         [transition drawNode];
     }
-    
     for (PNEArcView* arc in arcs) {
         [arc drawArc];
     }
@@ -170,8 +227,6 @@
         PNPlace* place_2 = [[PNPlace alloc] initWithName:@"Place 2"];
         PNPlace* place_3 = [[PNPlace alloc] initWithName:@"Place 3"];
         PNPlace* place_4 = [[PNPlace alloc] initWithName:@"Place 4"];
-        PNPlace* place_5 = [[PNPlace alloc] initWithName:@"Place 5"];
-        
         
         PNTransition* trans_1 = [[PNTransition alloc] initWithName:@"Trans 1"];
         PNTransition* trans_2 = [[PNTransition alloc] initWithName:@"Trans 2"];
@@ -184,7 +239,7 @@
         
         [place_1 addToken:token_1];
         [place_2 addToken:token_2];
-        [place_2 addToken:token_3];
+        [place_3 addToken:token_3];
         
         PNArcInscription* arc_1 = [[PNArcInscription alloc] initWithType:NORMAL];
         PNArcInscription* arc_2 = [[PNArcInscription alloc] initWithType:INHIBITOR];
@@ -201,7 +256,6 @@
         [manager addPlace:place_2];
         [manager addPlace:place_3];
         [manager addPlace:place_4];
-        [manager addPlace:place_5];
         
         [manager addTransition:trans_1];
         [manager addTransition:trans_2];

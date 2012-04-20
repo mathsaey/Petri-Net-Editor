@@ -12,15 +12,34 @@
 #import "drawing/PNEView.h"
 
 @interface PNEViewController : UIViewController <UIActionSheetDelegate> {
-
     UITextView *log;
     PNEView *petriNetView;
     UIActionSheet *addOptionsSheet;
+    
+    UIBarButtonItem *addButton;
+    UIBarButtonItem *reloadButton;
+    UIBarButtonItem *organiseButton;
+    UIBarButtonItem *screenshotButton;
+    
+    //Debug
+    UIBarButtonItem *testButton;
 }
 
 @property (nonatomic, readonly) IBOutlet UITextView *log;
 @property (nonatomic, readonly) IBOutlet PNEView *petriNetView;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *organiseButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *reloadButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *screenshotButton;
+
 - (IBAction)addButtonPress:(id)sender;
+- (IBAction)organiseButtonPressed:(id)sender;
+- (IBAction)reloadButtonPressed:(id)sender;
+- (IBAction)screenshotButtonPressed:(id)sender;
+
+//Debug
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *testButton;
+- (IBAction)testButtonFire:(id)sender;
 
 @end

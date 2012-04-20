@@ -12,6 +12,7 @@
 
 @interface PNENodeView : PNEViewElement <UIActionSheetDelegate, UIAlertViewDelegate> {
     BOOL isMarked;
+    BOOL isDrawn;
     UIView *touchView;
     UIActionSheet *nodeOptions;
     
@@ -24,6 +25,7 @@
     CGFloat dimensions; //Dimension of the square
 }
 
+@property (readonly) BOOL isDrawn;
 @property (readonly) BOOL isMarked;
 @property (readonly) CGFloat xOrig;
 @property (readonly) CGFloat yOrig;
@@ -74,7 +76,6 @@
 - (BOOL) isRightAndHigher: (PNENodeView*) node;
 - (BOOL) doesOverlap: (PNENodeView*) node;
 
-- (void) updateOrigin: (CGPoint) newOrigin;
 - (void) multiplyDimension: (CGFloat) multiplier;
 
 @end

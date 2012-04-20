@@ -11,6 +11,10 @@
 @implementation PNEViewController
 
 @synthesize log, petriNetView;
+@synthesize addButton, reloadButton, organiseButton, screenshotButton;
+
+//debug code
+@synthesize testButton;
 
 #pragma mark - Initialisers
 
@@ -44,10 +48,26 @@
     return false;
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [petriNetView setNeedsDisplay];
+}
+
 #pragma mark - Action responders
 
 - (IBAction)addButtonPress:(id)sender {
-    NSLog(@"Abstract version of addButtonPress (PNEViewController) called!");
+    NSLog(@"abstract version of addButtonPress (PNEViewController) called!");
+}
+
+- (IBAction)organiseButtonPressed:(id)sender {
+    NSLog(@"Placeholder!");
+}
+- (IBAction)reloadButtonPressed:(id)sender {
+    [petriNetView loadKernel];
+}
+- (IBAction)screenshotButtonPressed:(id)sender {
+    UIImage *pnImage = [petriNetView getPetriNetImage];
+    UIImageWriteToSavedPhotosAlbum(pnImage, NULL, NULL, NULL);
 }
 
 //Action sheet delegate method
@@ -63,6 +83,12 @@
             [petriNetView addArc];
             break;
     };
+}
+
+#pragma mark - Test code
+
+- (IBAction)testButtonFire:(id)sender {
+    [petriNetView insertData];
 }
 
 @end

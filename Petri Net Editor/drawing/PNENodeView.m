@@ -11,12 +11,22 @@
 
 @implementation PNENodeView
 
-@synthesize xOrig, yOrig, dimensions, isMarked, neighbours;
+@synthesize xOrig, yOrig, dimensions, isMarked, isDrawn, neighbours;
 
 #pragma mark - Lifecycle
 
 - (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
+        
+        //Add touch responders
+        [self createTouchZone];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+        UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
+        [self addTouchResponder:tap];
+        [self addTouchResponder:pan];
+        [self addTouchResponder:hold];
+        
         //Initialise the action sheet, 
         //we initialise the cancel button later so it appears at the bottom
         nodeOptions = [[UIActionSheet alloc] 
@@ -24,6 +34,7 @@
                        cancelButtonTitle:nil destructiveButtonTitle:@"Delete" 
                        otherButtonTitles: @"Change label", nil];
         isMarked = false;
+        isDrawn = false;
         label = pnElement.label;
         pnElement.view = self;
     }
@@ -31,8 +42,8 @@
 }
 
 - (void) dealloc {
-    [super dealloc];
     [neighbours release];
+    [super dealloc];
 }
 
 #pragma mark - Touch logic
@@ -54,13 +65,12 @@
     [touchView addGestureRecognizer:recognizer];
 }
 
-- (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
-    [nodeOptions showFromRect:touchView.bounds inView:touchView animated:true];
+- (void) handleTapGesture:(UITapGestureRecognizer *)gesture {
+    NSLog(@"Abstract version of handleTapGesture (PNENodeView) called");
 }
 
-- (void) handleTapGesture: (UITapGestureRecognizer *) gesture {
-    [self toggleHighlightStatus];
-    [superView setNeedsDisplay];
+- (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
+    [nodeOptions showFromRect:touchView.bounds inView:touchView animated:true];
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *) gesture {
@@ -86,10 +96,10 @@
         [label release];
         [newLabel retain];
         label = newLabel;
+        [element setLabel:newLabel];
         [superView setNeedsDisplay];
     }
 }
-
 
 #pragma mark - Highlight protocol implementation
 
@@ -206,11 +216,6 @@
     dimensions = dimensions * multiplier;
 }
 
-- (void) updateOrigin: (CGPoint) newOrigin {
-    xOrig = newOrigin.x;
-    yOrig = newOrigin.y;
-}
-
 #pragma mark - Drawing code
 
 - (void) drawNode {
@@ -232,6 +237,7 @@
     yOrig = origin.y;
     
     [self updateTouchZone];
+    isDrawn = true;
 }
 
 - (void) drawLabel {

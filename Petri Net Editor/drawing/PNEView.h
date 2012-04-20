@@ -26,6 +26,11 @@
     PNManager *manager;
     
     BOOL showLabels;
+    
+    //Arc adding logic
+    BOOL isAddingArc;
+    PNEPlaceView* arcPlace;
+    PNETransitionView* arcTrans;
 }
 
 @property (atomic, readwrite) BOOL showLabels;
@@ -37,8 +42,13 @@
 - (void) addPlace;
 - (void) addTransition;
 
+- (void) placeTapped: (PNEPlaceView*) place;
+- (void) transitionTapped: (PNETransitionView*) trans;
+
 - (void) loadKernel;
 - (void) updatePlaces;
+
+- (UIImage *) getPetriNetImage;
 
 //Testing code
 - (void) insertData;

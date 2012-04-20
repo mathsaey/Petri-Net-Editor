@@ -24,6 +24,7 @@
 }
 
 - (void) dealloc {
+    [superView.arcs removeObject:self];
     [touchViews dealloc];
     [super dealloc];
 }
@@ -37,6 +38,18 @@
 }
 
 #pragma mark - Touch logic
+
+/*
+ 
+ Aantal touchrects hangt af van x-afstand tussen from en to, min afstand kiezen, indien groter dan afstand => splitsen in 2 enzovoort
+ 
+ */
+
+#pragma mark - Help functions
+
+- (BOOL) isEndOfArc: (PNENodeView*) node {
+    return node == fromNode || node == toNode;
+}
 
 #pragma mark - Drawing code
 

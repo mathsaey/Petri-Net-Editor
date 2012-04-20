@@ -56,29 +56,45 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <items>
-                                    <barButtonItem title="Add" id="Rec-hz-fOY">
+                                    <barButtonItem systemItem="add" id="Rec-hz-fOY">
                                         <connections>
-                                            <action selector="addButtonPress:" destination="dPx-TF-z0D" id="inN-oj-BxM"/>
+                                            <action selector="addButtonPress:" destination="dPx-TF-z0D" id="dbW-Xo-j5A"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Testbutton" id="7ui-9M-xGw">
-                                        <connections>
-                                            <action selector="testButtonFire:" destination="dPx-TF-z0D" id="jRh-iU-tHI"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="OuB-28-vAU"/>
                                     <barButtonItem style="plain" id="BHX-KZ-zRg">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="rQ8-B7-0Rm">
-                                            <rect key="frame" x="554" y="7" width="207" height="30"/>
+                                            <rect key="frame" x="50" y="7" width="87" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
-                                                <segment title="Show Labels"/>
-                                                <segment title="Hide Labels"/>
+                                                <segment title="Show"/>
+                                                <segment title="Hide"/>
                                             </segments>
                                             <connections>
                                                 <action selector="labelVisibilityChanged:" destination="dPx-TF-z0D" eventType="valueChanged" id="NZw-Qf-j5X"/>
                                             </connections>
                                         </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="E9u-5x-12e"/>
+                                    <barButtonItem title="testButton" id="7ui-9M-xGw">
+                                        <connections>
+                                            <action selector="testButtonFire:" destination="dPx-TF-z0D" id="jRh-iU-tHI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="OuB-28-vAU"/>
+                                    <barButtonItem systemItem="refresh" id="uO8-ys-GTH">
+                                        <connections>
+                                            <action selector="reloadButtonPressed:" destination="dPx-TF-z0D" id="hhT-Ob-mLR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="organize" id="yb9-dF-JjZ">
+                                        <connections>
+                                            <action selector="organiseButtonPressed:" destination="dPx-TF-z0D" id="ePh-BD-upF"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="camera" id="wyV-Gy-HWk">
+                                        <connections>
+                                            <action selector="screenshotButtonPressed:" destination="dPx-TF-z0D" id="gAn-fZ-3Co"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -86,11 +102,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="Rec-hz-fOY" id="XDX-bI-nNX"/>
                         <outlet property="contextInformation" destination="4FL-cU-e3i" id="gvb-zA-VW0"/>
                         <outlet property="infoView" destination="7gA-Ta-1ZD" id="7By-4z-WYH"/>
                         <outlet property="labelVisibility" destination="rQ8-B7-0Rm" id="lF8-k4-zb9"/>
                         <outlet property="log" destination="uGu-su-0gH" id="1DW-7P-VdM"/>
+                        <outlet property="organiseButton" destination="yb9-dF-JjZ" id="7To-sf-8Yj"/>
                         <outlet property="petriNetView" destination="74w-vO-Kmt" id="RBN-Qh-tHe"/>
+                        <outlet property="reloadButton" destination="uO8-ys-GTH" id="5cA-wq-ccw"/>
+                        <outlet property="screenshotButton" destination="wyV-Gy-HWk" id="mIO-zz-6qC"/>
                     </connections>
                 </viewController>
             </objects>
@@ -102,13 +122,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEPadViewController.h"/>
             <relationships>
                 <relationship kind="action" name="labelVisibilityChanged:"/>
-                <relationship kind="action" name="testButtonFire:"/>
-                <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="contextInformation" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="labelVisibility" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="mainToolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="testButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="PNEView" superclassName="UIView">
@@ -118,8 +134,18 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addButtonPress:"/>
+                <relationship kind="action" name="organiseButtonPressed:"/>
+                <relationship kind="action" name="reloadButtonPressed:"/>
+                <relationship kind="action" name="screenshotButtonPressed:"/>
+                <relationship kind="action" name="testButtonFire:"/>
+                <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="log" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="organiseButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
+                <relationship kind="outlet" name="reloadButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="screenshotButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="testButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="trashButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
     </classes>

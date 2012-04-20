@@ -15,6 +15,8 @@
 
 - (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues: pnElement superView: view]) {
+        [nodeOptions addButtonWithTitle:@"Show reachable contexts"];
+        [nodeOptions addButtonWithTitle:@"Add token"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
         tokens = [[NSMutableArray alloc] init];
         [superView.places addObject:self];
@@ -32,6 +34,13 @@
     [tokens release];
     [superView.places removeObject:self];
     [super dealloc];
+}
+
+
+#pragma mark - Touch logic
+
+- (void) handleTapGesture: (UITapGestureRecognizer *) gesture {
+    [superView placeTapped:self];
 }
 
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
@@ -54,11 +63,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
-    
-    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
-        [superView.manager removePlace:element];
-        [superView loadKernel];
-    }
 }
 
 #pragma mark - Arc attachement point functions

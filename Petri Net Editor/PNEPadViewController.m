@@ -11,11 +11,7 @@
 @implementation PNEPadViewController
 
 @synthesize infoView, contextInformation;
-@synthesize mainToolbar, addButton, labelVisibility;
-
-//debug code
-@synthesize testButton;
-
+@synthesize labelVisibility;
 
 - (void)didReceiveMemoryWarning
 {
@@ -64,13 +60,12 @@
     if(UIDeviceOrientationIsPortrait(nextOrientation))
         infoView.hidden = NO;
     else infoView.hidden = YES;
-    
-    [petriNetView setNeedsDisplay];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self rotatePad:toInterfaceOrientation];
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -79,7 +74,6 @@
 }
 
 #pragma mark - Action responders
-
 
 - (IBAction)addButtonPress:(id)sender {
     [addOptionsSheet showFromBarButtonItem:addButton animated:YES];
@@ -90,13 +84,6 @@
         petriNetView.showLabels = true;
     else petriNetView.showLabels = false;
     [petriNetView setNeedsDisplay];
-}
-
-
-#pragma mark - Test code
-
-- (IBAction)testButtonFire:(id)sender {
-    [petriNetView insertData];
 }
 
 @end

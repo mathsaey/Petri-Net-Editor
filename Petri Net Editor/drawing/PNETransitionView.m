@@ -42,23 +42,28 @@
     [super dealloc];
 }
 
-#pragma mark - Options sheet methods
+#pragma mark - Touch logic
+
+- (void) handleTapGesture: (UITapGestureRecognizer *) gesture {
+    [superView transitionTapped:self];
+}
+
+#pragma mark Options sheet methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
     
     if (buttonIndex == [actionSheet destructiveButtonIndex]) {
         [superView.manager removeTransition:element];
-        [superView loadKernel];
+        [superView.transitions removeObject:self];
+        [superView setNeedsDisplay];
     }
     
     else if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Fire Transition") {
-        //[superView.manager fireTransition:self.element];
-        //[superView updatePlaces];
-                
+        [superView.manager fireTransition:self.element];
+        [superView updatePlaces];
     }
 }
-
 
 #pragma mark - Highlight protocol implementation
 
