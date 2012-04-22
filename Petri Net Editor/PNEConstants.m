@@ -32,6 +32,4 @@ const CGFloat ARC_TOUCH_MIN = 20;
 //Minimum dimensions of the arc touch rect
 const CGFloat ARC_TOUCH_BASE = 30; 
 //A lower value indicates more touch rectangles for arcs
-//Setting this value too low can cause significant slowdowns when moving nodes
-//A lower value also means that the touch area of arcs is smaller
-//A higher value means that the touch area will cover less of the arc
+//Setting this value too low can cause slowdowns when moving nodes

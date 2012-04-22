@@ -24,6 +24,7 @@
     CGPoint endPoint;
     
     NSMutableArray *touchViews;
+    NSMutableArray *touchResponders;
 }
 
 - (void) drawArc;

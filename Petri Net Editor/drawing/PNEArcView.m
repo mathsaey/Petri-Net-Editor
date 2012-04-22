@@ -19,6 +19,7 @@
         [superView.arcs addObject:self];
         weight = [pnElement flowFunction];
         touchViews = [[NSMutableArray alloc] init];
+        touchResponders = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -33,10 +34,7 @@
 
 - (void) createTouchZone {
     //Release all touch views of the previous cycle
-    for (UIView *view in touchViews) {
-        [view removeFromSuperview];
-    }
-    [touchViews removeAllObjects];
+    [self removeTouchZone];
     
     CGFloat xDistance = MAX(startPoint.x, endPoint.x) - MIN(startPoint.x, endPoint.x);
     CGFloat yDistance = MAX(startPoint.y, endPoint.y) - MIN(startPoint.y, endPoint.y);
@@ -46,27 +44,46 @@
     CGFloat zoneWidth = xDistance / zones;
     CGFloat zoneHeight = yDistance / zones;
     
-    CGFloat actualWidth = zoneWidth;
-    CGFloat actualHeight = zoneHeight;
-    
-    if (actualWidth < ARC_TOUCH_MIN) actualWidth = ARC_TOUCH_MIN;
-    if (actualHeight < ARC_TOUCH_MIN) actualHeight = ARC_TOUCH_MIN;
+    //Ensure that each touch zone has the minimum dimensions
+    CGFloat actualWidth = (zoneWidth > ARC_TOUCH_MIN) ? zoneWidth : ARC_TOUCH_MIN;
+    CGFloat actualHeight = (zoneHeight > ARC_TOUCH_MIN) ? zoneHeight : ARC_TOUCH_MIN;
     
     for (int ctr = 0; ctr < zones; ctr ++) {
         CGRect rect = CGRectMake(0, 0, actualWidth, actualHeight);
         rect.origin.x = MIN(startPoint.x, endPoint.x) + ctr * zoneWidth;
-        rect.origin.y = MIN(startPoint.y, endPoint.y) + ctr * zoneHeight;
+        
+        if ((startPoint.x < endPoint.x && startPoint.y < endPoint.y) ||
+            (startPoint.x > endPoint.x && startPoint.y > endPoint.y)) 
+            rect.origin.y = (MIN(startPoint.y, endPoint.y) + ctr * zoneHeight);
+        else rect.origin.y = (MAX(startPoint.y, endPoint.y) - (ctr + 1) * zoneHeight);
         
         UIView *touchZone = [[UIView alloc] initWithFrame:rect];
         [touchZone setBackgroundColor:[UIColor redColor]];
+        
+        for (UIGestureRecognizer *recognizer in touchResponders) {
+            [touchZone addGestureRecognizer:recognizer];
+        }
+        
         [superView addSubview:touchZone];
         [touchViews addObject:touchZone];
     }
 }
 
 - (void) removeTouchZone {
+    for (UIView *view in touchViews) {
+        [view removeFromSuperview];
+    }
     [touchViews removeAllObjects];
 }
+
+- (void) updateTouchZone {
+    [self createTouchZone];
+}
+
+- (void) addTouchResponder:(UIGestureRecognizer *)recognizer {
+    [touchResponders addObject:recognizer];
+}
+
 
 #pragma mark - Help functions
 
