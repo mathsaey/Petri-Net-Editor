@@ -147,19 +147,10 @@
     [transitions removeAllObjects];
     
     for (PNPlace* place in manager.places) {
-        CGPoint location;
-        if (place.view != NULL)
-            location = CGPointMake(place.view.xOrig, place.view.yOrig);
-        else location = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
-        [[[PNEPlaceView alloc] initWithValues:place superView:self] moveNode:location];
+        [[PNEPlaceView alloc] initWithValues:place superView:self];
     }
-    
     for (PNTransition* trans in manager.transitions) {
-        CGPoint location;
-        if (trans.view != NULL)
-            location = CGPointMake(trans.view.xOrig, trans.view.yOrig);
-        else location = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
-        [[[PNETransitionView alloc] initWithValues:trans superView:self] moveNode:location];
+        [[PNETransitionView alloc] initWithValues:trans superView:self];
     }
     
     [self calculatePositions];
@@ -189,7 +180,7 @@
     CGFloat horizontalDistance = 100;
     
     for (PNEPlaceView* place in places) {
-        if (place.isDrawn) {
+        if (!place.hasLocation) {
             [self placeNode:&currentLocation node:place];
             currentLocation.x += horizontalDistance;
         }
@@ -199,7 +190,7 @@
     currentLocation.x = START_OFFSET_X;
     
     for (PNETransitionView* trans in transitions) {
-        if (trans.isDrawn) {
+        if (!trans.hasLocation) {
             [self placeNode:&currentLocation node:trans];
             currentLocation.x += horizontalDistance;
         }

@@ -11,13 +11,21 @@
 
 @implementation PNENodeView
 
-@synthesize xOrig, yOrig, dimensions, isMarked, isDrawn, neighbours;
+@synthesize xOrig, yOrig, dimensions, isMarked, hasLocation, neighbours;
 
 #pragma mark - Lifecycle
 
 - (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         
+        //Check if the place already had a view
+        if (pnElement.view != NULL) {
+            hasLocation = true;
+            xOrig = pnElement.view.xOrig;
+            yOrig = pnElement.view.yOrig;
+        }
+        else hasLocation = false;
+
         //Add touch responders
         [self createTouchZone];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
@@ -34,7 +42,6 @@
                        cancelButtonTitle:nil destructiveButtonTitle:@"Delete" 
                        otherButtonTitles: @"Change label", nil];
         isMarked = false;
-        isDrawn = false;
         label = pnElement.label;
         pnElement.view = self;
     }
@@ -219,6 +226,7 @@
 #pragma mark - Drawing code
 
 - (void) drawNode {
+    [self updateTouchZone];
     [self drawLabel];
     if (isMarked)
         [self drawHighlight];
@@ -235,9 +243,6 @@
     
     xOrig = origin.x;
     yOrig = origin.y;
-    
-    [self updateTouchZone];
-    isDrawn = true;
 }
 
 - (void) drawLabel {

@@ -41,14 +41,16 @@
 - (void) addArc;
 - (void) addPlace;
 - (void) addTransition;
+- (UIImage *) getPetriNetImage;
 
+//Touch input
 - (void) placeTapped: (PNEPlaceView*) place;
 - (void) transitionTapped: (PNETransitionView*) trans;
 
+//Kernel events
 - (void) loadKernel;
 - (void) updatePlaces;
 
-- (UIImage *) getPetriNetImage;
 
 //Testing code
 - (void) insertData;

@@ -29,7 +29,6 @@
     CGContextSetFillColorWithColor(context, tokenColor.CGColor);
     CGContextAddEllipseInRect(context, rect);
     CGContextFillPath(context);
-    
 }
 
 @end

@@ -37,3 +37,7 @@ extern CGFloat LABEL_DISTANCE;
 //Token drawing constants
 extern CGFloat TOKEN_DISTANCE; 
 extern CGFloat TOKEN_DIMENSION;
+
+//Arc touch constants
+extern CGFloat ARC_TOUCH_MIN;
+extern CGFloat ARC_TOUCH_BASE;

@@ -11,8 +11,8 @@
 #import "PNEViewElement.h"
 
 @interface PNENodeView : PNEViewElement <UIActionSheetDelegate, UIAlertViewDelegate> {
+    BOOL hasLocation;
     BOOL isMarked;
-    BOOL isDrawn;
     UIView *touchView;
     UIActionSheet *nodeOptions;
     
@@ -25,7 +25,7 @@
     CGFloat dimensions; //Dimension of the square
 }
 
-@property (readonly) BOOL isDrawn;
+@property (readonly) BOOL hasLocation;
 @property (readonly) BOOL isMarked;
 @property (readonly) CGFloat xOrig;
 @property (readonly) CGFloat yOrig;

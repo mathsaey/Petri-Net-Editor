@@ -20,11 +20,13 @@
     PNENodeView *fromNode;
     PNENodeView *toNode;
     
+    CGPoint startPoint;
+    CGPoint endPoint;
+    
     NSMutableArray *touchViews;
 }
 
 - (void) drawArc;
-- (BOOL) isEndOfArc: (PNENodeView*) node;
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode;
 
 @end

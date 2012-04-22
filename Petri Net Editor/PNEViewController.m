@@ -64,6 +64,7 @@
 }
 - (IBAction)reloadButtonPressed:(id)sender {
     [petriNetView loadKernel];
+    //TODO: change this to reflect new changes
 }
 - (IBAction)screenshotButtonPressed:(id)sender {
     UIImage *pnImage = [petriNetView getPetriNetImage];

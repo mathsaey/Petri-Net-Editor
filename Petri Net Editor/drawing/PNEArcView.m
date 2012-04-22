@@ -29,6 +29,47 @@
     [super dealloc];
 }
 
+#pragma mark - Touch logic
+
+- (void) createTouchZone {
+    //Release all touch views of the previous cycle
+    for (UIView *view in touchViews) {
+        [view removeFromSuperview];
+    }
+    [touchViews removeAllObjects];
+    
+    CGFloat xDistance = MAX(startPoint.x, endPoint.x) - MIN(startPoint.x, endPoint.x);
+    CGFloat yDistance = MAX(startPoint.y, endPoint.y) - MIN(startPoint.y, endPoint.y);
+    
+    //The amount of touchviews depends on the horizontal distance
+    CGFloat zones =  MAX(round(xDistance / ARC_TOUCH_BASE), 1);
+    CGFloat zoneWidth = xDistance / zones;
+    CGFloat zoneHeight = yDistance / zones;
+    
+    CGFloat actualWidth = zoneWidth;
+    CGFloat actualHeight = zoneHeight;
+    
+    if (actualWidth < ARC_TOUCH_MIN) actualWidth = ARC_TOUCH_MIN;
+    if (actualHeight < ARC_TOUCH_MIN) actualHeight = ARC_TOUCH_MIN;
+    
+    for (int ctr = 0; ctr < zones; ctr ++) {
+        CGRect rect = CGRectMake(0, 0, actualWidth, actualHeight);
+        rect.origin.x = MIN(startPoint.x, endPoint.x) + ctr * zoneWidth;
+        rect.origin.y = MIN(startPoint.y, endPoint.y) + ctr * zoneHeight;
+        
+        UIView *touchZone = [[UIView alloc] initWithFrame:rect];
+        [touchZone setBackgroundColor:[UIColor redColor]];
+        [superView addSubview:touchZone];
+        [touchViews addObject:touchZone];
+    }
+}
+
+- (void) removeTouchZone {
+    [touchViews removeAllObjects];
+}
+
+#pragma mark - Help functions
+
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode {
     fromNode = newFromNode;
     toNode = newToNode;
@@ -37,69 +78,58 @@
     [toNode addNeighbour:fromNode];
 }
 
-#pragma mark - Touch logic
-
-/*
- 
- Aantal touchrects hangt af van x-afstand tussen from en to, min afstand kiezen, indien groter dan afstand => splitsen in 2 enzovoort
- 
- */
-
-#pragma mark - Help functions
-
-- (BOOL) isEndOfArc: (PNENodeView*) node {
-    return node == fromNode || node == toNode;
-}
 
 #pragma mark - Drawing code
 
-- (void) drawArrow: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
+- (void) drawArrow: (CGPoint) arrowStart arrowEnd: (CGPoint) arrowEnd {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     
-    //The angle of the start of the back of the arrow with the x-axis
+    //The angle of the start of the back line of the arrow with the x-axis
     CGFloat startAngle;
     
     //Calculate the x and y distances between the start and endpoint
-    CGFloat xDistance = MAX(startPoint.x, endPoint.x) - MIN(startPoint.x, endPoint.x);
-    CGFloat yDistance = MAX(startPoint.y, endPoint.y) - MIN(startPoint.y, endPoint.y);
+    CGFloat xDistance = MAX(arrowStart.x, arrowEnd.x) - MIN(arrowStart.x, arrowEnd.x);
+    CGFloat yDistance = MAX(arrowStart.y, arrowEnd.y) - MIN(arrowStart.y, arrowEnd.y);
     
     //Calculate the angle
-    if (startPoint.y < endPoint.y && startPoint.x < endPoint.x)
+    if (arrowStart.y < arrowEnd.y && arrowStart.x < arrowEnd.x)
         startAngle = M_PI_2 + atan(yDistance/xDistance);
-    if (startPoint.y < endPoint.y && startPoint.x > endPoint.x) 
+    if (arrowStart.y < arrowEnd.y && arrowStart.x > arrowEnd.x) 
         startAngle = M_PI_2 - atan(yDistance/xDistance);
-    if (startPoint.y > endPoint.y && startPoint.x > endPoint.x)
+    if (arrowStart.y > arrowEnd.y && arrowStart.x > arrowEnd.x)
         startAngle = atan(yDistance/xDistance) + M_PI_2;
-    if (startPoint.y > endPoint.y && startPoint.x < endPoint.x) 
+    if (arrowStart.y > arrowEnd.y && arrowStart.x < arrowEnd.x) 
         startAngle = M_PI_2 - atan(yDistance/xDistance);
     
     
     //Create the arrow
-    CGContextMoveToPoint(context, startPoint.x, startPoint.y);
-    CGContextAddArc(context, startPoint.x, startPoint.y, ARC_END_SIZE / 2, startAngle, startAngle, 1);
-    CGContextAddLineToPoint(context, endPoint.x, endPoint.y);
-    CGContextMoveToPoint(context, startPoint.x, startPoint.y);
-    CGContextAddArc(context, startPoint.x, startPoint.y, ARC_END_SIZE / 2 , startAngle + M_PI, startAngle + M_PI, 1);
-    CGContextAddLineToPoint(context, endPoint.x, endPoint.y);
+    CGContextMoveToPoint(context, arrowStart.x, arrowStart.y);
+    CGContextAddArc(context, arrowStart.x, arrowStart.y, ARC_END_SIZE / 2, startAngle, startAngle, 1);
+    CGContextAddLineToPoint(context, arrowEnd.x, arrowEnd.y);
+    CGContextMoveToPoint(context, arrowStart.x, arrowStart.y);
+    CGContextAddArc(context, arrowStart.x, arrowStart.y, ARC_END_SIZE / 2 , startAngle + M_PI, startAngle + M_PI, 1);
+    CGContextAddLineToPoint(context, arrowEnd.x, arrowEnd.y);
 
     //Fill the arrow
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextFillPath(context);    
 }
 
-- (void) drawCircle: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
+- (void) drawCircle: (CGPoint) circleStart circleEnd: (CGPoint) circleEnd {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     
+    //Calculate the centre of the circle
     CGPoint midPoint;
     
-    midPoint.x = MIN(startPoint.x, endPoint.x) + (MAX(startPoint.x, endPoint.x) - MIN(startPoint.x, endPoint.x)) / 2;
-    midPoint.y = MIN(startPoint.y, endPoint.y) + (MAX(startPoint.y, endPoint.y) - MIN(startPoint.y, endPoint.y)) / 2;
+    midPoint.x = MIN(circleStart.x, circleEnd.x) + (MAX(circleStart.x, circleEnd.x) - MIN(circleStart.x, circleEnd.x)) / 2;
+    midPoint.y = MIN(circleStart.y, circleEnd.y) + (MAX(circleStart.y, circleEnd.y) - MIN(circleStart.y, circleEnd.y)) / 2;
         
     //Create the circle
     CGContextAddArc(context, midPoint.x, midPoint.y, ARC_END_SIZE / 2, 0, M_PI * 2, 0);
     
+    //Draw the circle
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextSetLineWidth(context, LINE_WIDTH);
     CGContextStrokePath(context);
@@ -109,7 +139,7 @@
 //First, we calculate the point where the line ends and the arrow/circle begins
 //Then we draw a line between the startpoint and this point
 //Lastly we call another function to draw the arrow/circle
-- (void) draw: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
+- (void) draw {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //Create the triangle startPoint, endPoint, Se. Where SE has the X-value of startPoint and the Y-value of endPoint
@@ -151,15 +181,12 @@
     
     //Draw the arrow/circle
     if (isInhibitor)
-        [self drawCircle:lineEnd endPoint:endPoint];
-    else [self drawArrow:lineEnd endPoint:endPoint];
-    
-    //Draw the weight
-    [self drawWeight:startPoint endPoint:endPoint];
+        [self drawCircle:lineEnd circleEnd:endPoint];
+    else [self drawArrow:lineEnd arrowEnd:endPoint];
     
     }
 
-- (void) drawWeight: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
+- (void) drawWeight {
     if (!superView.showLabels || (weight == 0 && isInhibitor) || weight == 1)
         return;
     
@@ -185,30 +212,53 @@
 
 //Calculates the start and end points of the arc
 - (void) calculateAttachmentPoints {
-    if ([fromNode isLeftAndHigher:toNode])
-        return [self draw:[fromNode getLeftTopPoint] endPoint:[toNode getRightBottomPoint]];
-    if ([fromNode isLeftAndLower:toNode])
-        return [self draw:[fromNode getLeftBottomPoint] endPoint:[toNode getRightTopPoint]];
-    if ([fromNode isRightAndHigher:toNode])
-        return [self draw:[fromNode getRightTopPoint] endPoint:[toNode getLeftBottomPoint]];
-    if ([fromNode isRightAndLower:toNode])
-        return [self draw:[fromNode getRightBottomPoint] endPoint:[toNode getLeftTopPoint]];
+    if ([fromNode isLeft:toNode]) {
+        startPoint = [fromNode getLeftEdge];
+        endPoint = [toNode getRightEdge];
+    }
+    if ([fromNode isRight:toNode]) {
+        startPoint = [fromNode getRightEdge];
+        endPoint = [toNode getLeftEdge];
+    }
+    if ([fromNode isLower:toNode]) {
+        startPoint = [fromNode getBottomEdge]; 
+        endPoint = [toNode getTopEdge];
+    }
+    if ([fromNode isHigher:toNode]) {
+        startPoint = [fromNode getTopEdge];
+        endPoint = [toNode getBottomEdge];
+    }
     
-    
-    if ([fromNode isLeft:toNode])
-        return [self draw:[fromNode getLeftEdge] endPoint:[toNode getRightEdge]];
-    if ([fromNode isRight:toNode])
-        return [self draw:[fromNode getRightEdge] endPoint:[toNode getLeftEdge]];
-    if ([fromNode isLower:toNode])
-        return [self draw:[fromNode getBottomEdge] endPoint:[toNode getTopEdge]];
-    if ([fromNode isHigher:toNode])
-        return [self draw:[fromNode getTopEdge] endPoint:[toNode getBottomEdge]];
-    
-    NSLog(@"CalculateAttachmentPoints (PNEArcView) could not find a suitable attachement point");
+    if ([fromNode isLeftAndHigher:toNode]) {
+        startPoint = [fromNode getLeftTopPoint];
+        endPoint = [toNode getRightBottomPoint];
+    }
+    if ([fromNode isLeftAndLower:toNode]) {
+        startPoint = [fromNode getLeftBottomPoint]; 
+        endPoint = [toNode getRightTopPoint];
+    }
+    if ([fromNode isRightAndHigher:toNode]) {
+        startPoint = [fromNode getRightTopPoint];
+        endPoint = [toNode getLeftBottomPoint];
+    }
+    if ([fromNode isRightAndLower:toNode]) {
+        startPoint = [fromNode getRightBottomPoint];
+        endPoint = [toNode getLeftTopPoint];
+    }
 }
 
 - (void) drawArc {
+    CGPoint prevStart = startPoint;
+    CGPoint prevEnd = endPoint;
+    
     [self calculateAttachmentPoints];
+    [self drawWeight];
+    [self draw];
+    
+    //Only create new touch zones when the arc moved
+    if (prevStart.x != startPoint.x || prevStart.y != startPoint.y ||
+        prevEnd.x != endPoint.x || prevEnd.y != endPoint.y)
+        [self createTouchZone];
 }
 
 @end

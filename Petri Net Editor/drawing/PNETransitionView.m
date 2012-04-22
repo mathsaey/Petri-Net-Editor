@@ -20,7 +20,7 @@
         [superView.transitions addObject:self];
         dimensions = TRANSITION_DIMENSION;
     
-        //Get all the input arcs
+        //Create and convert all the input arcs
         [pnElement.inputs retain];
         for (PNPlace* fromPlace in [pnElement.inputs allKeys]) {
             PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.inputs objectForKey:fromPlace] superView:superView]; 
