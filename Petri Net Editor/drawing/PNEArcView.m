@@ -19,7 +19,8 @@
         [superView.arcs addObject:self];
         weight = [pnElement flowFunction];
         touchViews = [[NSMutableArray alloc] init];
-        touchResponders = [[NSMutableArray alloc] init];
+                
+        options = [[UIActionSheet alloc] initWithTitle:@"Options:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Convert", nil];
     }
     return self;
 }
@@ -31,6 +32,10 @@
 }
 
 #pragma mark - Touch logic
+
+- (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
+    [options showFromRect:gesture.view.bounds inView:gesture.view animated:true];
+}
 
 - (void) createTouchZone {
     //Release all touch views of the previous cycle
@@ -57,12 +62,9 @@
             rect.origin.y = (MIN(startPoint.y, endPoint.y) + ctr * zoneHeight);
         else rect.origin.y = (MAX(startPoint.y, endPoint.y) - (ctr + 1) * zoneHeight);
         
-        UIView *touchZone = [[UIView alloc] initWithFrame:rect];
-        [touchZone setBackgroundColor:[UIColor redColor]];
-        
-        for (UIGestureRecognizer *recognizer in touchResponders) {
-            [touchZone addGestureRecognizer:recognizer];
-        }
+        UIView *touchZone = [[UIView alloc] initWithFrame:rect];        
+        UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
+        [touchZone addGestureRecognizer:hold];
         
         [superView addSubview:touchZone];
         [touchViews addObject:touchZone];
@@ -81,7 +83,7 @@
 }
 
 - (void) addTouchResponder:(UIGestureRecognizer *)recognizer {
-    [touchResponders addObject:recognizer];
+    NSLog(@"addTouchResponder (PNEArcView) called. recognizers can only belong to one view, recognizers must be added manually in createTouchZone instead");
 }
 
 

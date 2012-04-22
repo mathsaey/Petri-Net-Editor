@@ -28,8 +28,8 @@ const CGFloat LABEL_DISTANCE = 5;
 const CGFloat TOKEN_DISTANCE = 2;
 const CGFloat TOKEN_DIMENSION = 15; //Should be around place_dimension/3
 
-const CGFloat ARC_TOUCH_MIN = 20;
+const CGFloat ARC_TOUCH_MIN = 5;
 //Minimum dimensions of the arc touch rect
-const CGFloat ARC_TOUCH_BASE = 30; 
+const CGFloat ARC_TOUCH_BASE = 40; 
 //A lower value indicates more touch rectangles for arcs
 //Setting this value too low can cause slowdowns when moving nodes

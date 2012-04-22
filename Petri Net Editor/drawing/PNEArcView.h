@@ -13,7 +13,7 @@
 #import "PNENodeView.h"
 
 
-@interface PNEArcView : PNEViewElement {
+@interface PNEArcView : PNEViewElement <UIActionSheetDelegate> {
     BOOL isInhibitor;
     int weight;
     
@@ -23,11 +23,13 @@
     CGPoint startPoint;
     CGPoint endPoint;
     
+    UIActionSheet *options;
     NSMutableArray *touchViews;
-    NSMutableArray *touchResponders;
 }
 
 - (void) drawArc;
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode;
+- (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture;
+
 
 @end
