@@ -14,21 +14,29 @@
 
 
 @interface PNEArcView : PNEViewElement <UIActionSheetDelegate> {
-    BOOL isInhibitor;
-    int weight;
+    BOOL isInhibitor; /** Keeps track of the ArcInscriptionType of the PNArcInscription this arcview represents */
+    int weight; /** Link to the weight of the ArcInscription */
     
-    PNENodeView *fromNode;
-    PNENodeView *toNode;
+    PNENodeView *fromNode; /** The node where the arc starts */
+    PNENodeView *toNode; /** The node where the arc arrives */
     
-    CGPoint startPoint;
-    CGPoint endPoint;
+    CGPoint startPoint; /** the point on the fromNode where the arc starts */
+    CGPoint endPoint; /** the point on the toNode where the arc ends */
     
-    UIActionSheet *options;
-    NSMutableArray *touchViews;
+    UIActionSheet *options; /** The UIActionSheet that pops up after a long press on the arc */
+    NSMutableArray *touchViews; /** A collection of UIViews that catch user input along the arc */
 }
 
 - (void) drawArc;
+
+/**
+ Updates the nodes that the arc connects
+ */
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode;
+
+/**
+ This function gets called after the arc receives a long press
+ */
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture;
 
 

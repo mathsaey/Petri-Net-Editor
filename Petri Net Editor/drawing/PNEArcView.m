@@ -20,7 +20,7 @@
         weight = [pnElement flowFunction];
         touchViews = [[NSMutableArray alloc] init];
                 
-        options = [[UIActionSheet alloc] initWithTitle:@"Options:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Convert", nil];
+        options = [[UIActionSheet alloc] initWithTitle:@"Options:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Convert", @"Change weight", nil];
     }
     return self;
 }
@@ -65,7 +65,7 @@
         UIView *touchZone = [[UIView alloc] initWithFrame:rect];        
         UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
         [touchZone addGestureRecognizer:hold];
-        
+                
         [superView addSubview:touchZone];
         [touchViews addObject:touchZone];
     }
@@ -86,20 +86,37 @@
     NSLog(@"addTouchResponder (PNEArcView) called. recognizers can only belong to one view, recognizers must be added manually in createTouchZone instead");
 }
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.destructiveButtonIndex) {
+        if ([fromNode class] == [PNETransitionView class])
+            [fromNode.element removeOutput:toNode.element];
+        
+        //Niet in else steken, expliciet laten checken 
+        else [toNode.element removeInput:fromNode.element];
+        [superView loadKernel];
+        [element release];
+    }
+    
+    //TODO: fix this to use the add of transitions to check if inhibitor is allowed
+    else {
+        isInhibitor = !isInhibitor;
+        [element setType: isInhibitor ? NORMAL:INHIBITOR];
+        [superView setNeedsDisplay];
+    }
+}
+
 
 #pragma mark - Help functions
 
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode {
     fromNode = newFromNode;
     toNode = newToNode;
-    
-    [fromNode addNeighbour:toNode];
-    [toNode addNeighbour:fromNode];
 }
 
 
 #pragma mark - Drawing code
 
+//Draws the end of a normal arc
 - (void) drawArrow: (CGPoint) arrowStart arrowEnd: (CGPoint) arrowEnd {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
@@ -135,6 +152,7 @@
     CGContextFillPath(context);    
 }
 
+//Draws the end of an inhibitor arc
 - (void) drawCircle: (CGPoint) circleStart circleEnd: (CGPoint) circleEnd {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
@@ -205,6 +223,7 @@
     
     }
 
+//Draws the weight of an arc
 - (void) drawWeight {
     if (!superView.showLabels || (weight == 0 && isInhibitor) || weight == 1)
         return;
@@ -266,12 +285,14 @@
     }
 }
 
+//Calls the appropriate arc drawing functions
 - (void) drawArc {
     CGPoint prevStart = startPoint;
     CGPoint prevEnd = endPoint;
     
     [self calculateAttachmentPoints];
     [self drawWeight];
+    
     [self draw];
     
     //Only create new touch zones when the arc moved

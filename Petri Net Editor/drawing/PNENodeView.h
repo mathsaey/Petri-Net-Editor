@@ -6,23 +6,30 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
+/**
+ @file This file contains the interface of the PNENodeView class
+ */
+
 #import "../kernel/PNNode.h"
 #import "../PNEConstants.h"
 #import "PNEViewElement.h"
 
+
+/**
+ This class is the visual representation of a PNNode.
+ */
 @interface PNENodeView : PNEViewElement <UIActionSheetDelegate, UIAlertViewDelegate> {
-    BOOL hasLocation;
-    BOOL isMarked;
-    UIView *touchView;
-    UIActionSheet *nodeOptions;
+    BOOL hasLocation; /** Boolean that keeps track if the node already has a position in the PNEView */
+    BOOL isMarked; /** Boolean that keeps track of the highlight status */
+        
+    CGFloat xOrig; /** X value of the top-left corner of the square that contains the node */
+    CGFloat yOrig; /** Y value of the top-left corner of the square that contains the node */
+    CGFloat dimensions; /** Dimensions of the square that contains the node */
     
-    CGFloat xOrig; //X value of the top-left corner of the square
-    CGFloat yOrig; //Y value of the top-left corner of the square
-    
-    NSString *label;
-    NSMutableArray *neighbours; //Contains references to all the neightbours of the node
-    
-    CGFloat dimensions; //Dimension of the square
+    NSString *label; /** Reference to the label of the PNNode */
+
+    UIView *touchView; /** View that contains the touch responders of the node */
+    UIActionSheet *nodeOptions; /** Action sheet that presents the user with options */
 }
 
 @property (readonly) BOOL hasLocation;
@@ -32,40 +39,104 @@
 @property (readonly) CGFloat dimensions;
 @property (readonly) NSMutableArray* neighbours;
 
-//Drawing
-- (void) drawLabel;
+//============
+//Drawing Code
+//============
+/**
+ @name Drawing Code
+ @{
+ */
+
+/**
+ Draws the node
+ */
 - (void) drawNode;
+
+/**
+ Moves the node to a new position.
+ @param origin
+    the position to move the node to.
+ */
 - (void) moveNode: (CGPoint) origin;
 
+///@}
+
+//============
 //Highlighting
+//============
+/**
+ @name Highlighting
+ These functions implement the highlight logic
+ @{
+ */
+
+/**
+ Draws the highlight "aura"
+ */
 - (void) drawHighlight;
+
+/**
+ Switches the highlightstatus to off if it was on and vice versa 
+ */
 - (void) toggleHighlightStatus;
+
+/**
+ Turns on the highlight
+ */
 - (void) highlight;
+
+/**
+ Turns off the highlight
+ */
 - (void) dim;
 
+///@}
+
+//================
 //Touch responders
+//================
+/**
+ @name Touch responders
+ These functions get called after certain user actions
+ @{
+ */
+
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture;
 - (void) handleTapGesture: (UITapGestureRecognizer *) gesture;
 - (void)handlePanGesture:(UIPanGestureRecognizer *) gesture;
 
-//Keeps track of other connected nodes
-- (void) addNeighbour: (PNENodeView*) node;
-- (BOOL) isConnected: (PNENodeView*) node;
-- (int) countOfNeighbours;
+///@}
 
-//Returns the middle point of an edge of the square
+//==================
+//Position functions
+//==================
+/**
+ @name Position Functions
+ These functions get a certain point on the node
+ @{
+ */
+
 - (CGPoint) getTopEdge;
 - (CGPoint) getLeftEdge;
 - (CGPoint) getRightEdge;
 - (CGPoint) getBottomEdge;
-
-//Returns the corners of the square
 - (CGPoint) getLeftTopPoint;
 - (CGPoint) getRightTopPoint;
 - (CGPoint) getLeftBottomPoint;
 - (CGPoint) getRightBottomPoint;
 
-//Check how a given node is positioned in relation to the object
+///@}
+
+
+//===============
+//Position checks
+//===============
+/**
+ @name Position checks
+ These functions check how 2 node are positioned in relation to each other.
+ @{
+ */
+
 - (BOOL) isLower: (PNENodeView*) node;
 - (BOOL) isHigher: (PNENodeView*) node;
 - (BOOL) isLeft: (PNENodeView*) node;
@@ -74,8 +145,21 @@
 - (BOOL) isRightAndLower: (PNENodeView*) node;
 - (BOOL) isLeftAndHigher: (PNENodeView*) node;
 - (BOOL) isRightAndHigher: (PNENodeView*) node;
+
+/**
+ Checks if 2 nodes overlap
+ @param node
+    The node to compare to the self node
+ */
 - (BOOL) doesOverlap: (PNENodeView*) node;
 
+///@}
+
+/**
+ Changes the dimension of the node
+ @param multiplier
+    A multiplier that decides how the node scales
+ */
 - (void) multiplyDimension: (CGFloat) multiplier;
 
 @end

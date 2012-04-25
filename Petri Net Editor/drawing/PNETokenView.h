@@ -15,6 +15,11 @@
     UIColor *tokenColor;
 }
 
+/**
+ Draws a token on a certain location
+ @param origin
+    The location where the upper left point of the token should be
+ */
 - (void) drawToken: (CGPoint) origin;
 
 @end

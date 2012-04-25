@@ -18,11 +18,10 @@
 - (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         
-        //Check if the place already had a view
+        //Check if the node already had a view
         if (pnElement.view != NULL) {
             hasLocation = true;
-            xOrig = pnElement.view.xOrig;
-            yOrig = pnElement.view.yOrig;
+            [self moveNode:CGPointMake(pnElement.view.xOrig, pnElement.view.yOrig)];
         }
         else hasLocation = false;
 
@@ -71,6 +70,8 @@
 - (void) addTouchResponder:(UIGestureRecognizer *)recognizer {
     [touchView addGestureRecognizer:recognizer];
 }
+
+#pragma mark Action handlers
 
 - (void) handleTapGesture:(UITapGestureRecognizer *)gesture {
     NSLog(@"Abstract version of handleTapGesture (PNENodeView) called");
@@ -159,6 +160,7 @@
     return CGPointMake(xOrig, yOrig + dimensions);
     
 }
+
 - (CGPoint) getRightBottomPoint {
     return CGPointMake(xOrig + dimensions, yOrig + dimensions);
 }
@@ -196,18 +198,6 @@
 }
 
 #pragma mark - Help functions
-
-- (void) addNeighbour: (PNENodeView*) node {
-    [neighbours addObject:node];
-}
-
-- (int) countOfNeighbours {
-    return [neighbours count];
-}
-
-- (BOOL) isConnected: (PNENodeView*) node {
-    return [neighbours containsObject:node];
-}
 
 - (BOOL) doesOverlap: (PNENodeView*) node {
     return 

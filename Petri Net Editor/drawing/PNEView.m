@@ -47,7 +47,6 @@
     [places release];
     [transitions release];
     
-    [manager release];
     [super dealloc];    
 }
 
