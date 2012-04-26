@@ -52,6 +52,7 @@
 		D595E4B314F29157001D9B19 /* PNEArcView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B214F29157001D9B19 /* PNEArcView.m */; };
 		D595E4B614F29201001D9B19 /* PNEPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B514F29201001D9B19 /* PNEPlaceView.m */; };
 		D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B814F29218001D9B19 /* PNETransitionView.m */; };
+		D5EE14831549CC08004212E0 /* UITextView+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE14821549CC07004212E0 /* UITextView+utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		D595E4B514F29201001D9B19 /* PNEPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEPlaceView.m; path = drawing/PNEPlaceView.m; sourceTree = "<group>"; };
 		D595E4B714F29218001D9B19 /* PNETransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETransitionView.h; path = drawing/PNETransitionView.h; sourceTree = "<group>"; };
 		D595E4B814F29218001D9B19 /* PNETransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETransitionView.m; path = drawing/PNETransitionView.m; sourceTree = "<group>"; };
+		D5EE14811549CC07004212E0 /* UITextView+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+utils.h"; sourceTree = "<group>"; };
+		D5EE14821549CC07004212E0 /* UITextView+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+utils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +280,8 @@
 		D541C4AB1469C782002DB7F4 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				D5EE14811549CC07004212E0 /* UITextView+utils.h */,
+				D5EE14821549CC07004212E0 /* UITextView+utils.m */,
 				D595E46314F271E0001D9B19 /* iPhone */,
 				D595E46214F271C8001D9B19 /* iPad */,
 				D54FCE081519EE5D002A03DD /* PNEViewController.h */,
@@ -499,6 +504,7 @@
 				D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */,
 				D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */,
 				D54FCE0A1519EE5D002A03DD /* PNEViewController.m in Sources */,
+				D5EE14831549CC08004212E0 /* UITextView+utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

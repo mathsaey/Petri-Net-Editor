@@ -18,7 +18,8 @@
         [nodeOptions addButtonWithTitle:@"Fire Transition"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
         [superView.transitions addObject:self];
-        dimensions = TRANSITION_DIMENSION;
+        
+        if (!hasLocation) dimensions = TRANSITION_DIMENSION;
     
         //Create and convert all the input arcs
         [pnElement.inputs retain];
@@ -42,6 +43,15 @@
     [super dealloc];
 }
 
+- (void) removeNode {
+    [superView.manager removeTransition:element];
+    [super removeNode];
+}
+
+- (id) copyWithZone:(NSZone *)zone {
+    return [self retain];
+}
+
 #pragma mark - Touch logic
 
 - (void) handleTapGesture: (UITapGestureRecognizer *) gesture {
@@ -53,16 +63,15 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
     
-    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
-        [superView.manager removeTransition:element];
-        [superView.transitions removeObject:self];
-        [superView setNeedsDisplay];
+    if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Fire Transition") {
+        [self fireTransition];
     }
-    
-    else if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Fire Transition") {
-        [superView.manager fireTransition:self.element];
-        [superView updatePlaces];
-    }
+}
+
+- (void) fireTransition {
+    [element fire];
+    [superView.log updateText:[NSString stringWithFormat:@"Fired transition: \n \t %@", label]];
+    [superView updatePlaces];
 }
 
 #pragma mark - Highlight protocol implementation

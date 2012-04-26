@@ -1,0 +1,22 @@
+//
+//  UITextView+utils.m
+//  Petri Net Editor
+//
+//  Created by Mathijs Saey on 26/04/12.
+//  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
+//
+
+#import "UITextView+utils.h"
+
+@implementation UITextView (utils)
+
+- (void) clearText {
+    self.text = @"";
+}
+
+- (void) updateText: (NSString*) string {
+    self.text = [NSString stringWithFormat:@"%@ %@ \n", self.text, string];
+    [self scrollRangeToVisible:NSMakeRange([self.text length], 0)];
+}
+
+@end

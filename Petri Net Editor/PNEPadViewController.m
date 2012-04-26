@@ -24,6 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    petriNetView.contextInformation = contextInformation;
 }
 
 - (void)viewDidUnload
@@ -60,6 +61,7 @@
     if(UIDeviceOrientationIsPortrait(nextOrientation))
         infoView.hidden = NO;
     else infoView.hidden = YES;
+    [petriNetView loadKernel];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

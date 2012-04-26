@@ -6,10 +6,6 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
-/**
- @file This file contains the interface of the PNENodeView class
- */
-
 #import "../kernel/PNNode.h"
 #import "../PNEConstants.h"
 #import "PNEViewElement.h"
@@ -38,6 +34,11 @@
 @property (readonly) CGFloat yOrig;
 @property (readonly) CGFloat dimensions;
 @property (readonly) NSMutableArray* neighbours;
+
+/**
+ Removes the PNNode counterpart from the kernel
+ */
+- (void) removeNode;
 
 //============
 //Drawing Code

@@ -10,7 +10,9 @@
 #import "../PNEConstants.h"
 #import "../kernel/PNToken.h"
 
-
+/**
+ This class is the visual representation of a PNToken.
+ */
 @interface PNETokenView : PNEViewElement {
     UIColor *tokenColor;
 }

@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    petriNetView.log = log;
     addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Place", @"Transition", @"Arc" , nil];
 }
 
@@ -63,8 +64,7 @@
     NSLog(@"Placeholder!");
 }
 - (IBAction)reloadButtonPressed:(id)sender {
-    [petriNetView loadKernel];
-    //TODO: change this to reflect new changes
+    [petriNetView refreshPositions];
 }
 - (IBAction)screenshotButtonPressed:(id)sender {
     UIImage *pnImage = [petriNetView getPetriNetImage];

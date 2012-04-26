@@ -11,7 +11,9 @@
 #import "../kernel/PNElement.h"
 @class PNEView;
 
-
+/**
+ This class is the visual representation of a PNElement.
+ */
 @interface PNEViewElement : NSObject {
     PNElement *element; /** The PNElement that this viewElement represents */
     PNEView *superView; /** The PNEView that contains the node */

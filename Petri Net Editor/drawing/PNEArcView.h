@@ -12,7 +12,9 @@
 #import "PNEViewElement.h"
 #import "PNENodeView.h"
 
-
+/**
+ This class is the visual representation of a PNArcInscription.
+ */
 @interface PNEArcView : PNEViewElement <UIActionSheetDelegate> {
     BOOL isInhibitor; /** Keeps track of the ArcInscriptionType of the PNArcInscription this arcview represents */
     int weight; /** Link to the weight of the ArcInscription */

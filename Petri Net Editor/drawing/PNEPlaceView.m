@@ -19,14 +19,16 @@
         [nodeOptions addButtonWithTitle:@"Add token"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
         tokens = [[NSMutableArray alloc] init];
+        neighbours = [[NSMutableDictionary alloc] init];
         [superView.places addObject:self];
+        
+        if (!hasLocation) dimensions = PLACE_DIMENSION;
         
         //Add all the tokens
         for (PNToken *token in pnElement.tokens) {
             PNETokenView *tokenView = [[PNETokenView alloc] initWithValues:token superView:superView];
             [self addToken:tokenView];}
-        
-        dimensions = PLACE_DIMENSION;} 
+        } 
     return self;
 }
 
@@ -36,6 +38,27 @@
     [super dealloc];
 }
 
+- (void) removeNode {
+    [superView.manager removePlace:element];
+    
+    for (PNETransitionView *trans in neighbours) {
+        if ([[neighbours objectForKey:trans] boolValue]) 
+            [trans.element removeInput:self.element];
+        else [trans.element removeOutput:self.element];
+    }
+    
+    [super removeNode];
+}
+
+#pragma mark - Neighbours
+
+- (void) addNeighbour: (PNETransitionView*) trans isInput: (BOOL) isInput {
+    [neighbours setObject:[NSNumber numberWithBool:isInput] forKey:trans];
+}
+
+- (void) removeNeighbour: (PNETransitionView*) trans {
+    [neighbours removeObjectForKey:trans];
+}
 
 #pragma mark - Touch logic
 
@@ -50,6 +73,8 @@
 #pragma mark - Highlight protocol implementation
 
 - (void) drawHighlight {
+    [superView.contextInformation updateText:[NSString localizedStringWithFormat:@"Selected context: %@ \n \t tokens: %d", label, [tokens count]]];
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig - HL_LINE_WIDTH / 2, yOrig - HL_LINE_WIDTH / 2, dimensions + HL_LINE_WIDTH, dimensions + HL_LINE_WIDTH);
     
@@ -87,7 +112,7 @@
 - (void) updateMidPoint {
     midPointX = xOrig + dimensions / 2;
     midPointY = yOrig + dimensions / 2;
-    distanceFromMidPoint = (dimensions/2) / sqrt(2);
+    distanceFromMidPoint = (dimensions / 2) / sqrt(2);
 }
 
 - (void) multiplyDimension: (CGFloat) multiplier {

@@ -111,6 +111,10 @@
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode {
     fromNode = newFromNode;
     toNode = newToNode;
+    
+    if ([toNode class] == [PNEPlaceView class])
+        [toNode addNeighbour: fromNode isInput: false];
+    else [fromNode addNeighbour: toNode isInput: true];
 }
 
 

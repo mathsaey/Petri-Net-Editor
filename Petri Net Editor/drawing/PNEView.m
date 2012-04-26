@@ -11,6 +11,7 @@
 @implementation PNEView
 
 @synthesize arcs, places, transitions;
+@synthesize log, contextInformation;
 @synthesize showLabels;
 @synthesize manager;
 
@@ -18,20 +19,6 @@
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        manager = [[PNManager alloc] init];
-        [manager retain];
-        showLabels = true;
-        arcs = [[NSMutableArray alloc] init];
-        places = [[NSMutableArray alloc] init];
-        transitions = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self = [super initWithFrame:frame]) {
         manager = [[PNManager alloc] init];
         [manager retain];
         showLabels = true;
@@ -152,7 +139,7 @@
         [[PNETransitionView alloc] initWithValues:trans superView:self];
     }
     
-    [self calculatePositions];
+    [self refreshPositions];
 }
 
 //Only updates the tokens after firing a transition
@@ -165,6 +152,15 @@
 
 #pragma mark - Drawing Code
 
+- (void) checkPositions {
+    for (PNEPlaceView *place in places) {
+        [place moveNode:CGPointMake(place.xOrig, place.yOrig)];
+    }
+    for (PNETransitionView *trans in transitions) {
+        [trans moveNode:CGPointMake(trans.xOrig, trans.yOrig)];
+    }
+}
+
 - (void) placeNode: (CGPoint*) position node: (PNENodeView*) node {    
     if (position->x + node.dimensions > self.bounds.size.width) {
         position->x = START_OFFSET_X;
@@ -173,13 +169,20 @@
     [node moveNode:*position];
 }
 
-//Redraws the entire graph, should only be used after loading a kernel
-- (void) calculatePositions {
+- (void) resetPositions {
+    [self updatePositions:true];
+}
+
+- (void) refreshPositions {
+    [self updatePositions:false];
+}
+
+- (void) updatePositions: (BOOL) shouldReset {
     CGPoint currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
     CGFloat horizontalDistance = 100;
     
     for (PNEPlaceView* place in places) {
-        if (!place.hasLocation) {
+        if (!place.hasLocation || shouldReset) {
             [self placeNode:&currentLocation node:place];
             currentLocation.x += horizontalDistance;
         }
@@ -189,7 +192,7 @@
     currentLocation.x = START_OFFSET_X;
     
     for (PNETransitionView* trans in transitions) {
-        if (!trans.hasLocation) {
+        if (!trans.hasLocation || shouldReset) {
             [self placeNode:&currentLocation node:trans];
             currentLocation.x += horizontalDistance;
         }
@@ -199,6 +202,8 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+    [contextInformation clearText];
+    
     for (PNEPlaceView* place in places) {
         [place drawNode];
     }
@@ -212,7 +217,8 @@
 
 #pragma mark - TestCode
 
-- (void) insertData {        
+- (void) insertData {  
+        
         PNPlace* place_1 = [[PNPlace alloc] initWithName:@"Place 1"];
         PNPlace* place_2 = [[PNPlace alloc] initWithName:@"Place 2"];
         PNPlace* place_3 = [[PNPlace alloc] initWithName:@"Place 3"];

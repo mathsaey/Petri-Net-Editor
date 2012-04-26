@@ -21,6 +21,7 @@
         //Check if the node already had a view
         if (pnElement.view != NULL) {
             hasLocation = true;
+            dimensions = pnElement.view.dimensions;
             [self moveNode:CGPointMake(pnElement.view.xOrig, pnElement.view.yOrig)];
         }
         else hasLocation = false;
@@ -52,6 +53,11 @@
     [super dealloc];
 }
 
+- (void) removeNode {
+    [self removeTouchZone];
+    [superView loadKernel];
+}
+
 #pragma mark - Touch logic
 
 - (void) createTouchZone {
@@ -64,7 +70,7 @@
 }
 
 - (void) removeTouchZone {
-    [touchView release];
+    [touchView removeFromSuperview];
 }
 
 - (void) addTouchResponder:(UIGestureRecognizer *)recognizer {
@@ -96,11 +102,18 @@
         [popup textFieldAtIndex:0].placeholder = label;
         [popup show];
     }
+    
+    else if (buttonIndex == actionSheet.destructiveButtonIndex) {
+        [self removeNode];
+    }
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != alertView.cancelButtonIndex) {
         NSString *newLabel = [alertView textFieldAtIndex:0].text;
+        
+        [superView.log updateText:[NSString stringWithFormat:@"Changed label: \n \t %@ \n \t to: %@", label, newLabel]];
+        
         [label release];
         [newLabel retain];
         label = newLabel;
