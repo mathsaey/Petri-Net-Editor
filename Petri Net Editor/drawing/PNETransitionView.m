@@ -13,6 +13,12 @@
 
 #pragma mark - Lifecycle
 
+/**
+ Instantiates the transition based on the original PNTransition.
+ a PNEArcView is created for every PNTransition#inputs or
+ PNTransition#outputs part of the original PNTransition.
+
+ */
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         [nodeOptions addButtonWithTitle:@"Fire Transition"];
@@ -43,23 +49,38 @@
     [super dealloc];
 }
 
+/**
+ Removes the transition from the superview
+ */
 - (void) removeNode {
     [superView.manager removeTransition:element];
     [super removeNode];
 }
 
+/**
+ Allows us to copy the transition to add it to a 
+ NSMutableDictionary.
+ We return a self pointer instead of an actual copy.
+ */
 - (id) copyWithZone:(NSZone *)zone {
     return [self retain];
 }
 
 #pragma mark - Touch logic
 
+/**
+ Handles a a tap (short touch) event.
+ @see PNEView#transitionTapped:
+ */
 - (void) handleTapGesture: (UITapGestureRecognizer *) gesture {
     [superView transitionTapped:self];
 }
 
 #pragma mark Options sheet methods
 
+/**
+ This is called by the system when the actionsheet receives touch input
+ */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
     
@@ -68,6 +89,9 @@
     }
 }
 
+/**
+ Fires the PNTransition and updates the PNEView
+ */
 - (void) fireTransition {
     [element fire];
     [superView.log updateText:[NSString stringWithFormat:@"Fired transition: \n \t %@", label]];
@@ -76,6 +100,9 @@
 
 #pragma mark - Highlight protocol implementation
 
+/**
+ Draws the higlight "aura".
+ */
 - (void) drawHighlight {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig - HL_LINE_WIDTH / 2, yOrig - HL_LINE_WIDTH / 2, dimensions + HL_LINE_WIDTH, dimensions + HL_LINE_WIDTH);
@@ -87,6 +114,9 @@
 
 #pragma mark - Drawing code
 
+/**
+ Draws the transition.
+ */
 - (void) drawNode {  
     [super drawNode];
     CGContextRef context = UIGraphicsGetCurrentContext();

@@ -10,10 +10,18 @@
 
 @implementation UITextView (utils)
 
+/**
+ Erases all the text in the view
+ */
 - (void) clearText {
     self.text = @"";
 }
 
+/**
+ Appends text to the end of the view
+ @param string
+    The string to append.
+ */
 - (void) updateText: (NSString*) string {
     self.text = [NSString stringWithFormat:@"%@ %@ \n", self.text, string];
     [self scrollRangeToVisible:NSMakeRange([self.text length], 0)];

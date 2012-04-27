@@ -64,7 +64,7 @@
     NSLog(@"Placeholder!");
 }
 - (IBAction)reloadButtonPressed:(id)sender {
-    [petriNetView refreshPositions];
+    [petriNetView resetPositions];
 }
 - (IBAction)screenshotButtonPressed:(id)sender {
     UIImage *pnImage = [petriNetView getPetriNetImage];

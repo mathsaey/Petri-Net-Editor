@@ -39,6 +39,9 @@
 
 #pragma mark - External input
 
+/**
+ Prepares the view for adding an arc
+ */
 - (void) addArc {
     if (!isAddingArc) {
         [self dimNodes];
@@ -47,6 +50,9 @@
     else isAddingArc = false;
 }
 
+/**
+ Adds the arc to the kernel after a place and transition have been selected
+ */
 - (void) finishAddingArc: (BOOL) isPlaceFirst {
     PNArcInscription *arc = [[PNArcInscription alloc] initWithType:NORMAL];
     
@@ -63,18 +69,29 @@
     
 }
 
+/**
+ Creates a new place and adds it to the manager
+ */
 - (void) addPlace {
     PNPlace *newPlace = [[PNPlace alloc] initWithName:@"New Place"];
     [manager addPlace:newPlace];
     [self loadKernel];
 }
 
+/**
+ Creates a new transition and adds it to the manager
+ */
 - (void) addTransition {
     PNTransition *newTrans = [[PNTransition alloc] initWithName:@"New Transition"];
     [manager addTransition:newTrans];
     [self loadKernel];
 }
 
+/**
+ Occurs when a PNEPlaceView receives a tap touch event.
+ This method is located at this level since
+ a tap might influence the entire petri net (when adding arcs)
+ */
 - (void) placeTapped: (PNEPlaceView*) place {
     if (isAddingArc) {
         
@@ -88,6 +105,11 @@
     else [place toggleHighlightStatus];
 }
 
+/**
+ Occurs when a PNETRansitionView receives a tap touch event.
+ This method is located at this level since
+ a tap might influence the entire petri net (when adding arcs)
+ */
 - (void) transitionTapped: (PNETransitionView*) trans {
     if (isAddingArc) {
 
@@ -100,11 +122,20 @@
     }
 }
 
+/**
+ Replaces the kernel and draws it.
+ @param kernel
+    The new kernel to be drawn
+ */
 - (void) drawFromKernel: (PNManager*) kernel {
     manager = kernel;
     [self loadKernel];
 }
 
+/** 
+ Returns a UIImage of the PNEView
+ @return The UIImage representation of the PNEView
+ */
 - (UIImage *) getPetriNetImage {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, [[UIScreen mainScreen] scale]);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -116,6 +147,9 @@
 
 #pragma mark - Help functions
 
+/**
+ Dims all the nodes of the PNEView
+ */
 - (void) dimNodes {
     for (PNENodeView *node in places) {
         [node dim];
@@ -127,6 +161,15 @@
 
 #pragma mark - Kernel converting
 
+/**
+ This function creates the view counterpart of the PNManager.
+ Every PNPlace and PNTransition get a View counterpart, most of the 
+ work of loading the kernel is done while initialising the PNEPlaceView and PNETransitionView.
+ 
+ @see PNEPlaceView#initWithValues:superView:
+ @see PNETransitionView#initWithValues:superView:
+
+ */
 - (void) loadKernel {
     [arcs removeAllObjects];
     [places removeAllObjects];
@@ -142,7 +185,10 @@
     [self refreshPositions];
 }
 
-//Only updates the tokens after firing a transition
+/**
+ Updates the token arrays of every PNEPlaceView.
+ This is generally used after firing a transition.
+ */
 - (void) updatePlaces {
     for (PNEPlaceView* place in places) {
         [place updatePlace];
@@ -152,6 +198,10 @@
 
 #pragma mark - Drawing Code
 
+/**
+ Ensures that no PNENodeView is out of bounds
+ This is mainly used after rotating the device
+ */
 - (void) checkPositions {
     for (PNEPlaceView *place in places) {
         [place moveNode:CGPointMake(place.xOrig, place.yOrig)];
@@ -161,6 +211,13 @@
     }
 }
 
+/**
+ Positions a PNENodeView in the PNEView.
+ @param position
+    The location where we place the node
+ @param node
+    The PNENodeView we will place.
+ */
 - (void) placeNode: (CGPoint*) position node: (PNENodeView*) node {    
     if (position->x + node.dimensions > self.bounds.size.width) {
         position->x = START_OFFSET_X;
@@ -169,14 +226,30 @@
     [node moveNode:*position];
 }
 
+/**
+ Redraws the entire Petri Net, this resets positions of non-new elements
+ */
 - (void) resetPositions {
     [self updatePositions:true];
 }
 
+/**
+ Redraws the entire Petri Net without moving non-new elements
+ */
 - (void) refreshPositions {
     [self updatePositions:false];
 }
 
+/**
+ This is the method that actually moves around the elements.
+ Places are all put on one or more rows.
+ Afterwards the same thing is done for the transitions.
+ 
+ @param shouldReset
+    If true every element is repositioned.
+    If not all elements keep their positions and
+    only new elements are moved to a location.
+ */
 - (void) updatePositions: (BOOL) shouldReset {
     CGPoint currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
     CGFloat horizontalDistance = 100;
@@ -201,6 +274,10 @@
     [self setNeedsDisplay];
 }
 
+/**
+ This method is called by the system when the drawing phase starts.
+ The drawing phase can be started programatically by calling setNeedsDisplay.
+ */
 - (void)drawRect:(CGRect)rect {
     [contextInformation clearText];
     

@@ -13,6 +13,10 @@
 
 #pragma mark - Lifecycle
 
+/**
+ Initialises the PNEArcView from a PNArc, it also creates the UIActionSheet
+ @see PNEViewElement#initWithValues:superView:
+ */
 - (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) 
     {   isInhibitor = [pnElement flowFunction] == INHIBITOR;
@@ -33,10 +37,22 @@
 
 #pragma mark - Touch logic
 
+/**
+ Handles a long gesture by brining up the UIActionSheet
+ @param gesture
+    The gesture
+ */
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
     [options showFromRect:gesture.view.bounds inView:gesture.view animated:true];
 }
 
+/**
+ This method erases the old touch zone and creates the touch zone.
+ 
+ The touch zone is made up out of multiple UIViews
+ that run along the arc. The amount and size of the UIViews
+ is calculated with the #ARC_TOUCH_MIN and #ARC_TOUCH_BASE constants.
+ */
 - (void) createTouchZone {
     //Release all touch views of the previous cycle
     [self removeTouchZone];
@@ -62,6 +78,7 @@
             rect.origin.y = (MIN(startPoint.y, endPoint.y) + ctr * zoneHeight);
         else rect.origin.y = (MAX(startPoint.y, endPoint.y) - (ctr + 1) * zoneHeight);
         
+        //Add the touch responders
         UIView *touchZone = [[UIView alloc] initWithFrame:rect];        
         UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
         [touchZone addGestureRecognizer:hold];
@@ -71,6 +88,9 @@
     }
 }
 
+/**
+ Removes all the UIViews along the arc.
+ */
 - (void) removeTouchZone {
     for (UIView *view in touchViews) {
         [view removeFromSuperview];
@@ -78,14 +98,33 @@
     [touchViews removeAllObjects];
 }
 
+/**
+ Since the amount of UIViews depends on the 
+ positions of both arcs this just creates a new touch zone.
+ */
 - (void) updateTouchZone {
     [self createTouchZone];
 }
 
+/**
+ This method is not function for PNEArcView.
+ 
+ a UIGestureRecognizer can only belong to one view.
+ Since it's impossible to change this behaviour or to create
+ copy behaviour for a UIGestureRecognizer. It's not possible to 
+ dynamically add UIGestureRecognizers to a PNEArcView wth the current
+ method of creating a touch zone along the arc.
+ 
+ To add a UIGestureRecognizer it has to be programatically added 
+ to the createTouchZone method.
+ */
 - (void) addTouchResponder:(UIGestureRecognizer *)recognizer {
     NSLog(@"addTouchResponder (PNEArcView) called. recognizers can only belong to one view, recognizers must be added manually in createTouchZone instead");
 }
 
+/**
+ This responds to input received by the options UIActionSheet
+ */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.destructiveButtonIndex) {
         if ([fromNode class] == [PNETransitionView class])
@@ -108,6 +147,9 @@
 
 #pragma mark - Help functions
 
+/**
+ Sets the toNode and fromNode and updates the neighbours of the PNEPlaceView
+ */
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode {
     fromNode = newFromNode;
     toNode = newToNode;
@@ -120,7 +162,13 @@
 
 #pragma mark - Drawing code
 
-//Draws the end of a normal arc
+/**
+ Draws the arrow end to a normal arc.
+ @param arrowStart
+    The start location of the arrow, this is where the base of the arrow starts
+ @param arrowEnd
+    The point where the point of the arrow should end.
+ */
 - (void) drawArrow: (CGPoint) arrowStart arrowEnd: (CGPoint) arrowEnd {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
@@ -156,7 +204,13 @@
     CGContextFillPath(context);    
 }
 
-//Draws the end of an inhibitor arc
+/**
+ Draws the circle end of an inhibitor arc.
+ @param circleStart
+    The point where the arc line ends and the circle should begin.
+ @param circleEnd
+    The point where the circle should meet the toNode.
+ */
 - (void) drawCircle: (CGPoint) circleStart circleEnd: (CGPoint) circleEnd {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
@@ -176,10 +230,14 @@
     CGContextStrokePath(context);
 }
 
-//We draw an arc in 3 steps
-//First, we calculate the point where the line ends and the arrow/circle begins
-//Then we draw a line between the startpoint and this point
-//Lastly we call another function to draw the arrow/circle
+/**
+ This draws the line of the arc and calls the appropriate method to draw the end of the arc.
+ 
+ We draw an arc in 3 steps
+ First, we calculate the point where the line ends and the arrow/circle begins
+ Then we draw a line between the startpoint and this point
+ Lastly we call another function to draw the arrow/circle
+ */
 - (void) draw {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -227,7 +285,9 @@
     
     }
 
-//Draws the weight of an arc
+/**
+ Draws the weight of an arc when needed.
+ */
 - (void) drawWeight {
     if (!superView.showLabels || (weight == 0 && isInhibitor) || weight == 1)
         return;
@@ -252,7 +312,11 @@
     CGContextShowTextAtPoint(context, xVal + LABEL_DISTANCE , yVal - LABEL_DISTANCE  , weightText, textLength);
 }
 
-//Calculates the start and end points of the arc
+/**
+ This calculates the startPoint and endPoint of the arc,
+ the points are calculated based on the positions of the
+ toNode and the fromNode
+ */
 - (void) calculateAttachmentPoints {
     if ([fromNode isLeft:toNode]) {
         startPoint = [fromNode getLeftEdge];
@@ -289,7 +353,9 @@
     }
 }
 
-//Calls the appropriate arc drawing functions
+/**
+ This calls the functions to draw the arc and to create the touchviews
+ */
 - (void) drawArc {
     CGPoint prevStart = startPoint;
     CGPoint prevEnd = endPoint;
@@ -302,7 +368,7 @@
     //Only create new touch zones when the arc moved
     if (prevStart.x != startPoint.x || prevStart.y != startPoint.y ||
         prevEnd.x != endPoint.x || prevEnd.y != endPoint.y)
-        [self createTouchZone];
+        [self updateTouchZone];
 }
 
 @end

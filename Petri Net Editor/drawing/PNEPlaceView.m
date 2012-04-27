@@ -13,6 +13,10 @@
 
 #pragma mark - Lifecycle
 
+/**
+ Initialised the PNEPlaceView from a given Place. It also initialised a PNETokenView
+ for each PNToken that PNPlace contains.
+ */
 - (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues: pnElement superView: view]) {
         [nodeOptions addButtonWithTitle:@"Show reachable contexts"];
@@ -38,6 +42,11 @@
     [super dealloc];
 }
 
+/**
+ Removes the place after ensuring
+ every PNArcInscription connected to the
+ matching PNPlace is removed.
+ */
 - (void) removeNode {
     [superView.manager removePlace:element];
     
@@ -52,26 +61,41 @@
 
 #pragma mark - Neighbours
 
+/**
+ Adds a reference to a transition connected to this place
+ */
 - (void) addNeighbour: (PNETransitionView*) trans isInput: (BOOL) isInput {
     [neighbours setObject:[NSNumber numberWithBool:isInput] forKey:trans];
 }
 
+/**
+ Removes a neighbour of this place
+ */
 - (void) removeNeighbour: (PNETransitionView*) trans {
     [neighbours removeObjectForKey:trans];
 }
 
 #pragma mark - Touch logic
 
+/**
+ Handles a tap (short press) gesture.
+ */
 - (void) handleTapGesture: (UITapGestureRecognizer *) gesture {
     [superView placeTapped:self];
 }
 
+/**
+ Handles a long press gesture.
+ */
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
     [nodeOptions showFromRect:touchView.bounds inView:touchView animated:true];
 }
 
 #pragma mark - Highlight protocol implementation
 
+/**
+ Draws the highlight "aura" of the place.
+ */
 - (void) drawHighlight {
     [superView.contextInformation updateText:[NSString localizedStringWithFormat:@"Selected context: %@ \n \t tokens: %d", label, [tokens count]]];
     
@@ -86,6 +110,9 @@
 
 #pragma mark - Options sheet methods
 
+/**
+ The system calls this when an option of the actionsheet is selected.
+ */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
 }
@@ -109,21 +136,36 @@
 
 #pragma mark - Help functions
 
+/**
+ Updates the location of the midpoint of the
+ circle after moving the node.
+ */
 - (void) updateMidPoint {
     midPointX = xOrig + dimensions / 2;
     midPointY = yOrig + dimensions / 2;
     distanceFromMidPoint = (dimensions / 2) / sqrt(2);
 }
 
+/**
+ Changes the dimension of the place
+ @see PNENodeView#multiplyDimension:
+ */
 - (void) multiplyDimension: (CGFloat) multiplier {
     [super multiplyDimension:multiplier];
     [self updateMidPoint];
 }
 
+/**
+ Adds a PNETokenView to the token array
+ */
+
 - (void) addToken:(PNETokenView *)token {
     [tokens addObject:token];
 }
 
+/**
+ Updates the token array depending on the amount of token the matching PNPlace contains
+ */
 - (void) updatePlace {
     [tokens removeAllObjects];
     
@@ -135,11 +177,17 @@
 
 #pragma mark - Drawing code
 
+/**
+ Draws a single PNETokenView in the centre of the circle.
+ */
 - (void) drawSingleToken {
     PNETokenView *theToken = [tokens objectAtIndex:0];
     [theToken drawToken:CGPointMake(midPointX - TOKEN_DIMENSION / 2, midPointY - TOKEN_DIMENSION / 2)];
 }
 
+/**
+ Draws 2 tokens side by side in the centre of the circle.
+ */
 - (void) drawTwoTokens {
     PNETokenView *token1 = [tokens objectAtIndex:0];
     PNETokenView *token2 = [tokens objectAtIndex:1];
@@ -148,6 +196,9 @@
     [token2 drawToken:CGPointMake(midPointX + TOKEN_DISTANCE, midPointY - TOKEN_DIMENSION / 2)];
 }
 
+/**
+ Draws 3 tokens in a cirlce inside the place.
+ */
 - (void) drawThreeTokens {
     PNETokenView *token1 = [tokens objectAtIndex:0];
     PNETokenView *token2 = [tokens objectAtIndex:1];
@@ -162,6 +213,9 @@
     [token3 drawToken:CGPointMake(bottom.x - TOKEN_DIMENSION / 2, bottom.y - TOKEN_DIMENSION - TOKEN_DISTANCE)];
 }
 
+/**
+ Draws 4 tokens, once in each corner.
+ */
 - (void) drawFourTokens {
     PNETokenView *token1 = [tokens objectAtIndex:0];
     PNETokenView *token2 = [tokens objectAtIndex:1];
@@ -179,6 +233,9 @@
     [token4 drawToken:CGPointMake(rightBottom.x - TOKEN_DIMENSION, rightBottom.y - TOKEN_DIMENSION)];
 }
 
+/**
+ Draws the number of tokens in the centre of the circle.
+ */
 - (void) drawMultipleTokens {
     //Prepare the text
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -207,6 +264,9 @@
     
 }
 
+/**
+ Decides how many tokens should be drawn.
+ */
 - (void) drawTokens {
     switch ([tokens count]) {
         case 0:
@@ -229,11 +289,18 @@
     }
 }
 
+/**
+ Moves the place to a new location.
+ @see PNENodeView#moveNode:
+ */
 - (void) moveNode:(CGPoint)origin {
     [super moveNode:origin];
     [self updateMidPoint];
 }
 
+/**
+ Draws the place and every PNETokenView part of the tokens array.
+ */
 - (void) drawNode {
     [super drawNode];
     

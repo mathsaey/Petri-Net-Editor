@@ -11,7 +11,9 @@
 @implementation PNETokenView
 
 #pragma mark - Lifecycle
-
+/**
+ @see PNEViewElement#initWithValues:superView:
+ */
 - (id) initWithValues: (PNToken*) pnElement superView: (PNEView*) view {
     if(self = [super init]) {
         element = pnElement;
@@ -22,6 +24,11 @@
 
 #pragma mark - Drawing
 
+/**
+ Draws a token on a certain location
+ @param origin
+    The location where the upper left point of the token should be
+ */
 - (void) drawToken: (CGPoint) origin {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(origin.x, origin.y, TOKEN_DIMENSION, TOKEN_DIMENSION);

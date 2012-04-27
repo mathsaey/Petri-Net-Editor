@@ -6,11 +6,14 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
-//This class contains all methods and members that both the iPad and the iPhone viewcontrollers use
-
 #import <UIKit/UIKit.h>
 #import "drawing/PNEView.h"
 
+/**
+ @author Mathijs
+ 
+ This class contains all methods and members that both the iPad and the iPhone viewcontrollers use
+ */
 @interface PNEViewController : UIViewController <UIActionSheetDelegate> {
     UITextView *log;
     PNEView *petriNetView;

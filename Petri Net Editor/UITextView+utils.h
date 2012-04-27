@@ -7,11 +7,14 @@
 //
 
 /**
+ @author Mathijs Saey
+
  This category expands the UITextView with some 
  functionality to make it easier to update the
  log and context information
  */
 @interface UITextView (utils)
+
 
 - (void) clearText;
 - (void) updateText: (NSString*) string;

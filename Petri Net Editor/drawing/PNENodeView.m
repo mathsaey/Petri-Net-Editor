@@ -15,6 +15,10 @@
 
 #pragma mark - Lifecycle
 
+/**
+ This initialises the node and adds the standard touch responders.
+ @see PNEViewElement#initWithValue:superView:
+ */
 - (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         
@@ -53,6 +57,12 @@
     [super dealloc];
 }
 
+/**
+ Removes the touch zone,
+ the actual removing is done 
+ in PNETransitionView and in
+ PNEPlaceView
+ */
 - (void) removeNode {
     [self removeTouchZone];
     [superView loadKernel];
@@ -60,33 +70,58 @@
 
 #pragma mark - Touch logic
 
+/**
+ Creates an area where the
+ node can receive touch input
+ */
 - (void) createTouchZone {
     touchView = [[UIView alloc] initWithFrame:CGRectMake(xOrig, yOrig, dimensions, dimensions)];
     [superView addSubview:touchView];
 }
 
+/**
+ Moves the touchZone to the
+ current location of the PNENodeView
+ */
 - (void) updateTouchZone {
     touchView.frame = CGRectMake(xOrig, yOrig, dimensions, dimensions);
 }
 
+/**
+ Deletes the touchzone from the superView
+ */
 - (void) removeTouchZone {
     [touchView removeFromSuperview];
 }
 
+/**
+ Adds a gesture recognizer to the touchzone
+ @param recognizer
+    The new UIGestureRecognizer the touchzone should support
+ */
 - (void) addTouchResponder:(UIGestureRecognizer *)recognizer {
     [touchView addGestureRecognizer:recognizer];
 }
 
 #pragma mark Action handlers
 
+/**
+ Handles a tap gesture
+ */
 - (void) handleTapGesture:(UITapGestureRecognizer *)gesture {
     NSLog(@"Abstract version of handleTapGesture (PNENodeView) called");
 }
 
+/**
+ Handles a long press on the node
+ */
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture {
     [nodeOptions showFromRect:touchView.bounds inView:touchView animated:true];
 }
 
+/**
+ Handles a dragging motion, this moves around the node.
+ */
 - (void)handlePanGesture:(UIPanGestureRecognizer *) gesture {
     CGPoint tmp = [gesture locationInView:superView];
     [self moveNode:tmp];
@@ -95,6 +130,14 @@
 
 #pragma mark Option sheet methods
 
+/**
+ The system calls this function when the user presses an option
+ on the actionsheet.
+ This is responsible for the delete and changelabel buttons.
+ 
+ @see PNETransitionView#actionSheet:clickedButtonAtIndex:
+ @see PNEPlaceView#actionSheet:clickedButtonAtIndex:
+ */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Change label") {
         UIAlertView *popup = [[UIAlertView alloc] initWithTitle:@"Name" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
@@ -108,6 +151,10 @@
     }
 }
 
+/**
+ The system calls this when a button of the UIAlertView has been pressed
+ This UIAlertView is used to change the label of the node if the "ok" button is pressed.
+ */
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != alertView.cancelButtonIndex) {
         NSString *newLabel = [alertView textFieldAtIndex:0].text;
@@ -124,20 +171,34 @@
 
 #pragma mark - Highlight protocol implementation
 
+/**
+ [abstract]Draws the highlight around a node.
+ @see PNETransitionView#drawHighlight
+ @see PNEPlaceView#drawHighlight
+ */
 - (void) drawHighlight {
     NSLog(@"Abstract version of drawHighlight (PNENodeView) called");
 }
 
+/**
+ Changes the highlight status to on if it was off and vice versa
+ */
 - (void) toggleHighlightStatus {
     isMarked = !isMarked;
     [superView setNeedsDisplay]; 
 }
 
+/**
+ Highlights the node
+ */
 - (void) highlight {
     isMarked = true;
     [superView setNeedsDisplay];
 }
 
+/**
+ Turns off the highlight.
+ */
 - (void) dim {
     isMarked = false;
     [superView setNeedsDisplay];
@@ -212,6 +273,13 @@
 
 #pragma mark - Help functions
 
+/**
+ Checks if a node overlaps
+ @param node
+    The node that may overlap
+ @return 
+    true if the node overlaps with the self node
+ */
 - (BOOL) doesOverlap: (PNENodeView*) node {
     return 
     //Check if the origin of the node lies within the current node's rectangle
@@ -222,19 +290,31 @@
     node.yOrig <= yOrig && yOrig <= node.yOrig + node.dimensions);
 }
 
+/**
+ Changes the dimension of the node
+ @param multiplier
+ A multiplier that decides how the node scales
+ */
 - (void) multiplyDimension:(CGFloat)multiplier {
     dimensions = dimensions * multiplier;
 }
 
 #pragma mark - Drawing code
 
+/**
+ Draws the node
+ */
 - (void) drawNode {
-    [self updateTouchZone];
     [self drawLabel];
     if (isMarked)
         [self drawHighlight];
 }
 
+/**
+ Moves the node to a new position.
+ @param origin
+ the position to move the node to.
+ */
 - (void) moveNode: (CGPoint) origin {
     //checks if the node does not go out of bounds
     if (origin.x + dimensions > superView.bounds.size.width)
@@ -246,8 +326,13 @@
     
     xOrig = origin.x;
     yOrig = origin.y;
+    
+    [self updateTouchZone];
 }
 
+/**
+ draws the label of the node.
+ */
 - (void) drawLabel {
     if (!superView.showLabels)
         return;

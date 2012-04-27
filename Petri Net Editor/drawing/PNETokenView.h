@@ -11,17 +11,15 @@
 #import "../kernel/PNToken.h"
 
 /**
+ @author Mathijs Saey
+
  This class is the visual representation of a PNToken.
+ A token is a filled circle and is placed inside a PNEPlaceView.
  */
 @interface PNETokenView : PNEViewElement {
     UIColor *tokenColor;
 }
 
-/**
- Draws a token on a certain location
- @param origin
-    The location where the upper left point of the token should be
- */
 - (void) drawToken: (CGPoint) origin;
 
 @end

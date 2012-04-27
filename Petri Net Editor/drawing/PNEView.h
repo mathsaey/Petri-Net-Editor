@@ -20,19 +20,24 @@
 #import "PNEViewController.h"
 
 /**
+ @author Mathijs Saey
+ 
  This class is the view that handles the representation and ordering of the Petri Net.
+ 
+ It contains the functions that load the PNManager into a set containing PNEViewElement and stores those elements.
+ It also contains the functions that draws the view elements as a consistent whole.
  */
 @interface PNEView : UIView {
-    NSMutableArray *arcs; /** Array that contains all the PNEArcView the view contains */
-    NSMutableArray *places; /** Array that keeps track of all the PNEPlaceView the view contains */
-    NSMutableArray *transitions; /** Array that stores all the PNETransitionViews the view contains */
+    NSMutableArray *arcs; /** Array that contains every PNEArcView the view contains */
+    NSMutableArray *places; /** Array that keeps track of every PNEPlaceView the view contains */
+    NSMutableArray *transitions; /** Array that stores every PNETransitionView the view contains */
         
     PNManager *manager; /** Link to the PNManager that we wish to display */
     
     UITextView *log; /** Link to the log textview */
     UITextView *contextInformation; /** Link to the context information textview */
     
-    BOOL showLabels; /** Boolean that stores if we should show node labels */
+    BOOL showLabels; /** Boolean that stores if we should display node labels */
     
     //Arc adding logic
     BOOL isAddingArc; /** True when the user is in the process of adding an arc */
@@ -49,40 +54,21 @@
 @property (nonatomic, readonly) NSMutableArray *places;
 @property (nonatomic, readonly) NSMutableArray *transitions;
 
-//=======================
-// External input methods
-//=======================
-
+//Adding elements
 - (void) addArc;
 - (void) addPlace;
 - (void) addTransition;
 
-/**
- Ensures that none of the PNENodeView are out of bounds
- after changing the view (after rotating the device)
- */
-- (void) checkPositions;
-
-/**
- Redraws the entire Petri Net 
- */
-- (void) refreshPositions;
-
-/** Returns a UIImage of the PNEView */
+- (void) resetPositions;
 - (UIImage *) getPetriNetImage;
 
+//PNElement events
 - (void) placeTapped: (PNEPlaceView*) place;
 - (void) transitionTapped: (PNETransitionView*) trans;
 
-//=================
-// Kernel functions
-//=================
-
-/** Loads the kernel from the manager */
+//Kernel
 - (void) loadKernel;
-/** Updates all the tokens after firing a transition */
 - (void) updatePlaces;
-
 
 //Testing code
 - (void) insertData;

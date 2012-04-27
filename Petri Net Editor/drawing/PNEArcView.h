@@ -13,7 +13,10 @@
 #import "PNENodeView.h"
 
 /**
+ @author Mathijs Saey
+
  This class is the visual representation of a PNArcInscription.
+ An arc is a line connecting a PNETransitionView and a PNEPlaceView.
  */
 @interface PNEArcView : PNEViewElement <UIActionSheetDelegate> {
     BOOL isInhibitor; /** Keeps track of the ArcInscriptionType of the PNArcInscription this arcview represents */
@@ -30,15 +33,7 @@
 }
 
 - (void) drawArc;
-
-/**
- Updates the nodes that the arc connects
- */
 - (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode;
-
-/**
- This function gets called after the arc receives a long press
- */
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture;
 
 

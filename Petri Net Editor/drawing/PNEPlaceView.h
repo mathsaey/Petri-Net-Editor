@@ -14,7 +14,11 @@
 @class PNETransitionView;
 
 /**
+ @author Mathijs Saey
+
  This class is the visual representation of a PNPlace.
+ A place is represented by a hollow circle.
+ The circle can possibly contain one or more instances of PNETokenView.
  */
 @interface PNEPlaceView : PNENodeView {
     NSMutableArray *tokens; /** The collection of PNETokenView that are part of this place */
@@ -24,23 +28,9 @@
     CGFloat midPointY; /** The Y value of the midpoint of the place */
 }
 
-/**
- Updates the token array depending on the amount of token the matchin PNPlace contains
- */
 - (void) updatePlace;
-
-/**
- Adds a PNETokenView to the token array
- */
 - (void) addToken: (PNETokenView*) token;
-
-/**
- Adds a reference to a transition connected to this place
- */
 - (void) addNeighbour: (PNETransitionView*) trans isInput: (BOOL) isInput;
-/**
- Removes a neighbour of this place
- */
 - (void) removeNeighbour: (PNETransitionView*) trans;
 
 @end
