@@ -47,7 +47,13 @@
         [self dimNodes];
         [self setNeedsDisplay];
         isAddingArc = true;}
-    else isAddingArc = false;
+    else {
+        isAddingArc = false;
+        arcPlace = NULL;
+        arcTrans = NULL;
+        [self dimNodes];
+        [self setNeedsDisplay];
+    }
 }
 
 /**
@@ -95,10 +101,16 @@
 - (void) placeTapped: (PNEPlaceView*) place {
     if (isAddingArc) {
         
-        if (arcPlace != NULL) [arcPlace dim];
-        [place highlight];
+        //Deselect a place
+        if (arcPlace == place) {
+            arcPlace = NULL;
+            return [place dim];
+        }
         
+        [arcPlace dim];
+        [place highlight];
         arcPlace = place;
+        
         if (arcTrans != NULL)
             [self finishAddingArc:FALSE];
     }
@@ -112,11 +124,16 @@
  */
 - (void) transitionTapped: (PNETransitionView*) trans {
     if (isAddingArc) {
-
-        if (arcTrans != NULL) [arcTrans dim];
-        [trans highlight];
         
+        if (arcTrans == trans) {
+            arcTrans = NULL;
+            return [trans dim];
+        }
+        
+        [arcTrans dim];
+        [trans highlight];
         arcTrans = trans;
+        
         if (arcPlace != NULL)
             [self finishAddingArc:TRUE];
     }

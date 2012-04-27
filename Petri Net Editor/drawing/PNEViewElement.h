@@ -23,6 +23,7 @@
 
 @property (readonly) PNElement *element;
 
+- (void) removeElement;
 - (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view;
 
 - (void) removeTouchZone;

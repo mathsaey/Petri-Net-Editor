@@ -22,7 +22,7 @@
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
         [nodeOptions addButtonWithTitle:@"Fire Transition"];
-        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
+        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
         [superView.transitions addObject:self];
         
         if (!hasLocation) dimensions = TRANSITION_DIMENSION;
@@ -52,9 +52,9 @@
 /**
  Removes the transition from the superview
  */
-- (void) removeNode {
+- (void) removeElement {
     [superView.manager removeTransition:element];
-    [super removeNode];
+    [super removeElement];
 }
 
 /**

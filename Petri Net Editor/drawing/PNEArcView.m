@@ -24,7 +24,7 @@
         weight = [pnElement flowFunction];
         touchViews = [[NSMutableArray alloc] init];
                 
-        options = [[UIActionSheet alloc] initWithTitle:@"Options:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Convert", @"Change weight", nil];
+        options = [[UIActionSheet alloc] initWithTitle:@"Options:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Convert", nil];
     }
     return self;
 }
@@ -33,6 +33,13 @@
     [superView.arcs removeObject:self];
     [touchViews dealloc];
     [super dealloc];
+}
+
+- (void) removeElement {
+    if ([toNode class] == [PNEPlaceView class]) 
+        [fromNode.element removeOutput:toNode.element];
+    else [toNode.element removeInput:fromNode.element];
+    [superView loadKernel];
 }
 
 #pragma mark - Touch logic
@@ -126,26 +133,36 @@
  This responds to input received by the options UIActionSheet
  */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == actionSheet.destructiveButtonIndex) {
-        if ([fromNode class] == [PNETransitionView class])
-            [fromNode.element removeOutput:toNode.element];
-        
-        //Niet in else steken, expliciet laten checken 
-        else [toNode.element removeInput:fromNode.element];
-        [superView loadKernel];
-        [element release];
-    }
-    
-    //TODO: fix this to use the add of transitions to check if inhibitor is allowed
-    else {
-        isInhibitor = !isInhibitor;
-        [element setType: isInhibitor ? NORMAL:INHIBITOR];
-        [superView setNeedsDisplay];
-    }
+    if (buttonIndex == actionSheet.destructiveButtonIndex)
+        [self removeElement];
+    else if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Convert")
+        [self changeType];
 }
 
-
 #pragma mark - Help functions
+
+/**
+ Replaces the arc with an inhibitor arc if it's a standard arc and vice versa
+ */
+- (void) changeType {
+    if([toNode class] == [PNEPlaceView class] && [element type] == NORMAL) {
+        UIAlertView *popup = [[UIAlertView alloc] 
+                              initWithTitle:@"Error" 
+                              message:@"You cannot add an inhibitor arc as output!" 
+                              delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        return [popup show];
+    }
+    if ([element type] == NORMAL) {
+        [element setType:INHIBITOR];
+        [element setFlowFunction:0];
+    }
+    else {
+        [element setType:NORMAL];
+        [element setFlowFunction:1];
+    }
+    
+    [superView loadKernel];
+}
 
 /**
  Sets the toNode and fromNode and updates the neighbours of the PNEPlaceView

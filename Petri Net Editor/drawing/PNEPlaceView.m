@@ -19,9 +19,9 @@
  */
 - (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues: pnElement superView: view]) {
-        [nodeOptions addButtonWithTitle:@"Show reachable contexts"];
         [nodeOptions addButtonWithTitle:@"Add token"];
-        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:@"Cancel"];
+        [nodeOptions addButtonWithTitle:@"Show reachable contexts"];
+        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
         tokens = [[NSMutableArray alloc] init];
         neighbours = [[NSMutableDictionary alloc] init];
         [superView.places addObject:self];
@@ -47,7 +47,7 @@
  every PNArcInscription connected to the
  matching PNPlace is removed.
  */
-- (void) removeNode {
+- (void) removeElement {
     [superView.manager removePlace:element];
     
     for (PNETransitionView *trans in neighbours) {
@@ -56,7 +56,7 @@
         else [trans.element removeOutput:self.element];
     }
     
-    [super removeNode];
+    [super removeElement];
 }
 
 #pragma mark - Neighbours
@@ -115,6 +115,12 @@
  */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+    
+    if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Add token") {
+        PNToken *newToken = [[PNToken alloc] init];
+        [element addToken:newToken];
+        [superView updatePlaces];
+    }
 }
 
 #pragma mark - Arc attachement point functions

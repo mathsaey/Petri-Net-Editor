@@ -35,6 +35,14 @@
     [super dealloc];
 }
 
+/**
+ [abstract]Removes the element from the superview
+ and the matching PNElement from the PNManager
+ */
+- (void) removeElement {
+    NSLog(@"Abstract version of removeElement (PNEViewElement) called!");
+}
+
 #pragma mark - Touch logic
 
 /**

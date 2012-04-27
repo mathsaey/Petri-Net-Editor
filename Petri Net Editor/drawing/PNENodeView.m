@@ -43,7 +43,7 @@
         //we initialise the cancel button later so it appears at the bottom
         nodeOptions = [[UIActionSheet alloc] 
                        initWithTitle:@"Options:" delegate:self 
-                       cancelButtonTitle:nil destructiveButtonTitle:@"Delete" 
+                       cancelButtonTitle:nil destructiveButtonTitle:DELETE_BUTTON_NAME 
                        otherButtonTitles: @"Change label", nil];
         isMarked = false;
         label = pnElement.label;
@@ -63,7 +63,7 @@
  in PNETransitionView and in
  PNEPlaceView
  */
-- (void) removeNode {
+- (void) removeElement {
     [self removeTouchZone];
     [superView loadKernel];
 }
@@ -147,7 +147,7 @@
     }
     
     else if (buttonIndex == actionSheet.destructiveButtonIndex) {
-        [self removeNode];
+        [self removeElement];
     }
 }
 

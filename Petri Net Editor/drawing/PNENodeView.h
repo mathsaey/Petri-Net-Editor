@@ -36,8 +36,6 @@
 @property (readonly) CGFloat dimensions;
 @property (readonly) NSMutableArray* neighbours;
 
-- (void) removeNode;
-
 //============
 //Drawing Code
 //============

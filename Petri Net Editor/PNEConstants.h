@@ -62,4 +62,9 @@ extern CGFloat ARC_TOUCH_MIN;
  */
 extern CGFloat ARC_TOUCH_BASE; 
 
+//String Constants
+//================
+extern NSString *CANCEL_BUTTON_NAME; /**< Name of the cancel button */
+extern NSString *DELETE_BUTTON_NAME; /**< Name of the delete button */
+
 ///@}
