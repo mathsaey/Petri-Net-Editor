@@ -93,12 +93,20 @@
 
 #pragma mark - Highlight protocol implementation
 
+- (void) highlight {
+    [super highlight];
+    [superView.contextInformation addText:[NSString localizedStringWithFormat:@"%@ %@ (%d) \n \t tokens: %d",CONTEXT_INFO_PREFIX, label, element.code, [tokens count]]];
+}
+
+- (void) dim {
+    [super dim];
+    [superView.contextInformation removeContextInfo:label];
+}
+
 /**
  Draws the highlight "aura" of the place.
  */
-- (void) drawHighlight {
-    [superView.contextInformation updateText:[NSString localizedStringWithFormat:@"Selected context: %@ \n \t tokens: %d", label, [tokens count]]];
-    
+- (void) drawHighlight {    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig - HL_LINE_WIDTH / 2, yOrig - HL_LINE_WIDTH / 2, dimensions + HL_LINE_WIDTH, dimensions + HL_LINE_WIDTH);
     

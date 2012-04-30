@@ -94,7 +94,7 @@
  */
 - (void) fireTransition {
     [element fire];
-    [superView.log updateText:[NSString stringWithFormat:@"Fired transition: \n \t %@", label]];
+    [superView.log addText:[NSString stringWithFormat:@"Fired transition: \n \t %@", label]];
     [superView updatePlaces];
 }
 

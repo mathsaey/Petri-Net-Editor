@@ -159,7 +159,7 @@
     if (buttonIndex != alertView.cancelButtonIndex) {
         NSString *newLabel = [alertView textFieldAtIndex:0].text;
         
-        [superView.log updateText:[NSString stringWithFormat:@"Changed label: \n \t %@ \n \t to: %@", label, newLabel]];
+        [superView.log addText:[NSString stringWithFormat:@"Changed label: \n \t %@ \n \t to: %@", label, newLabel]];
         
         [label release];
         [newLabel retain];
@@ -184,8 +184,9 @@
  Changes the highlight status to on if it was off and vice versa
  */
 - (void) toggleHighlightStatus {
-    isMarked = !isMarked;
-    [superView setNeedsDisplay]; 
+    if (isMarked)
+        [self dim];
+    else [self highlight];
 }
 
 /**

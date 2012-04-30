@@ -7,20 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "drawing/PNEView.h"
 #import "PNEViewController.h"
+#import "../drawing/PNEView.h"
 
 @interface PNEPadViewController : PNEViewController {
    
     UIView *infoView;
-    UITextView *contextInformation;    
+    UITableView *contextInformation;    
     
     UISegmentedControl *labelVisibility;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *infoView;
-@property (nonatomic, retain) IBOutlet UITextView *contextInformation;
-
+@property (nonatomic, retain) IBOutlet UITableView *contextInformation;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *labelVisibility;
 
 - (IBAction)labelVisibilityChanged:(id)sender;

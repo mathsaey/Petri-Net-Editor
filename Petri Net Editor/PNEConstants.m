@@ -29,5 +29,7 @@ const CGFloat TOKEN_DIMENSION = 15; //Should be around place_dimension/3
 const CGFloat ARC_TOUCH_MIN = 5;
 const CGFloat ARC_TOUCH_BASE = 40; 
 
+const NSString *CONTEXT_INFO_PREFIX = @"Selected context: ";
+
 const NSString *CANCEL_BUTTON_NAME = @"Cancel";
 const NSString *DELETE_BUTTON_NAME = @"Delete";

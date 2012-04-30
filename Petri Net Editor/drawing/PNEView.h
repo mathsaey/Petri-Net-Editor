@@ -15,7 +15,6 @@
 #import "PNEViewElement.h"
 #import "PNETransitionView.h"
 
-#import "../UITextView+utils.h"
 #import "../kernel/PNManager.h"
 #import "PNEViewController.h"
 
@@ -35,7 +34,7 @@
     PNManager *manager; /** Link to the PNManager that we wish to display */
     
     UITextView *log; /** Link to the log textview */
-    UITextView *contextInformation; /** Link to the context information textview */
+    UITableView *contextInformation; /** Link to the context information textview */
     
     BOOL showLabels; /** Boolean that stores if we should display node labels */
     
@@ -47,7 +46,7 @@
 
 @property (atomic, readwrite) BOOL showLabels;
 @property (nonatomic, readwrite, assign) UITextView *log;
-@property (nonatomic, readwrite, assign) UITextView *contextInformation;
+@property (nonatomic, readwrite, assign) UITableView *contextInformation;
 
 @property (nonatomic, readonly) PNManager *manager;
 @property (nonatomic, readonly) NSMutableArray *arcs;

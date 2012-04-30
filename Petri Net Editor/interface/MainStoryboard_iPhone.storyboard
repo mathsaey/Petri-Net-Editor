@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="7Yq-U1-QkZ">
+    <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
+        <development defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+    </dependencies>
+    <scenes>
+        <!--Phone View Controller-->
+        <scene sceneID="Tsm-h8-1BS">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VoW-ku-sL6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="7Yq-U1-QkZ" customClass="PNEPhoneViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V6E-O9-cue">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" id="Lh7-Eg-1cR" userLabel="Petri Net" customClass="PNEView">
+                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="OUD-oG-bNL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="add" id="d2i-EC-Qtq">
+                                        <connections>
+                                            <action selector="addButtonPress:" destination="7Yq-U1-QkZ" id="r7q-Zx-W9b"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="test" id="B8O-w0-5XD">
+                                        <connections>
+                                            <action selector="testButtonFire:" destination="7Yq-U1-QkZ" id="mLN-lM-clu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="2L6-fX-Cwl"/>
+                                    <barButtonItem systemItem="refresh" id="79J-1Z-VJE">
+                                        <connections>
+                                            <action selector="reloadButtonPressed:" destination="7Yq-U1-QkZ" id="OwX-9F-yh8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="organize" id="IvF-mV-EED">
+                                        <connections>
+                                            <action selector="organiseButtonPressed:" destination="7Yq-U1-QkZ" id="BTe-V7-YwI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="camera" id="MJ6-cv-eIC">
+                                        <connections>
+                                            <action selector="screenshotButtonPressed:" destination="7Yq-U1-QkZ" id="h0i-20-Apv"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="d2i-EC-Qtq" id="8gT-E0-zvv"/>
+                        <outlet property="organiseButton" destination="IvF-mV-EED" id="zwO-eK-zOz"/>
+                        <outlet property="petriNetView" destination="Lh7-Eg-1cR" id="VeF-cV-zXf"/>
+                        <outlet property="reloadButton" destination="79J-1Z-VJE" id="w7U-UK-tpf"/>
+                        <outlet property="screenshotButton" destination="MJ6-cv-eIC" id="4pm-45-2Uf"/>
+                        <outlet property="testButton" destination="B8O-w0-5XD" id="04c-I4-AVS"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="602" y="-237"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="PNEPhoneViewController" superclassName="PNEViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEPhoneViewController.h"/>
+        </class>
+        <class className="PNEView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEView.h"/>
+        </class>
+        <class className="PNEViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addButtonPress:"/>
+                <relationship kind="action" name="organiseButtonPressed:"/>
+                <relationship kind="action" name="reloadButtonPressed:"/>
+                <relationship kind="action" name="screenshotButtonPressed:"/>
+                <relationship kind="action" name="testButtonFire:"/>
+                <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="log" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="organiseButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
+                <relationship kind="outlet" name="reloadButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="screenshotButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="testButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

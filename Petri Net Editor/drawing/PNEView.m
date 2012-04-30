@@ -295,9 +295,7 @@
  This method is called by the system when the drawing phase starts.
  The drawing phase can be started programatically by calling setNeedsDisplay.
  */
-- (void)drawRect:(CGRect)rect {
-    [contextInformation clearText];
-    
+- (void)drawRect:(CGRect)rect {    
     for (PNEPlaceView* place in places) {
         [place drawNode];
     }

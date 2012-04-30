@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
+#import "PNEConstants.h"
+
 /**
  @author Mathijs Saey
 
@@ -13,10 +15,12 @@
  functionality to make it easier to update the
  log and context information
  */
-@interface UITextView (utils)
+@interface UITextView (ContextUtils)
 
 
 - (void) clearText;
-- (void) updateText: (NSString*) string;
+- (void) addText: (NSString*) string;
 
 @end
+
+//Context info vervangen door table view dat per cel een uitextview bevat

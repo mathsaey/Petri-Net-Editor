@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "drawing/PNEView.h"
 #import "PNEViewController.h"
+#import "../drawing/PNEView.h"
 
 
 @interface PNEPhoneViewController : PNEViewController

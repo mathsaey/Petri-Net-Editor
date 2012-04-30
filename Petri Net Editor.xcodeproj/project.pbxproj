@@ -15,17 +15,12 @@
 		D541C44F1469C6C8002DB7F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D541C44D1469C6C8002DB7F4 /* InfoPlist.strings */; };
 		D541C4511469C6C8002DB7F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4501469C6C8002DB7F4 /* main.m */; };
 		D541C4551469C6C8002DB7F4 /* PNEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */; };
-		D541C4581469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D541C4561469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard */; };
-		D541C45E1469C6C8002DB7F4 /* PNEPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C45D1469C6C8002DB7F4 /* PNEPadViewController.m */; };
 		D541C4661469C6C8002DB7F4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4651469C6C8002DB7F4 /* SenTestingKit.framework */; };
 		D541C4671469C6C8002DB7F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4441469C6C8002DB7F4 /* UIKit.framework */; };
 		D541C4681469C6C8002DB7F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4461469C6C8002DB7F4 /* Foundation.framework */; };
 		D541C4701469C6C8002DB7F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D541C46E1469C6C8002DB7F4 /* InfoPlist.strings */; };
 		D541C4731469C6C8002DB7F4 /* Petri_Net_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */; };
-		D54FCE0A1519EE5D002A03DD /* PNEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D54FCE091519EE5D002A03DD /* PNEViewController.m */; };
 		D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D557F63D14F303D7005DC543 /* PNEConstants.m */; };
-		D5711EA21486894600BC5597 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */; };
-		D595E46614F2720C001D9B19 /* PNEPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E46514F2720C001D9B19 /* PNEPhoneViewController.m */; };
 		D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46714F27953001D9B19 /* Logo_iPad.png */; };
 		D595E46C14F279F8001D9B19 /* logo_iPhone_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46914F279F8001D9B19 /* logo_iPhone_big.png */; };
 		D595E46D14F279F8001D9B19 /* logo_iPhone_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */; };
@@ -52,7 +47,13 @@
 		D595E4B314F29157001D9B19 /* PNEArcView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B214F29157001D9B19 /* PNEArcView.m */; };
 		D595E4B614F29201001D9B19 /* PNEPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B514F29201001D9B19 /* PNEPlaceView.m */; };
 		D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E4B814F29218001D9B19 /* PNETransitionView.m */; };
-		D5EE14831549CC08004212E0 /* UITextView+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EE14821549CC07004212E0 /* UITextView+utils.m */; };
+		D5B3B577154EB84900F20DC0 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B570154EB84800F20DC0 /* MainStoryboard_iPad.storyboard */; };
+		D5B3B578154EB84900F20DC0 /* PNEPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B572154EB84800F20DC0 /* PNEPadViewController.m */; };
+		D5B3B579154EB84900F20DC0 /* PNEPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B574154EB84900F20DC0 /* PNEPhoneViewController.m */; };
+		D5B3B57A154EB84900F20DC0 /* PNEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B576154EB84900F20DC0 /* PNEViewController.m */; };
+		D5B3B57C154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B57B154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard */; };
+		D5B3B57F154EB92900F20DC0 /* UITextView+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B57E154EB92900F20DC0 /* UITextView+utils.m */; };
+		D5B3B582154EB98800F20DC0 /* UITableView+ContextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B581154EB98800F20DC0 /* UITableView+ContextUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,22 +79,14 @@
 		D541C4521469C6C8002DB7F4 /* Petri Net Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Petri Net Editor-Prefix.pch"; sourceTree = "<group>"; };
 		D541C4531469C6C8002DB7F4 /* PNEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PNEAppDelegate.h; sourceTree = "<group>"; };
 		D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PNEAppDelegate.m; sourceTree = "<group>"; };
-		D541C4571469C6C8002DB7F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		D541C45C1469C6C8002DB7F4 /* PNEPadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PNEPadViewController.h; sourceTree = "<group>"; };
-		D541C45D1469C6C8002DB7F4 /* PNEPadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PNEPadViewController.m; sourceTree = "<group>"; };
 		D541C4641469C6C8002DB7F4 /* Petri Net EditorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Petri Net EditorTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D541C4651469C6C8002DB7F4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D541C46D1469C6C8002DB7F4 /* Petri Net EditorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Petri Net EditorTests-Info.plist"; sourceTree = "<group>"; };
 		D541C46F1469C6C8002DB7F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D541C4711469C6C8002DB7F4 /* Petri_Net_EditorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Petri_Net_EditorTests.h; sourceTree = "<group>"; };
 		D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Petri_Net_EditorTests.m; sourceTree = "<group>"; };
-		D54FCE081519EE5D002A03DD /* PNEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEViewController.h; sourceTree = "<group>"; };
-		D54FCE091519EE5D002A03DD /* PNEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEViewController.m; sourceTree = "<group>"; };
 		D557F63C14F303D7005DC543 /* PNEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEConstants.h; sourceTree = "<group>"; };
 		D557F63D14F303D7005DC543 /* PNEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEConstants.m; sourceTree = "<group>"; };
-		D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		D595E46414F2720C001D9B19 /* PNEPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEPhoneViewController.h; sourceTree = "<group>"; };
-		D595E46514F2720C001D9B19 /* PNEPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEPhoneViewController.m; sourceTree = "<group>"; };
 		D595E46714F27953001D9B19 /* Logo_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo_iPad.png; path = ../../Files/logo/Logo_iPad.png; sourceTree = "<group>"; };
 		D595E46914F279F8001D9B19 /* logo_iPhone_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_iPhone_big.png; path = ../../Files/logo/logo_iPhone_big.png; sourceTree = "<group>"; };
 		D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_iPhone_small.png; path = ../../Files/logo/logo_iPhone_small.png; sourceTree = "<group>"; };
@@ -136,8 +129,18 @@
 		D595E4B514F29201001D9B19 /* PNEPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEPlaceView.m; path = drawing/PNEPlaceView.m; sourceTree = "<group>"; };
 		D595E4B714F29218001D9B19 /* PNETransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETransitionView.h; path = drawing/PNETransitionView.h; sourceTree = "<group>"; };
 		D595E4B814F29218001D9B19 /* PNETransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETransitionView.m; path = drawing/PNETransitionView.m; sourceTree = "<group>"; };
-		D5EE14811549CC07004212E0 /* UITextView+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+utils.h"; sourceTree = "<group>"; };
-		D5EE14821549CC07004212E0 /* UITextView+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+utils.m"; sourceTree = "<group>"; };
+		D5B3B570154EB84800F20DC0 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPad.storyboard; path = interface/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		D5B3B571154EB84800F20DC0 /* PNEPadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEPadViewController.h; path = interface/PNEPadViewController.h; sourceTree = "<group>"; };
+		D5B3B572154EB84800F20DC0 /* PNEPadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEPadViewController.m; path = interface/PNEPadViewController.m; sourceTree = "<group>"; };
+		D5B3B573154EB84900F20DC0 /* PNEPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEPhoneViewController.h; path = interface/PNEPhoneViewController.h; sourceTree = "<group>"; };
+		D5B3B574154EB84900F20DC0 /* PNEPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEPhoneViewController.m; path = interface/PNEPhoneViewController.m; sourceTree = "<group>"; };
+		D5B3B575154EB84900F20DC0 /* PNEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEViewController.h; path = interface/PNEViewController.h; sourceTree = "<group>"; };
+		D5B3B576154EB84900F20DC0 /* PNEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEViewController.m; path = interface/PNEViewController.m; sourceTree = "<group>"; };
+		D5B3B57B154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPhone.storyboard; path = interface/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		D5B3B57D154EB92900F20DC0 /* UITextView+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+utils.h"; path = "interface/UITextView+utils.h"; sourceTree = "<group>"; };
+		D5B3B57E154EB92900F20DC0 /* UITextView+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+utils.m"; path = "interface/UITextView+utils.m"; sourceTree = "<group>"; };
+		D5B3B580154EB98800F20DC0 /* UITableView+ContextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+ContextUtils.h"; path = "interface/UITableView+ContextUtils.h"; sourceTree = "<group>"; };
+		D5B3B581154EB98800F20DC0 /* UITableView+ContextUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+ContextUtils.m"; path = "interface/UITableView+ContextUtils.m"; sourceTree = "<group>"; };
 		D5EE14861549F278004212E0 /* DocumentationMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentationMain.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,12 +285,14 @@
 		D541C4AB1469C782002DB7F4 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				D5EE14811549CC07004212E0 /* UITextView+utils.h */,
-				D5EE14821549CC07004212E0 /* UITextView+utils.m */,
+				D5B3B57D154EB92900F20DC0 /* UITextView+utils.h */,
+				D5B3B57E154EB92900F20DC0 /* UITextView+utils.m */,
+				D5B3B580154EB98800F20DC0 /* UITableView+ContextUtils.h */,
+				D5B3B581154EB98800F20DC0 /* UITableView+ContextUtils.m */,
 				D595E46314F271E0001D9B19 /* iPhone */,
 				D595E46214F271C8001D9B19 /* iPad */,
-				D54FCE081519EE5D002A03DD /* PNEViewController.h */,
-				D54FCE091519EE5D002A03DD /* PNEViewController.m */,
+				D5B3B575154EB84900F20DC0 /* PNEViewController.h */,
+				D5B3B576154EB84900F20DC0 /* PNEViewController.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -295,9 +300,9 @@
 		D595E46214F271C8001D9B19 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				D5711EA11486894600BC5597 /* MainStoryboard_iPad.storyboard */,
-				D541C45C1469C6C8002DB7F4 /* PNEPadViewController.h */,
-				D541C45D1469C6C8002DB7F4 /* PNEPadViewController.m */,
+				D5B3B570154EB84800F20DC0 /* MainStoryboard_iPad.storyboard */,
+				D5B3B571154EB84800F20DC0 /* PNEPadViewController.h */,
+				D5B3B572154EB84800F20DC0 /* PNEPadViewController.m */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -305,9 +310,9 @@
 		D595E46314F271E0001D9B19 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				D541C4561469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard */,
-				D595E46414F2720C001D9B19 /* PNEPhoneViewController.h */,
-				D595E46514F2720C001D9B19 /* PNEPhoneViewController.m */,
+				D5B3B57B154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard */,
+				D5B3B573154EB84900F20DC0 /* PNEPhoneViewController.h */,
+				D5B3B574154EB84900F20DC0 /* PNEPhoneViewController.m */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -436,8 +441,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D541C44F1469C6C8002DB7F4 /* InfoPlist.strings in Resources */,
-				D541C4581469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard in Resources */,
-				D5711EA21486894600BC5597 /* MainStoryboard_iPad.storyboard in Resources */,
 				D52D1185149A963200A8A310 /* .gitignore in Resources */,
 				D52E1DCC14B2975600C2C897 /* README.md in Resources */,
 				D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */,
@@ -449,6 +452,8 @@
 				D595E47714F27EF4001D9B19 /* logo_iPad.png in Resources */,
 				D595E47914F280D3001D9B19 /* Default.png in Resources */,
 				D595E47B14F280DA001D9B19 /* Default@2x.png in Resources */,
+				D5B3B577154EB84900F20DC0 /* MainStoryboard_iPad.storyboard in Resources */,
+				D5B3B57C154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,8 +490,6 @@
 			files = (
 				D541C4511469C6C8002DB7F4 /* main.m in Sources */,
 				D541C4551469C6C8002DB7F4 /* PNEAppDelegate.m in Sources */,
-				D541C45E1469C6C8002DB7F4 /* PNEPadViewController.m in Sources */,
-				D595E46614F2720C001D9B19 /* PNEPhoneViewController.m in Sources */,
 				D595E49814F28E64001D9B19 /* NSDictionary+SetEquals.m in Sources */,
 				D595E49914F28E64001D9B19 /* PNArcInscription.m in Sources */,
 				D595E49A14F28E64001D9B19 /* PNElement.m in Sources */,
@@ -505,8 +508,11 @@
 				D595E4B614F29201001D9B19 /* PNEPlaceView.m in Sources */,
 				D595E4B914F29218001D9B19 /* PNETransitionView.m in Sources */,
 				D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */,
-				D54FCE0A1519EE5D002A03DD /* PNEViewController.m in Sources */,
-				D5EE14831549CC08004212E0 /* UITextView+utils.m in Sources */,
+				D5B3B578154EB84900F20DC0 /* PNEPadViewController.m in Sources */,
+				D5B3B579154EB84900F20DC0 /* PNEPhoneViewController.m in Sources */,
+				D5B3B57A154EB84900F20DC0 /* PNEViewController.m in Sources */,
+				D5B3B57F154EB92900F20DC0 /* UITextView+utils.m in Sources */,
+				D5B3B582154EB98800F20DC0 /* UITableView+ContextUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,14 +541,6 @@
 				D541C44E1469C6C8002DB7F4 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D541C4561469C6C8002DB7F4 /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D541C4571469C6C8002DB7F4 /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		D541C46E1469C6C8002DB7F4 /* InfoPlist.strings */ = {

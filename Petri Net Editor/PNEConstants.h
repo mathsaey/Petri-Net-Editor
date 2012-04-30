@@ -64,6 +64,8 @@ extern CGFloat ARC_TOUCH_BASE;
 
 //String Constants
 //================
+extern NSString *CONTEXT_INFO_PREFIX; /**< Prefix of context info */
+
 extern NSString *CANCEL_BUTTON_NAME; /**< Name of the cancel button */
 extern NSString *DELETE_BUTTON_NAME; /**< Name of the delete button */
 

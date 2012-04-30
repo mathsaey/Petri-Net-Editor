@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "drawing/PNEView.h"
+#import "../drawing/PNEView.h"
 
 /**
  @author Mathijs
