@@ -93,7 +93,7 @@
  Fires the PNTransition and updates the PNEView
  */
 - (void) fireTransition {
-    [element fire];
+    [superView.manager fireTransition:element];
     [superView.log addText:[NSString stringWithFormat:@"%@ \n \t %@",FIRE_TRANSITION_PREFIX, label]];
     [superView updatePlaces];
 }

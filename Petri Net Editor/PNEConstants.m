@@ -28,6 +28,8 @@ const CGFloat LABEL_DISTANCE = 5;
 const CGFloat TOKEN_DISTANCE = 2;
 const CGFloat TOKEN_DIMENSION = 15; //Should be around place_dimension/3
 
+const CGFloat DASH_WIDTH = 10;
+
 const CGFloat ARC_TOUCH_MIN = 5;
 const CGFloat ARC_TOUCH_BASE = 40; 
 

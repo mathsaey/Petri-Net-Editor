@@ -45,11 +45,13 @@
  * Auxiliary method need to pass it as parameter of NSMutableDictionary (a hashmap)
  */
 -(id) copyWithZone: (NSZone *) zone {
+    /*
     PNArcInscription *newArcInscription = [[PNArcInscription allocWithZone:zone] init];
     NSLog(@"_copy: %@", [newArcInscription self]);
     [newArcInscription setFlowFunction:[self flowFunction]];
     [newArcInscription setType:[self type]];
-    return (newArcInscription);
+    return (newArcInscription);*/
+    return [self retain];
 }
 
 /**

@@ -48,11 +48,14 @@
  * Auxiliary method need to pass it as parameter of NSMutableDictionary (a hashmap)
  */
 -(id) copyWithZone: (NSZone *) zone {
+    /*
     PNToken *newToken = [[PNToken allocWithZone:zone] init];
     //   NSLog(@"_copy: %@", [newPlace self]);
     [newToken setValue:[self value]];
     [newToken setColor: [self color]];
     return (newToken);
+     */
+    return [self retain];
 }
 
 /**

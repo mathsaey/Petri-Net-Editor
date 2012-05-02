@@ -7,6 +7,7 @@
 //
 
 #import "PNElement.h"
+@class PNENodeView;
 
 /*
  * Class to represent places and transition with their label
@@ -14,13 +15,15 @@
  */
 
 @interface PNNode : PNElement {
-	NSString *label;	
+	NSString *label;
+	PNENodeView *view;
 }
 
 /**
  * Non unique label with which elements are tagged
  */
 @property(nonatomic, readwrite, copy) NSString * label;
+@property(atomic, readwrite, weak) PNENodeView *view;
 
 - (id) initWithName: (NSString *) newName;
 

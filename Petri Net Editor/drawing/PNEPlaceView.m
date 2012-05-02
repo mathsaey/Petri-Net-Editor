@@ -311,21 +311,13 @@
 
 /**
  Draws the place and every PNETokenView part of the tokens array.
+ The drawing of the actual place takes place in the subclasses
  */
 - (void) drawNode {
     //Add the context info if the place is highlighted
     if (isMarked) [self addContextInfo];
     
     [super drawNode];
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextAddEllipseInRect(context, rect);
-    CGContextSetLineWidth(context, LINE_WIDTH);
-    CGContextStrokePath(context);
-
     [self drawTokens];
 }
 

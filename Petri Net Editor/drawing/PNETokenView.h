@@ -17,7 +17,7 @@
  A token is a filled circle and is placed inside a PNEPlaceView.
  */
 @interface PNETokenView : PNEViewElement {
-    UIColor *tokenColor;
+    NSNumber *tokenColor;
 }
 
 - (void) drawToken: (CGPoint) origin;

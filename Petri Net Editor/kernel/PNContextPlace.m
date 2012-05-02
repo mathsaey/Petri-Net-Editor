@@ -38,11 +38,14 @@
 }
 
 - (PNPlace *) copyWithName: (NSString *) nodeName {
+    /*
 	PNPlace *newPlace = [[PNPlace alloc] init];
 	//newPlace = [super copy];
 	[newPlace setTokens: [self tokens]];
 	[newPlace setLabel: nodeName];
 	return newPlace;
+     */
+    return [self retain];
 }
 
 - (void)dealloc { 

@@ -20,6 +20,8 @@
 		D541C4681469C6C8002DB7F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4461469C6C8002DB7F4 /* Foundation.framework */; };
 		D541C4701469C6C8002DB7F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D541C46E1469C6C8002DB7F4 /* InfoPlist.strings */; };
 		D541C4731469C6C8002DB7F4 /* Petri_Net_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */; };
+		D5546C1315519E9000D50E6C /* PNEContextPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */; };
+		D5546C1615519EB000D50E6C /* PNETemporaryPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */; };
 		D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D557F63D14F303D7005DC543 /* PNEConstants.m */; };
 		D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46714F27953001D9B19 /* Logo_iPad.png */; };
 		D595E46C14F279F8001D9B19 /* logo_iPhone_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46914F279F8001D9B19 /* logo_iPhone_big.png */; };
@@ -92,6 +94,10 @@
 		D541C46F1469C6C8002DB7F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D541C4711469C6C8002DB7F4 /* Petri_Net_EditorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Petri_Net_EditorTests.h; sourceTree = "<group>"; };
 		D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Petri_Net_EditorTests.m; sourceTree = "<group>"; };
+		D5546C1115519E9000D50E6C /* PNEContextPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEContextPlaceView.h; path = drawing/PNEContextPlaceView.h; sourceTree = "<group>"; };
+		D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEContextPlaceView.m; path = drawing/PNEContextPlaceView.m; sourceTree = "<group>"; };
+		D5546C1415519EB000D50E6C /* PNETemporaryPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETemporaryPlaceView.h; path = drawing/PNETemporaryPlaceView.h; sourceTree = "<group>"; };
+		D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETemporaryPlaceView.m; path = drawing/PNETemporaryPlaceView.m; sourceTree = "<group>"; };
 		D557F63C14F303D7005DC543 /* PNEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEConstants.h; sourceTree = "<group>"; };
 		D557F63D14F303D7005DC543 /* PNEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEConstants.m; sourceTree = "<group>"; };
 		D595E46714F27953001D9B19 /* Logo_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo_iPad.png; path = ../../Files/logo/Logo_iPad.png; sourceTree = "<group>"; };
@@ -276,34 +282,18 @@
 		D541C4831469C733002DB7F4 /* kernel */ = {
 			isa = PBXGroup;
 			children = (
-				D5B3B58B15517A7E00F20DC0 /* PNContextPlace.h */,
-				D5B3B58C15517A7E00F20DC0 /* PNContextPlace.m */,
-				D5B3B58D15517A7E00F20DC0 /* PNExternalTransition.h */,
-				D5B3B58E15517A7E00F20DC0 /* PNExternalTransition.m */,
-				D5B3B58F15517A7E00F20DC0 /* PNInternalTransition.h */,
-				D5B3B59015517A7E00F20DC0 /* PNInternalTransition.m */,
-				D5B3B59115517A7F00F20DC0 /* PNManager+Updates.m */,
-				D5B3B59215517A7F00F20DC0 /* PNTemporaryPlace.h */,
-				D5B3B59315517A7F00F20DC0 /* PNTemporaryPlace.m */,
 				D595E48514F28E64001D9B19 /* NSDictionary+SetEquals.h */,
 				D595E48614F28E64001D9B19 /* NSDictionary+SetEquals.m */,
-				D595E48714F28E64001D9B19 /* PNArcInscription.h */,
-				D595E48814F28E64001D9B19 /* PNArcInscription.m */,
+				D5546C0715517DB900D50E6C /* Manager */,
 				D595E48914F28E64001D9B19 /* PNElement.h */,
 				D595E48A14F28E64001D9B19 /* PNElement.m */,
-				D595E48B14F28E64001D9B19 /* PNManager.h */,
-				D595E48C14F28E64001D9B19 /* PNManager.m */,
-				D595E48D14F28E64001D9B19 /* PNManager+DependencyRelations.m */,
-				D595E48E14F28E64001D9B19 /* PNMarking.h */,
-				D595E48F14F28E64001D9B19 /* PNMarking.m */,
-				D595E49014F28E64001D9B19 /* PNNode.h */,
-				D595E49114F28E64001D9B19 /* PNNode.m */,
-				D595E49214F28E64001D9B19 /* PNPlace.h */,
-				D595E49314F28E64001D9B19 /* PNPlace.m */,
+				D5546C0915517DCA00D50E6C /* Nodes */,
+				D595E48714F28E64001D9B19 /* PNArcInscription.h */,
+				D595E48814F28E64001D9B19 /* PNArcInscription.m */,
 				D595E49414F28E64001D9B19 /* PNToken.h */,
 				D595E49514F28E64001D9B19 /* PNToken.m */,
-				D595E49614F28E64001D9B19 /* PNTransition.h */,
-				D595E49714F28E64001D9B19 /* PNTransition.m */,
+				D595E48E14F28E64001D9B19 /* PNMarking.h */,
+				D595E48F14F28E64001D9B19 /* PNMarking.m */,
 			);
 			name = kernel;
 			sourceTree = "<group>";
@@ -319,6 +309,41 @@
 				D5B3B576154EB84900F20DC0 /* PNEViewController.m */,
 			);
 			name = Interface;
+			sourceTree = "<group>";
+		};
+		D5546C0715517DB900D50E6C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D5B3B59115517A7F00F20DC0 /* PNManager+Updates.m */,
+				D595E48B14F28E64001D9B19 /* PNManager.h */,
+				D595E48C14F28E64001D9B19 /* PNManager.m */,
+				D595E48D14F28E64001D9B19 /* PNManager+DependencyRelations.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		D5546C0915517DCA00D50E6C /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				D595E49014F28E64001D9B19 /* PNNode.h */,
+				D595E49114F28E64001D9B19 /* PNNode.m */,
+				D5B3B59A15517B1C00F20DC0 /* Transitions */,
+				D5B3B59915517B0200F20DC0 /* Places */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		D5546C1015519E5200D50E6C /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				D595E4B414F29201001D9B19 /* PNEPlaceView.h */,
+				D595E4B514F29201001D9B19 /* PNEPlaceView.m */,
+				D5546C1115519E9000D50E6C /* PNEContextPlaceView.h */,
+				D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */,
+				D5546C1415519EB000D50E6C /* PNETemporaryPlaceView.h */,
+				D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */,
+			);
+			name = Places;
 			sourceTree = "<group>";
 		};
 		D595E46214F271C8001D9B19 /* iPad */ = {
@@ -377,6 +402,32 @@
 			name = drawing;
 			sourceTree = "<group>";
 		};
+		D5B3B59915517B0200F20DC0 /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				D595E49214F28E64001D9B19 /* PNPlace.h */,
+				D595E49314F28E64001D9B19 /* PNPlace.m */,
+				D5B3B59215517A7F00F20DC0 /* PNTemporaryPlace.h */,
+				D5B3B59315517A7F00F20DC0 /* PNTemporaryPlace.m */,
+				D5B3B58B15517A7E00F20DC0 /* PNContextPlace.h */,
+				D5B3B58C15517A7E00F20DC0 /* PNContextPlace.m */,
+			);
+			name = Places;
+			sourceTree = "<group>";
+		};
+		D5B3B59A15517B1C00F20DC0 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				D595E49614F28E64001D9B19 /* PNTransition.h */,
+				D595E49714F28E64001D9B19 /* PNTransition.m */,
+				D5B3B58D15517A7E00F20DC0 /* PNExternalTransition.h */,
+				D5B3B58E15517A7E00F20DC0 /* PNExternalTransition.m */,
+				D5B3B58F15517A7E00F20DC0 /* PNInternalTransition.h */,
+				D5B3B59015517A7E00F20DC0 /* PNInternalTransition.m */,
+			);
+			name = Transitions;
+			sourceTree = "<group>";
+		};
 		D5CA93A11535C11300720106 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,10 +439,9 @@
 				D595E4B214F29157001D9B19 /* PNEArcView.m */,
 				D595E4AB14F290DF001D9B19 /* PNENodeView.h */,
 				D595E4AC14F290DF001D9B19 /* PNENodeView.m */,
-				D595E4B414F29201001D9B19 /* PNEPlaceView.h */,
-				D595E4B514F29201001D9B19 /* PNEPlaceView.m */,
 				D595E4B714F29218001D9B19 /* PNETransitionView.h */,
 				D595E4B814F29218001D9B19 /* PNETransitionView.m */,
+				D5546C1015519E5200D50E6C /* Places */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -547,6 +597,8 @@
 				D5B3B59615517A7F00F20DC0 /* PNInternalTransition.m in Sources */,
 				D5B3B59715517A7F00F20DC0 /* PNManager+Updates.m in Sources */,
 				D5B3B59815517A7F00F20DC0 /* PNTemporaryPlace.m in Sources */,
+				D5546C1315519E9000D50E6C /* PNEContextPlaceView.m in Sources */,
+				D5546C1615519EB000D50E6C /* PNETemporaryPlaceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

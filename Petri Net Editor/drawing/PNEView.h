@@ -12,6 +12,8 @@
 #import "PNEPlaceView.h"
 #import "PNEViewElement.h"
 #import "PNETransitionView.h"
+#import "PNEContextPlaceView.h"
+#import "PNETemporaryPlaceView.h"
 
 #import "UITextView+utils.h"
 #import "../kernel/PNManager.h"

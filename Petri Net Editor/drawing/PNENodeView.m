@@ -11,7 +11,7 @@
 
 @implementation PNENodeView
 
-@synthesize xOrig, yOrig, dimensions, isMarked, hasLocation, neighbours;
+@synthesize xOrig, yOrig, label, dimensions, isMarked, hasLocation, neighbours;
 
 #pragma mark - Lifecycle
 
@@ -46,7 +46,7 @@
                        cancelButtonTitle:nil destructiveButtonTitle:DELETE_BUTTON_NAME 
                        otherButtonTitles: @"Change label", nil];
         isMarked = false;
-        label = pnElement.label;
+        label = [pnElement.label retain];
         pnElement.view = self;
     }
     return self;

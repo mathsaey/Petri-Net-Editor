@@ -113,7 +113,7 @@ typedef enum {
 /** 
  Returns all the inputs of the place
  */
-- (NSArray *) getInputsForPlace: (PNPlace *) palce ;
+- (NSArray *) getInputsForPlace: (PNPlace *) place ;
 
 /**
  Returns all the outputs of the place

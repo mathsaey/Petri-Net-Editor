@@ -34,6 +34,7 @@
 @property (readonly) BOOL isMarked;
 @property (readonly) CGFloat xOrig;
 @property (readonly) CGFloat yOrig;
+@property (readonly) NSString *label;
 @property (readonly) CGFloat dimensions;
 @property (readonly) NSMutableArray* neighbours;
 

@@ -24,10 +24,13 @@
  * Auxiliary method need to pass it as parameter of NSMutableDictionary (a hashmap)
  */
 -(id) copyWithZone: (NSZone *) zone {
+    /*
     PNTemporaryPlace *newPlace = [[PNTemporaryPlace allocWithZone:zone] init];
     [newPlace setLabel:[self label]];
     [newPlace setTokens: [self tokens]];
     [newPlace setCapacity: [self capacity]];
     return (newPlace);
+     */
+    return [self retain];
 }
 @end

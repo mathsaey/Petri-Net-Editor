@@ -19,8 +19,7 @@
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        manager = [[PNManager alloc] init];
-        [manager retain];
+        manager = [PNManager sharedManager];
         showLabels = true;
         arcs = [[NSMutableArray alloc] init];
         places = [[NSMutableArray alloc] init];
@@ -194,7 +193,10 @@
     [transitions removeAllObjects];
     
     for (PNPlace* place in manager.places) {
-        [[PNEPlaceView alloc] initWithValues:place superView:self];
+        [[PNEContextPlaceView alloc] initWithValues:place superView:self];
+    }
+    for (PNPlace* place in manager.temporaryPlaces) {
+        [[PNETemporaryPlaceView alloc] initWithValues:place superView:self];
     }
     for (PNTransition* trans in manager.transitions) {
         [[PNETransitionView alloc] initWithValues:trans superView:self];
