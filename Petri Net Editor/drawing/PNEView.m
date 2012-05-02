@@ -25,6 +25,7 @@
         arcs = [[NSMutableArray alloc] init];
         places = [[NSMutableArray alloc] init];
         transitions = [[NSMutableArray alloc] init];
+        currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
     }
     return self;
 }
@@ -268,23 +269,23 @@
     only new elements are moved to a location.
  */
 - (void) updatePositions: (BOOL) shouldReset {
-    CGPoint currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
-    CGFloat horizontalDistance = 100;
+    if (shouldReset) currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
     
     for (PNEPlaceView* place in places) {
         if (!place.hasLocation || shouldReset) {
             [self placeNode:&currentLocation node:place];
-            currentLocation.x += horizontalDistance;
+            currentLocation.x += X_NODE_DISTANCE;
         }
     }
     
-    currentLocation.y += 100;
+    //We switch lines when we start to draw the transitions
+    currentLocation.y += Y_NODE_DISTANCE;
     currentLocation.x = START_OFFSET_X;
     
     for (PNETransitionView* trans in transitions) {
         if (!trans.hasLocation || shouldReset) {
             [self placeNode:&currentLocation node:trans];
-            currentLocation.x += horizontalDistance;
+            currentLocation.x += X_NODE_DISTANCE;
         }
     }
     
@@ -295,7 +296,9 @@
  This method is called by the system when the drawing phase starts.
  The drawing phase can be started programatically by calling setNeedsDisplay.
  */
-- (void)drawRect:(CGRect)rect {    
+- (void)drawRect:(CGRect)rect {
+    [contextInformation clearText];
+    
     for (PNEPlaceView* place in places) {
         [place drawNode];
     }

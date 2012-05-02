@@ -159,7 +159,7 @@
     if (buttonIndex != alertView.cancelButtonIndex) {
         NSString *newLabel = [alertView textFieldAtIndex:0].text;
         
-        [superView.log addText:[NSString stringWithFormat:@"Changed label: \n \t %@ \n \t to: %@", label, newLabel]];
+        [superView.log addText:[NSString stringWithFormat:@"%@ \n \t %@ \n \t to: %@",CHANGE_LABEL_PREFIX, label, newLabel]];
         
         [label release];
         [newLabel retain];
@@ -169,7 +169,7 @@
     }
 }
 
-#pragma mark - Highlight protocol implementation
+#pragma mark - Highlight implementation
 
 /**
  [abstract]Draws the highlight around a node.

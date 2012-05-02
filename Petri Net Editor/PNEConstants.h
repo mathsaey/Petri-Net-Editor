@@ -25,6 +25,8 @@ extern char *MAIN_FONT_NAME; /**< Name of the main font */
 //================================
 extern CGFloat START_OFFSET_X; /**< X position of the first node */
 extern CGFloat START_OFFSET_Y; /**< Y position of the first node */
+extern CGFloat X_NODE_DISTANCE; /**< horizontal distance between 2 nodes */
+extern CGFloat Y_NODE_DISTANCE; /**< vertical distance between 2 nodes */
 
 //Element Drawing constants
 //=========================
@@ -65,6 +67,9 @@ extern CGFloat ARC_TOUCH_BASE;
 //String Constants
 //================
 extern NSString *CONTEXT_INFO_PREFIX; /**< Prefix of context info */
+
+extern NSString *FIRE_TRANSITION_PREFIX; /**< Prefix when firing a transition */
+extern NSString *CHANGE_LABEL_PREFIX; /**< Prefix wen changin a label */
 
 extern NSString *CANCEL_BUTTON_NAME; /**< Name of the cancel button */
 extern NSString *DELETE_BUTTON_NAME; /**< Name of the delete button */

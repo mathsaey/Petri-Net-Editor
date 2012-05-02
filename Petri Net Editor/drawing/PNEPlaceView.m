@@ -11,6 +11,8 @@
 
 @implementation PNEPlaceView
 
+@synthesize contextIdx;
+
 #pragma mark - Lifecycle
 
 /**
@@ -91,17 +93,8 @@
     [nodeOptions showFromRect:touchView.bounds inView:touchView animated:true];
 }
 
-#pragma mark - Highlight protocol implementation
+#pragma mark - Highlight implementation
 
-- (void) highlight {
-    [super highlight];
-    [superView.contextInformation addText:[NSString localizedStringWithFormat:@"%@ %@ (%d) \n \t tokens: %d",CONTEXT_INFO_PREFIX, label, element.code, [tokens count]]];
-}
-
-- (void) dim {
-    [super dim];
-    [superView.contextInformation removeContextInfo:label];
-}
 
 /**
  Draws the highlight "aura" of the place.
@@ -149,6 +142,10 @@
 }
 
 #pragma mark - Help functions
+
+- (void) addContextInfo {
+    [superView.contextInformation addText:[NSString stringWithFormat:@"%@ %@ \n \t tokens: %d", CONTEXT_INFO_PREFIX, label, [tokens count]]];
+}
 
 /**
  Updates the location of the midpoint of the
@@ -316,6 +313,9 @@
  Draws the place and every PNETokenView part of the tokens array.
  */
 - (void) drawNode {
+    //Add the context info if the place is highlighted
+    if (isMarked) [self addContextInfo];
+    
     [super drawNode];
     
     CGContextRef context = UIGraphicsGetCurrentContext();

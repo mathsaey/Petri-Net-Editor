@@ -53,7 +53,9 @@
 		D5B3B57A154EB84900F20DC0 /* PNEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B576154EB84900F20DC0 /* PNEViewController.m */; };
 		D5B3B57C154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B57B154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard */; };
 		D5B3B57F154EB92900F20DC0 /* UITextView+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B57E154EB92900F20DC0 /* UITextView+utils.m */; };
-		D5B3B582154EB98800F20DC0 /* UITableView+ContextUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B581154EB98800F20DC0 /* UITableView+ContextUtils.m */; };
+		D5B3B5861551705C00F20DC0 /* logo_iPad_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B5851551705B00F20DC0 /* logo_iPad_retina.png */; };
+		D5B3B5881551712D00F20DC0 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B5871551712C00F20DC0 /* Default-Landscape@2x~ipad.png */; };
+		D5B3B58A1551719F00F20DC0 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B5891551719F00F20DC0 /* Default-Portrait@2x~ipad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,9 +141,10 @@
 		D5B3B57B154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPhone.storyboard; path = interface/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		D5B3B57D154EB92900F20DC0 /* UITextView+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+utils.h"; path = "interface/UITextView+utils.h"; sourceTree = "<group>"; };
 		D5B3B57E154EB92900F20DC0 /* UITextView+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+utils.m"; path = "interface/UITextView+utils.m"; sourceTree = "<group>"; };
-		D5B3B580154EB98800F20DC0 /* UITableView+ContextUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+ContextUtils.h"; path = "interface/UITableView+ContextUtils.h"; sourceTree = "<group>"; };
-		D5B3B581154EB98800F20DC0 /* UITableView+ContextUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+ContextUtils.m"; path = "interface/UITableView+ContextUtils.m"; sourceTree = "<group>"; };
-		D5EE14861549F278004212E0 /* DocumentationMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentationMain.h; sourceTree = "<group>"; };
+		D5B3B5851551705B00F20DC0 /* logo_iPad_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_iPad_retina.png; sourceTree = "<group>"; };
+		D5B3B5871551712C00F20DC0 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		D5B3B5891551719F00F20DC0 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		D5EE14861549F278004212E0 /* DocumentationMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DocumentationMain.h; path = "Petri Net Editor/DocumentationMain.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				D541C44A1469C6C8002DB7F4 /* Petri Net Editor */,
-				D541C4821469C6F9002DB7F4 /* Extra Files */,
+				D541C4821469C6F9002DB7F4 /* Resources */,
 				D541C46B1469C6C8002DB7F4 /* Petri Net EditorTests */,
 				D541C4431469C6C8002DB7F4 /* Frameworks */,
 				D541C4411469C6C8002DB7F4 /* Products */,
@@ -210,7 +213,6 @@
 				D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */,
 				D557F63C14F303D7005DC543 /* PNEConstants.h */,
 				D557F63D14F303D7005DC543 /* PNEConstants.m */,
-				D5EE14861549F278004212E0 /* DocumentationMain.h */,
 			);
 			path = "Petri Net Editor";
 			sourceTree = "<group>";
@@ -245,15 +247,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D541C4821469C6F9002DB7F4 /* Extra Files */ = {
+		D541C4821469C6F9002DB7F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D595E47D14F280FA001D9B19 /* Logo */,
-				D595E47C14F280E7001D9B19 /* Launch images */,
+				D5EE14861549F278004212E0 /* DocumentationMain.h */,
 				D52E1DCB14B2975600C2C897 /* README.md */,
 				D52D1184149A963200A8A310 /* .gitignore */,
+				D595E47D14F280FA001D9B19 /* Logo */,
+				D595E47C14F280E7001D9B19 /* Launch images */,
 			);
-			name = "Extra Files";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		D541C4831469C733002DB7F4 /* kernel */ = {
@@ -287,8 +290,6 @@
 			children = (
 				D5B3B57D154EB92900F20DC0 /* UITextView+utils.h */,
 				D5B3B57E154EB92900F20DC0 /* UITextView+utils.m */,
-				D5B3B580154EB98800F20DC0 /* UITableView+ContextUtils.h */,
-				D5B3B581154EB98800F20DC0 /* UITableView+ContextUtils.m */,
 				D595E46314F271E0001D9B19 /* iPhone */,
 				D595E46214F271C8001D9B19 /* iPad */,
 				D5B3B575154EB84900F20DC0 /* PNEViewController.h */,
@@ -320,6 +321,8 @@
 		D595E47C14F280E7001D9B19 /* Launch images */ = {
 			isa = PBXGroup;
 			children = (
+				D5B3B5891551719F00F20DC0 /* Default-Portrait@2x~ipad.png */,
+				D5B3B5871551712C00F20DC0 /* Default-Landscape@2x~ipad.png */,
 				D595E47A14F280DA001D9B19 /* Default@2x.png */,
 				D595E47814F280D2001D9B19 /* Default.png */,
 				D595E47314F27D11001D9B19 /* Default-Landscape~ipad.png */,
@@ -331,6 +334,7 @@
 		D595E47D14F280FA001D9B19 /* Logo */ = {
 			isa = PBXGroup;
 			children = (
+				D5B3B5851551705B00F20DC0 /* logo_iPad_retina.png */,
 				D595E47614F27EF4001D9B19 /* logo_iPad.png */,
 				D595E46914F279F8001D9B19 /* logo_iPhone_big.png */,
 				D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */,
@@ -454,6 +458,9 @@
 				D595E47B14F280DA001D9B19 /* Default@2x.png in Resources */,
 				D5B3B577154EB84900F20DC0 /* MainStoryboard_iPad.storyboard in Resources */,
 				D5B3B57C154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard in Resources */,
+				D5B3B5861551705C00F20DC0 /* logo_iPad_retina.png in Resources */,
+				D5B3B5881551712D00F20DC0 /* Default-Landscape@2x~ipad.png in Resources */,
+				D5B3B58A1551719F00F20DC0 /* Default-Portrait@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +519,6 @@
 				D5B3B579154EB84900F20DC0 /* PNEPhoneViewController.m in Sources */,
 				D5B3B57A154EB84900F20DC0 /* PNEViewController.m in Sources */,
 				D5B3B57F154EB92900F20DC0 /* UITextView+utils.m in Sources */,
-				D5B3B582154EB98800F20DC0 /* UITableView+ContextUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

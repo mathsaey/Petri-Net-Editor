@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Vrije Universiteit Brussel. All rights reserved.
 //
 
-#import "../UITextView+utils.h"
+#import "../interface/UITextView+utils.h"
 #import "../kernel/PNPlace.h"
 #import "PNETokenView.h"
 #import "PNENodeView.h"
@@ -26,7 +26,10 @@
     CGFloat distanceFromMidPoint; /** The horizontal and vertical distance of a point on the circle in relation to the midpoint */
     CGFloat midPointX; /** The X value of the midpoint of the place */
     CGFloat midPointY; /** The Y value of the midpoint of the place */
+    UITableViewCell *contextView; /** The table view that holds the context information */
 }
+
+@property (readwrite, assign) UITableViewCell *contextIdx;
 
 - (void) updatePlace;
 - (void) addToken: (PNETokenView*) token;

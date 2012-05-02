@@ -15,7 +15,7 @@
  functionality to make it easier to update the
  log and context information
  */
-@interface UITextView (ContextUtils)
+@interface UITextView (utils)
 
 
 - (void) clearText;
@@ -23,4 +23,3 @@
 
 @end
 
-//Context info vervangen door table view dat per cel een uitextview bevat

@@ -13,6 +13,8 @@ const char *MAIN_FONT_NAME = "Helvetica Neue";
 
 const CGFloat START_OFFSET_X = 30;
 const CGFloat START_OFFSET_Y = 30;
+const CGFloat X_NODE_DISTANCE = 100;
+const CGFloat Y_NODE_DISTANCE = 100;
 
 const int MAX_TOKENS = 3;
 const CGFloat LINE_WIDTH = 2;
@@ -30,6 +32,9 @@ const CGFloat ARC_TOUCH_MIN = 5;
 const CGFloat ARC_TOUCH_BASE = 40; 
 
 const NSString *CONTEXT_INFO_PREFIX = @"Selected context: ";
+
+const NSString *FIRE_TRANSITION_PREFIX = @"Fired transition: ";
+const NSString *CHANGE_LABEL_PREFIX = @"Changed label: ";
 
 const NSString *CANCEL_BUTTON_NAME = @"Cancel";
 const NSString *DELETE_BUTTON_NAME = @"Delete";

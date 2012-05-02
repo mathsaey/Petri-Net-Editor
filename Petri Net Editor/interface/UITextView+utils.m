@@ -8,7 +8,7 @@
 
 #import "UITextView+utils.h"
 
-@implementation UITextView (ContextUtils)
+@implementation UITextView (utils)
 
 /**
  Erases all the text in the view
@@ -25,6 +25,7 @@
 - (void) addText: (NSString*) string {
     self.text = [NSString stringWithFormat:@"%@ %@ \n", self.text, string];
     [self scrollRangeToVisible:NSMakeRange([self.text length], 0)];
+
 }
 
 @end

@@ -7,7 +7,9 @@
 //
 
 #import "PNENodeView.h"
-#import "../UITextView+utils.h"
+#import "../PNEConstants.h"
+
+#import "../interface/UITextView+utils.h"
 #import "../kernel/PNTransition.h"
 
 

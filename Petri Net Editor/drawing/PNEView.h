@@ -14,9 +14,10 @@
 #import "PNEPlaceView.h"
 #import "PNEViewElement.h"
 #import "PNETransitionView.h"
-
 #import "../kernel/PNManager.h"
-#import "PNEViewController.h"
+
+#import "UITextView+utils.h"
+#import "../interface/PNEViewController.h"
 
 /**
  @author Mathijs Saey
@@ -34,8 +35,9 @@
     PNManager *manager; /** Link to the PNManager that we wish to display */
     
     UITextView *log; /** Link to the log textview */
-    UITableView *contextInformation; /** Link to the context information textview */
+    UITextView *contextInformation; /** Link to the context information textview */
     
+    CGPoint currentLocation; /** Point that stores the location where we add the next element */
     BOOL showLabels; /** Boolean that stores if we should display node labels */
     
     //Arc adding logic
@@ -46,7 +48,7 @@
 
 @property (atomic, readwrite) BOOL showLabels;
 @property (nonatomic, readwrite, assign) UITextView *log;
-@property (nonatomic, readwrite, assign) UITableView *contextInformation;
+@property (nonatomic, readwrite, assign) UITextView *contextInformation;
 
 @property (nonatomic, readonly) PNManager *manager;
 @property (nonatomic, readonly) NSMutableArray *arcs;
@@ -58,6 +60,7 @@
 - (void) addPlace;
 - (void) addTransition;
 
+- (void) checkPositions;
 - (void) resetPositions;
 - (UIImage *) getPetriNetImage;
 

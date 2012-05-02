@@ -10,6 +10,9 @@
 
 @implementation PNEPhoneViewController
 
+@synthesize logButton;
+@synthesize viewContainer;
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -40,6 +43,19 @@
 
 - (IBAction)addButtonPress:(id)sender {
     [addOptionsSheet showInView:petriNetView];
+}
+
+- (IBAction)toggleLog:(id)sender {
+    log.hidden = !log.hidden;
+    
+    if (log.hidden) {
+        [petriNetView setFrame:viewContainer.bounds];
+    }
+    else [petriNetView setFrame:
+          CGRectMake(viewContainer.bounds.origin.x, viewContainer.bounds.origin.y, viewContainer.bounds.size.width, 
+                     viewContainer.bounds.size.height - log.bounds.size.height)];
+    
+    [petriNetView checkPositions];
 }
 
 @end

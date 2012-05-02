@@ -36,7 +36,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];    
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -61,7 +61,7 @@
     if(UIDeviceOrientationIsPortrait(nextOrientation))
         infoView.hidden = NO;
     else infoView.hidden = YES;
-    [petriNetView loadKernel];
+    [petriNetView checkPositions];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

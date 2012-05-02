@@ -13,13 +13,13 @@
 @interface PNEPadViewController : PNEViewController {
    
     UIView *infoView;
-    UITableView *contextInformation;    
+    UITextView *contextInformation;    
     
     UISegmentedControl *labelVisibility;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *infoView;
-@property (nonatomic, retain) IBOutlet UITableView *contextInformation;
+@property (nonatomic, retain) IBOutlet UITextView *contextInformation;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *labelVisibility;
 
 - (IBAction)labelVisibilityChanged:(id)sender;

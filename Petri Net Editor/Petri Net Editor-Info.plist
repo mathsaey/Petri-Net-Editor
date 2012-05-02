@@ -13,6 +13,9 @@
 		<string>logo_iPhone_small.png</string>
 		<string>logo_iPhone_big.png</string>
 		<string>logo_iPad.png</string>
+		<string>logo_iPad_retina.png</string>
+		<string>Default-Landscape@2x~ipad.png</string>
+		<string>Default-Portrait@2x~ipad.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -23,6 +26,9 @@
 				<string>logo_iPhone_small.png</string>
 				<string>logo_iPhone_big.png</string>
 				<string>logo_iPad.png</string>
+				<string>logo_iPad_retina.png</string>
+				<string>Default-Landscape@2x~ipad.png</string>
+				<string>Default-Portrait@2x~ipad.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<false/>

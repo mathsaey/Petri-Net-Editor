@@ -94,11 +94,11 @@
  */
 - (void) fireTransition {
     [element fire];
-    [superView.log addText:[NSString stringWithFormat:@"Fired transition: \n \t %@", label]];
+    [superView.log addText:[NSString stringWithFormat:@"%@ \n \t %@",FIRE_TRANSITION_PREFIX, label]];
     [superView updatePlaces];
 }
 
-#pragma mark - Highlight protocol implementation
+#pragma mark - Highlight implementation
 
 /**
  Draws the higlight "aura".

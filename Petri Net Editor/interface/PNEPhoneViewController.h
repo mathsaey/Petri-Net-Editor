@@ -11,6 +11,15 @@
 #import "../drawing/PNEView.h"
 
 
-@interface PNEPhoneViewController : PNEViewController
+@interface PNEPhoneViewController : PNEViewController {
+    UIBarButtonItem *logButton;
+    UIView *viewContainer;
+}
+
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *logButton;
+@property (nonatomic, retain) IBOutlet UIView *viewContainer;
+
+
+- (IBAction)toggleLog:(id)sender;
 
 @end
