@@ -125,10 +125,12 @@
 
     if (type == EXTERNAL) CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     if (type == INTERNAL) CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-    if (type == EXTERNAL) CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+    if (type == CLEANING) CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
 
     CGContextFillRect(context, rect);
     
+    //Restore the fill color
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextStrokeRect(context, rect);
 }
