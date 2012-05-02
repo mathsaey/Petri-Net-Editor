@@ -24,6 +24,7 @@
         [nodeOptions addButtonWithTitle:@"Fire Transition"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
         [superView.transitions addObject:self];
+        type = pnElement.priority;
         
         if (!hasLocation) dimensions = TRANSITION_DIMENSION;
     
@@ -122,8 +123,14 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);
 
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    if (type == EXTERNAL) CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+    if (type == INTERNAL) CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    if (type == EXTERNAL) CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+
     CGContextFillRect(context, rect);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextStrokeRect(context, rect);
 }
 
 @end

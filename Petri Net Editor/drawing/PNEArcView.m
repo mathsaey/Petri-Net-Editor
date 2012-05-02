@@ -170,11 +170,11 @@
     fromNode = newFromNode;
     toNode = newToNode;
 
-    if ([toNode class] == [PNEPlaceView class])
+    if ([toNode superclass] == [PNEPlaceView class])
         [toNode addNeighbour: fromNode isInput: false];
     else if ([toNode class] == [PNETransitionView class])
         [fromNode addNeighbour: toNode isInput: true];
-    else NSLog([NSString stringWithFormat:@"setNodes (PNENodeView) received faulty input! %@ , %@", fromNode.label, toNode.label]);
+    else NSLog([NSString stringWithFormat:@"setNodes (PNENodeView) received faulty class input! %@ , %@", [[fromNode class] description], [[toNode class] description]]);
 }
 
 

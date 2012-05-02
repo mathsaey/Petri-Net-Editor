@@ -19,6 +19,8 @@
  This class is the visual representation of a PNTransition.
  a PNTransition is represented by a full square.
  */
-@interface PNETransitionView : PNENodeView <NSCopying>
+@interface PNETransitionView : PNENodeView <NSCopying> {
+    PNTransitionType type;  
+}
 
 @end
