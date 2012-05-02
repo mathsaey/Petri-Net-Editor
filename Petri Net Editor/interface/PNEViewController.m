@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     petriNetView.log = log;
-    addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Place", @"Transition", @"Arc" , nil];
+    addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Context", @"Transition", @"Arc" , nil];
 }
 
 - (void)viewDidUnload
@@ -55,35 +55,96 @@
 }
 
 #pragma mark - Action responders
-
+/**
+ [abstract] This method is called after the add Button has been pressed
+ */
 - (IBAction)addButtonPress:(id)sender {
     NSLog(@"abstract version of addButtonPress (PNEViewController) called!");
 }
 
+/**
+ [placeholder code] This method is called when the organise button has been pressed
+ */
 - (IBAction)organiseButtonPressed:(id)sender {
     NSLog(@"Placeholder!");
 }
+/**
+ This method is called when the reload button is pressed.
+ */
 - (IBAction)reloadButtonPressed:(id)sender {
     [petriNetView resetPositions];
 }
+
+/**
+ This method is called when the screenshot button is pressed.
+ It asks the PNEView a UIImage version of itself, after wich it exports
+ the UIImage to the photo album of the device.
+ */
 - (IBAction)screenshotButtonPressed:(id)sender {
     UIImage *pnImage = [petriNetView getPetriNetImage];
     UIImageWriteToSavedPhotosAlbum(pnImage, NULL, NULL, NULL);
 }
 
-//Action sheet delegate method
+/**
+ Triggers a pop up dialog prompting the user
+ to select the name of the new context/transition
+ */
+- (void) askLabel: (NSString*) title {
+    UIAlertView *popup = [[UIAlertView alloc] 
+                          initWithTitle:title message:nil 
+                          delegate:self cancelButtonTitle:@"Cancel" 
+                          otherButtonTitles:@"Confirm", nil];
+    popup.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [popup show];
+}
+
+/**
+ Simply calls the corresponding PNEView method
+ */
+- (void) addContext: (NSString*) label {
+    [petriNetView addContext:label];
+}
+
+/**
+ Simply calls the corresponding PNEView method
+ */
+- (void) addTransition: (NSString*) label {
+    [petriNetView addTransition:label];
+}
+
+/**
+ This method is called by the system when the user selects
+ an item on a UIActionSheet. In this case it's used after
+ the user selects which item to add.
+ */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
-            [petriNetView addPlace];
+            [self askLabel:ADD_CONTEXT_ALERTVIEW_TITLE];
             break;
         case 1:
-            [petriNetView addTransition];
+            [self askLabel:ADD_TRANSITION_ALERTVIEW_TITLE];
             break;
         case 2: 
             [petriNetView addArc];
             break;
     };
+}
+
+/**
+ This method is called by the system when the user has entered the new
+ context/transition name. The title of the UIAlertView determines the
+ method that gets called.
+ */
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        NSString *name = [alertView textFieldAtIndex:0].text;
+        [name retain];
+        
+        if (alertView.title == ADD_CONTEXT_ALERTVIEW_TITLE)
+            [self addContext:name];
+        else [self addTransition:name];
+    }
 }
 
 #pragma mark - Test code

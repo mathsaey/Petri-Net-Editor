@@ -19,8 +19,6 @@
 #import "../kernel/PNManager.h"
 #import "../interface/PNEViewController.h"
 
-
-
 /**
  @author Mathijs Saey
  
@@ -59,8 +57,8 @@
 
 //Adding elements
 - (void) addArc;
-- (void) addPlace;
-- (void) addTransition;
+- (void) addContext: (NSString*) label;
+- (void) addTransition: (NSString*) label;
 
 - (void) checkPositions;
 - (void) resetPositions;

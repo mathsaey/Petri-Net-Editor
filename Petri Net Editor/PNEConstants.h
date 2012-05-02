@@ -75,4 +75,12 @@ extern NSString *CHANGE_LABEL_PREFIX; /**< Prefix wen changin a label */
 extern NSString *CANCEL_BUTTON_NAME; /**< Name of the cancel button */
 extern NSString *DELETE_BUTTON_NAME; /**< Name of the delete button */
 
+/** title of the UIAlertView button when adding a context
+ This must be different from ADD_TRANSITION_ALERTVIEW_TITLE */
+extern NSString *ADD_CONTEXT_ALERTVIEW_TITLE;
+
+/** title of the UIAlertView button when adding a transition 
+ This must be different from ADD_CONTEXT_ALERTVIEW_TITLE */
+extern NSString *ADD_TRANSITION_ALERTVIEW_TITLE; 
+
 ///@}

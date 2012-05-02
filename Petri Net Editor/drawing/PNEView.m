@@ -77,18 +77,21 @@
 
 /**
  Creates a new place and adds it to the manager
+ @param label
+    The label of the new place 
  */
-- (void) addPlace {
-    PNPlace *newPlace = [[PNPlace alloc] initWithName:@"New Place"];
-    [manager addPlace:newPlace];
+- (void) addContext: (NSString*) label {
+    [manager addPlaceWithName:label];
     [self loadKernel];
 }
 
 /**
  Creates a new transition and adds it to the manager
+ @param label
+    The label of the new transition
  */
-- (void) addTransition {
-    PNTransition *newTrans = [[PNTransition alloc] initWithName:@"New Transition"];
+- (void) addTransition: (NSString*) label {
+    PNTransition *newTrans = [[PNTransition alloc] initWithName:label];
     [manager addTransition:newTrans];
     [self loadKernel];
 }
@@ -229,6 +232,7 @@
     for (PNETransitionView *trans in transitions) {
         [trans moveNode:CGPointMake(trans.xOrig, trans.yOrig)];
     }
+    [self setNeedsDisplay];
 }
 
 /**

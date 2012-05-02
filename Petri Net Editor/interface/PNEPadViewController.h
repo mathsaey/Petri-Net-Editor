@@ -12,10 +12,10 @@
 
 @interface PNEPadViewController : PNEViewController {
    
-    UIView *infoView;
-    UITextView *contextInformation;    
+    UIView *infoView; /**< This view contains the contextinformation and the log */
+    UITextView *contextInformation; /** This text view displays the information of the selected contexts */
     
-    UISegmentedControl *labelVisibility;
+    UISegmentedControl *labelVisibility; /** This segmented control is used to select if the labels are visible or not */
 }
 
 @property (nonatomic, retain) IBOutlet UIView *infoView;

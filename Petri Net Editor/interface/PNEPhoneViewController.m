@@ -41,10 +41,16 @@
 
 #pragma mark - Action responders
 
+/**
+ Called by the system when the add button gets pressed.
+ */
 - (IBAction)addButtonPress:(id)sender {
     [addOptionsSheet showInView:petriNetView];
 }
 
+/**
+ Hides or shows the log and expands the PNEView accordingly
+ */
 - (IBAction)toggleLog:(id)sender {
     log.hidden = !log.hidden;
     

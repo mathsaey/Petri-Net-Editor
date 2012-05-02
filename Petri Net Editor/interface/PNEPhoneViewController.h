@@ -12,8 +12,8 @@
 
 
 @interface PNEPhoneViewController : PNEViewController {
-    UIBarButtonItem *logButton;
-    UIView *viewContainer;
+    UIBarButtonItem *logButton; /**< This button controls the visibility of the log */
+    UIView *viewContainer; /**< This view contains the PNEView and the log */
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *logButton;

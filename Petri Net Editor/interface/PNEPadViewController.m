@@ -56,6 +56,10 @@
 
 #pragma mark View rotating behaviour
 
+/**
+ Hides the infoview (log and context info) when the iPad
+ changes to landscape mode.
+ */
 -(void)rotatePad:(UIInterfaceOrientation)nextOrientation
 {
     if(UIDeviceOrientationIsPortrait(nextOrientation))
@@ -77,10 +81,17 @@
 
 #pragma mark - Action responders
 
+/**
+ Called by the system when the add button is pressed
+ */
 - (IBAction)addButtonPress:(id)sender {
     [addOptionsSheet showFromBarButtonItem:addButton animated:YES];
 }
 
+/**
+ This updates the visibility of the labels
+ if the user changed the segmented control
+ */
 - (IBAction)labelVisibilityChanged:(id)sender {
     if (labelVisibility.selectedSegmentIndex == 0)
         petriNetView.showLabels = true;

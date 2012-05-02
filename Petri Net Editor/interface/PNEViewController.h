@@ -14,15 +14,15 @@
  
  This class contains all methods and members that both the iPad and the iPhone viewcontrollers use
  */
-@interface PNEViewController : UIViewController <UIActionSheetDelegate> {
-    UITextView *log;
-    PNEView *petriNetView;
-    UIActionSheet *addOptionsSheet;
+@interface PNEViewController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate> {
+    UITextView *log; /**< Link to the log */
+    PNEView *petriNetView; /**< Link to the view that contains the Petri Net */
+    UIActionSheet *addOptionsSheet; /** The option sheet that presents the user with the options to add elements to the Petri Net */
     
-    UIBarButtonItem *addButton;
-    UIBarButtonItem *reloadButton;
-    UIBarButtonItem *organiseButton;
-    UIBarButtonItem *screenshotButton;
+    UIBarButtonItem *addButton; /** Link to the button that shows the addOptionsSheet */
+    UIBarButtonItem *reloadButton; /** Button that resets the positions of all the nodes */
+    UIBarButtonItem *organiseButton; /** Button that should lead to the saving and loading options */
+    UIBarButtonItem *screenshotButton; /** Button that makes a picture of the petri net */
     
     //Debug
     UIBarButtonItem *testButton;

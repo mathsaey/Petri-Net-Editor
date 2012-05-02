@@ -40,3 +40,6 @@ const NSString *CHANGE_LABEL_PREFIX = @"Changed label: ";
 
 const NSString *CANCEL_BUTTON_NAME = @"Cancel";
 const NSString *DELETE_BUTTON_NAME = @"Delete";
+
+const NSString *ADD_CONTEXT_ALERTVIEW_TITLE = @"Context name:";
+const NSString *ADD_TRANSITION_ALERTVIEW_TITLE = @"Transition name:";
