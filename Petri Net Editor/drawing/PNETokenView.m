@@ -18,7 +18,7 @@
     if(self = [super init]) {
         element = pnElement;
         superView = view;
-        tokenColor = pnElement.color;}
+        tokenColor = [self lookupColor:pnElement.color];}
     return self;
 }
 
@@ -33,9 +33,53 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGRect rect = CGRectMake(origin.x, origin.y, TOKEN_DIMENSION, TOKEN_DIMENSION);
     
-    //CGContextSetFillColorWithColor(context, tokenColor.CGColor);
+    CGContextSetFillColorWithColor(context, tokenColor);
     CGContextAddEllipseInRect(context, rect);
     CGContextFillPath(context);
+}
+
+/**
+ This enumeration contains colors matching the NSNumber
+ colors used in the kernel.
+ */
+typedef enum {
+    BLACK = 1,
+    RED = 2,
+    BLUE = 3,
+    PURPLE = 4,
+    YELLOW = 5,
+    GREEN = 6
+} PNETokenColor;
+
+/**
+ This function looks up the CGColor of a certain code
+ */
+- (CGColorRef) lookupColor: (NSNumber*) code {
+    int ref = [code integerValue];
+    switch (ref) {
+        case BLACK:
+            return [UIColor blackColor].CGColor;
+            break;
+        case RED:
+            return [UIColor redColor].CGColor;
+            break;  
+        case BLUE:
+            return [UIColor blueColor].CGColor;
+            break;
+        case PURPLE:
+            return [UIColor purpleColor].CGColor;
+            break;
+        case YELLOW:
+            return [UIColor yellowColor].CGColor;
+            break;
+        case GREEN:
+            return [UIColor greenColor].CGColor;
+            break;
+        default:
+            NSLog(@"lookupColorCode (PNETokenView) could not find matching color code! proceeding with default color");
+            return [UIColor blackColor].CGColor;
+            break;
+    }
 }
 
 @end
