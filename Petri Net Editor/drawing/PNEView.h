@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-#import "PNEView.h"
-
 #import "PNEArcView.h"
 #import "PNEPlaceView.h"
 #import "PNEViewElement.h"
 #import "PNETransitionView.h"
-#import "../kernel/PNManager.h"
 
 #import "UITextView+utils.h"
+#import "../kernel/PNManager.h"
 #import "../interface/PNEViewController.h"
+
+
 
 /**
  @author Mathijs Saey

@@ -7,7 +7,6 @@
 //
 
 #import "PNEArcView.h"
-#import "PNEView.h"
 
 @implementation PNEArcView
 

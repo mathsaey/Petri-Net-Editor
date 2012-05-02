@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "../kernel/PNElement.h"
+@class PNElement;
 @class PNEView;
 
 /**

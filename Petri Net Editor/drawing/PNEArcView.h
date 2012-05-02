@@ -9,8 +9,10 @@
 #import "../kernel/PNArcInscription.h"
 #import "../PNEConstants.h"
 
+#import "PNEView.h"
 #import "PNEViewElement.h"
-#import "PNENodeView.h"
+
+@class PNENodeView;
 
 /**
  @author Mathijs Saey
