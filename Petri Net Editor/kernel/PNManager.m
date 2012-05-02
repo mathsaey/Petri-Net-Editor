@@ -7,14 +7,20 @@
 //
 
 #import "PNManager.h"
+#import "PNPlace.h"
+#import "PNContextPlace.h"
+#import "PNTemporaryPlace.h"
 #import "PNTransition.h"
+#import "PNInternalTransition.h"
+#import "PNExternalTransition.h"
 #import "PNMarking.h"
 #import "NSDictionary+SetEquals.h"
 
 @implementation PNManager
 
-@synthesize places;
-@synthesize transitions, marking;
+@synthesize places, temporaryPlaces;
+@synthesize transitions, transitionQueue;
+@synthesize marking, dependencies;
 
 static PNManager *sharedManager = nil;
 
@@ -43,44 +49,125 @@ static PNManager *sharedManager = nil;
     return self;
 }
 
-//- (void)release {
-   // No op (singleton can't be released)
-//}
+- (void)release {
+    // No op (singleton can't be released)
+}
 
 - (id)init {
     if ((self = [super init])) {
         places = [[NSMutableArray alloc] init];
+        temporaryPlaces = [[NSMutableArray alloc] init];
         transitions = [[NSMutableArray alloc] init];
         marking = [[PNMarking alloc] init];
-        threadMapping = [[NSMutableDictionary alloc] init]; //<id (NSThread), color (Color)>
+        transitionQueue = [[NSMutableArray alloc] init];
+        dependencies = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                        [[NSMutableArray alloc] init], [[[NSNumber alloc] initWithInt: EXCLUSION] autorelease], 
+                        [[NSMutableArray alloc] init], [[[NSNumber alloc] initWithInt: WEAK ] autorelease], 
+                        [[NSMutableArray alloc] init], [[[NSNumber alloc] initWithInt: STRONG] autorelease], 
+                        [[NSMutableArray alloc] init], [[[NSNumber alloc] initWithInt: REQUIREMENT] autorelease], nil];
+        threadMapping = [[NSMutableDictionary alloc] init]; //<id (NSNumber), color (NSThread)>
     }
     return self;
 }
 
 - (void)dealloc {
     [places release];
+    [temporaryPlaces release];
     [transitions release];
     [marking release];
+    [transitionQueue release];
+    [dependencies release];
     [threadMapping release];
     [super dealloc];
 }
 
--(void) addPlaceWithName: (NSString *) placeName {
-    NSMutableString *name = [@"p" mutableCopy];
-    [name appendString:placeName];
-    PNPlace *p = [[PNPlace alloc] initWithName:[NSString stringWithString:name]];
-    [self addPlace:p];
-    [name release];
-    [p release];
+- (PNPlace *) addPlaceWithName: (NSString *) contextName {
+    PNPlace *context = [[PNContextPlace alloc] initWithName:contextName];
+    [self addPlace:context];
+    return ([context autorelease]);
 }
 
--(void) addPlace:(PNPlace *)newPlace {
-    [places addObject:newPlace];
+- (PNPlace *) addPlaceWithName: (NSString *) contextName AndCapacity: (int) capacity {
+    PNPlace *context = [[PNContextPlace alloc] initWithName:contextName AndCapacity:capacity];
+    [self addPlace:context];
+    return ([context autorelease]);
+}
+
+- (void)addPlace:(PNPlace *)aContext {
+    NSParameterAssert(aContext);
+    PNArcInscription *n = [[PNArcInscription alloc] initWithType: NORMAL];
+    //create the temporaryplaces
+    NSString * contextName = [aContext label];
+    NSMutableString *name = [@"PR." mutableCopy];
+    [name appendString:contextName];
+    PNPlace *pr = [[PNTemporaryPlace alloc] initWithName:[NSString stringWithFormat:name]];
+    [name setString:@"PRN."];
+    [name appendString:contextName];
+    PNPlace *prn = [[PNTemporaryPlace alloc] initWithName:[NSString stringWithFormat:name]];
+    [name setString:@"NEG."];
+    [name appendString:contextName];
+    PNPlace *neg = [[PNTemporaryPlace alloc] initWithName:[NSString stringWithFormat:name]];
+    //create the external transitions
+    [name setString:@"req."];
+    [name appendString:contextName];
+    PNTransition *reqact = [[PNExternalTransition alloc] initWithName:[NSString stringWithString:name]];
+    [name setString:@"reqn."];
+    [name appendString:contextName];
+    PNTransition *reqdeac = [[PNExternalTransition alloc] initWithName:[NSString stringWithString:name]];
+    // create the internal transitions
+    [name setString:@"act."];
+    [name appendString:contextName];
+    PNTransition *act = [[PNInternalTransition alloc] initWithName:[NSString stringWithString:name]];
+    [name setString:@"deac."];
+    [name appendString:contextName];
+    PNTransition *deac = [[PNInternalTransition alloc] initWithName:[NSString stringWithString:name]];
+    [name setString:@"cl."];
+    [name appendString:contextName];
+    PNTransition *cl = [[PNInternalTransition alloc] initWithName:[NSString stringWithString:name]];
+    // connecting places and transitions   
+    [reqact addOutput:n toPlace:pr];
+    [act addInput:n fromPlace:pr];
+    [act addOutput:n toPlace:aContext];
+    [reqdeac addOutput:n toPlace:prn];
+    [deac addInput:n fromPlace:aContext];
+    [deac addInput:n fromPlace:prn];
+    [deac addOutput:n toPlace:neg];
+    [cl addInput:n fromPlace:neg];
+    //add contexts to the array of contexts
+    [places addObject:aContext];
+    [temporaryPlaces addObject:pr];
+    [temporaryPlaces addObject:prn];
+    [temporaryPlaces addObject:neg];
+    //add transitions
+    [transitions addObject:reqact];
+    [transitions addObject:act];
+    [transitions addObject:reqdeac];
+    [transitions addObject:deac];
+    [transitions addObject:cl];
+    //release created objects
+    [pr release];
+    [prn release];
+    [neg release];
+    [reqact release];
+    [act release];
+    [reqdeac release];
+    [deac release];
+    [cl release];
+    [name release];
+    [n release];    
 }
 
 - (void)removePlace:(PNPlace *)aPlace {
     NSParameterAssert(aPlace);
     [places removeObject:aPlace];
+    for(PNPlace *p in [self temporaryPlaces]) {
+        if([[p label] hasSuffix:[aPlace label]])
+            [temporaryPlaces removeObject:p];
+    }
+    for(PNTransition *t in transitions) {
+        if([[t label] hasSuffix:[aPlace label]]) 
+            [transitions removeObject:t];
+    }
 }
 
 -(void) addTransition:(PNTransition *)newTransition {
@@ -99,87 +186,47 @@ static PNManager *sharedManager = nil;
     return nil;
 }
 
--(NSArray *) transitionsWithName:(NSString *)label {
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for(PNTransition *transition in transitions) {
-        if([[transition label] isEqualToString:label]) {
-            [result addObject:transition];
+-(void) addInternalTransitionToQueue: (PNInternalTransition *) iTransition {
+    if([iTransition priority] == CLEANING)
+        [transitionQueue addObject:iTransition];
+    else {
+        for(int i=(int)[transitionQueue count]; i>=0; i--) {
+            if([transitionQueue count] == 0)
+                [transitionQueue addObject:iTransition];
+            else {
+                PNInternalTransition *t = [transitionQueue objectAtIndex:i-1];
+                if([t priority] == INTERNAL) 
+                    [transitionQueue insertObject:iTransition atIndex:i]; 
+            }
         }
     }
-    return [result autorelease];    
 }
 
--(NSArray *) transitionsForPlace: (NSString *) name {
+-(BOOL) isStable {
+    for(PNPlace *p in [[PNManager sharedManager] temporaryPlaces]) {
+        if ([p isActive]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+-(NSArray *) getInputsForPlace:(PNPlace *)place {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     for(PNTransition *t in transitions) {
-        if ([[t label] hasSuffix:name]) 
+        if([[t outputs] objectForKey:place])
             [result addObject:t];
     }
     return ([result autorelease]);
 }
 
-- (NSArray *) incidentTransitionOf: (PNPlace *) place {
+- (NSArray *) getOutputsForPlace:(PNPlace *)place {
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (PNTransition *t in transitions) {
-        if([[[t inputs] allKeys] containsObject: place] || [[[t outputs] allKeys] containsObject:place] ){
-            [result addObject:t];
-        }   
-    }
-    return ([result autorelease]);
-}
-
--(NSMutableArray *) enabledTransitions {
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for(PNTransition *transition in transitions) {
-        if([transition enabled]) {
-            [result addObject:transition];
-        }
-    }
-    return [result autorelease];
-}
-
--(NSMutableArray *) enabledTransitionsWithName:(NSString *)transitionLabel {
-    NSMutableArray *results = [[NSMutableArray alloc] init];
     for(PNTransition *t in transitions) {
-        if([[t label] isEqualToString:transitionLabel] && [t enabled]) {
-            [results addObject:t];
-        }
+        if([[t inputs] objectForKey:place])
+            [result addObject:t];
     }
-    return ([results autorelease]);
-}
-
-- (void) updateMarking {
-    [marking clean];
-    for(PNPlace *place in places) {
-        if([[place tokens] count] > 0) {
-            [marking addPlaceToMarking:place];
-        }
-    }
-}
-
-/**
- * Fire a given transition, it must be checked if the transition is enabled or not
- * in order to fire. in case the transition is not enabled an error signal should be send
- **/
-- (void) fireTransition:(PNTransition *)transition {
-    if([transition enabled]) {
-        [transition fire];
-        [self updateMarking];
-    } else {
-        [NSException raise:@"Transition not available for fireing" format:@"transition %@", [transition description]];
-    }
-}
-
-/**
- * Fire a transition given its label
- */
-- (void) fireTransitionWithName:(NSString *) transitionLabel {
-    NSArray *arr = [self enabledTransitionsWithName:transitionLabel];
-    if([arr count] != 0) {
-        PNTransition *t = [arr objectAtIndex:0];
-        [self fireTransition: t];
-        [t release];
-    }
+    return ([result autorelease]);    
 }
 
 /**
@@ -187,7 +234,7 @@ static PNManager *sharedManager = nil;
  */
 - (NSString *) description {
     NSMutableString *desc = [NSMutableString stringWithString:@"@Petri Net \r"];
-    for(PNTransition *t in [self transitions]) {
+    for(PNTransition *t in transitions) {
         [desc appendString: [t description]];
         [desc appendString:@"\r"];
     }
@@ -197,4 +244,5 @@ static PNManager *sharedManager = nil;
     }
     return desc;
 }
+
 @end

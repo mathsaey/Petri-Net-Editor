@@ -7,32 +7,56 @@
 //
 
 #import "PNMarking.h"
-
+#import "PNPlace.h"
 
 @implementation PNMarking
 
+@synthesize activeContexts;
+@synthesize systemMarking;
+
 -(id) init {
     if((self = [super init])) {
-        markedPlaces = [[NSMutableArray alloc] init];
+        activeContexts = [[NSMutableArray alloc] init];
+        systemMarking = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (NSMutableArray *) markedPlaces {
-    return markedPlaces;
+- (void) dealloc {
+    [activeContexts release];
+    [systemMarking release];
+    [super dealloc];
 }
 
-- (void) setMarkedPlaces: (NSMutableArray *) newMarkedPlaces {
-    [newMarkedPlaces retain];
-    [markedPlaces release];
-    markedPlaces = newMarkedPlaces;        
+- (void) addActiveContextToMarking: (PNPlace *) context {
+    NSParameterAssert(context);
+    [activeContexts addObject:context];
 }
 
-- (void) addPlaceToMarking:(PNPlace *)place {
-    [markedPlaces addObject:place];
+- (void) removeActiveContextFromMarking: (PNPlace *) context {
+    [activeContexts removeObject:context];
 }
 
 -(void) clean {
-    [markedPlaces removeAllObjects];
+    [activeContexts removeAllObjects];
+}
+
+- (void) updateSystemState {
+    [systemMarking removeAllObjects];
+    [systemMarking addObjectsFromArray:activeContexts];
+}
+
+- (void) revertOperation {
+    [activeContexts removeAllObjects];
+    [activeContexts addObjectsFromArray:systemMarking];
+     
+}
+
+-(NSString *) description {
+    NSMutableString *desc = [[NSMutableString alloc] init];
+    for(PNPlace *c in systemMarking) {
+        [desc appendString:[c description]];
+    }
+    return [desc autorelease];
 }
 @end

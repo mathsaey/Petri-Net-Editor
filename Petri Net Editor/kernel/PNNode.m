@@ -12,7 +12,6 @@
 @implementation PNNode
 
 @synthesize label;
-@synthesize view;
 
 - (id) init {
     return ([super init]);

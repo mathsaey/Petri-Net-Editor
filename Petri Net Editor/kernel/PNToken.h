@@ -5,7 +5,6 @@
 //  Created by NicolasCardozo on 08/05/11.
 //  Copyright 2011 Université catolique de Louvain. All rights reserved.
 //
-#import <UIKit/UIKit.h>
 #import "PNElement.h"
 
 /*
@@ -13,12 +12,13 @@
  */
 
 @interface PNToken : PNElement {
-@public	
     int value;
-    UIColor *color;
+    NSNumber *color;
 }
 
 @property(nonatomic, readwrite) int value;
-@property(nonatomic, readwrite, copy) UIColor *color;
+@property(nonatomic, readwrite, retain) NSNumber *color;
+
+-(id) copyWithZone: (NSZone *) zone;
 
 @end

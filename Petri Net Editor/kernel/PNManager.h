@@ -7,50 +7,86 @@
 //
 
 @class PNPlace;
+@class PNInternalTransition;
 @class PNTransition;
 @class PNMarking;
 @class PNArcInscription;
+
+/*
+ Enumeration denoting the priority of the different types of transitions
+ */ 
+typedef enum {
+    EXCLUSION = 0,
+    WEAK = 1,
+    STRONG = 2,
+    REQUIREMENT = 3,
+    COMPOSITION = 4
+} SCDependencyRelations;
+
 /*
  * Representation of a petri net
  */
 @interface PNManager : NSObject {
     NSMutableArray *places;
+    NSMutableArray *temporaryPlaces;
     NSMutableArray *transitions;
     PNMarking *marking;
+    NSMutableArray *transitionQueue;
+    NSMutableDictionary *dependencies;
     NSMutableDictionary *threadMapping;
 }
 ///------------------------------------------------------------
 /// @name Petri Net Manager Data
 ///------------------------------------------------------------
-/** All the transitions registered in the system. 
+/** All the contexts registered in the system. 
+ @see Context
+ */
+@property(nonatomic,readwrite,retain) NSMutableArray *places;
+/** All the contexts registered in the system. 
+ @see TemporaryPlace
+ */
+@property(nonatomic,readwrite,retain) NSMutableArray *temporaryPlaces;
+/** All the contexts that are currently active. 
  @see PNTransition
  */
-@property(nonatomic,readonly,copy) NSMutableArray *transitions;
-/** All the places registered in the system.
- @see PNPlace
+@property(nonatomic,readwrite,retain) NSMutableArray *transitions;
+/** Que of internal transitions to be fire
  */
-@property(nonatomic,readonly,copy) NSMutableArray *places;
-/** Current marking of the system
+@property(nonatomic,readwrite,retain) NSMutableArray *transitionQueue;
+/** An array that has all the dependency relations */
+@property(nonatomic,readwrite,retain) NSMutableDictionary *dependencies; 
+/** Overview of the context that are currently activated in each thread
  @see PNMarking
  */
-@property(nonatomic,readonly,copy) PNMarking *marking;
+@property(nonatomic,readwrite,retain) PNMarking *marking;
+
 
 /** Returns the single instance of PetriNetManager (singleton)
  @return The single intance of PNManager.
  */
 + (PNManager *) sharedManager;
 
+/**
+ Initialize the petri net by setting up the initial marking (@TODO) 
+ and eneabling the respective transitions
+ */
+//-(void) start;
+
 /** Adds a place into the system.
  @param newPlace The place to be added.
  */
 - (void) addPlace: (PNPlace *) newPlace;
 
-/** Retrieves a context from its name.
- @param contextName The name of the context to retrieve.
- @return The context related to the given name. If `NO` context is found for this name, it 
- returns a nil value.
+/** Create a new context given its name and capacity
+ @param contextName - The name of the context
+ @param capacity - The bound of the context
  */
-- (void) addPlaceWithName: (NSString *) placeName;
+- (PNPlace *) addPlaceWithName: (NSString *) contextName AndCapacity: (int) capacity;
+
+/** Create a new context given its
+ @param contextName - The name of the context
+ */
+- (PNPlace *) addPlaceWithName: (NSString *) contextName;
 
 /** Removes a place from the system. 
  @param aPlace The place to be removed from the system.
@@ -74,6 +110,38 @@
  */
 - (void) removeTransition: (PNTransition *) transition;
 
+/** 
+ Returns all the inputs of the place
+ */
+- (NSArray *) getInputsForPlace: (PNPlace *) palce ;
+
+/**
+ Returns all the outputs of the place
+ */
+-(NSArray *) getOutputsForPlace: (PNPlace *) place;
+
+/**
+ Adds an enabled internal transition to the queue
+ */
+- (void) addInternalTransitionToQueue: (PNInternalTransition *) iTransition;
+
+/**
+ Checks if there are temporary places currently marked
+ */
+- (BOOL) isStable;
+
+/** 
+ Print all active contexts.
+ */
+//- (void) printActiveContext;
+
+/** 
+ Print all contexts.
+ */
+//- (void)printAllContext;
+@end
+
+@interface PNManager (Updates)
 /**
  Returns all transitions with the given name.
  @param label 
@@ -82,9 +150,10 @@
 - (NSArray *) transitionsWithName: (NSString *) label; 
 
 /**
- Returns and Array with all the enabled transitions.
+ Returns and Array with all the enabled transitions for a given color.
+ @param color -  Color for which we want the transitions
  */
-- (NSMutableArray *) enabledTransitions;
+- (NSMutableArray *) enabledTransitionsForColor: (NSNumber *) color;
 
 /**
  Returns and Array with all the enabled transitions with a given name
@@ -104,90 +173,111 @@
 
 /**
  Updates the curentContext with all currently active contexts
+ @param color -  A color for which enabled transitions should be check upon
  */
-- (void) updateMarking;
+- (void) updateMarkingForColor: (NSNumber *) color;
 
 /** Fires a transition given its name
  @param transitionLabel The name of the transition to be fire
  */
-- (void) fireTransitionWithName: (NSString *) transitionLabel;
+- (BOOL) fireTransitionWithName: (NSString *) transitionLabel;
+
+/** Fire a transition in a given thread
+ @param transitionName - Name of the transition to be fired
+ @param thread - Thread in which the transition will be fired
+ */
+-(BOOL) fireTransitionWithName: (NSString *) transitionName InThread: (NSThread *) thread;
+
+/** Fire a transition in a given thread
+ @param transition - The transition to be fired
+ @param thread - Thread in which the transition will be fired
+ */
+-(BOOL) fireTransition: (PNTransition *) transition InThread: (NSThread *) thread;
+
+/** Fire a transition in a given thread through its color
+ @param transition - The transition to be fired
+ @param color - The color corresponding to the thread
+ */
+-(BOOL) fireTransition: (PNTransition *) transition WithColor: (NSNumber *) color;
 
 /** Fires a given transition
- @param transition The transition to be fire
+ @param transition The transition to be fired
  */
-- (void) fireTransition: (PNTransition *) transition;
+- (BOOL) fireTransition: (PNTransition *) transition;
 @end
-
 
 /**
  Interface to manage the definition of relationshipts between two places 
  and the composition of two Petri nets
  */
 @interface PNManager (DependencyRelations)
+/**  Register the relation into the system
+ @param source - The source of the relation
+ @param target - The target of the relation
+ */
+- (void) registerDependency: (SCDependencyRelations) type BetweenSource: (PNPlace *) source AndTarget: (PNPlace *) target;
+
+/**
+ Remove a dependency relation between two contexts
+ @param type - The type of the relation (exclusion, weak ...)
+ @param source - The source of the relation
+ @param target The target of the relation
+ */
+- (void) removeDependency: (SCDependencyRelations) type BetweenSource: (PNPlace *) source AndTarget: (PNPlace *) target;
+
 /** Create exclusion link between two places.
  @param source - Source PNPlace.
  @param target - Target PNPlace.
  */
-- (void) addExclusionFrom:(PNPlace *)source to:(PNPlace *) target;
+- (void) addExclusionFrom:(PNPlace *)source To:(PNPlace *) target;
 
 /** Create weak inclusion between the source and target places.
  @param source - Source PNPlace.
  @param target - Target PNPlace.
  */
-- (void) addWeakInclusionFrom:(PNPlace *) source to:(PNPlace *) target;
+- (void) addWeakInclusionFrom:(PNPlace *) source To:(PNPlace *) target;
 
 /** Create strong inclusion between the source and target places.
  @param source - Source PNPlace.
  @param target - Target PNPlace.
  */
-- (void) addStrongInclusionFrom:(PNPlace *)source to:(PNPlace *)target;
+- (void) addStrongInclusionFrom:(PNPlace *)source To:(PNPlace *)target;
 
 /** Create requirement dependency of the target context to the source context.
  @param source : PNPlace
  @param target : PNPlace
  */
-- (void) addRequirementTo:(PNPlace *)source of:(PNPlace *)target;
-
-/** Create composition dependency of the two source context. The result is a composition
- * relation between the two given contexts and the new composed one (source1+source2)
- @param source : PNPlace
- @param source : PNPlace
- */
-- (void) addComposedContextsOf:(PNPlace *)source1 and:(PNPlace *) source2;
+- (void) addRequirementTo:(PNPlace *)source Of:(PNPlace *)target;
 
 /**
- Basic method for the composition of one of the basic elements with the current contexts
+ Checks the constrains of an exclusion dependency relation
+ @param source - a context
+ @param target - a context
  */
-- (void) composeTransition:(PNTransition *) nTransition with:(PNArcInscription *) nArcInscription fromInput:(PNPlace *) nPlace;
+- (void) checkExclusionConstrains;
 
 /**
- Basic method for the composition of one of the basic elements with the current contexts
+ Checks the constrains of an exclusion dependency relation
+ @param source - a context
+ @param target - a context
  */
-- (void) composeTransition:(PNTransition *) nTransition with:(PNArcInscription *) nArcInscription toOutput:(PNPlace *) nPlace;
+- (void) checkWeakInclusionConstrains;
+
+/**
+ Checks the constrains of all strong inclusion dependency relations
+ */
+- (void) checkStrongInclusionConstrains;
+
+/**
+ Checks the constrains that need to be fulfilled in a requirement condition
+ @param source - a context
+ @param target - a context
+ */
+- (void) checkRequirementConstrains;
 
 /**
  Method to clean up repeated dependencies when composing rules to existing contexts
  */
 - (void) trimRepeatedTransitions;
 
-/**
- Method for the composition of a requirement dependency with other dependencies
- */
-- (void) checkRequirementConditionFor: (PNTransition *) nTransition from: (PNPlace *) nPlace;
-
-/**
- Adds the necessary extra transitions between the different contexts when composing a requirement
- dependency with another kind of dependency
- */
-- (void) addRequirementTransitionsFor: (PNPlace *) source target: (PNPlace *) target;
-
-/**
- Checks if the context given as a parameter is part of a composition dependency
- */
-- (BOOL) isComposed: (PNPlace *) place;
-
-/**
- Specific method for the composition of two compose dependencies with a common context
- */
-- (void) compose: (PNPlace *) source withComposition: (PNPlace *) composed;
 @end

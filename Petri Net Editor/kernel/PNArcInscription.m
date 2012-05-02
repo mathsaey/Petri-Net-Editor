@@ -11,6 +11,7 @@
 
 @implementation PNArcInscription
 
+@synthesize flowFunction;
 @synthesize type;
 
 - (id) init {
@@ -32,13 +33,6 @@
     return self;
 }
 
-- (int) flowFunction {
-    return flowFunction;
-}
-- (void) setFlowFunction:(int) newFlowFuntion {
-	flowFunction = newFlowFuntion;
-}
-
 - (BOOL) isEqual:(id)object {
     if([self flowFunction] != [object flowFunction])
         return NO;
@@ -51,7 +45,11 @@
  * Auxiliary method need to pass it as parameter of NSMutableDictionary (a hashmap)
  */
 -(id) copyWithZone: (NSZone *) zone {
-    return [self retain];
+    PNArcInscription *newArcInscription = [[PNArcInscription allocWithZone:zone] init];
+    NSLog(@"_copy: %@", [newArcInscription self]);
+    [newArcInscription setFlowFunction:[self flowFunction]];
+    [newArcInscription setType:[self type]];
+    return (newArcInscription);
 }
 
 /**
@@ -60,10 +58,10 @@
 - (NSString *) description {
     NSMutableString *desc = [NSMutableString stringWithString:@""];
     if(type == NORMAL)     
-        [desc appendString:@"N"];
+        [desc appendString:@"N x"];
     else
-        [desc appendString:@"I"];   
-    
+        [desc appendString:@"I x"];   
+    [desc appendString:[NSString stringWithFormat:@"%d", [self flowFunction]]];
     return desc;
 }
 @end

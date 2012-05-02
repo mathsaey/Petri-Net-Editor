@@ -1,19 +1,29 @@
 //
 //  PNPlace.m
-//  PetriNetKernel
+//  place
 //
-//  Created by NicolasCardozo on 06/05/11.
-//  Copyright 2011 Université catolique de Louvain. All rights reserved.
+//  Created by JC & Julien Goffaux on 3/10/09.
+//  Reviewed by Damien Rambout.
+//  Copyright 2009 Université catholique de Louvain. All rights reserved.
+// 
 //
 
 #import "PNPlace.h"
+#import "PNManager.h"
+#import "PNToken.h"
 
-@implementation PNPlace 
+
+@implementation PNPlace
+
+@synthesize tokens;
+@synthesize capacity;
+
+#pragma mark - Instance creation / descrution
 
 - (id) init {
 	if((self = [super init])) {
 		tokens = [[NSMutableArray alloc] init];
-		capacity = -1; //default value for infinite capacity
+        capacity = -1;
 	}
 	return self;
 }
@@ -26,43 +36,24 @@
 	return self;
 }
 
-- (void) dealloc {
-    [tokens release];
-    [super dealloc];
-}
 
 - (PNPlace *) copyWithName: (NSString *) nodeName {
 	PNPlace *newPlace = [[PNPlace alloc] init];
-	//newPlace = [super copy];
 	[newPlace setTokens: [self tokens]];
 	[newPlace setLabel: nodeName];
 	return newPlace;
 }
 
-- (int) capacity {
-    return capacity;
-}
-
-- (void) setCapacity:(int)newCapacity {
-    capacity = newCapacity;
-}
-
-- (NSMutableArray *) tokens {
-	return tokens;
-}
-
-- (void) setTokens:(NSMutableArray *)newTokens {
-	[newTokens retain];
+- (void)dealloc { 
 	[tokens release];
-	tokens = newTokens;
+    [super dealloc]; 
 }
 
-- (BOOL) empty {
-	if ([tokens count] == 0) {
-		return YES;
-	} else {
-		return NO;
-	}
+///------------------------------------------------------------
+/// @name Functional Methods
+///------------------------------------------------------------
+- (BOOL) isActive {
+	return [tokens count] > 0;
 }
 
 - (BOOL) containsToken:(PNToken *)token {
@@ -97,22 +88,59 @@
 	[tokens removeObjectsInArray:tokenSet];
 }
 
-- (void) reset:(NSArray *)tokens {
-	//@TODO
+- (PNToken *) getTokenOfColor:(NSNumber *)color {
+    for(PNToken *t in tokens)
+        if([[t color] isEqualTo:color])
+            return t;
+    return nil;
 }
 
+-(PNPlace *) getPrepareForActivation {
+    for (PNPlace *c in [[PNManager sharedManager] temporaryPlaces]) {
+        if ([[c label] hasPrefix:@"PR."] && [[c label] hasSuffix:[self label]])
+            return c;
+    }
+    return nil;
+}
+
+-(PNPlace *) getPrepareForDeactivation {
+    for(PNPlace *c in [[PNManager sharedManager] temporaryPlaces]) {
+        if([[c label] hasPrefix:@"PRN."] && [[c label] hasSuffix:[self label]])
+            return c;
+    }
+    return nil;
+}
+
+-(PNPlace *) getDeactivationFlag {
+    for(PNPlace *c in [[PNManager sharedManager] temporaryPlaces]) {
+        if([[c label] hasPrefix:@"NEG."] && [[c label] hasSuffix:[self label]])
+            return c;
+    }
+    return nil;
+}
+///------------------------------------------------------------
+/// @name Auxilliary Methods
+///------------------------------------------------------------
 /**
  * Provides a "plane" printable version of the object
  */
 - (NSString *) description {
-    NSMutableString *desc = [NSMutableString stringWithString:@"@Place "];
-    [desc appendString:[self label]];
+    NSMutableString *desc = [NSMutableString stringWithString:[self label]];
     [desc appendString:@" ("];
-    [desc appendString: [NSString stringWithFormat:@"%d ", [[self tokens] count]]];
-    [desc appendString: @"tokens)"];
+    if (![self tokens]) {
+        [desc appendString:@"0 tokens)"];
+    } else {
+        for(PNToken *t in [self tokens]) {
+            [desc appendString: [t description]];
+        }
+        [desc appendString:@")"];
+    }
     return desc;
 }
 
+/**
+ * Two places are said to be equal if they have the same name and same capacity
+ */
 - (BOOL) isEqual:(id)object {
     if(![[self label] isEqualToString: [object label]])
         return NO;
@@ -125,11 +153,11 @@
     int prime = 31;
     NSUInteger result = 1;
     //    Then for every primitive you do
-    result = prime * result + [self capacity];
+    result = prime + [self capacity];
     //        For 64bit you might also want to shift and xor.
     //   result = prime * result + (int) ([self capacity] ^ ([self capacity] >>> 32));
     //    For objects you use 0 for nil and otherwise their hashcode.
-    result = prime * result + [[self tokens] hash];
+    //result = prime * result + [[self tokens] hash];
     result = prime * result + [[self label] hash];
     //    For booleans you use two different values
     //    result = prime * result + (var)?1231:1237;
@@ -140,6 +168,12 @@
  * Auxiliary method need to pass it as parameter of NSMutableDictionary (a hashmap)
  */
 -(id) copyWithZone: (NSZone *) zone {
-    return [self retain];
+    PNPlace *newPlace = [[PNPlace allocWithZone:zone] init];
+    //   NSLog(@"_copy: %@", [newPlace self]);
+    [newPlace setLabel:[self label]];
+    [newPlace setTokens:tokens];
+    [newPlace setCapacity:capacity];
+    return (newPlace);
 }
+
 @end

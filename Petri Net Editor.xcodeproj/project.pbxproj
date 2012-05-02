@@ -56,6 +56,11 @@
 		D5B3B5861551705C00F20DC0 /* logo_iPad_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B5851551705B00F20DC0 /* logo_iPad_retina.png */; };
 		D5B3B5881551712D00F20DC0 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B5871551712C00F20DC0 /* Default-Landscape@2x~ipad.png */; };
 		D5B3B58A1551719F00F20DC0 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B3B5891551719F00F20DC0 /* Default-Portrait@2x~ipad.png */; };
+		D5B3B59415517A7F00F20DC0 /* PNContextPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B58C15517A7E00F20DC0 /* PNContextPlace.m */; };
+		D5B3B59515517A7F00F20DC0 /* PNExternalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B58E15517A7E00F20DC0 /* PNExternalTransition.m */; };
+		D5B3B59615517A7F00F20DC0 /* PNInternalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B59015517A7E00F20DC0 /* PNInternalTransition.m */; };
+		D5B3B59715517A7F00F20DC0 /* PNManager+Updates.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B59115517A7F00F20DC0 /* PNManager+Updates.m */; };
+		D5B3B59815517A7F00F20DC0 /* PNTemporaryPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B59315517A7F00F20DC0 /* PNTemporaryPlace.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +149,15 @@
 		D5B3B5851551705B00F20DC0 /* logo_iPad_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_iPad_retina.png; sourceTree = "<group>"; };
 		D5B3B5871551712C00F20DC0 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		D5B3B5891551719F00F20DC0 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		D5B3B58B15517A7E00F20DC0 /* PNContextPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNContextPlace.h; path = kernel/PNContextPlace.h; sourceTree = "<group>"; };
+		D5B3B58C15517A7E00F20DC0 /* PNContextPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNContextPlace.m; path = kernel/PNContextPlace.m; sourceTree = "<group>"; };
+		D5B3B58D15517A7E00F20DC0 /* PNExternalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNExternalTransition.h; path = kernel/PNExternalTransition.h; sourceTree = "<group>"; };
+		D5B3B58E15517A7E00F20DC0 /* PNExternalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNExternalTransition.m; path = kernel/PNExternalTransition.m; sourceTree = "<group>"; };
+		D5B3B58F15517A7E00F20DC0 /* PNInternalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNInternalTransition.h; path = kernel/PNInternalTransition.h; sourceTree = "<group>"; };
+		D5B3B59015517A7E00F20DC0 /* PNInternalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNInternalTransition.m; path = kernel/PNInternalTransition.m; sourceTree = "<group>"; };
+		D5B3B59115517A7F00F20DC0 /* PNManager+Updates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PNManager+Updates.m"; path = "kernel/PNManager+Updates.m"; sourceTree = "<group>"; };
+		D5B3B59215517A7F00F20DC0 /* PNTemporaryPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNTemporaryPlace.h; path = kernel/PNTemporaryPlace.h; sourceTree = "<group>"; };
+		D5B3B59315517A7F00F20DC0 /* PNTemporaryPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNTemporaryPlace.m; path = kernel/PNTemporaryPlace.m; sourceTree = "<group>"; };
 		D5EE14861549F278004212E0 /* DocumentationMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DocumentationMain.h; path = "Petri Net Editor/DocumentationMain.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,6 +276,15 @@
 		D541C4831469C733002DB7F4 /* kernel */ = {
 			isa = PBXGroup;
 			children = (
+				D5B3B58B15517A7E00F20DC0 /* PNContextPlace.h */,
+				D5B3B58C15517A7E00F20DC0 /* PNContextPlace.m */,
+				D5B3B58D15517A7E00F20DC0 /* PNExternalTransition.h */,
+				D5B3B58E15517A7E00F20DC0 /* PNExternalTransition.m */,
+				D5B3B58F15517A7E00F20DC0 /* PNInternalTransition.h */,
+				D5B3B59015517A7E00F20DC0 /* PNInternalTransition.m */,
+				D5B3B59115517A7F00F20DC0 /* PNManager+Updates.m */,
+				D5B3B59215517A7F00F20DC0 /* PNTemporaryPlace.h */,
+				D5B3B59315517A7F00F20DC0 /* PNTemporaryPlace.m */,
 				D595E48514F28E64001D9B19 /* NSDictionary+SetEquals.h */,
 				D595E48614F28E64001D9B19 /* NSDictionary+SetEquals.m */,
 				D595E48714F28E64001D9B19 /* PNArcInscription.h */,
@@ -519,6 +542,11 @@
 				D5B3B579154EB84900F20DC0 /* PNEPhoneViewController.m in Sources */,
 				D5B3B57A154EB84900F20DC0 /* PNEViewController.m in Sources */,
 				D5B3B57F154EB92900F20DC0 /* UITextView+utils.m in Sources */,
+				D5B3B59415517A7F00F20DC0 /* PNContextPlace.m in Sources */,
+				D5B3B59515517A7F00F20DC0 /* PNExternalTransition.m in Sources */,
+				D5B3B59615517A7F00F20DC0 /* PNInternalTransition.m in Sources */,
+				D5B3B59715517A7F00F20DC0 /* PNManager+Updates.m in Sources */,
+				D5B3B59815517A7F00F20DC0 /* PNTemporaryPlace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

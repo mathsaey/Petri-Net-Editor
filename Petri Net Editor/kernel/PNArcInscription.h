@@ -22,10 +22,13 @@ typedef enum {
 	PNInscriptionType type;
 }
 
-@property(nonatomic,readwrite) PNInscriptionType type; 
+///------------------------------------------------------------
+/// @name Current Activation Data
+///------------------------------------------------------------
+//Array marked places in the Petri net
+@property(nonatomic,readwrite) int flowFunction;
+//Current marking to the system (only SCContext accepted here)
+@property(nonatomic,readwrite) PNInscriptionType type;
 
 - (id) initWithType: (PNInscriptionType) aType;
-- (int) flowFunction;
-- (void) setFlowFunction: (int) newFlowFuntion;
-
 @end
