@@ -282,9 +282,9 @@
 		D541C4831469C733002DB7F4 /* kernel */ = {
 			isa = PBXGroup;
 			children = (
+				D5546C0715517DB900D50E6C /* Manager */,
 				D595E48514F28E64001D9B19 /* NSDictionary+SetEquals.h */,
 				D595E48614F28E64001D9B19 /* NSDictionary+SetEquals.m */,
-				D5546C0715517DB900D50E6C /* Manager */,
 				D595E48914F28E64001D9B19 /* PNElement.h */,
 				D595E48A14F28E64001D9B19 /* PNElement.m */,
 				D5546C0915517DCA00D50E6C /* Nodes */,

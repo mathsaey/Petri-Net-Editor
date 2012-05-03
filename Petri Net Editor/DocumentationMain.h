@@ -15,10 +15,12 @@
  
  
 @section Overview
- The main point of this documentation is to provide an overview of all the classes in the system. All the classes can be found in the Classes section. The kernel classes are not documented but are not omitted so that a user of this documentation can still view the public methods and members as well as their inheritance graphs.
+ The main point of this documentation is to provide an overview of all the classes in the system. All the classes can be found in the Classes section. The kernel classes are only partly documented by Nicolas Cardozo but are not omitted so that a user of this documentation can still view the public methods and members as well as their inheritance graphs.
  
  The constants that are used throughout the code can be found in the PNEConstants module found in the modules section. These constants don't influence the working of the code but can be used to fine tune the behaviour of the Petri Net drawing.
  
  Somebody new to the code could start by looking at the PNEView class. The PNENodeView class and it's subclasses should be your next focus. Knowing these 4 classes should be enough to get a basic sense of the inner workings of the product.
  
+ The general idea is that the PNEView is responsible for the link between the UI and the PNManager. It contains all the PNEViewElement instances and it's responsible for the positioning and creation of those elements. Input that comes from the options bar generally goes through the PNEViewController, although these generally just call some PNEView method. Every PNEViewElement is responsible for drawing itself during the view cycle and for keeping track of the element that it's part off. User interaction with the elements is kept at the PNEViewElement level although some events (that can potentialy affect the entire PNEView) are passed along to the PNEView.
+  
 */

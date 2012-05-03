@@ -36,6 +36,10 @@
     CGContextSetFillColorWithColor(context, tokenColor);
     CGContextAddEllipseInRect(context, rect);
     CGContextFillPath(context);
+    
+    //Restore the color
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+
 }
 
 /**

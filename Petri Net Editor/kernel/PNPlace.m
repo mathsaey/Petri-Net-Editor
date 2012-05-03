@@ -90,7 +90,7 @@
 
 - (PNToken *) getTokenOfColor:(NSNumber *)color {
     for(PNToken *t in tokens)
-        if([[t color] isEqualTo:color])
+        if([t color] == color)
             return t;
     return nil;
 }

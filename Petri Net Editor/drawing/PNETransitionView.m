@@ -21,8 +21,12 @@
  */
 - (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
     if (self = [super initWithValues:pnElement superView:view]) {
-        [nodeOptions addButtonWithTitle:@"Fire Transition"];
+        
+        //Only add the option to fire a transition if it's external
+        if (pnElement.priority == EXTERNAL)
+            [nodeOptions addButtonWithTitle:@"Fire Transition"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
+        
         [superView.transitions addObject:self];
         type = pnElement.priority;
         

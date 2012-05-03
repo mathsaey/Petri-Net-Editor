@@ -319,44 +319,26 @@
 #pragma mark - TestCode
 
 - (void) insertData {  
-        
-        PNPlace* place_1 = [[PNPlace alloc] initWithName:@"Place 1"];
-        PNPlace* place_2 = [[PNPlace alloc] initWithName:@"Place 2"];
-        PNPlace* place_3 = [[PNPlace alloc] initWithName:@"Place 3"];
-        PNPlace* place_4 = [[PNPlace alloc] initWithName:@"Place 4"];
-        
-        PNTransition* trans_1 = [[PNTransition alloc] initWithName:@"Trans 1"];
-        PNTransition* trans_2 = [[PNTransition alloc] initWithName:@"Trans 2"];
-        PNTransition* trans_3 = [[PNTransition alloc] initWithName:@"Trans 3"];
-        
-        PNToken* token_1 = [[PNToken alloc] init];
-        PNToken* token_2 = [[PNToken alloc] init];
-        PNToken* token_3 = [[PNToken alloc] init];
-        
-        
-        [place_1 addToken:token_1];
-        [place_2 addToken:token_2];
-        [place_3 addToken:token_3];
-        
-        PNArcInscription* arc_1 = [[PNArcInscription alloc] initWithType:NORMAL];
-        PNArcInscription* arc_2 = [[PNArcInscription alloc] initWithType:INHIBITOR];
-        PNArcInscription* arc_3 = [[PNArcInscription alloc] initWithType:NORMAL];
-        PNArcInscription* arc_4 = [[PNArcInscription alloc] initWithType:NORMAL];
-        
-        [trans_1 addInput:arc_3 fromPlace:place_2];
-        [trans_2 addOutput:arc_1 toPlace:place_1];
-        [trans_3 addInput:arc_2 fromPlace:place_1];
-        
-        [trans_1 addOutput:arc_4 toPlace:place_3];
-        
-        [manager addPlace:place_1];
-        [manager addPlace:place_2];
-        [manager addPlace:place_3];
-        [manager addPlace:place_4];
-        
-        [manager addTransition:trans_1];
-        [manager addTransition:trans_2];
-        [manager addTransition:trans_3]; 
+    
+    PNPlace* place_1 = [manager addPlaceWithName:@"Place1"];
+    PNPlace* place_2 = [manager addPlaceWithName:@"Place 2"];
+    
+    PNToken* token_1 = [[PNToken alloc] init];
+    //token_1.color = [[NSNumber alloc] initWithInt:4];
+    
+    [place_1 addToken:token_1];
+    
+    PNTransition* trans = [[PNTransition alloc] initWithName:@"the trans"];
+    PNArcInscription* arc = [[PNArcInscription alloc] initWithType:NORMAL];
+    PNArcInscription* arc1 = [[PNArcInscription alloc] initWithType:NORMAL];
+
+    
+    [trans addInput:arc fromPlace:place_1];
+    [trans addOutput:arc1 toPlace:place_2];
+    
+    [manager addTransition:trans];
+    
+ 
     
     [self loadKernel];
 }
