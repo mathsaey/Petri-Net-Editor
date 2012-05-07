@@ -49,10 +49,6 @@ static PNManager *sharedManager = nil;
     return self;
 }
 
-- (void)release {
-    // No op (singleton can't be released)
-}
-
 - (id)init {
     if ((self = [super init])) {
         places = [[NSMutableArray alloc] init];
@@ -60,11 +56,11 @@ static PNManager *sharedManager = nil;
         transitions = [[NSMutableArray alloc] init];
         marking = [[PNMarking alloc] init];
         transitionQueue = [[NSMutableArray alloc] init];
-        dependencies = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                        [[NSMutableArray alloc] init], [[[NSNumber alloc] initWithInt: EXCLUSION] autorelease], 
-                        [[NSMutableArray alloc] init], [[[NSNumber alloc] initWithInt: WEAK ] autorelease], 
-                        [[NSMutableArray alloc] init], [[[NSNumber alloc] initWithInt: STRONG] autorelease], 
-                        [[NSMutableArray alloc] init], [[[NSNumber alloc] initWithInt: REQUIREMENT] autorelease], nil];
+        dependencies=[[NSMutableDictionary alloc] initWithCapacity:4];
+        [dependencies setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt: EXCLUSION]]; 
+        [dependencies setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt: WEAK]]; 
+        [dependencies setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt: STRONG]]; 
+        [dependencies setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt: REQUIREMENT]]; 
         threadMapping = [[NSMutableDictionary alloc] init]; //<id (NSNumber), color (NSThread)>
     }
     return self;
@@ -123,7 +119,7 @@ static PNManager *sharedManager = nil;
     PNTransition *deac = [[PNInternalTransition alloc] initWithName:[NSString stringWithString:name]];
     [name setString:@"cl."];
     [name appendString:contextName];
-    PNTransition *cl = [[PNInternalTransition alloc] initWithName:[NSString stringWithString:name]];
+    PNTransition *cl = [[PNInternalTransition alloc] initWithName:[NSString stringWithString:name] andPriority:CLEANING];
     // connecting places and transitions   
     [reqact addOutput:n toPlace:pr];
     [act addInput:n fromPlace:pr];
@@ -187,20 +183,32 @@ static PNManager *sharedManager = nil;
 }
 
 -(void) addInternalTransitionToQueue: (PNInternalTransition *) iTransition {
-    if([iTransition priority] == CLEANING)
+    if([transitionQueue containsObject:iTransition]){
+        //If the transition is already in the queue do nothing
+    } else if([iTransition priority] == CLEANING)
         [transitionQueue addObject:iTransition];
-    else {
-        for(int i=(int)[transitionQueue count]; i>=0; i--) {
-            if([transitionQueue count] == 0)
-                [transitionQueue addObject:iTransition];
-            else {
-                PNInternalTransition *t = [transitionQueue objectAtIndex:i-1];
-                if([t priority] == INTERNAL) 
-                    [transitionQueue insertObject:iTransition atIndex:i]; 
+    else if([transitionQueue count] == 0) {
+        [transitionQueue addObject:iTransition];
+    } else if([transitionQueue count] == 1) {
+        PNInternalTransition *t = [transitionQueue objectAtIndex:0];
+        if([t priority] == CLEANING) 
+            [transitionQueue insertObject:iTransition atIndex:0]; 
+        else 
+            [transitionQueue addObject:iTransition];
+    } else {
+        for(int i=[transitionQueue count]; i>0; i--) {
+            PNInternalTransition *t = [transitionQueue objectAtIndex:i-1];
+            if([t priority] == INTERNAL) {
+                [transitionQueue insertObject:iTransition atIndex:i]; 
+                break;
+            } else if(i-1 == 0) {
+                [transitionQueue insertObject:iTransition atIndex:0]; 
+                break;
             }
         }
     }
 }
+
 
 -(BOOL) isStable {
     for(PNPlace *p in [[PNManager sharedManager] temporaryPlaces]) {
@@ -233,7 +241,7 @@ static PNManager *sharedManager = nil;
  * Provides a "plane" printable version of the object
  */
 - (NSString *) description {
-    NSMutableString *desc = [NSMutableString stringWithString:@"@Petri Net \r"];
+    NSMutableString *desc = [NSMutableString stringWithString:@"@CoPN \r"];
     for(PNTransition *t in transitions) {
         [desc appendString: [t description]];
         [desc appendString:@"\r"];

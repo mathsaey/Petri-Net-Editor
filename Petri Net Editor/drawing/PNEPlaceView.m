@@ -181,9 +181,11 @@
     [tokens removeAllObjects];
     
     for (PNToken *token in [element tokens]) {
-        PNETokenView *tokenView = [[PNETokenView alloc] initWithValues:token superView:superView];
-        [self addToken:tokenView];}
-    
+        for(int i=0; i < [token value]; i++) {
+            PNETokenView *tokenView = [[PNETokenView alloc] initWithValues:token superView:superView];
+            [self addToken:tokenView];
+        }
+    }    
 }
 
 #pragma mark - Drawing code

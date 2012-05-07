@@ -98,9 +98,20 @@
  Fires the PNTransition and updates the PNEView
  */
 - (void) fireTransition {
-    [superView.manager fireTransition:element];
-    [superView.log addText:[NSString stringWithFormat:@"%@ \n \t %@",FIRE_TRANSITION_PREFIX, label]];
-    [superView updatePlaces];
+    @try {
+        [superView.manager fireTransition:element];
+        [superView.log addText:[NSString stringWithFormat:@"%@ \n \t %@",FIRE_TRANSITION_PREFIX, label]];
+        [superView updatePlaces];
+    }
+    @catch (NSException *exception) {
+        NSString *title = [NSString stringWithFormat:@"Error firing transition %@", label];
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title message:[exception reason]
+                                      delegate: self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [alert show];
+    }
+    @finally {
+        //?
+    }
 }
 
 #pragma mark - Highlight implementation

@@ -229,7 +229,7 @@ typedef enum {
  @param source - Source PNPlace.
  @param target - Target PNPlace.
  */
-- (void) addExclusionFrom:(PNPlace *)source To:(PNPlace *) target;
+- (void) addExclusionBetween:(PNPlace *)source and:(PNPlace *) target;
 
 /** Create weak inclusion between the source and target places.
  @param source - Source PNPlace.

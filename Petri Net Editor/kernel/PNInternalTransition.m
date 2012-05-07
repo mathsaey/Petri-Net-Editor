@@ -23,6 +23,12 @@
     return self;
 }
 
+- (id) initWithName: (NSString *) aName andPriority: (PNTransitionType) newPriority {
+    if((self = [super initWithName: aName])) {
+		priority = newPriority;
+	}
+	return self;
+}
 
 - (void)dealloc {
     [super dealloc];

@@ -8,6 +8,7 @@
 
 #import "PNMarking.h"
 #import "PNPlace.h"
+#import "PNManager.h"
 
 @implementation PNMarking
 
@@ -49,7 +50,9 @@
 - (void) revertOperation {
     [activeContexts removeAllObjects];
     [activeContexts addObjectsFromArray:systemMarking];
-     
+    for(PNPlace *p in [[PNManager sharedManager] temporaryPlaces]) {
+        [[p tokens] removeAllObjects];
+    }
 }
 
 -(NSString *) description {

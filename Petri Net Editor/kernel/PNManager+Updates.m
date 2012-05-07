@@ -56,9 +56,7 @@
         [t fireWithColor: color];
         [[[PNManager sharedManager] transitionQueue] removeObjectAtIndex:0];
         [self updateMarkingForColor:color];
-        for(PNTransition *transition in transitions) 
-            [transition checkEnabledWithColor: color];
-    } //while([[[PNManager sharedManager] transitionQueue] count] != 0); 
+    }
     
     if([[PNManager sharedManager] isStable]) {
         [marking updateSystemState];

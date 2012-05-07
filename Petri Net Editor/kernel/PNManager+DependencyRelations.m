@@ -17,7 +17,8 @@
 
 - (void) registerDependency:(SCDependencyRelations)type BetweenSource:(PNPlace *)source AndTarget:(PNPlace *)target {
     NSArray *newDep = [[NSArray alloc] initWithObjects:source, target, nil];
-    NSMutableArray *dependent = [[self dependencies] objectForKey:[NSNumber numberWithInt:type]];
+    NSNumber *n = [NSNumber numberWithInt:type];
+    NSMutableArray *dependent = [[self dependencies] objectForKey:n];
     [dependent addObject:newDep];
     switch (type) {
         case EXCLUSION:
@@ -36,6 +37,7 @@
             break;
     }
     [self trimRepeatedTransitions];
+    [newDep release];
 }
 
 - (void) removeDependency:(SCDependencyRelations) type BetweenSource:(PNPlace *)source AndTarget:(PNPlace *)target {
@@ -53,11 +55,11 @@
     }
 }
 
-- (void)addExclusionFrom:(PNPlace *)source To:(PNPlace *) target {
+- (void)addExclusionBetween:(PNPlace *)source and:(PNPlace *) target {
     PNArcInscription *i = [[PNArcInscription alloc] initWithType: INHIBITOR];
     NSMutableString *name1 = [[NSMutableString alloc] initWithString:@"act."];
     [name1 appendString:[source label]];
-    NSMutableString *name2 = [[NSMutableString alloc] initWithString:@"deac."];
+    NSMutableString *name2 = [[NSMutableString alloc] initWithString:@"act."];
     [name2 appendString:[target label]];
     
     for(PNTransition *t in transitions) {
@@ -65,12 +67,14 @@
             if (![[t inhibitorInputs] containsObject:target]) {
                 [t addInput:i fromPlace:target];
             }
-        } else if([[t label] isEqualToString:[NSString stringWithFormat:name1]]) {
+        } else if([[t label] isEqualToString:[NSString stringWithFormat:name2]]) {
             if (![[t inhibitorInputs] containsObject:source]) 
                 [t addInput:i fromPlace:source];
         }
     }
     [i release];
+    [name1 release];
+    [name2 release];
     [self registerDependency:EXCLUSION BetweenSource:source AndTarget:target];
 }
 
@@ -88,8 +92,11 @@
             if(![[[t outputs] allKeys] containsObject:target])
                 [t addOutput:n toPlace:[target getPrepareForActivation]];
         } else if([[t label] isEqualToString:[NSString stringWithFormat:deacS]]) {
-            if (![[[t outputs] allKeys] containsObject:target]) 
+            if (![[[t outputs] allKeys] containsObject:target]) {
                 [t addOutput:n toPlace:[target getPrepareForDeactivation]];
+                [t addOutput:n toPlace:target];
+                [t addInput:n fromPlace:target]; 
+            }
         }
     }
     
@@ -172,6 +179,7 @@
     [deacS appendString: [source label]];
     [deacT appendString: [target label]];
     
+    //deactivate target when source is inactive
     PNInternalTransition *deacTarget = [[PNInternalTransition alloc] initWithName:[NSString stringWithFormat:deacT]];
     [deacTarget addInput:n fromPlace:target];
     [deacTarget addInput:n fromPlace:[target getPrepareForDeactivation]];
@@ -193,17 +201,28 @@
     [self addTransition:deacSource];
     [self addTransition:deacTarget];
     [self addTransition:deacdeacSource2];
-    //activate source iff target is active
+    //deactivate target extra conditions (deactivate when source is active)
     for(PNTransition *t in [self getInputsForPlace:source]) {
         if ([[t label] isEqualToString:[NSString stringWithFormat:actS]]) {
             [t addOutput:n toPlace:target];
             [t addInput:n fromPlace:target];
         } 
     }
+    //activate source iff target is active
+    for(PNTransition *t in [self getOutputsForPlace:target]) {
+        if ([[t label] isEqualToString:[NSString stringWithFormat:deacT]]) {
+            if ([[t inputs] objectForKey:source] == nil) {
+                [t addOutput:n toPlace:source];
+                [t addInput:n fromPlace:source];
+            }
+        } 
+    }
     //deactivate source extra conditions
     for(PNTransition *t in [self getOutputsForPlace:source]){
         if([[t label] isEqualToString:[NSString stringWithFormat:deacS]]) {
-            if([t inhibitorInputs] != nil || [[t inputs] objectForKey:[source getDeactivationFlag]] == nil) {
+            if([[t inputs] objectForKey:target] != nil)
+                [t addOutput:n toPlace:[source getPrepareForDeactivation]];
+            else if([[t inputs] objectForKey:[source getDeactivationFlag]] == nil) {
                 [t addOutput:n toPlace:[source getPrepareForDeactivation]];
                 [t addInput:i fromPlace:[source getDeactivationFlag]];
             }
@@ -284,7 +303,7 @@
         [deac setString:@"deac."];
         [deac appendString:[source label]];
         for (PNTransition *t in [self getOutputsForPlace:source]) {
-            if([[t label] isEqualToString:[NSString stringWithFormat:deac]]) 
+            if([[t label] isEqualToString:[NSString stringWithFormat:deac]] && [[t inhibitorInputs] count] == 0) 
                 [t addOutput:n toPlace:[target getPrepareForDeactivation]];
         }
     }
@@ -338,12 +357,8 @@
         for (PNTransition *t in [self getOutputsForPlace:target]) {
             PNArcInscription *ai = [[t inputs] objectForKey:source];
             if([[t label] isEqualToString:[NSString stringWithFormat:deac]]) {
-                if([ai type] != INHIBITOR || [[t outputs] objectForKey:[target getPrepareForDeactivation]] != nil
-                   || [t inhibitorInputs] == nil) {
-                    NSLog(@"deactivation target loop with s%@ and t%@", [source label], [target label]);
+                if([[t inputs] objectForKey:target] != nil && [[t inputs] objectForKey:source] == nil)
                     [t addOutput:n toPlace:[source getPrepareForDeactivation]];    
-                }
-                
             }   
         }
     }

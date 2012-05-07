@@ -319,26 +319,28 @@
 #pragma mark - TestCode
 
 - (void) insertData {  
+    /*    EXCLUSION
+     PNPlace *pPause = [manager addPlaceWithName:@"Pause"];
+     PNPlace *pPlay = [manager addPlaceWithName:@"Play"];
+     [manager addExclusionBetween:pPause and:pPlay];    
+ */
+    /*     WEAK
+     PNPlace *pCafeteria = [manager addPlaceWithName:@"Cafeteria"];
+     PNPlace *pNoise = [manager addPlaceWithName:@"Noise"];
+     [manager addWeakInclusionFrom:pCafeteria To:pNoise];    
+     */
+    /*     STRONG
+     PNPlace *pBrussel = [manager addPlaceWithName:@"Brussels"];
+     PNPlace *pBelgium = [manager addPlaceWithName:@"Belgium"];
+     [manager addStrongInclusionFrom:pBrussel To:pBelgium];    
+     */
+//    /*     REQUIREMENT
+     PNPlace *pVideo = [manager addPlaceWithName:@"Video"];
+     PNPlace *pH = [manager addPlaceWithName:@"H"];
+     [manager addRequirementTo:pVideo Of:pH];    
+//     */
+   
     
-    PNPlace* place_1 = [manager addPlaceWithName:@"Place1"];
-    PNPlace* place_2 = [manager addPlaceWithName:@"Place 2"];
-    
-    PNToken* token_1 = [[PNToken alloc] init];
-    //token_1.color = [[NSNumber alloc] initWithInt:4];
-    
-    [place_1 addToken:token_1];
-    
-    PNTransition* trans = [[PNTransition alloc] initWithName:@"the trans"];
-    PNArcInscription* arc = [[PNArcInscription alloc] initWithType:NORMAL];
-    PNArcInscription* arc1 = [[PNArcInscription alloc] initWithType:NORMAL];
-
-    
-    [trans addInput:arc fromPlace:place_1];
-    [trans addOutput:arc1 toPlace:place_2];
-    
-    [manager addTransition:trans];
-    
- 
     
     [self loadKernel];
 }
