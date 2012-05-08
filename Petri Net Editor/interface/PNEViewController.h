@@ -20,6 +20,7 @@
     UIActionSheet *addOptionsSheet; /** The option sheet that presents the user with the options to add elements to the Petri Net */
     
     UIBarButtonItem *addButton; /** Link to the button that shows the addOptionsSheet */
+    UIBarButtonItem *trashButton; /** Button that empties the kernel */
     UIBarButtonItem *reloadButton; /** Button that resets the positions of all the nodes */
     UIBarButtonItem *organiseButton; /** Button that should lead to the saving and loading options */
     UIBarButtonItem *screenshotButton; /** Button that makes a picture of the petri net */
@@ -32,6 +33,7 @@
 @property (nonatomic, readonly) IBOutlet PNEView *petriNetView;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *trashButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *organiseButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *reloadButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *screenshotButton;
@@ -40,6 +42,7 @@
 - (IBAction)organiseButtonPressed:(id)sender;
 - (IBAction)reloadButtonPressed:(id)sender;
 - (IBAction)screenshotButtonPressed:(id)sender;
+- (IBAction)trashButtonPressed:(id)sender;
 
 //Debug
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *testButton;

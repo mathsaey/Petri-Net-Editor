@@ -48,7 +48,7 @@
                                             <action selector="toggleLog:" destination="7Yq-U1-QkZ" id="6Fp-br-7jH"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="test" id="B8O-w0-5XD">
+                                    <barButtonItem title="t" id="B8O-w0-5XD">
                                         <connections>
                                             <action selector="testButtonFire:" destination="7Yq-U1-QkZ" id="mLN-lM-clu"/>
                                         </connections>
@@ -57,6 +57,11 @@
                                     <barButtonItem systemItem="refresh" id="79J-1Z-VJE">
                                         <connections>
                                             <action selector="reloadButtonPressed:" destination="7Yq-U1-QkZ" id="OwX-9F-yh8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="trash" id="B1D-MK-Ccf">
+                                        <connections>
+                                            <action selector="trashButtonPressed:" destination="7Yq-U1-QkZ" id="4IY-fA-tNi"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="organize" id="IvF-mV-EED">
@@ -83,6 +88,7 @@
                         <outlet property="reloadButton" destination="79J-1Z-VJE" id="w7U-UK-tpf"/>
                         <outlet property="screenshotButton" destination="MJ6-cv-eIC" id="4pm-45-2Uf"/>
                         <outlet property="testButton" destination="B8O-w0-5XD" id="04c-I4-AVS"/>
+                        <outlet property="trashButton" destination="B1D-MK-Ccf" id="ZDK-4U-ryA"/>
                         <outlet property="viewContainer" destination="WKE-Ot-qHO" id="RG5-rD-vK9"/>
                     </connections>
                 </viewController>
@@ -110,6 +116,7 @@
                 <relationship kind="action" name="reloadButtonPressed:"/>
                 <relationship kind="action" name="screenshotButtonPressed:"/>
                 <relationship kind="action" name="testButtonFire:"/>
+                <relationship kind="action" name="trashButtonPressed:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="log" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="organiseButton" candidateClass="UIBarButtonItem"/>
@@ -117,6 +124,7 @@
                 <relationship kind="outlet" name="reloadButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="screenshotButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="testButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="trashButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
     </classes>

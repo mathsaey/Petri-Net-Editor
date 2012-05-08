@@ -24,3 +24,5 @@
 }
 
 @end
+
+//TODO: remove self out of neighbour places

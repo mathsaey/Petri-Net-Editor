@@ -85,6 +85,13 @@
     UIImageWriteToSavedPhotosAlbum(pnImage, NULL, NULL, NULL);
 }
 
+- (IBAction)trashButtonPressed:(id)sender {
+    [[[PNManager sharedManager] places] removeAllObjects];
+    [[[PNManager sharedManager] temporaryPlaces] removeAllObjects];
+    [[[PNManager sharedManager] transitions] removeAllObjects];
+    [petriNetView loadKernel];
+}
+
 /**
  Triggers a pop up dialog prompting the user
  to select the name of the new context/transition

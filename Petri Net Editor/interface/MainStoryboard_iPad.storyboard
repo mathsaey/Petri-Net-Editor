@@ -100,6 +100,11 @@
                                             <action selector="reloadButtonPressed:" destination="dPx-TF-z0D" id="hhT-Ob-mLR"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="trash" id="GLV-pY-Wyq">
+                                        <connections>
+                                            <action selector="trashButtonPressed:" destination="dPx-TF-z0D" id="MLF-iA-dbI"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="organize" id="yb9-dF-JjZ">
                                         <connections>
                                             <action selector="organiseButtonPressed:" destination="dPx-TF-z0D" id="ePh-BD-upF"/>
@@ -125,6 +130,7 @@
                         <outlet property="petriNetView" destination="74w-vO-Kmt" id="RBN-Qh-tHe"/>
                         <outlet property="reloadButton" destination="uO8-ys-GTH" id="5cA-wq-ccw"/>
                         <outlet property="screenshotButton" destination="wyV-Gy-HWk" id="mIO-zz-6qC"/>
+                        <outlet property="trashButton" destination="GLV-pY-Wyq" id="Mmk-Ci-0nh"/>
                     </connections>
                 </viewController>
             </objects>
@@ -152,6 +158,7 @@
                 <relationship kind="action" name="reloadButtonPressed:"/>
                 <relationship kind="action" name="screenshotButtonPressed:"/>
                 <relationship kind="action" name="testButtonFire:"/>
+                <relationship kind="action" name="trashButtonPressed:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="log" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="organiseButton" candidateClass="UIBarButtonItem"/>
@@ -159,6 +166,7 @@
                 <relationship kind="outlet" name="reloadButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="screenshotButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="testButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="trashButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
     </classes>

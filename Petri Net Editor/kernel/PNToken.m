@@ -16,7 +16,7 @@
 
 - (id) init {
 	if((self = [super init])) {
-		value = -1;
+		value = 1;
         color = [[NSNumber alloc] initWithInt:1]; //default "black" color
 	}
 	return self;
