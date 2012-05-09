@@ -22,6 +22,7 @@
 		D541C4731469C6C8002DB7F4 /* Petri_Net_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */; };
 		D5546C1315519E9000D50E6C /* PNEContextPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */; };
 		D5546C1615519EB000D50E6C /* PNETemporaryPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */; };
+		D5546C27155AAA1900D50E6C /* PNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C26155AAA1900D50E6C /* PNParser.m */; };
 		D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D557F63D14F303D7005DC543 /* PNEConstants.m */; };
 		D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46714F27953001D9B19 /* Logo_iPad.png */; };
 		D595E46C14F279F8001D9B19 /* logo_iPhone_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46914F279F8001D9B19 /* logo_iPhone_big.png */; };
@@ -98,6 +99,8 @@
 		D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEContextPlaceView.m; path = drawing/PNEContextPlaceView.m; sourceTree = "<group>"; };
 		D5546C1415519EB000D50E6C /* PNETemporaryPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETemporaryPlaceView.h; path = drawing/PNETemporaryPlaceView.h; sourceTree = "<group>"; };
 		D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETemporaryPlaceView.m; path = drawing/PNETemporaryPlaceView.m; sourceTree = "<group>"; };
+		D5546C25155AAA1900D50E6C /* PNParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNParser.h; sourceTree = "<group>"; };
+		D5546C26155AAA1900D50E6C /* PNParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNParser.m; sourceTree = "<group>"; };
 		D557F63C14F303D7005DC543 /* PNEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEConstants.h; sourceTree = "<group>"; };
 		D557F63D14F303D7005DC543 /* PNEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEConstants.m; sourceTree = "<group>"; };
 		D595E46714F27953001D9B19 /* Logo_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo_iPad.png; path = ../../Files/logo/Logo_iPad.png; sourceTree = "<group>"; };
@@ -225,6 +228,7 @@
 		D541C44A1469C6C8002DB7F4 /* Petri Net Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D5546C24155A850C00D50E6C /* parser */,
 				D595E47E14F28B09001D9B19 /* drawing */,
 				D541C4AB1469C782002DB7F4 /* Interface */,
 				D541C4831469C733002DB7F4 /* kernel */,
@@ -344,6 +348,15 @@
 				D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */,
 			);
 			name = Places;
+			sourceTree = "<group>";
+		};
+		D5546C24155A850C00D50E6C /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				D5546C25155AAA1900D50E6C /* PNParser.h */,
+				D5546C26155AAA1900D50E6C /* PNParser.m */,
+			);
+			name = parser;
 			sourceTree = "<group>";
 		};
 		D595E46214F271C8001D9B19 /* iPad */ = {
@@ -599,6 +612,7 @@
 				D5B3B59815517A7F00F20DC0 /* PNTemporaryPlace.m in Sources */,
 				D5546C1315519E9000D50E6C /* PNEContextPlaceView.m in Sources */,
 				D5546C1615519EB000D50E6C /* PNETemporaryPlaceView.m in Sources */,
+				D5546C27155AAA1900D50E6C /* PNParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

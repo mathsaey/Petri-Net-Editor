@@ -8,6 +8,8 @@
 
 #import "PNEViewController.h"
 
+#import "../PNParser.h"
+
 @implementation PNEViewController
 
 @synthesize log, petriNetView;
@@ -85,11 +87,16 @@
     UIImageWriteToSavedPhotosAlbum(pnImage, NULL, NULL, NULL);
 }
 
+/**
+ This method empties the kernel.
+ TODO: add a confirmation window to stop accidental trashing.
+ */
 - (IBAction)trashButtonPressed:(id)sender {
     [[[PNManager sharedManager] places] removeAllObjects];
     [[[PNManager sharedManager] temporaryPlaces] removeAllObjects];
     [[[PNManager sharedManager] transitions] removeAllObjects];
     [petriNetView loadKernel];
+    [petriNetView resetPositions];
 }
 
 /**
@@ -157,7 +164,31 @@
 #pragma mark - Test code
 
 - (IBAction)testButtonFire:(id)sender {
-    [petriNetView insertData];
+    PNParser *tmp = [[PNParser alloc] init];
+    [tmp parse:@"Contexts:\n\
+\n\
+#lolol \n\
+Context1 #test\n\
+Context2\n\
+Context3\n\
+Context4\n\
+Context5\n\
+Context6\n\
+Context7\n\
+BoundedContext,a\n\
+\n\
+Links:\n\
+\n\
+Context1 -> Context2\n\
+Context3 => Context4\n\
+Context5 >< Context1\n\
+Context6 =< Context7\n\
+\n\
+END\n\
+\n\
+"];
+    
+    [petriNetView loadKernel];
 }
 
 @end
