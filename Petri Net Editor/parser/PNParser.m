@@ -202,7 +202,6 @@
  The line to be parsed.
  */
 - (void) parseLink: (NSString*) line {
-    NSLog([NSString stringWithFormat:@"Parsing link: %@", line]);
     //Ensure the only spaces are inbetween the components
     line = [self removeSpaces:line];
     NSArray *components = [line componentsSeparatedByString:@" "];
@@ -218,10 +217,15 @@
     PNPlace* fromContext = [contexts objectForKey:fromContextName];
     PNPlace* toContext = [contexts objectForKey:toContextName];
     
-    if (operator == WEAK_INCLUSION_TOKEN) return [manager addWeakInclusionFrom:fromContext To:toContext];
-    else if (operator == STRONG_INCLUSION_TOKEN) return [manager addStrongInclusionFrom:fromContext To:toContext];
-    else if (operator == EXCLUSION_TOKEN) return [manager addExclusionBetween:fromContext and:toContext];
-    else if (operator == REQUIREMENT_TOKEN) return [manager addRequirementTo:fromContext Of:toContext];
+    //Add the correct relation
+    if ([operator isEqualToString:WEAK_INCLUSION_TOKEN]) 
+        return [manager addWeakInclusionFrom:fromContext To:toContext];
+    else if ([operator isEqualToString:STRONG_INCLUSION_TOKEN]) 
+        return [manager addStrongInclusionFrom:fromContext To:toContext];
+    else if ([operator isEqualToString:EXCLUSION_TOKEN]) 
+        return [manager addExclusionBetween:fromContext and:toContext];
+    else if ([operator isEqualToString:REQUIREMENT_TOKEN]) 
+        return [manager addRequirementTo:fromContext Of:toContext];
     else return [self printError:[NSString stringWithFormat:@"Syntax error in line: '%@', operator, '%@' not recognised", line, operator]];
 }
 
