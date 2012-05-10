@@ -12,10 +12,16 @@
 
 - (id) init {
     if (self = [super init]) {
+        contexts = [[NSMutableDictionary alloc] init];
         manager = [PNManager sharedManager];
         state = NO_STATE;
     }
     return self;
+}
+
+- (void) dealloc {
+    [contexts release];
+    [super dealloc];
 }
 
 #pragma mark - Help methods
@@ -84,12 +90,11 @@
  empty lines and new state identifiers.
  Afterwards it passes on the line to the 
  responsible method.
- 
  @param line the line to parse
  */
 - (void) parseLine: (NSString*) line {
     //Filter out the comments
-    NSRange commentRange = [line rangeOfString:@"#"];
+    NSRange commentRange = [line rangeOfString:COMMENT_TOKEN];
     if (commentRange.location != NSNotFound) {
         commentRange.length = commentRange.length - 1;
         line = [line substringToIndex:commentRange.location];
@@ -114,26 +119,22 @@
         case END_STATE:
             return;
             break;
-        default:
-            [self printError:@"An internal error occured in parseLine, no matching state found!"];
-            break;
     }
-    
 }
 
 /**
  This method checks for lines that change the 
  state of the parser.
- 
  @param line
     The line to check
  @return
     True if the state changed, false if it didn't
  */
 - (BOOL) checkStateChange: (NSString*) line {
-    if ([line isEqualToString:@"Contexts:"]) state = PARSING_CONTEXTS;
-    else if ([line isEqualToString:@"Links:"]) state = PARSING_LINKS;
-    else if ([line isEqualToString:@"END"]) state = END_STATE;
+    line = [self removeSpaces:line];
+    if ([line isEqualToString:CONTEXT_INDICATOR]) state = PARSING_CONTEXTS;
+    else if ([line isEqualToString:LINK_INDICATOR]) state = PARSING_LINKS;
+    else if ([line isEqualToString:END_INDICATOR]) state = END_STATE;
     else return false;
     return true;
 }
@@ -151,11 +152,12 @@
 /**
  Parses a line when the parser is in the 
  PARSING_CONTEXTS state.
+ The created context gets stored in a dictionary
  @param line
     The line to be parsed.
  */
 - (void) parseContext: (NSString*) line {
-    NSArray *components = [line componentsSeparatedByString:@","];
+    NSArray *components = [line componentsSeparatedByString:CONTEXT_SEPERATOR];
     
     //Standard context creation
     if ([components count] == 1) {
@@ -164,7 +166,7 @@
             [self printError:[NSString stringWithFormat:@"A context name cannot contain spaces! %@", line]];
             return;
         }
-        [manager addPlaceWithName:line];
+        [contexts setObject:[manager addPlaceWithName:line] forKey:line];
     }
     //Context with capacity
     else if ([components count] == 2) {
@@ -184,7 +186,7 @@
             return;
         }
         
-        [manager addPlaceWithName:contextName AndCapacity:[capacity intValue]];
+        [contexts setObject:[manager addPlaceWithName:contextName AndCapacity:[capacity intValue]] forKey:contextName];
         
     }
     
@@ -201,6 +203,27 @@
  */
 - (void) parseLink: (NSString*) line {
     NSLog([NSString stringWithFormat:@"Parsing link: %@", line]);
+    //Ensure the only spaces are inbetween the components
+    line = [self removeSpaces:line];
+    NSArray *components = [line componentsSeparatedByString:@" "];
+    
+    if ([components count] != 3)
+        return [self printError:[NSString stringWithFormat:@"Syntax error, too many spaces in: '%@'", line]];
+    
+    //Get the components
+    NSString *fromContextName = [components objectAtIndex:0];
+    NSString *toContextName = [components objectAtIndex:2];
+    NSString *operator = [components objectAtIndex:1];
+    
+    PNPlace* fromContext = [contexts objectForKey:fromContextName];
+    PNPlace* toContext = [contexts objectForKey:toContextName];
+    
+    if (operator == WEAK_INCLUSION_TOKEN) return [manager addWeakInclusionFrom:fromContext To:toContext];
+    else if (operator == STRONG_INCLUSION_TOKEN) return [manager addStrongInclusionFrom:fromContext To:toContext];
+    else if (operator == EXCLUSION_TOKEN) return [manager addExclusionBetween:fromContext and:toContext];
+    else if (operator == REQUIREMENT_TOKEN) return [manager addRequirementTo:fromContext Of:toContext];
+    else return [self printError:[NSString stringWithFormat:@"Syntax error in line: '%@', operator, '%@' not recognised", line, operator]];
 }
+
 
 @end

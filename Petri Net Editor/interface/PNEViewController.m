@@ -8,12 +8,12 @@
 
 #import "PNEViewController.h"
 
-#import "../PNParser.h"
+#import "../parser/PNParser.h"
 
 @implementation PNEViewController
 
 @synthesize log, petriNetView;
-@synthesize addButton, reloadButton, organiseButton, screenshotButton;
+@synthesize addButton, reloadButton, organiseButton, screenshotButton, trashButton;
 
 //debug code
 @synthesize testButton;

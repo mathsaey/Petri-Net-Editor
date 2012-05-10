@@ -22,8 +22,9 @@
 		D541C4731469C6C8002DB7F4 /* Petri_Net_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4721469C6C8002DB7F4 /* Petri_Net_EditorTests.m */; };
 		D5546C1315519E9000D50E6C /* PNEContextPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */; };
 		D5546C1615519EB000D50E6C /* PNETemporaryPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */; };
-		D5546C27155AAA1900D50E6C /* PNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C26155AAA1900D50E6C /* PNParser.m */; };
 		D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D557F63D14F303D7005DC543 /* PNEConstants.m */; };
+		D5681D20155C127300EB02AA /* PNParserConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D5681D1E155C127300EB02AA /* PNParserConstants.m */; };
+		D5681D23155C805800EB02AA /* PNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D5681D22155C805800EB02AA /* PNParser.m */; };
 		D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46714F27953001D9B19 /* Logo_iPad.png */; };
 		D595E46C14F279F8001D9B19 /* logo_iPhone_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46914F279F8001D9B19 /* logo_iPhone_big.png */; };
 		D595E46D14F279F8001D9B19 /* logo_iPhone_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */; };
@@ -99,10 +100,12 @@
 		D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEContextPlaceView.m; path = drawing/PNEContextPlaceView.m; sourceTree = "<group>"; };
 		D5546C1415519EB000D50E6C /* PNETemporaryPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETemporaryPlaceView.h; path = drawing/PNETemporaryPlaceView.h; sourceTree = "<group>"; };
 		D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETemporaryPlaceView.m; path = drawing/PNETemporaryPlaceView.m; sourceTree = "<group>"; };
-		D5546C25155AAA1900D50E6C /* PNParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNParser.h; sourceTree = "<group>"; };
-		D5546C26155AAA1900D50E6C /* PNParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNParser.m; sourceTree = "<group>"; };
 		D557F63C14F303D7005DC543 /* PNEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEConstants.h; sourceTree = "<group>"; };
 		D557F63D14F303D7005DC543 /* PNEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEConstants.m; sourceTree = "<group>"; };
+		D5681D1D155C127300EB02AA /* PNParserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNParserConstants.h; path = parser/PNParserConstants.h; sourceTree = "<group>"; };
+		D5681D1E155C127300EB02AA /* PNParserConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNParserConstants.m; path = parser/PNParserConstants.m; sourceTree = "<group>"; };
+		D5681D21155C805800EB02AA /* PNParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNParser.h; path = parser/PNParser.h; sourceTree = "<group>"; };
+		D5681D22155C805800EB02AA /* PNParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNParser.m; path = parser/PNParser.m; sourceTree = "<group>"; };
 		D595E46714F27953001D9B19 /* Logo_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo_iPad.png; path = ../../Files/logo/Logo_iPad.png; sourceTree = "<group>"; };
 		D595E46914F279F8001D9B19 /* logo_iPhone_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_iPhone_big.png; path = ../../Files/logo/logo_iPhone_big.png; sourceTree = "<group>"; };
 		D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_iPhone_small.png; path = ../../Files/logo/logo_iPhone_small.png; sourceTree = "<group>"; };
@@ -353,8 +356,10 @@
 		D5546C24155A850C00D50E6C /* parser */ = {
 			isa = PBXGroup;
 			children = (
-				D5546C25155AAA1900D50E6C /* PNParser.h */,
-				D5546C26155AAA1900D50E6C /* PNParser.m */,
+				D5681D21155C805800EB02AA /* PNParser.h */,
+				D5681D22155C805800EB02AA /* PNParser.m */,
+				D5681D1D155C127300EB02AA /* PNParserConstants.h */,
+				D5681D1E155C127300EB02AA /* PNParserConstants.m */,
 			);
 			name = parser;
 			sourceTree = "<group>";
@@ -612,7 +617,8 @@
 				D5B3B59815517A7F00F20DC0 /* PNTemporaryPlace.m in Sources */,
 				D5546C1315519E9000D50E6C /* PNEContextPlaceView.m in Sources */,
 				D5546C1615519EB000D50E6C /* PNETemporaryPlaceView.m in Sources */,
-				D5546C27155AAA1900D50E6C /* PNParser.m in Sources */,
+				D5681D20155C127300EB02AA /* PNParserConstants.m in Sources */,
+				D5681D23155C805800EB02AA /* PNParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

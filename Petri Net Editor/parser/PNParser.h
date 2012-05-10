@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "kernel/PNManager.h"
+#import "../kernel/PNManager.h"
+#import "PNParserConstants.h"
 
 /**
  This class reads a subjective C context declaration
  and adds it to the kernel.
  */
 @interface PNParser : NSObject {
-    PNManager* manager;
-    enum PNParserState state;
+    NSMutableDictionary *contexts; /**< This dictionary keeps track of the created places */
+    
+    PNManager* manager; /**< A link to the manager */
+    enum PNParserState state; /**< The state of the parser */
     
     /**
      This enumeration represents the parser state
