@@ -7,7 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "../data/PNEFileManager.h"
 
-@interface PNEFileViewController : UIViewController
+@interface PNEFileViewController : UIViewController {
+    UIView *superView;
+        
+    UINavigationBar *bar;
+    UIBarButtonItem *doneButton;
+    
+    UITextView *fileView;
+    UITableView *folderView;
+    
+    PNEFileManager *fileManager;
+}
+
+@property (nonatomic, retain) IBOutlet UIView *superView;
+
+@property (nonatomic, retain) IBOutlet UINavigationBar *bar;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
+
+@property (nonatomic, retain) IBOutlet UITextView *fileView;
+@property (nonatomic, retain) IBOutlet UITableView *folderView;
+
+
+- (IBAction)doneButtonPressed:(id)sender;
+
+//- (IBAction)didPan:(id)sender;
+
 
 @end

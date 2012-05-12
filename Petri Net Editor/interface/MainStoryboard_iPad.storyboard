@@ -20,11 +20,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="bottom" id="7gA-Ta-1ZD" userLabel="InfoView">
-                                        <rect key="frame" x="0.0" y="697" width="768" height="263"/>
+                                        <rect key="frame" x="0.0" y="697" width="768" height="264"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="uGu-su-0gH" userLabel="Log">
-                                                <rect key="frame" x="506" y="46" width="247" height="207"/>
+                                                <rect key="frame" x="506" y="46" width="248" height="208"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -45,7 +45,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" id="kHQ-c5-Jt3">
-                                                <rect key="frame" x="20" y="46" width="478" height="207"/>
+                                                <rect key="frame" x="20" y="46" width="478" height="208"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -58,7 +58,7 @@
                                         </accessibility>
                                     </view>
                                     <view contentMode="scaleToFill" id="74w-vO-Kmt" userLabel="Petri Net" customClass="PNEView">
-                                        <rect key="frame" x="0.0" y="0.0" width="768" height="713"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="714"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
@@ -105,11 +105,14 @@
                                             <action selector="trashButtonPressed:" destination="dPx-TF-z0D" id="MLF-iA-dbI"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="15" style="plain" systemItem="fixedSpace" id="Jfx-Dg-F39"/>
                                     <barButtonItem systemItem="organize" id="yb9-dF-JjZ">
                                         <connections>
                                             <action selector="organiseButtonPressed:" destination="dPx-TF-z0D" id="ePh-BD-upF"/>
+                                            <segue destination="aXD-PW-OAf" kind="modal" id="ZBe-v6-aPF"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="12" style="plain" systemItem="fixedSpace" id="PA6-gC-h6n"/>
                                     <barButtonItem systemItem="camera" id="wyV-Gy-HWk">
                                         <connections>
                                             <action selector="screenshotButtonPressed:" destination="dPx-TF-z0D" id="gAn-fZ-3Co"/>
@@ -134,10 +137,71 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="74" y="-205"/>
+            <point key="canvasLocation" x="1302" y="-837"/>
+        </scene>
+        <!--File View Controller-->
+        <scene sceneID="7nE-CR-fzf">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4cs-Kb-uWa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="aXD-PW-OAf" customClass="PNEFileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iJZ-pb-UUP">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="vH5-Wp-6L7">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Files" id="rIQ-0G-Ox8">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="h3X-ZX-Aui">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="aXD-PW-OAf" id="8nx-RK-eXB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ePG-cp-T91">
+                                <rect key="frame" x="0.0" y="44" width="233" height="960"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="oOo-Zs-yxX">
+                                <rect key="frame" x="241" y="44" width="527" height="960"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                    </view>
+                    <connections>
+                        <outlet property="bar" destination="vH5-Wp-6L7" id="tTw-LP-6Ee"/>
+                        <outlet property="doneButton" destination="h3X-ZX-Aui" id="eaG-5L-Smq"/>
+                        <outlet property="fileView" destination="oOo-Zs-yxX" id="Fnd-i9-Svg"/>
+                        <outlet property="folderView" destination="ePG-cp-T91" id="Jtl-Br-OqW"/>
+                        <outlet property="superView" destination="iJZ-pb-UUP" id="6RF-PK-W9H"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2187" y="-837"/>
         </scene>
     </scenes>
     <classes>
+        <class className="PNEFileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEFileViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneButtonPressed:"/>
+                <relationship kind="outlet" name="bar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="fileView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="folderView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="superView" candidateClass="UIView"/>
+            </relationships>
+        </class>
         <class className="PNEPadViewController" superclassName="PNEViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEPadViewController.h"/>
             <relationships>
@@ -154,7 +218,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addButtonPress:"/>
-                <relationship kind="action" name="organiseButtonPressed:"/>
                 <relationship kind="action" name="reloadButtonPressed:"/>
                 <relationship kind="action" name="screenshotButtonPressed:"/>
                 <relationship kind="action" name="testButtonFire:"/>

@@ -8,17 +8,16 @@
 
 #import "PNEFileViewController.h"
 
-@interface PNEFileViewController ()
-
-@end
-
 @implementation PNEFileViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize doneButton, bar, fileView, folderView;
+@synthesize superView;
+
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
+        fileManager = [[PNEFileManager alloc] init];
     }
     return self;
 }
@@ -35,9 +34,38 @@
     // Release any retained subviews of the main view.
 }
 
+
+- (void) openContextDeclaration: (NSString*) name {
+    fileView.text = [fileManager getContextDeclaration:name];
+}
+
+- (void) populate: (NSString*) path {
+    
+    NSArray *fileList = [fileManager getFolderContent];
+    for (NSString* tmp in fileList) {
+        NSLog(tmp);
+    }
+        
+    
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
+        interfaceOrientation == UIInterfaceOrientationLandscapeRight)
 	return YES;
+    else return YES;
 }
+
+- (IBAction)doneButtonPressed:(id)sender {
+    [self populate:@"/"];
+    
+    //[self returnToMainViewController];
+}
+
+- (void) returnToMainViewController {
+    [self dismissModalViewControllerAnimated:true];
+}
+
 
 @end

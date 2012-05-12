@@ -33,7 +33,6 @@
 
 #pragma mark View rotating behaviour
 
-//Petri net enkel weergeven in horizontale modus? Log in verticale modus 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;

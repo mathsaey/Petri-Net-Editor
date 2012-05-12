@@ -8,7 +8,7 @@
 
 #import "PNEViewController.h"
 
-#import "../parser/PNParser.h"
+#import "../data/PNParser.h"
 
 @implementation PNEViewController
 
@@ -20,30 +20,24 @@
 
 #pragma mark - Initialisers
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
+        [super viewDidLoad];
+        petriNetView.log = log;
+        addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Context", @"Transition", @"Arc" , nil];
     }
     return self;
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    petriNetView.log = log;
-    addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Context", @"Transition", @"Arc" , nil];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
+- (void) dealloc {
     [petriNetView release];
     [log release];
+    [super dealloc];
 }
+
+#pragma mark - View lifecycle
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -64,12 +58,6 @@
     NSLog(@"abstract version of addButtonPress (PNEViewController) called!");
 }
 
-/**
- [placeholder code] This method is called when the organise button has been pressed
- */
-- (IBAction)organiseButtonPressed:(id)sender {
-    NSLog(@"Placeholder!");
-}
 /**
  This method is called when the reload button is pressed.
  */
@@ -165,28 +153,25 @@
 
 - (IBAction)testButtonFire:(id)sender {
     PNParser *tmp = [[PNParser alloc] init];
+    //[petriNetView insertData];
+    
     [tmp parse:@"Contexts:\n\
 \n\
 #lolol \n\
-Context1 #test\n\
-Context2\n\
-Context3\n\
-Context4\n\
-Context5\n\
-Context6\n\
-Context7\n\
-BoundedContext,5\n\
+Video #test\n\
+H\n\
 \n\
 Links:\n\
 \n\
-Context1 -> Context2\n\
-Context3 => Context4\n\
-Context5 >< Context1\n\
-Context6 =< Context7\n\
+#Context1 -> Context2\n\
+#Context3 => Context4\n\
+#Context5 >< Context1\n\
+Video =< H\n\
 \n\
 END\n\
 \n\
 "];
+     
     
     [petriNetView loadKernel];
 }

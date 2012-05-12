@@ -7,6 +7,8 @@
 //
 
 /**
+ @author Mathijs Saey
+ 
  This class is responsible for drawing the Context places
  */
 #import "PNEPlaceView.h"

@@ -10,7 +10,7 @@
 #import "../drawing/PNEView.h"
 
 /**
- @author Mathijs
+ @author Mathijs Saey
  
  This class contains all methods and members that both the iPad and the iPhone viewcontrollers use
  */
@@ -39,7 +39,6 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *screenshotButton;
 
 - (IBAction)addButtonPress:(id)sender;
-- (IBAction)organiseButtonPressed:(id)sender;
 - (IBAction)reloadButtonPressed:(id)sender;
 - (IBAction)screenshotButtonPressed:(id)sender;
 - (IBAction)trashButtonPressed:(id)sender;

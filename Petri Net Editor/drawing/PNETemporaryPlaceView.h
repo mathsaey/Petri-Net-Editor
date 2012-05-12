@@ -10,6 +10,8 @@
 #import "../kernel/PNTemporaryPlace.h"
 
 /**
+ @author Mathijs Saey
+ 
  This class is responsible for drawing the temporary places
  */
 @interface PNETemporaryPlaceView : PNEPlaceView
