@@ -11,6 +11,8 @@
 #import "PNParserConstants.h"
 
 /**
+ @author Mathijs Saey
+
  This class reads a subjective C context declaration
  and adds it to the kernel.
  */

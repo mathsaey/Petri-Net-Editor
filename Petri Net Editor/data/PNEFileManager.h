@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PNEFileManager : NSObject
+/**
+ @author Mathijs Saey
+ 
+ This class is responsible for opening
+ and writing the various files the editor uses.
+ */
+@interface PNEFileManager : NSObject {
+    NSString *basePath;
+    NSString *currentPath;
+}
+
+- (NSString*) getContextDeclaration: (NSString*) name;
+
+- (void) changeFolder: (NSString*) folderName;
+- (void) returnToFolder;
+- (NSArray*) getFolderContent;
 
 @end
