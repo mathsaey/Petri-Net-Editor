@@ -177,8 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				D541C44A1469C6C8002DB7F4 /* Petri Net Editor */,
-				D541C44B1469C6C8002DB7F4 /* Supporting Files */,
 				D541C4821469C6F9002DB7F4 /* Resources */,
+				D541C44B1469C6C8002DB7F4 /* Supporting Files */,
 				D541C4431469C6C8002DB7F4 /* Frameworks */,
 				D541C4411469C6C8002DB7F4 /* Products */,
 			);

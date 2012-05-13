@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PNParser.h"
 
 /**
  @author Mathijs Saey
@@ -19,10 +20,13 @@
     NSString *currentPath;
 }
 
+-(void) putContextDeclaration: (NSString*) fileName withContents: (NSString*) contents;
 - (NSString*) getContextDeclaration: (NSString*) name;
+- (BOOL) isContextDeclaration: (NSString*) name;
+- (void) parseFile: (NSString*) name;
 
 - (void) changeFolder: (NSString*) folderName;
-- (void) returnToFolder;
 - (NSArray*) getFolderContent;
+- (void) returnToFolder;
 
 @end
