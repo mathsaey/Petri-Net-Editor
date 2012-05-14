@@ -18,6 +18,7 @@
  */
 @interface PNParser : NSObject {
     NSMutableDictionary *contexts; /**< This dictionary keeps track of the created places */
+    BOOL didFinishWithoutErrors; /**< This boolean is false if there were no errors during parsing */
     
     PNManager* manager; /**< A link to the manager */
     enum PNParserState state; /**< The state of the parser */
@@ -33,6 +34,6 @@
     };
 }
 
-- (void) parse: (NSString*) contextDeclaration;
+- (BOOL) parse: (NSString*) contextDeclaration;
 
 @end

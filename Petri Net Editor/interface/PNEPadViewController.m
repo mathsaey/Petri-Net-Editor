@@ -37,6 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [petriNetView loadKernel];
 }
 
 - (void)viewDidAppear:(BOOL)animated

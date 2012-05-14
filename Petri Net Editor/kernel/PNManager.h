@@ -67,6 +67,12 @@ typedef enum {
 + (PNManager *) sharedManager;
 
 /**
+ Empties the manager and creates a new one
+ @author Mathijs Saey
+ */
++ (void) trashManager;
+
+/**
  Initialize the petri net by setting up the initial marking (@TODO) 
  and eneabling the respective transitions
  */

@@ -80,11 +80,8 @@
  TODO: add a confirmation window to stop accidental trashing.
  */
 - (IBAction)trashButtonPressed:(id)sender {
-    [[[PNManager sharedManager] places] removeAllObjects];
-    [[[PNManager sharedManager] temporaryPlaces] removeAllObjects];
-    [[[PNManager sharedManager] transitions] removeAllObjects];
+    [PNManager trashManager];
     [petriNetView loadKernel];
-    [petriNetView resetPositions];
 }
 
 /**
@@ -147,33 +144,6 @@
             [self addContext:name];
         else [self addTransition:name];
     }
-}
-
-#pragma mark - Test code
-
-- (IBAction)testButtonFire:(id)sender {
-    PNParser *tmp = [[PNParser alloc] init];
-    //[petriNetView insertData];
-    
-    [tmp parse:@"Contexts:\n\
-\n\
-#lolol \n\
-Video #test\n\
-H\n\
-\n\
-Links:\n\
-\n\
-#Context1 -> Context2\n\
-#Context3 => Context4\n\
-#Context5 >< Context1\n\
-Video =< H\n\
-\n\
-END\n\
-\n\
-"];
-     
-    
-    [petriNetView loadKernel];
 }
 
 @end

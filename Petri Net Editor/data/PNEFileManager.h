@@ -21,9 +21,10 @@
 }
 
 -(void) putContextDeclaration: (NSString*) fileName withContents: (NSString*) contents;
+- (NSData*) getContextDeclarationBuffer: (NSString*) name;
 - (NSString*) getContextDeclaration: (NSString*) name;
 - (BOOL) isContextDeclaration: (NSString*) name;
-- (void) parseFile: (NSString*) name;
+- (BOOL) parseFile: (NSString*) name;
 
 - (void) changeFolder: (NSString*) folderName;
 - (NSArray*) getFolderContent;

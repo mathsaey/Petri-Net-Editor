@@ -12,6 +12,7 @@
 
 - (id) init {
     if (self = [super init]) {
+        didFinishWithoutErrors = true;
         contexts = [[NSMutableDictionary alloc] init];
         manager = [PNManager sharedManager];
         state = NO_STATE;
@@ -37,6 +38,7 @@
  */
 - (void) printError: (NSString*) errorMessage {
     state = END_STATE;
+    didFinishWithoutErrors = false;
     UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"A parsing error occured:" message:errorMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [error show];
 }
@@ -78,12 +80,17 @@
  
  @param contextDeclaration
     The full contextDeclaration string to parse
+ @return
+    True if the parser finished without errors
  */
-- (void) parse: (NSString*) contextDeclaration {    
+- (BOOL) parse: (NSString*) contextDeclaration {  
+    [PNManager trashManager];
+    didFinishWithoutErrors = true;
     for (NSString *line in [contextDeclaration componentsSeparatedByString:@"\n"]) {
-        if (state == END_STATE) return;
+        if (state == END_STATE) return didFinishWithoutErrors;
         [self parseLine:line];
     } 
+    return didFinishWithoutErrors;
 }
 
 /**

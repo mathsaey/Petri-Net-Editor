@@ -22,6 +22,7 @@
 		D5681D48155D8F8900EB02AA /* PNParserConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D5681D46155D8F8900EB02AA /* PNParserConstants.m */; };
 		D58816DF155ED5BD00B26EF6 /* PNEFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58816DE155ED5BD00B26EF6 /* PNEFileViewController.m */; };
 		D58816E3155EF22700B26EF6 /* PNEFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D58816E2155EF22700B26EF6 /* PNEFileManager.m */; };
+		D58816E515612F3500B26EF6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D58816E415612F3400B26EF6 /* MessageUI.framework */; };
 		D595E46814F27953001D9B19 /* Logo_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46714F27953001D9B19 /* Logo_iPad.png */; };
 		D595E46C14F279F8001D9B19 /* logo_iPhone_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46914F279F8001D9B19 /* logo_iPhone_big.png */; };
 		D595E46D14F279F8001D9B19 /* logo_iPhone_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */; };
@@ -92,6 +93,7 @@
 		D58816DE155ED5BD00B26EF6 /* PNEFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEFileViewController.m; path = interface/PNEFileViewController.m; sourceTree = "<group>"; };
 		D58816E1155EF22700B26EF6 /* PNEFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEFileManager.h; path = data/PNEFileManager.h; sourceTree = "<group>"; };
 		D58816E2155EF22700B26EF6 /* PNEFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEFileManager.m; path = data/PNEFileManager.m; sourceTree = "<group>"; };
+		D58816E415612F3400B26EF6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D595E46714F27953001D9B19 /* Logo_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo_iPad.png; path = ../../Files/logo/Logo_iPad.png; sourceTree = "<group>"; };
 		D595E46914F279F8001D9B19 /* logo_iPhone_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_iPhone_big.png; path = ../../Files/logo/logo_iPhone_big.png; sourceTree = "<group>"; };
 		D595E46A14F279F8001D9B19 /* logo_iPhone_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_iPhone_small.png; path = ../../Files/logo/logo_iPhone_small.png; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D58816E515612F3500B26EF6 /* MessageUI.framework in Frameworks */,
 				D541C4451469C6C8002DB7F4 /* UIKit.framework in Frameworks */,
 				D541C4471469C6C8002DB7F4 /* Foundation.framework in Frameworks */,
 				D541C4491469C6C8002DB7F4 /* CoreGraphics.framework in Frameworks */,
@@ -195,6 +198,7 @@
 		D541C4431469C6C8002DB7F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D58816E415612F3400B26EF6 /* MessageUI.framework */,
 				D541C4441469C6C8002DB7F4 /* UIKit.framework */,
 				D541C4461469C6C8002DB7F4 /* Foundation.framework */,
 				D541C4481469C6C8002DB7F4 /* CoreGraphics.framework */,

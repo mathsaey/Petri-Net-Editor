@@ -51,6 +51,11 @@
     }    
 }
 
+/**
+ This method creates a new folder
+ @param folderName
+    The name of the new folder
+ */
 - (void) newFolder: (NSString*) folderName {
     
 }
@@ -77,11 +82,14 @@
  to the parser.
  @param name
     The name of the file
+ @return
+    True if the parser finished without errors
  */
-- (void) parseFile: (NSString*) name {
+- (BOOL) parseFile: (NSString*) name {
     PNParser *parser = [[PNParser alloc] init];
-    [parser parse:[self getContextDeclaration:name]];
+    BOOL didFinishWithoutReceivingErrors = [parser parse:[self getContextDeclaration:name]];
     [parser release];
+    return didFinishWithoutReceivingErrors;
 }
 
 /**
@@ -100,6 +108,21 @@
     
     [contextFile closeFile];    
     return contents;
+}
+
+/**
+ This function returns a data representation of a
+ context declaration.
+ @param name
+    The name of the file
+ @return 
+    The data version of the context declaration
+ */
+- (NSData*) getContextDeclarationBuffer: (NSString*) name {
+    NSFileHandle *contextFile = [NSFileHandle fileHandleForReadingAtPath:[currentPath stringByAppendingString:name]];
+    NSData *buffer = [contextFile readDataToEndOfFile];
+    [contextFile closeFile];    
+    return buffer;
 }
 
 /**

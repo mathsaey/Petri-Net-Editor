@@ -48,11 +48,6 @@
                                             <action selector="toggleLog:" destination="7Yq-U1-QkZ" id="6Fp-br-7jH"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="t" id="B8O-w0-5XD">
-                                        <connections>
-                                            <action selector="testButtonFire:" destination="7Yq-U1-QkZ" id="mLN-lM-clu"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="2L6-fX-Cwl"/>
                                     <barButtonItem systemItem="refresh" id="79J-1Z-VJE">
                                         <connections>
@@ -87,7 +82,6 @@
                         <outlet property="petriNetView" destination="Lh7-Eg-1cR" id="VeF-cV-zXf"/>
                         <outlet property="reloadButton" destination="79J-1Z-VJE" id="w7U-UK-tpf"/>
                         <outlet property="screenshotButton" destination="MJ6-cv-eIC" id="4pm-45-2Uf"/>
-                        <outlet property="testButton" destination="B8O-w0-5XD" id="04c-I4-AVS"/>
                         <outlet property="trashButton" destination="B1D-MK-Ccf" id="ZDK-4U-ryA"/>
                         <outlet property="viewContainer" destination="WKE-Ot-qHO" id="RG5-rD-vK9"/>
                     </connections>
@@ -112,10 +106,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addButtonPress:"/>
-                <relationship kind="action" name="organiseButtonPressed:"/>
                 <relationship kind="action" name="reloadButtonPressed:"/>
                 <relationship kind="action" name="screenshotButtonPressed:"/>
-                <relationship kind="action" name="testButtonFire:"/>
                 <relationship kind="action" name="trashButtonPressed:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="log" candidateClass="UITextView"/>
@@ -123,7 +115,6 @@
                 <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
                 <relationship kind="outlet" name="reloadButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="screenshotButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="testButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="trashButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>

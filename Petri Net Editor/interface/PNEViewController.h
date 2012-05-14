@@ -24,9 +24,6 @@
     UIBarButtonItem *reloadButton; /** Button that resets the positions of all the nodes */
     UIBarButtonItem *organiseButton; /** Button that should lead to the saving and loading options */
     UIBarButtonItem *screenshotButton; /** Button that makes a picture of the petri net */
-    
-    //Debug
-    UIBarButtonItem *testButton;
 }
 
 @property (nonatomic, readonly) IBOutlet UITextView *log;
@@ -42,9 +39,5 @@
 - (IBAction)reloadButtonPressed:(id)sender;
 - (IBAction)screenshotButtonPressed:(id)sender;
 - (IBAction)trashButtonPressed:(id)sender;
-
-//Debug
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *testButton;
-- (IBAction)testButtonFire:(id)sender;
 
 @end

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dPx-TF-z0D">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
@@ -87,12 +88,6 @@
                                             </connections>
                                         </segmentedControl>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="E9u-5x-12e"/>
-                                    <barButtonItem title="testButton" id="7ui-9M-xGw">
-                                        <connections>
-                                            <action selector="testButtonFire:" destination="dPx-TF-z0D" id="jRh-iU-tHI"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="OuB-28-vAU"/>
                                     <barButtonItem systemItem="refresh" id="uO8-ys-GTH">
                                         <connections>
@@ -170,7 +165,22 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bV9-mO-Ns4"/>
-                                    <barButtonItem systemItem="save" id="8iE-50-2R4"/>
+                                    <barButtonItem title="Parse" id="I7F-bB-CeO">
+                                        <connections>
+                                            <action selector="parseButtonPressed:" destination="aXD-PW-OAf" id="faj-9M-i97"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="52e-mz-HAz"/>
+                                    <barButtonItem systemItem="action" id="jjH-pH-4Hv">
+                                        <connections>
+                                            <action selector="mailButtonPressed:" destination="aXD-PW-OAf" id="uiM-lA-Zzf"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="save" id="8iE-50-2R4">
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="aXD-PW-OAf" id="laa-cQ-xda"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -181,6 +191,9 @@
                         <outlet property="doneButton" destination="3Tj-Ro-rPV" id="oyl-xV-UFX"/>
                         <outlet property="fileView" destination="oOo-Zs-yxX" id="Fnd-i9-Svg"/>
                         <outlet property="folderView" destination="ePG-cp-T91" id="Jtl-Br-OqW"/>
+                        <outlet property="mailButton" destination="jjH-pH-4Hv" id="2o6-3c-VaX"/>
+                        <outlet property="parseButton" destination="I7F-bB-CeO" id="Mix-2D-DK9"/>
+                        <outlet property="saveButton" destination="8iE-50-2R4" id="Z44-Xz-o3U"/>
                         <outlet property="superView" destination="iJZ-pb-UUP" id="6RF-PK-W9H"/>
                     </connections>
                 </viewController>
@@ -193,10 +206,16 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEFileViewController.h"/>
             <relationships>
                 <relationship kind="action" name="doneButtonPressed:"/>
+                <relationship kind="action" name="mailButtonPressed:"/>
+                <relationship kind="action" name="parseButtonPressed:"/>
+                <relationship kind="action" name="saveButtonPressed:"/>
                 <relationship kind="outlet" name="bar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="fileView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="folderView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="mailButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="parseButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="superView" candidateClass="UIView"/>
             </relationships>
         </class>
