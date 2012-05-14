@@ -146,6 +146,19 @@
                                 <rect key="frame" x="0.0" y="44" width="233" height="960"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <navigationBar key="tableFooterView" contentMode="scaleToFill" id="VpT-bE-4VC">
+                                    <rect key="frame" x="0.0" y="0.0" width="233" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                    <items>
+                                        <navigationItem title="Title" id="KA3-fb-QaN">
+                                            <barButtonItem key="rightBarButtonItem" systemItem="add" id="sIM-Fj-Sjn">
+                                                <connections>
+                                                    <action selector="addFolderButtonPressed:" destination="aXD-PW-OAf" id="LQa-p1-KcB"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </navigationItem>
+                                    </items>
+                                </navigationBar>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="oOo-Zs-yxX">
                                 <rect key="frame" x="241" y="44" width="527" height="960"/>
@@ -157,7 +170,7 @@
                             </textView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="fNo-CL-EbE">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <items>
                                     <barButtonItem systemItem="done" id="3Tj-Ro-rPV">
                                         <connections>
@@ -165,15 +178,20 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bV9-mO-Ns4"/>
-                                    <barButtonItem title="Parse" id="I7F-bB-CeO">
+                                    <barButtonItem systemItem="compose" id="ucH-UP-Qc0">
                                         <connections>
-                                            <action selector="parseButtonPressed:" destination="aXD-PW-OAf" id="faj-9M-i97"/>
+                                            <action selector="addFileButtonPressed:" destination="aXD-PW-OAf" id="ogH-Yq-0aW"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="52e-mz-HAz"/>
                                     <barButtonItem systemItem="action" id="jjH-pH-4Hv">
                                         <connections>
                                             <action selector="mailButtonPressed:" destination="aXD-PW-OAf" id="uiM-lA-Zzf"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Parse" id="I7F-bB-CeO">
+                                        <connections>
+                                            <action selector="parseButtonPressed:" destination="aXD-PW-OAf" id="faj-9M-i97"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="save" id="8iE-50-2R4">
@@ -188,10 +206,13 @@
                         <gestureRecognizers/>
                     </view>
                     <connections>
+                        <outlet property="addFileButton" destination="ucH-UP-Qc0" id="SrW-X9-qfK"/>
+                        <outlet property="addFolderButton" destination="sIM-Fj-Sjn" id="eUD-cj-g6g"/>
                         <outlet property="doneButton" destination="3Tj-Ro-rPV" id="oyl-xV-UFX"/>
                         <outlet property="fileView" destination="oOo-Zs-yxX" id="Fnd-i9-Svg"/>
                         <outlet property="folderView" destination="ePG-cp-T91" id="Jtl-Br-OqW"/>
                         <outlet property="mailButton" destination="jjH-pH-4Hv" id="2o6-3c-VaX"/>
+                        <outlet property="navBar" destination="VpT-bE-4VC" id="PvP-3W-Ja4"/>
                         <outlet property="parseButton" destination="I7F-bB-CeO" id="Mix-2D-DK9"/>
                         <outlet property="saveButton" destination="8iE-50-2R4" id="Z44-Xz-o3U"/>
                         <outlet property="superView" destination="iJZ-pb-UUP" id="6RF-PK-W9H"/>
@@ -205,15 +226,19 @@
         <class className="PNEFileViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEFileViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addFileButtonPressed:"/>
+                <relationship kind="action" name="addFolderButtonPressed:"/>
                 <relationship kind="action" name="doneButtonPressed:"/>
                 <relationship kind="action" name="mailButtonPressed:"/>
                 <relationship kind="action" name="parseButtonPressed:"/>
                 <relationship kind="action" name="saveButtonPressed:"/>
-                <relationship kind="outlet" name="bar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="addFileButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="addFolderButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="fileView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="folderView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="mailButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="parseButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="superView" candidateClass="UIView"/>
@@ -237,7 +262,6 @@
                 <relationship kind="action" name="addButtonPress:"/>
                 <relationship kind="action" name="reloadButtonPressed:"/>
                 <relationship kind="action" name="screenshotButtonPressed:"/>
-                <relationship kind="action" name="testButtonFire:"/>
                 <relationship kind="action" name="trashButtonPressed:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="log" candidateClass="UITextView"/>
@@ -245,7 +269,6 @@
                 <relationship kind="outlet" name="petriNetView" candidateClass="PNEView"/>
                 <relationship kind="outlet" name="reloadButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="screenshotButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="testButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="trashButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>

@@ -10,8 +10,8 @@
 
 @implementation PNEFileViewController
 
-@synthesize doneButton, saveButton, mailButton, parseButton; 
-@synthesize bar, fileView, folderView;
+@synthesize doneButton, saveButton, mailButton, parseButton, addFileButton; 
+@synthesize fileView, folderView, navBar, addFolderButton;
 @synthesize superView;
 
 #pragma mark - View lifecycle
@@ -78,10 +78,22 @@
 
 #pragma mark - Action responders
 
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        NSString* name = [alertView textFieldAtIndex:0].text;
+        
+    }
+}
+
+- (IBAction)addFolderButtonPressed:(id)sender {
+}
+
+- (IBAction)addFileButtonPressed:(id)sender {
+    
+}
+
 - (IBAction)doneButtonPressed:(id)sender {
-   // [self populate:@"/"];
-    [self openContextDeclaration:@"ContextDeclaration.sc"];
-    //[self returnToMainViewController];
+    [self returnToMainViewController];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {

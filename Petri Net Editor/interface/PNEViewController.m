@@ -15,10 +15,7 @@
 @synthesize log, petriNetView;
 @synthesize addButton, reloadButton, organiseButton, screenshotButton, trashButton;
 
-//debug code
-@synthesize testButton;
-
-#pragma mark - Initialisers
+#pragma mark - Lifecycle
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
