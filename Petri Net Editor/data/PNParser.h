@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "../kernel/PNManager.h"
-#import "PNParserConstants.h"
 
 /**
  @author Mathijs Saey

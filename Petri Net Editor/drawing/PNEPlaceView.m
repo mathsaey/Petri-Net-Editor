@@ -19,8 +19,8 @@
  Initialised the PNEPlaceView from a given Place. It also initialised a PNETokenView
  for each PNToken that PNPlace contains.
  */
-- (id) initWithValues: (PNPlace*) pnElement superView: (PNEView*) view {
-    if (self = [super initWithValues: pnElement superView: view]) {
+- (id) initWithElement: (PNPlace*) pnElement andSuperView: (PNEView*) view {
+    if (self = [super initWithElement: pnElement andSuperView: view]) {
         [nodeOptions addButtonWithTitle:@"Add token"];
         [nodeOptions addButtonWithTitle:@"Show reachable contexts"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
@@ -32,7 +32,7 @@
         
         //Add all the tokens
         for (PNToken *token in pnElement.tokens) {
-            PNETokenView *tokenView = [[PNETokenView alloc] initWithValues:token superView:superView];
+            PNETokenView *tokenView = [[PNETokenView alloc] initWithElement:token andSuperView:superView];
             [self addToken:tokenView];}
         } 
     return self;
@@ -182,7 +182,7 @@
     
     for (PNToken *token in [element tokens]) {
         for(int i=0; i < [token value]; i++) {
-            PNETokenView *tokenView = [[PNETokenView alloc] initWithValues:token superView:superView];
+            PNETokenView *tokenView = [[PNETokenView alloc] initWithElement:token andSuperView:superView];
             [self addToken:tokenView];
         }
     }    

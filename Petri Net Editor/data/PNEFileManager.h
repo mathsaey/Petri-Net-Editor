@@ -12,22 +12,27 @@
 /**
  @author Mathijs Saey
  
- This class is responsible for opening
- and writing the various files the editor uses.
+ This class provides an abstraction layer for
+ iOS file handling specific to the application.
  */
 @interface PNEFileManager : NSObject {
     NSString *basePath;
     NSString *currentPath;
 }
 
--(void) putContextDeclaration: (NSString*) fileName withContents: (NSString*) contents;
+- (void) putContextDeclaration: (NSString*) fileName withContents: (NSString*) contents;
 - (NSData*) getContextDeclarationBuffer: (NSString*) name;
 - (NSString*) getContextDeclaration: (NSString*) name;
 - (BOOL) isContextDeclaration: (NSString*) name;
+
 - (BOOL) parseFile: (NSString*) name;
+- (void) eraseFile: (NSString*) name;
 
 - (void) changeFolder: (NSString*) folderName;
-- (NSArray*) getFolderContent;
+- (void) addFolder: (NSString*) folderName;
 - (void) returnToFolder;
+
+- (NSArray*) getFoldersInFolder;
+- (NSArray*) getFilesInFolder;
 
 @end

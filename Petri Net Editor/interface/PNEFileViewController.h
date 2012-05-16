@@ -13,7 +13,7 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface PNEFileViewController : UIViewController <MFMailComposeViewControllerDelegate, UIAlertViewDelegate> {
+@interface PNEFileViewController : UIViewController <MFMailComposeViewControllerDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate> {
     NSString *currentFileName;
     UIView *superView;
         
@@ -30,6 +30,8 @@
     UITableView *folderView;
     
     PNEFileManager *fileManager;
+    NSArray *folders;
+    NSArray *files;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *superView;
@@ -42,7 +44,6 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *mailButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *parseButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addFileButton;
-
 
 @property (nonatomic, retain) IBOutlet UITextView *fileView;
 @property (nonatomic, retain) IBOutlet UITableView *folderView;

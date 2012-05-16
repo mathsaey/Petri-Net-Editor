@@ -39,7 +39,7 @@
 - (void) printError: (NSString*) errorMessage {
     state = END_STATE;
     didFinishWithoutErrors = false;
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"A parsing error occured:" message:errorMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"ERROR_WINDOW_TITLE", nil) message:errorMessage delegate:self cancelButtonTitle:NSLocalizedString(@"OK_BUTTON", nil) otherButtonTitles: nil];
     [error show];
 }
 
@@ -103,12 +103,12 @@
  */
 - (void) parseLine: (NSString*) line {
     //Filter out the comments
-    NSRange commentRange = [line rangeOfString:COMMENT_TOKEN];
+    NSRange commentRange = [line rangeOfString:NSLocalizedStringFromTable(@"COMMENT_TOKEN", @"parser", nil)];
     if (commentRange.location != NSNotFound) {
         commentRange.length = commentRange.length - 1;
         line = [line substringToIndex:commentRange.location];
     }
-    
+        
     //Filter out the empty lines
     if([line isEqualToString:@""]) return;
     
@@ -141,9 +141,9 @@
  */
 - (BOOL) checkStateChange: (NSString*) line {
     line = [self removeSpaces:line];
-    if ([line isEqualToString:CONTEXT_INDICATOR]) state = PARSING_CONTEXTS;
-    else if ([line isEqualToString:LINK_INDICATOR]) state = PARSING_LINKS;
-    else if ([line isEqualToString:END_INDICATOR]) state = END_STATE;
+    if ([line isEqualToString:NSLocalizedString(@"CONTEXT_INDICATOR", nil)]) state = PARSING_CONTEXTS;
+    else if ([line isEqualToString:NSLocalizedString(@"LINK_INDICATOR", nil)]) state = PARSING_LINKS;
+    else if ([line isEqualToString:NSLocalizedString(@"END_INDICATOR", nil)]) state = END_STATE;
     else return false;
     return true;
 }
@@ -155,7 +155,7 @@
     The line to be parsed.
  */
 - (void) parseNoState: (NSString*) line {
-    [self printError:[NSString stringWithFormat:@"File must begin with 'Contexts:' instead of '%@'", line]];
+    [self printError:[NSString stringWithFormat:NSLocalizedString(@"NO_STATE_ERROR", nil), line]];
 }
 
 /**
@@ -166,13 +166,13 @@
     The line to be parsed.
  */
 - (void) parseContext: (NSString*) line {
-    NSArray *components = [line componentsSeparatedByString:CONTEXT_SEPERATOR];
+    NSArray *components = [line componentsSeparatedByString:NSLocalizedString(@"CONTEXT_SEPERATOR", nil)];
     
     //Standard context creation
     if ([components count] == 1) {
         line = [self removeSpaces:line];
         if ([self containsSpaces:line]) {
-            [self printError:[NSString stringWithFormat:@"A context name cannot contain spaces! %@", line]];
+            [self printError:[NSString stringWithFormat:NSLocalizedString(@"CONTEXT_NAME_HAS_SPACES", nil), line]];
             return;
         }
         [contexts setObject:[manager addPlaceWithName:line] forKey:line];
@@ -188,17 +188,17 @@
         [formatter release];
         
         if (capacity == nil) {
-            [self printError:[NSString stringWithFormat:@"Syntax error in context capacity! '%@' should be a number", contextCapacity]];
+            [self printError:[NSString stringWithFormat:NSLocalizedString(@"CAPACITY_NO_NUMBER", nil), contextCapacity]];
             return;  
         }
         if ([self containsSpaces:contextName]) {
-            [self printError:[NSString stringWithFormat:@"A context name cannot contain spaces! '%@'", contextName]];
+            [self printError:[NSString stringWithFormat:NSLocalizedString(@"CONTEXT_NAME_HAS_SPACES", nil), contextName]];
             return;
         }
         [contexts setObject:[manager addPlaceWithName:contextName AndCapacity:[capacity intValue]] forKey:contextName];
     }
     
-    else [self printError:[NSString stringWithFormat:@"Too many ',' in context declaration! '%@'", line]];    
+    else [self printError:[NSString stringWithFormat:NSLocalizedString(@"CONTEXT_SEPERATOR_AMOUNT", nil), line]];    
 }
 
 /**
@@ -213,7 +213,7 @@
     NSArray *components = [line componentsSeparatedByString:@" "];
     
     if ([components count] != 3)
-        return [self printError:[NSString stringWithFormat:@"Syntax error, too many spaces in: '%@'", line]];
+        return [self printError:[NSString stringWithFormat:NSLocalizedString(@"LINK_DECLARATION_SPACE_AMOUNT", nil), line]];
     
     //Get the components
     NSString *fromContextName = [components objectAtIndex:0];
@@ -223,16 +223,19 @@
     PNPlace* fromContext = [contexts objectForKey:fromContextName];
     PNPlace* toContext = [contexts objectForKey:toContextName];
     
+    if (fromContext == nil) return [self printError:[NSString stringWithFormat:NSLocalizedString(@"LINK_CONTEXT_NOT_FOUND", nil), fromContextName]];
+    else if (toContext == nil) return [self printError:[NSString stringWithFormat:NSLocalizedString(@"LINK_CONTEXT_NOT_FOUND", nil), toContextName]];
+    
     //Add the correct relation
-    if ([operator isEqualToString:WEAK_INCLUSION_TOKEN]) 
+    if ([operator isEqualToString:NSLocalizedString(@"WEAK_INCLUSION_TOKEN", nil)]) 
         return [manager addWeakInclusionFrom:fromContext To:toContext];
-    else if ([operator isEqualToString:STRONG_INCLUSION_TOKEN]) 
+    else if ([operator isEqualToString:NSLocalizedString(@"STRONG_INCLUSION_TOKEN", nil)]) 
         return [manager addStrongInclusionFrom:fromContext To:toContext];
-    else if ([operator isEqualToString:EXCLUSION_TOKEN]) 
+    else if ([operator isEqualToString:NSLocalizedString(@"EXCLUSION_TOKEN", nil)]) 
         return [manager addExclusionBetween:fromContext and:toContext];
-    else if ([operator isEqualToString:REQUIREMENT_TOKEN]) 
+    else if ([operator isEqualToString:NSLocalizedString(@"REQUIREMENT_TOKEN", nil)]) 
         return [manager addRequirementTo:fromContext Of:toContext];
-    else return [self printError:[NSString stringWithFormat:@"Syntax error in line: '%@', operator, '%@' not recognised", line, operator]];
+    else return [self printError:[NSString stringWithFormat:NSLocalizedString(@"LINK_TOKEN_NOT_FOUND", nil), line, operator]];
 }
 
 

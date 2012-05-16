@@ -14,8 +14,8 @@
  This constructor just calls it's super constructor.
  This constructor is overriden to enforce the proper type of PNPlace
  */
-- (id)initWithValues:(PNContextPlace *)pnElement superView:(PNEView *)view {
-    return [super initWithValues:pnElement superView:view];
+- (id)initWithElement:(PNContextPlace *)pnElement andSuperView:(PNEView *)view {
+    return [super initWithElement:pnElement andSuperView:view];
 }
 
 /**

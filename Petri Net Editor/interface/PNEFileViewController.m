@@ -21,8 +21,15 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         fileManager = [[PNEFileManager alloc] init];
+        files = [fileManager getFilesInFolder];
+        folders = [fileManager getFoldersInFolder];
     }
     return self;
+}
+
+- (void) dealloc {
+    [fileManager release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad
@@ -42,13 +49,26 @@
     return YES;
 }
 
+#pragma mark - Help functions
+
+- (void) reloadData {
+    files = [fileManager getFilesInFolder];
+    folders = [fileManager getFoldersInFolder];
+    [folderView reloadData];
+}
+
 - (void) printError: (NSString*) errorMessage {
     UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Error:" message:errorMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [error show];
 }
 
+- (void) printAskNameField: (NSString*) title {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
 #pragma mark - File handling
-#pragma mark Context declarations
 
 - (void) openContextDeclaration: (NSString*) name {
     currentFileName = name;
@@ -66,34 +86,80 @@
     }
 }
 
-#pragma mark File browser
+#pragma mark UITableView delegate methods
 
-- (void) populate: (NSString*) path {
-    NSArray *fileList = [fileManager getFolderContent];
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *cellLabel = [folderView cellForRowAtIndexPath:indexPath].textLabel.text;
     
-    for (NSString* tmp in fileList) {
-        NSLog(tmp);
+    if (indexPath.row < [folders count]) {
+        [fileManager changeFolder:cellLabel];
+        
+        UINavigationItem *folder = [[UINavigationItem alloc] initWithTitle:cellLabel];
+        folder.rightBarButtonItem = addFolderButton;
+        
+        [navBar pushNavigationItem:folder animated:true];
+        [self reloadData];
     }
+    //Files
+    else [self openContextDeclaration:cellLabel];
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *newCell = [[UITableViewCell alloc] init];
+    
+    //Folders
+    if (indexPath.row < [folders count]) {
+        newCell.textLabel.text = [folders objectAtIndex:indexPath.row];
+        newCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    //Files
+    else {
+        newCell.textLabel.text = [files objectAtIndex:indexPath.row - [folders count]];
+    }
+    
+    return newCell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [files count] + [folders count];
+}
+ 
 
 #pragma mark - Action responders
 
+- (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item {
+    [fileManager returnToFolder];
+    [self reloadData];
+}
+
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != alertView.cancelButtonIndex) {
-        NSString* name = [alertView textFieldAtIndex:0].text;
+        NSString* name = [alertView textFieldAtIndex:0].text;  
         
+        if ([alertView.title isEqualToString:@"File name:"]) {
+            [fileManager putContextDeclaration:name withContents:@""];
+            [self openContextDeclaration:name];
+        }
+        
+        else if ([alertView.title isEqualToString:@"Folder name:"]) {
+            [fileManager addFolder:name];
+        }
+        
+        [self reloadData];
     }
 }
 
 - (IBAction)addFolderButtonPressed:(id)sender {
+    [self printAskNameField:@"Folder name:"];
 }
 
 - (IBAction)addFileButtonPressed:(id)sender {
-    
+    [self printAskNameField:@"File name:"];
 }
 
 - (IBAction)doneButtonPressed:(id)sender {
-    [self returnToMainViewController];
+   [self returnToMainViewController];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
@@ -138,6 +204,5 @@
 - (void) returnToMainViewController {
     [self dismissModalViewControllerAnimated:true];
 }
-
 
 @end

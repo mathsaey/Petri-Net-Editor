@@ -19,8 +19,8 @@
  This initialises the node and adds the standard touch responders.
  @see PNEViewElement#initWithValue:superView:
  */
-- (id) initWithValues: (PNNode*) pnElement superView: (PNEView*) view {
-    if (self = [super initWithValues:pnElement superView:view]) {
+- (id) initWithElement: (PNNode*) pnElement andSuperView: (PNEView*) view {
+    if (self = [super initWithElement:pnElement andSuperView:view]) {
         
         //Check if the node already had a view
         if (pnElement.view != NULL) {

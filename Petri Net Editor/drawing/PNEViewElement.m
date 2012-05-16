@@ -21,7 +21,7 @@
  @param view
     the PNEView that contains the node
  */
-- (id) initWithValues: (PNElement*) pnElement superView: (PNEView*) view {
+- (id) initWithElement: (PNElement*) pnElement andSuperView: (PNEView*) view {
     if(self = [super init]) {
         [element retain];
         element = pnElement;

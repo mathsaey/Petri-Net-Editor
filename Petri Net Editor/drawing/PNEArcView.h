@@ -35,7 +35,7 @@
 }
 
 - (void) drawArc;
-- (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode;
+- (void) setFromNode: (PNENodeView*) newFromNode andToNode: (PNENodeView*) newToNode;
 - (void) handleLongGesture: (UILongPressGestureRecognizer *) gesture;
 
 

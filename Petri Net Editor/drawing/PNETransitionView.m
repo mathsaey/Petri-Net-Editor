@@ -19,8 +19,8 @@
  PNTransition#outputs part of the original PNTransition.
 
  */
-- (id) initWithValues: (PNTransition*) pnElement superView: (PNEView*) view {
-    if (self = [super initWithValues:pnElement superView:view]) {
+- (id) initWithElement: (PNTransition*) pnElement andSuperView: (PNEView*) view {
+    if (self = [super initWithElement:pnElement andSuperView:view]) {
         
         //Only add the option to fire a transition if it's external
         if (pnElement.priority == EXTERNAL)
@@ -35,15 +35,15 @@
         //Create and convert all the input arcs
         [pnElement.inputs retain];
         for (PNPlace* fromPlace in [pnElement.inputs allKeys]) {
-            PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.inputs objectForKey:fromPlace] superView:superView]; 
-            [arcView setNodes:fromPlace.view toNode:self];
+            PNEArcView *arcView = [[PNEArcView alloc] initWithElement:[pnElement.inputs objectForKey:fromPlace] andSuperView:superView]; 
+            [arcView setFromNode:fromPlace.view andToNode:self];
         }
             
         //Do the same for the output arcs
         [pnElement.outputs retain];
         for (PNPlace* toPlace in [pnElement.outputs allKeys]) {
-            PNEArcView *arcView = [[PNEArcView alloc] initWithValues:[pnElement.outputs objectForKey:toPlace] superView:superView]; 
-            [arcView setNodes:self toNode:toPlace.view];
+            PNEArcView *arcView = [[PNEArcView alloc] initWithElement:[pnElement.outputs objectForKey:toPlace] andSuperView:superView]; 
+            [arcView setFromNode:self andToNode:toPlace.view];
         }
     }
     return self;

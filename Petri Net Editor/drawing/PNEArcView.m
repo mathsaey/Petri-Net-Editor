@@ -16,8 +16,8 @@
  Initialises the PNEArcView from a PNArc, it also creates the UIActionSheet
  @see PNEViewElement#initWithValues:superView:
  */
-- (id) initWithValues: (PNArcInscription*) pnElement superView: (PNEView*) view {
-    if (self = [super initWithValues:pnElement superView:view]) 
+- (id) initWithElement: (PNArcInscription*) pnElement andSuperView: (PNEView*) view {
+    if (self = [super initWithElement:pnElement andSuperView:view]) 
     {   isInhibitor = [pnElement flowFunction] == INHIBITOR;
         [superView.arcs addObject:self];
         weight = [pnElement flowFunction];
@@ -91,6 +91,7 @@
                 
         [superView addSubview:touchZone];
         [touchViews addObject:touchZone];
+        [touchZone release];
     }
 }
 
@@ -166,7 +167,7 @@
 /**
  Sets the toNode and fromNode and updates the neighbours of the PNEPlaceView
  */
-- (void) setNodes: (PNENodeView*) newFromNode toNode: (PNENodeView*) newToNode {
+- (void) setFromNode: (PNENodeView*) newFromNode andToNode: (PNENodeView*) newToNode {
     fromNode = newFromNode;
     toNode = newToNode;
 
@@ -187,7 +188,7 @@
  @param arrowEnd
     The point where the point of the arrow should end.
  */
-- (void) drawArrow: (CGPoint) arrowStart arrowEnd: (CGPoint) arrowEnd {
+- (void) drawArrowFrom: (CGPoint) arrowStart To: (CGPoint) arrowEnd {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     
@@ -229,7 +230,7 @@
  @param circleEnd
     The point where the circle should meet the toNode.
  */
-- (void) drawCircle: (CGPoint) circleStart circleEnd: (CGPoint) circleEnd {
+- (void) drawCircleFrom: (CGPoint) circleStart To: (CGPoint) circleEnd {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     
@@ -298,8 +299,8 @@
     
     //Draw the arrow/circle
     if (isInhibitor)
-        [self drawCircle:lineEnd circleEnd:endPoint];
-    else [self drawArrow:lineEnd arrowEnd:endPoint];
+        [self drawCircleFrom:lineEnd To:endPoint];
+    else [self drawArrowFrom:lineEnd To:endPoint];
     
     }
 

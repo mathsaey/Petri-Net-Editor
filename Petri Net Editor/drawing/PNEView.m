@@ -196,13 +196,13 @@
     [transitions removeAllObjects];
     
     for (PNPlace* place in manager.places) {
-        [[PNEContextPlaceView alloc] initWithValues:place superView:self];
+        [[PNEContextPlaceView alloc] initWithElement:place andSuperView:self];
     }
     for (PNPlace* place in manager.temporaryPlaces) {
-        [[PNETemporaryPlaceView alloc] initWithValues:place superView:self];
+        [[PNETemporaryPlaceView alloc] initWithElement:place andSuperView:self];
     }
     for (PNTransition* trans in manager.transitions) {
-        [[PNETransitionView alloc] initWithValues:trans superView:self];
+        [[PNETransitionView alloc] initWithElement:trans andSuperView:self];
     }
     
     [self refreshPositions];
@@ -242,7 +242,7 @@
  @param node
     The PNENodeView we will place.
  */
-- (void) placeNode: (CGPoint*) position node: (PNENodeView*) node {    
+- (void) placeNode: (PNENodeView*) node  withPosition: (CGPoint*) position {    
     if (position->x + node.dimensions > self.bounds.size.width) {
         position->x = START_OFFSET_X;
         position->y += 100;
@@ -279,7 +279,7 @@
     
     for (PNEPlaceView* place in places) {
         if (!place.hasLocation || shouldReset) {
-            [self placeNode:&currentLocation node:place];
+            [self placeNode:place withPosition:&currentLocation];
             currentLocation.x += X_NODE_DISTANCE;
         }
     }
@@ -290,7 +290,7 @@
     
     for (PNETransitionView* trans in transitions) {
         if (!trans.hasLocation || shouldReset) {
-            [self placeNode:&currentLocation node:trans];
+            [self placeNode:trans withPosition:&currentLocation];
             currentLocation.x += X_NODE_DISTANCE;
         }
     }

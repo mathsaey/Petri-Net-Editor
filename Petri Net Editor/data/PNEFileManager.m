@@ -22,12 +22,6 @@
     return self;
 }
 
-- (void) dealloc {
-    [basePath release];
-    [currentPath release];
-    [super dealloc];
-}
-
 #pragma mark - Directory commands
 
 /**
@@ -38,6 +32,17 @@
  */
 - (void) changeFolder: (NSString*) folderName {
     currentPath = [currentPath stringByAppendingString:[NSString stringWithFormat:@"/%@", folderName]];
+}
+
+/**
+ This method creates a new directory in the current directory
+ @param folderName
+    The name of the new folder
+ */
+- (void) addFolder: (NSString*) folderName {
+    NSFileManager *manager =[NSFileManager defaultManager];
+    [manager createDirectoryAtPath:[currentPath stringByAppendingString:folderName]withIntermediateDirectories:false attributes:nil error:nil];
+    [manager release];
 }
 
 /**
@@ -52,30 +57,70 @@
 }
 
 /**
- This method creates a new folder
- @param folderName
-    The name of the new folder
+ This method creates an array with the files or folders 
+ of a folder.
+ @param getFolders
+    True if the method needs to return the folders
+ @return
+    An NSArray with all the folders of the current directory
+    if getFolders is true. An NSArray with all the files of the
+    directory otherwise.
  */
-- (void) newFolder: (NSString*) folderName {
+- (NSArray*) getFolder: (BOOL) getFolders {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSArray *dirList = [manager contentsOfDirectoryAtPath:currentPath error:nil];
+    NSMutableArray *resList = [[NSMutableArray alloc] init];
     
+    for (NSString*  name in dirList) {
+        BOOL isDir;
+        BOOL exists = [manager fileExistsAtPath:[currentPath stringByAppendingString:name] isDirectory:&isDir];
+        
+        if (exists && isDir && getFolders)
+            [resList addObject:name];
+        else if (exists && !isDir && !getFolders)
+            [resList addObject:name];
+    }
+    
+    [manager release];
+    return resList;
 }
 
 /**
- This function returns the content of a folder as 
- an array
+ This method returns an array with al the 
+ files in the current directory.
+ @see getFolder
  @return 
-    An array containing a string representation
-    of the contents of the folder
+    An array with all the files 
+    in the current directory.
  */
-- (NSArray*) getFolderContent {
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSArray *fileList = [manager contentsOfDirectoryAtPath:currentPath error:nil];
-    [manager release];
-    
-    return fileList;
+- (NSArray*) getFilesInFolder {
+    return [self getFolder:false];
+}
+
+/**
+ This method returns an array with al the 
+ folders in the current directory.
+ @see getFolder
+ @return 
+    An array with all the folders 
+    in the current directory.
+ */
+- (NSArray*) getFoldersInFolder {
+    return [self getFolder:true];
 }
 
 #pragma mark - File management
+
+/**
+ This method deletes a file
+ @param name
+    The name of the file.
+ */
+- (void) eraseFile: (NSString*) name {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager removeItemAtPath:[currentPath stringByAppendingString:name] error:nil];
+    [manager release];
+}
 
 /**
  This method opens a file and passes it on

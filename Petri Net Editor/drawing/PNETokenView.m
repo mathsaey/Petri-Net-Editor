@@ -14,7 +14,7 @@
 /**
  @see PNEViewElement#initWithValues:superView:
  */
-- (id) initWithValues: (PNToken*) pnElement superView: (PNEView*) view {
+- (id) initWithElement: (PNToken*) pnElement andSuperView: (PNEView*) view {
     if(self = [super init]) {
         element = pnElement;
         superView = view;
