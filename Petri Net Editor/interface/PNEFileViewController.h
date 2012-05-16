@@ -13,28 +13,31 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
+/**
+ @author Mathijs Saey
+ This class is responsible for the file browser.
+ The actual file handling is done by the PNEFileManager,
+ this class provides the interface.
+ */
 @interface PNEFileViewController : UIViewController <MFMailComposeViewControllerDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate> {
-    NSString *currentFileName;
-    UIView *superView;
+    NSString *currentFileName; /**< Name of the currently opened file */
         
-    UINavigationBar *navBar;
-    UIBarButtonItem *addFolderButton;
+    UINavigationBar *navBar; /**< Navigation bar to browse the directory tree */
+    UIBarButtonItem *addFolderButton; /**< Button that allows the user to add a folder */
     
-    UIBarButtonItem *doneButton;
-    UIBarButtonItem *saveButton;
-    UIBarButtonItem *mailButton;
-    UIBarButtonItem *parseButton; 
-    UIBarButtonItem *addFileButton;
+    UIBarButtonItem *doneButton; /**< Button that allows the user to return to the PNEViewController */
+    UIBarButtonItem *saveButton; /**< Button that allows the user to save the current file */
+    UIBarButtonItem *mailButton; /**< Button that allows the user to mail the current file */
+    UIBarButtonItem *parseButton; /**< Button that parses the current file and returns to the PNEViewController */
+    UIBarButtonItem *addFileButton; /**< Button that allows the user to add a new file */
 
-    UITextView *fileView;
-    UITableView *folderView;
+    UITextView *fileView; /**< View that displays the current file */
+    UITableView *folderView; /**< View that shows the directory tree */
     
-    PNEFileManager *fileManager;
-    NSArray *folders;
-    NSArray *files;
+    PNEFileManager *fileManager; /**< File manager that handles the files */
+    NSArray *folders; /**< Array containing all directories in the current directory */
+    NSArray *files; /**< Array that contains all the files in the current direcoty */
 }
-
-@property (nonatomic, retain) IBOutlet UIView *superView;
 
 @property (nonatomic, retain) IBOutlet UINavigationBar *navBar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *addFolderButton;

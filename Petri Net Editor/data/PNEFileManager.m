@@ -16,7 +16,7 @@
     if (self = [super init]) {
         //Get the documents directory
         NSArray *dirList = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        basePath = [NSString stringWithFormat:@"%@/",[dirList objectAtIndex:0]];
+        basePath = [[dirList objectAtIndex:0] retain];
         currentPath = [[NSString alloc] initWithString:basePath];
     }
     return self;
@@ -31,7 +31,8 @@
     The name of the folder
  */
 - (void) changeFolder: (NSString*) folderName {
-    currentPath = [currentPath stringByAppendingString:[NSString stringWithFormat:@"/%@", folderName]];
+    currentPath = [currentPath stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@", folderName]];
+    [currentPath retain];
 }
 
 /**
@@ -41,7 +42,7 @@
  */
 - (void) addFolder: (NSString*) folderName {
     NSFileManager *manager =[NSFileManager defaultManager];
-    [manager createDirectoryAtPath:[currentPath stringByAppendingString:folderName]withIntermediateDirectories:false attributes:nil error:nil];
+    [manager createDirectoryAtPath:[currentPath stringByAppendingPathComponent:folderName]withIntermediateDirectories:false attributes:nil error:nil];
     [manager release];
 }
 
@@ -51,8 +52,8 @@
  */
 - (void) returnToFolder {
     if (![currentPath isEqualToString:basePath]){
-        NSRange pathRange = [currentPath rangeOfString:@"/" options:NSBackwardsSearch];
-        currentPath = [currentPath substringToIndex:pathRange.location + 1];
+        currentPath = [currentPath stringByDeletingLastPathComponent];
+        [currentPath retain];
     }    
 }
 
@@ -73,7 +74,7 @@
     
     for (NSString*  name in dirList) {
         BOOL isDir;
-        BOOL exists = [manager fileExistsAtPath:[currentPath stringByAppendingString:name] isDirectory:&isDir];
+        BOOL exists = [manager fileExistsAtPath:[currentPath stringByAppendingPathComponent:name] isDirectory:&isDir];
         
         if (exists && isDir && getFolders)
             [resList addObject:name];
@@ -112,13 +113,13 @@
 #pragma mark - File management
 
 /**
- This method deletes a file
+ This method deletes an element
  @param name
-    The name of the file.
+    The name of the element.
  */
-- (void) eraseFile: (NSString*) name {
+- (void) eraseElement: (NSString*) name {
     NSFileManager *manager = [NSFileManager defaultManager];
-    [manager removeItemAtPath:[currentPath stringByAppendingString:name] error:nil];
+    [manager removeItemAtPath:[currentPath stringByAppendingPathComponent:name] error:nil];
     [manager release];
 }
 
@@ -146,7 +147,7 @@
     The context declaration
  */
 - (NSString*) getContextDeclaration: (NSString*) name {
-    NSFileHandle *contextFile = [NSFileHandle fileHandleForReadingAtPath:[currentPath stringByAppendingString:name]];
+    NSFileHandle *contextFile = [NSFileHandle fileHandleForReadingAtPath:[currentPath stringByAppendingPathComponent:name]];
     NSData *buffer = [contextFile readDataToEndOfFile];
     
     NSString *contents = [[NSString alloc] initWithData:buffer encoding:NSASCIIStringEncoding];
@@ -164,7 +165,7 @@
     The data version of the context declaration
  */
 - (NSData*) getContextDeclarationBuffer: (NSString*) name {
-    NSFileHandle *contextFile = [NSFileHandle fileHandleForReadingAtPath:[currentPath stringByAppendingString:name]];
+    NSFileHandle *contextFile = [NSFileHandle fileHandleForReadingAtPath:[currentPath stringByAppendingPathComponent:name]];
     NSData *buffer = [contextFile readDataToEndOfFile];
     [contextFile closeFile];    
     return buffer;
@@ -179,7 +180,7 @@
     The contents of the string to be written
  */
 -(void) putContextDeclaration: (NSString*) fileName withContents: (NSString*) contents {
-    NSString *pathName = [currentPath stringByAppendingString:fileName];
+    NSString *pathName = [currentPath stringByAppendingPathComponent:fileName];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     //Create the data to write

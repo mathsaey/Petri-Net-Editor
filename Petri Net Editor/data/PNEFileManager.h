@@ -26,7 +26,7 @@
 - (BOOL) isContextDeclaration: (NSString*) name;
 
 - (BOOL) parseFile: (NSString*) name;
-- (void) eraseFile: (NSString*) name;
+- (void) eraseElement: (NSString*) name;
 
 - (void) changeFolder: (NSString*) folderName;
 - (void) addFolder: (NSString*) folderName;
