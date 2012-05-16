@@ -21,7 +21,7 @@
  */
 @interface PNEFileViewController : UIViewController <MFMailComposeViewControllerDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate> {
     NSString *currentFileName; /**< Name of the currently opened file */
-        
+    
     UINavigationBar *navBar; /**< Navigation bar to browse the directory tree */
     UIBarButtonItem *addFolderButton; /**< Button that allows the user to add a folder */
     
@@ -30,7 +30,7 @@
     UIBarButtonItem *mailButton; /**< Button that allows the user to mail the current file */
     UIBarButtonItem *parseButton; /**< Button that parses the current file and returns to the PNEViewController */
     UIBarButtonItem *addFileButton; /**< Button that allows the user to add a new file */
-
+    
     UITextView *fileView; /**< View that displays the current file */
     UITableView *folderView; /**< View that shows the directory tree */
     
@@ -58,5 +58,12 @@
 - (IBAction)mailButtonPressed:(id)sender;
 - (IBAction)parseButtonPressed:(id)sender;
 
+@end
+
+
+@interface PNEFileViewController (protected)
+
+- (void) reloadData;
+- (void) openContextDeclaration: (NSString*) name;
 
 @end

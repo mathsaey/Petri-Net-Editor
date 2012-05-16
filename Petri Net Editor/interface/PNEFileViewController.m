@@ -241,7 +241,7 @@
  the user pushes the done button.
  */
 - (IBAction)doneButtonPressed:(id)sender {
-   [self returnToMainViewController];
+    [self returnToMainViewController];
 }
 
 /**

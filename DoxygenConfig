@@ -45,7 +45,7 @@ PROJECT_BRIEF          = "Petri Net Editor for contextive languages"
 # exceed 55 pixels and the maximum width should not exceed 200 pixels. 
 # Doxygen will copy the logo to the output directory.
 
-PROJECT_LOGO           = "/Users/Mathijs/Documents/Vub/Project/Code/Editor/Petri-Net-Editor/Petri Net Editor/resources/logo/logo_iPad_retina.png"
+PROJECT_LOGO           = "/Users/Mathijs/Documents/Vub/Project/Code/Editor/Petri-Net-Editor/Petri Net Editor/resources/logo/logo_iPhone_big.png"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) 
 # base path where the generated documentation will be put. 

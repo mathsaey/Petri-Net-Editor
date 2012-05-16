@@ -35,6 +35,7 @@
 		D58816DF155ED5BD00B26EF6 /* PNEFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58816DE155ED5BD00B26EF6 /* PNEFileViewController.m */; };
 		D58816E3155EF22700B26EF6 /* PNEFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D58816E2155EF22700B26EF6 /* PNEFileManager.m */; };
 		D58816E515612F3500B26EF6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D58816E415612F3400B26EF6 /* MessageUI.framework */; };
+		D58BAC231564544800287794 /* PNEPhoneFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58BAC221564544800287794 /* PNEPhoneFileViewController.m */; };
 		D595E49814F28E64001D9B19 /* NSDictionary+SetEquals.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48614F28E64001D9B19 /* NSDictionary+SetEquals.m */; };
 		D595E49914F28E64001D9B19 /* PNArcInscription.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48814F28E64001D9B19 /* PNArcInscription.m */; };
 		D595E49A14F28E64001D9B19 /* PNElement.m in Sources */ = {isa = PBXBuildFile; fileRef = D595E48A14F28E64001D9B19 /* PNElement.m */; };
@@ -107,6 +108,8 @@
 		D58816E1155EF22700B26EF6 /* PNEFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEFileManager.h; path = data/PNEFileManager.h; sourceTree = "<group>"; };
 		D58816E2155EF22700B26EF6 /* PNEFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEFileManager.m; path = data/PNEFileManager.m; sourceTree = "<group>"; };
 		D58816E415612F3400B26EF6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D58BAC211564544800287794 /* PNEPhoneFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEPhoneFileViewController.h; path = interface/PNEPhoneFileViewController.h; sourceTree = "<group>"; };
+		D58BAC221564544800287794 /* PNEPhoneFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEPhoneFileViewController.m; path = interface/PNEPhoneFileViewController.m; sourceTree = "<group>"; };
 		D595E48514F28E64001D9B19 /* NSDictionary+SetEquals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SetEquals.h"; path = "kernel/NSDictionary+SetEquals.h"; sourceTree = "<group>"; };
 		D595E48614F28E64001D9B19 /* NSDictionary+SetEquals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SetEquals.m"; path = "kernel/NSDictionary+SetEquals.m"; sourceTree = "<group>"; };
 		D595E48714F28E64001D9B19 /* PNArcInscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNArcInscription.h; path = kernel/PNArcInscription.h; sourceTree = "<group>"; };
@@ -344,6 +347,8 @@
 				D5B3B57B154EB88B00F20DC0 /* MainStoryboard_iPhone.storyboard */,
 				D5B3B573154EB84900F20DC0 /* PNEPhoneViewController.h */,
 				D5B3B574154EB84900F20DC0 /* PNEPhoneViewController.m */,
+				D58BAC211564544800287794 /* PNEPhoneFileViewController.h */,
+				D58BAC221564544800287794 /* PNEPhoneFileViewController.m */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				D58816DF155ED5BD00B26EF6 /* PNEFileViewController.m in Sources */,
 				D58816E3155EF22700B26EF6 /* PNEFileManager.m in Sources */,
 				D50681741563D22B00E54839 /* PNEContextCollection.m in Sources */,
+				D58BAC231564544800287794 /* PNEPhoneFileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

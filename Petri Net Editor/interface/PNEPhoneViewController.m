@@ -19,6 +19,7 @@
 {
     [super viewDidLoad];
     petriNetView.showLabels = false; //Labels are disabled on the iphone version
+    [self toggleLog:logButton];
 }
 
 - (void)didReceiveMemoryWarning
