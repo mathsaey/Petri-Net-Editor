@@ -63,6 +63,7 @@
 
 @interface PNEFileViewController (protected)
 
+- (void) closeFile;
 - (void) reloadData;
 - (void) openContextDeclaration: (NSString*) name;
 

@@ -41,6 +41,7 @@
     didFinishWithoutErrors = false;
     UIAlertView *error = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"ERROR_WINDOW_TITLE", nil) message:errorMessage delegate:self cancelButtonTitle:NSLocalizedString(@"OK_BUTTON", nil) otherButtonTitles: nil];
     [error show];
+    [error release];
 }
 
 /**
@@ -219,10 +220,10 @@
     NSString *fromContextName = [components objectAtIndex:0];
     NSString *toContextName = [components objectAtIndex:2];
     NSString *operator = [components objectAtIndex:1];
-    
+        
     PNPlace* fromContext = [contexts objectForKey:fromContextName];
     PNPlace* toContext = [contexts objectForKey:toContextName];
-    
+        
     if (fromContext == nil) return [self printError:[NSString stringWithFormat:NSLocalizedString(@"LINK_CONTEXT_NOT_FOUND", nil), fromContextName]];
     else if (toContext == nil) return [self printError:[NSString stringWithFormat:NSLocalizedString(@"LINK_CONTEXT_NOT_FOUND", nil), toContextName]];
     

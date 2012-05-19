@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="WKE-Ot-qHO">
-                                <rect key="frame" x="0.0" y="46" width="320" height="414"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="414"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textView multipleTouchEnabled="YES" contentMode="bottom" editable="NO" id="NfY-rq-jka">
@@ -26,7 +26,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <view contentMode="scaleAspectFill" id="Lh7-Eg-1cR" userLabel="Petri Net" customClass="PNEView">
+                                    <view contentMode="scaleToFill" id="Lh7-Eg-1cR" userLabel="Petri Net" customClass="PNEView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="264"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,7 +35,7 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="OUD-oG-bNL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <items>
                                     <barButtonItem systemItem="add" id="d2i-EC-Qtq">
@@ -180,7 +180,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1081" y="-219"/>
+            <point key="canvasLocation" x="1085" y="-237"/>
         </scene>
     </scenes>
     <classes>

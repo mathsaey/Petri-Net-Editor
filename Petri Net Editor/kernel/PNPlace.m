@@ -71,8 +71,10 @@
 }
 
 - (void) addToken:(PNToken *)token {
+    [token retain];
 	NSArray *addTokens = [NSArray arrayWithObject:token];
 	[self addTokens:addTokens];
+    [token release];
 }
 
 - (void) addTokens:(NSArray *)newTokens {

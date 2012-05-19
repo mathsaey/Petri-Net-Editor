@@ -11,12 +11,10 @@
 
 @implementation PNEPlaceView
 
-@synthesize contextIdx;
-
 #pragma mark - Lifecycle
 
 /**
- Initialised the PNEPlaceView from a given Place. It also initialised a PNETokenView
+ Initialised the PNEPlaceView from a given Place. It also inistialises a PNETokenView
  for each PNToken that PNPlace contains.
  */
 - (id) initWithElement: (PNPlace*) pnElement andSuperView: (PNEView*) view {
@@ -33,7 +31,8 @@
         //Add all the tokens
         for (PNToken *token in pnElement.tokens) {
             PNETokenView *tokenView = [[PNETokenView alloc] initWithElement:token andSuperView:superView];
-            [self addToken:tokenView];}
+            [self addToken:tokenView];
+            [tokenView release];}
         } 
     return self;
 }
@@ -184,6 +183,7 @@
         for(int i=0; i < [token value]; i++) {
             PNETokenView *tokenView = [[PNETokenView alloc] initWithElement:token andSuperView:superView];
             [self addToken:tokenView];
+            [tokenView release];
         }
     }    
 }

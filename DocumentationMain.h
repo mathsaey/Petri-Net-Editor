@@ -31,6 +31,9 @@
  Further adjustments to the drawing code will probably be needed, but this depends on the kernel. Somebody with sufficient knowledge of the code (which can be obtained with the help of this documentation) shouldn't have too much trouble adjusting the code.
   
  @section Todo
+ @todo Look into strange iPhone behaviour (no parsing, bad access on context creation (no problem on ipad)
+ @todo Document view controllers
+ @todo Check memory management
  @todo Add Context wise displaying
  @todo Move strings to constants
  @todo Further transition firing testing

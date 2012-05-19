@@ -277,6 +277,8 @@
 				D5B3B57E154EB92900F20DC0 /* UITextView+utils.m */,
 				D595E46314F271E0001D9B19 /* iPhone */,
 				D595E46214F271C8001D9B19 /* iPad */,
+				D58816DD155ED5BD00B26EF6 /* PNEFileViewController.h */,
+				D58816DE155ED5BD00B26EF6 /* PNEFileViewController.m */,
 				D5B3B575154EB84900F20DC0 /* PNEViewController.h */,
 				D5B3B576154EB84900F20DC0 /* PNEViewController.m */,
 			);
@@ -335,8 +337,6 @@
 				D5B3B570154EB84800F20DC0 /* MainStoryboard_iPad.storyboard */,
 				D5B3B571154EB84800F20DC0 /* PNEPadViewController.h */,
 				D5B3B572154EB84800F20DC0 /* PNEPadViewController.m */,
-				D58816DD155ED5BD00B26EF6 /* PNEFileViewController.h */,
-				D58816DE155ED5BD00B26EF6 /* PNEFileViewController.m */,
 			);
 			name = iPad;
 			sourceTree = "<group>";

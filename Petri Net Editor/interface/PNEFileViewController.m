@@ -20,14 +20,16 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         fileManager = [[PNEFileManager alloc] init];
-        files = [fileManager getFilesInFolder];
-        folders = [fileManager getFoldersInFolder];
+        files = [[fileManager getFilesInFolder] retain];
+        folders = [[fileManager getFoldersInFolder] retain];
     }
     return self;
 }
 
 - (void) dealloc {
     [fileManager release];
+    [folders release];
+    [files release];
     [super dealloc];
 }
 
@@ -76,6 +78,7 @@
 - (void) printError: (NSString*) errorMessage {
     UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Error:" message:errorMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [error show];
+    [error release];
 }
 
 /**
@@ -86,6 +89,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert show];
+    [alert release];
 }
 
 #pragma mark - File handling
@@ -115,6 +119,23 @@
     }
 }
 
+/**
+ Opens a folder and adjusts
+ the navigation bar
+ */
+- (void) changeFolder: (NSString*) name {
+    [self closeFile];
+    [fileManager changeFolder:name];
+    
+    UINavigationItem *folder = [[UINavigationItem alloc] initWithTitle:name];
+    folder.rightBarButtonItem = addFolderButton;
+    
+    [navBar pushNavigationItem:folder animated:true];
+    [self reloadData];
+    [folder release];
+
+}
+
 #pragma mark UITableView delegate methods
 
 /**
@@ -127,16 +148,7 @@
     NSString *cellLabel = [folderView cellForRowAtIndexPath:indexPath].textLabel.text;
     
     //Folders
-    if (indexPath.row < [folders count]) {
-        [self closeFile];
-        [fileManager changeFolder:cellLabel];
-        
-        UINavigationItem *folder = [[UINavigationItem alloc] initWithTitle:cellLabel];
-        folder.rightBarButtonItem = addFolderButton;
-        
-        [navBar pushNavigationItem:folder animated:true];
-        [self reloadData];
-    }
+    if (indexPath.row < [folders count]) [self changeFolder:cellLabel];
     //Files
     else [self openContextDeclaration:cellLabel];
 }
@@ -159,6 +171,7 @@
     else {
         newCell.textLabel.text = [files objectAtIndex:indexPath.row - [folders count]];
     }
+    [newCell autorelease];
     return newCell;
 }
 

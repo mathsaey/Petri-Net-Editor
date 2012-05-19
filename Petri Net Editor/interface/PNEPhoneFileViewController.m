@@ -22,13 +22,27 @@
  now visibile file view.
  */
 - (void) openContextDeclaration: (NSString*) name {
+    [super openContextDeclaration:name];
+
     UINavigationItem *file = [[UINavigationItem alloc] initWithTitle:name];
     file.rightBarButtonItem = doneButton;
     [navBar pushNavigationItem:file animated:true];
 
-    [super openContextDeclaration:name];
     folderView.hidden = YES;
     fileView.hidden = NO;
+}
+
+
+- (void) changeFolder: (NSString*) name {
+    [self closeFile];
+    [fileManager changeFolder:name];
+    
+    UINavigationItem *folder = [[UINavigationItem alloc] initWithTitle:name];
+    folder.rightBarButtonItem = doneButton;
+    
+    [navBar pushNavigationItem:folder animated:true];
+    [self reloadData];
+    
 }
 
 /**

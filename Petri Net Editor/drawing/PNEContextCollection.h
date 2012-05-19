@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PNEContextCollection : NSObject
+#import "PNETemporaryPlaceView.h"
+#import "PNEContextPlaceView.h"
+#import "PNETransitionView.h"
+
+@interface PNEContextCollection : NSObject {
+    PNEContextPlaceView *contextPlace;
+}
 
 @end

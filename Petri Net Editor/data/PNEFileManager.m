@@ -22,6 +22,12 @@
     return self;
 }
 
+- (void) dealloc {
+    //[basePath release];
+    //[currentPath release];
+    [super dealloc];
+}
+
 #pragma mark - Directory commands
 
 /**
@@ -43,7 +49,6 @@
 - (void) addFolder: (NSString*) folderName {
     NSFileManager *manager =[NSFileManager defaultManager];
     [manager createDirectoryAtPath:[currentPath stringByAppendingPathComponent:folderName]withIntermediateDirectories:false attributes:nil error:nil];
-    [manager release];
 }
 
 /**
@@ -81,8 +86,7 @@
         else if (exists && !isDir && !getFolders)
             [resList addObject:name];
     }
-    
-    [manager release];
+    [resList autorelease];
     return resList;
 }
 
@@ -120,7 +124,6 @@
 - (void) eraseElement: (NSString*) name {
     NSFileManager *manager = [NSFileManager defaultManager];
     [manager removeItemAtPath:[currentPath stringByAppendingPathComponent:name] error:nil];
-    [manager release];
 }
 
 /**
@@ -152,7 +155,8 @@
     
     NSString *contents = [[NSString alloc] initWithData:buffer encoding:NSASCIIStringEncoding];
     
-    [contextFile closeFile];    
+    [contextFile closeFile];
+    [contents autorelease];
     return contents;
 }
 

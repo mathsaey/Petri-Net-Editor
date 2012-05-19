@@ -47,12 +47,17 @@ static PNManager *sharedManager = nil;
 
 + (void) trashManager {
     @synchronized(self) {
+        [sharedManager release];
         sharedManager = [sharedManager init];
     }
 }
 
 - (id)copyWithZone:(NSZone *)zone {
     return self;
+}
+
+- (void) release {
+
 }
 
 - (id)init {

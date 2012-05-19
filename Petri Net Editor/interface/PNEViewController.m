@@ -79,6 +79,7 @@
 - (IBAction)trashButtonPressed:(id)sender {
     [PNManager trashManager];
     [petriNetView loadKernel];
+    [petriNetView resetPositions];
 }
 
 /**
@@ -92,6 +93,7 @@
                           otherButtonTitles:@"Confirm", nil];
     popup.alertViewStyle = UIAlertViewStylePlainTextInput;
     [popup show];
+    [popup release];
 }
 
 /**
@@ -140,6 +142,7 @@
         if (alertView.title == ADD_CONTEXT_ALERTVIEW_TITLE)
             [self addContext:name];
         else [self addTransition:name];
+        [name release];
     }
 }
 

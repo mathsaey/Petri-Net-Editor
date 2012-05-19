@@ -105,11 +105,10 @@
     }
     @catch (NSException *exception) {
         NSString *title = [NSString stringWithFormat:@"Error firing transition %@", label];
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:title message:[exception reason]
-                                      delegate: self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:[exception reason]
+                                      delegate: self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-    }
-    @finally {
+        [alert release];
     }
 }
 
