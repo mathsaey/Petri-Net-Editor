@@ -59,6 +59,14 @@
  */
 - (void) removeElement {
     [superView.manager removeTransition:element];
+    
+    //Remove the transition from all the neighbours
+    // If the transition is not a neighbour of a certain
+    // place nothing happens
+    for (PNEPlaceView* place in superView.places) {
+        [place removeNeighbour:self];
+    }
+    
     [super removeElement];
 }
 

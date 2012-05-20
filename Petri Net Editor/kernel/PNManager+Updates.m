@@ -41,8 +41,8 @@
 -(BOOL) fireTransition:(PNTransition *)transition InThread: (NSThread *) thread {
     NSNumber *nextColor = [[[NSNumber alloc] initWithInt:[[[threadMapping allKeys] lastObject] intValue] +1] autorelease];
     if([[threadMapping allKeysForObject:thread] count] == 0) {
-             if(![nextColor isGreaterThan:[[[NSNumber alloc] initWithInt:1] autorelease]])
-            nextColor = [[[NSNumber alloc] initWithInt:2] autorelease];
+             if(!nextColor > 1)
+                 nextColor = [[[NSNumber alloc] initWithInt:2] autorelease];
         [threadMapping setObject:thread forKey:nextColor];
     }
     return [self fireTransition:transition WithColor: nextColor];

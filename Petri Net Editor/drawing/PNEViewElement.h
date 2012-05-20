@@ -17,11 +17,11 @@
  This class is the visual representation of a PNElement.
  */
 @interface PNEViewElement : NSObject {
-    PNElement *element; /** The PNElement that this viewElement represents */
+    id element; /** The PNElement that this viewElement represents */
     PNEView *superView; /** The PNEView that contains the node */
     }
 
-@property (readonly) PNElement *element;
+@property (readonly) id element;
 
 - (void) removeElement;
 - (id) initWithElement: (PNElement*) pnElement andSuperView: (PNEView*) view;

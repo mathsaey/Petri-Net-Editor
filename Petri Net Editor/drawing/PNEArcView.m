@@ -88,6 +88,7 @@
         UIView *touchZone = [[UIView alloc] initWithFrame:rect];        
         UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
         [touchZone addGestureRecognizer:hold];
+        [hold release];
                 
         [superView addSubview:touchZone];
         [touchViews addObject:touchZone];
@@ -145,20 +146,25 @@
  Replaces the arc with an inhibitor arc if it's a standard arc and vice versa
  */
 - (void) changeType {
-    if([toNode class] == [PNEPlaceView class] && [element type] == NORMAL) {
+    //We use a temporary element to avoid warnings
+    PNArcInscription *tmpElement = (PNArcInscription*) element;
+    
+    if([toNode class] == [PNEPlaceView class] && tmpElement.type == NORMAL) {
         UIAlertView *popup = [[UIAlertView alloc] 
                               initWithTitle:@"Error" 
                               message:@"You cannot add an inhibitor arc as output!" 
                               delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        return [popup show];
+        [popup show];
+        [popup release];
+        return;
     }
-    if ([element type] == NORMAL) {
-        [element setType:INHIBITOR];
-        [element setFlowFunction:0];
+    if (tmpElement.type == NORMAL) {
+        [tmpElement setType:INHIBITOR];
+        [tmpElement setFlowFunction:0];
     }
     else {
-        [element setType:NORMAL];
-        [element setFlowFunction:1];
+        [tmpElement setType:NORMAL];
+        [tmpElement setFlowFunction:1];
     }
     
     [superView loadKernel];
@@ -172,10 +178,10 @@
     toNode = newToNode;
 
     if ([toNode superclass] == [PNEPlaceView class])
-        [toNode addNeighbour: fromNode isInput: false];
+        [(PNEPlaceView*) toNode addNeighbour: (PNETransitionView*) fromNode isInput: false];
     else if ([toNode class] == [PNETransitionView class])
-        [fromNode addNeighbour: toNode isInput: true];
-    else NSLog([NSString stringWithFormat:@"setNodes (PNENodeView) received faulty class input! %@ , %@", [[fromNode class] description], [[toNode class] description]]);
+        [(PNEPlaceView*) fromNode addNeighbour:(PNETransitionView*) toNode isInput: true];
+    else NSLog(@"setNodes (PNENodeView) received faulty class input!");
 }
 
 

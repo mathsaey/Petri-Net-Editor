@@ -20,7 +20,6 @@
 - (id) initWithElement: (PNPlace*) pnElement andSuperView: (PNEView*) view {
     if (self = [super initWithElement: pnElement andSuperView: view]) {
         [nodeOptions addButtonWithTitle:@"Add token"];
-        [nodeOptions addButtonWithTitle:@"Show reachable contexts"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
         tokens = [[NSMutableArray alloc] init];
         neighbours = [[NSMutableDictionary alloc] init];
@@ -39,6 +38,7 @@
 
 - (void) dealloc {
     [tokens release];
+    [neighbours release];
     [superView.places removeObject:self];
     [super dealloc];
 }
@@ -48,15 +48,17 @@
  every PNArcInscription connected to the
  matching PNPlace is removed.
  */
-- (void) removeElement {
-    [superView.manager removePlace:element];
+- (void) removeElement {   
+    //NSArray *inputs = [[NSArray alloc] init];
+    //NSArray *outputs = [[NSArray alloc] init];
     
     for (PNETransitionView *trans in neighbours) {
         if ([[neighbours objectForKey:trans] boolValue]) 
-            [trans.element removeInput:self.element];
-        else [trans.element removeOutput:self.element];
+            [trans.element removeInput: element];
+        else [trans.element removeOutput: element];
     }
     
+    [superView.manager removePlace:element];
     [super removeElement];
 }
 
@@ -120,6 +122,7 @@
         PNToken *newToken = [[PNToken alloc] init];
         [element addToken:newToken];
         [superView updatePlaces];
+        [newToken release];
     }
 }
 

@@ -36,7 +36,6 @@
 @property (readonly) CGFloat yOrig;
 @property (readonly) NSString *label;
 @property (readonly) CGFloat dimensions;
-@property (readonly) NSMutableArray* neighbours;
 
 //============
 //Drawing Code

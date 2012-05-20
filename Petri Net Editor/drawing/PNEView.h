@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "PNEArcView.h"
 #import "PNEPlaceView.h"
@@ -14,6 +15,8 @@
 #import "PNETransitionView.h"
 #import "PNEContextPlaceView.h"
 #import "PNETemporaryPlaceView.h"
+
+#import "PNEContextCollection.h"
 
 #import "UITextView+utils.h"
 #import "../kernel/PNManager.h"
@@ -31,6 +34,7 @@
     NSMutableArray *arcs; /** Array that contains every PNEArcView the view contains */
     NSMutableArray *places; /** Array that keeps track of every PNEPlaceView the view contains */
     NSMutableArray *transitions; /** Array that stores every PNETransitionView the view contains */
+    NSMutableArray *collections; /** Array that contains the context collections */
         
     PNManager *manager; /** Link to the PNManager that we wish to display */
     

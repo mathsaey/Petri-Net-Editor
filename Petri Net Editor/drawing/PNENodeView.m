@@ -11,7 +11,7 @@
 
 @implementation PNENodeView
 
-@synthesize xOrig, yOrig, label, dimensions, isMarked, hasLocation, neighbours;
+@synthesize xOrig, yOrig, label, dimensions, isMarked, hasLocation;
 
 #pragma mark - Lifecycle
 
@@ -39,6 +39,10 @@
         [self addTouchResponder:pan];
         [self addTouchResponder:hold];
         
+        [tap release];
+        [pan release];
+        [hold release];
+        
         //Initialise the action sheet, 
         //we initialise the cancel button later so it appears at the bottom
         nodeOptions = [[UIActionSheet alloc] 
@@ -53,7 +57,7 @@
 }
 
 - (void) dealloc {
-    [neighbours release];
+    [nodeOptions release];
     [super dealloc];
 }
 
@@ -144,6 +148,7 @@
         popup.alertViewStyle = UIAlertViewStylePlainTextInput;
         [popup textFieldAtIndex:0].placeholder = label;
         [popup show];
+        [popup release];
     }
     
     else if (buttonIndex == actionSheet.destructiveButtonIndex) {

@@ -355,7 +355,7 @@
         [deac setString:@"deac."];
         [deac appendString:[target label]];
         for (PNTransition *t in [self getOutputsForPlace:target]) {
-            PNArcInscription *ai = [[t inputs] objectForKey:source];
+            //PNArcInscription *ai = [[t inputs] objectForKey:source];
             if([[t label] isEqualToString:[NSString stringWithFormat:deac]]) {
                 if([[t inputs] objectForKey:target] != nil && [[t inputs] objectForKey:source] == nil)
                     [t addOutput:n toPlace:[source getPrepareForDeactivation]];    
