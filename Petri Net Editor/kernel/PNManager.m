@@ -165,16 +165,29 @@ static PNManager *sharedManager = nil;
 }
 
 - (void)removePlace:(PNPlace *)aPlace {
+    NSMutableArray *tmpPlaces = [[NSMutableArray alloc] init];
+    NSMutableArray *tmpTransitions = [[NSMutableArray alloc] init];
+    
     NSParameterAssert(aPlace);
     [places removeObject:aPlace];
     for(PNPlace *p in [self temporaryPlaces]) {
         if([[p label] hasSuffix:[aPlace label]])
-            [temporaryPlaces removeObject:p];
+            [tmpPlaces addObject:p];
     }
     for(PNTransition *t in transitions) {
         if([[t label] hasSuffix:[aPlace label]]) 
-            [transitions removeObject:t];
+            [tmpTransitions addObject:t];
     }
+    
+    for (PNPlace* place in tmpPlaces) {
+        [temporaryPlaces removeObject:place];
+    }
+    for (PNTransition *trans in tmpTransitions) {
+        [transitions removeObject:trans];
+    }
+    
+    [tmpPlaces release];
+    [tmpTransitions release];
 }
 
 -(void) addTransition:(PNTransition *)newTransition {
