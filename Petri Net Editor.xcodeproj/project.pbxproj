@@ -28,8 +28,6 @@
 		D541C44F1469C6C8002DB7F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D541C44D1469C6C8002DB7F4 /* InfoPlist.strings */; };
 		D541C4511469C6C8002DB7F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4501469C6C8002DB7F4 /* main.m */; };
 		D541C4551469C6C8002DB7F4 /* PNEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */; };
-		D5546C1315519E9000D50E6C /* PNEContextPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */; };
-		D5546C1615519EB000D50E6C /* PNETemporaryPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */; };
 		D557F63E14F303D7005DC543 /* PNEConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D557F63D14F303D7005DC543 /* PNEConstants.m */; };
 		D5681D47155D8F8900EB02AA /* PNParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D5681D44155D8F8900EB02AA /* PNParser.m */; };
 		D58816DF155ED5BD00B26EF6 /* PNEFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58816DE155ED5BD00B26EF6 /* PNEFileViewController.m */; };
@@ -95,10 +93,6 @@
 		D541C4531469C6C8002DB7F4 /* PNEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PNEAppDelegate.h; sourceTree = "<group>"; };
 		D541C4541469C6C8002DB7F4 /* PNEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PNEAppDelegate.m; sourceTree = "<group>"; };
 		D541C4651469C6C8002DB7F4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		D5546C1115519E9000D50E6C /* PNEContextPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEContextPlaceView.h; path = drawing/PNEContextPlaceView.h; sourceTree = "<group>"; };
-		D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEContextPlaceView.m; path = drawing/PNEContextPlaceView.m; sourceTree = "<group>"; };
-		D5546C1415519EB000D50E6C /* PNETemporaryPlaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNETemporaryPlaceView.h; path = drawing/PNETemporaryPlaceView.h; sourceTree = "<group>"; };
-		D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNETemporaryPlaceView.m; path = drawing/PNETemporaryPlaceView.m; sourceTree = "<group>"; };
 		D557F63C14F303D7005DC543 /* PNEConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNEConstants.h; sourceTree = "<group>"; };
 		D557F63D14F303D7005DC543 /* PNEConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNEConstants.m; sourceTree = "<group>"; };
 		D5681D43155D8F8900EB02AA /* PNParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNParser.h; path = data/PNParser.h; sourceTree = "<group>"; };
@@ -307,19 +301,6 @@
 			name = Nodes;
 			sourceTree = "<group>";
 		};
-		D5546C1015519E5200D50E6C /* Places */ = {
-			isa = PBXGroup;
-			children = (
-				D595E4B414F29201001D9B19 /* PNEPlaceView.h */,
-				D595E4B514F29201001D9B19 /* PNEPlaceView.m */,
-				D5546C1115519E9000D50E6C /* PNEContextPlaceView.h */,
-				D5546C1215519E9000D50E6C /* PNEContextPlaceView.m */,
-				D5546C1415519EB000D50E6C /* PNETemporaryPlaceView.h */,
-				D5546C1515519EB000D50E6C /* PNETemporaryPlaceView.m */,
-			);
-			name = Places;
-			sourceTree = "<group>";
-		};
 		D5546C24155A850C00D50E6C /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,7 +409,8 @@
 				D595E4AC14F290DF001D9B19 /* PNENodeView.m */,
 				D595E4B714F29218001D9B19 /* PNETransitionView.h */,
 				D595E4B814F29218001D9B19 /* PNETransitionView.m */,
-				D5546C1015519E5200D50E6C /* Places */,
+				D595E4B414F29201001D9B19 /* PNEPlaceView.h */,
+				D595E4B514F29201001D9B19 /* PNEPlaceView.m */,
 			);
 			name = Elements;
 			sourceTree = "<group>";
@@ -540,8 +522,6 @@
 				D5B3B59615517A7F00F20DC0 /* PNInternalTransition.m in Sources */,
 				D5B3B59715517A7F00F20DC0 /* PNManager+Updates.m in Sources */,
 				D5B3B59815517A7F00F20DC0 /* PNTemporaryPlace.m in Sources */,
-				D5546C1315519E9000D50E6C /* PNEContextPlaceView.m in Sources */,
-				D5546C1615519EB000D50E6C /* PNETemporaryPlaceView.m in Sources */,
 				D5681D47155D8F8900EB02AA /* PNParser.m in Sources */,
 				D58816DF155ED5BD00B26EF6 /* PNEFileViewController.m in Sources */,
 				D58816E3155EF22700B26EF6 /* PNEFileManager.m in Sources */,
@@ -615,6 +595,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Petri Net Editor/Petri Net Editor-Prefix.pch";
 				INFOPLIST_FILE = "Petri Net Editor/Petri Net Editor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -626,6 +607,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Petri Net Editor/Petri Net Editor-Prefix.pch";
 				INFOPLIST_FILE = "Petri Net Editor/Petri Net Editor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

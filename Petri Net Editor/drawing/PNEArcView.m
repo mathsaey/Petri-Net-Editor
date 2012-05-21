@@ -177,7 +177,7 @@
     fromNode = newFromNode;
     toNode = newToNode;
 
-    if ([toNode superclass] == [PNEPlaceView class])
+    if ([toNode class] == [PNEPlaceView class])
         [(PNEPlaceView*) toNode addNeighbour: (PNETransitionView*) fromNode isInput: false];
     else if ([toNode class] == [PNETransitionView class])
         [(PNEPlaceView*) fromNode addNeighbour:(PNETransitionView*) toNode isInput: true];

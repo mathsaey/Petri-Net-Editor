@@ -196,10 +196,10 @@
     [transitions removeAllObjects];
     
     for (PNPlace* place in manager.places) {
-        [[PNEContextPlaceView alloc] initWithElement:place andSuperView:self];
+        [[PNEPlaceView alloc] initWithElement:place andSuperView:self];
     }
     for (PNPlace* place in manager.temporaryPlaces) {
-        [[PNETemporaryPlaceView alloc] initWithElement:place andSuperView:self];
+        [[PNEPlaceView alloc] initWithElement:place andSuperView:self];
     }
     for (PNTransition* trans in manager.transitions) {
         [[PNETransitionView alloc] initWithElement:trans andSuperView:self];

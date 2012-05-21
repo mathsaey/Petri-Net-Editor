@@ -24,6 +24,7 @@
         tokens = [[NSMutableArray alloc] init];
         neighbours = [[NSMutableDictionary alloc] init];
         [superView.places addObject:self];
+        isContextPlace = [pnElement class] == [PNContextPlace class]; 
         
         if (!hasLocation) dimensions = PLACE_DIMENSION;
         
@@ -324,6 +325,26 @@
     
     [super drawNode];
     [self drawTokens];
+    
+    [super drawNode];
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGRect rect = CGRectMake(xOrig, yOrig, dimensions, dimensions);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextAddEllipseInRect(context, rect);
+    CGContextSetLineWidth(context, LINE_WIDTH);
+    
+    if (!isContextPlace) {
+        //Make the line dashed
+        CGFloat dashPattern[] = {DASH_WIDTH};
+        CGContextSetLineDash(context, 0, dashPattern, 1);
+    }
+    
+    CGContextStrokePath(context);
+    
+    //Draw solid lines again
+    CGContextSetLineDash(context, 0, NULL, 0); 
 }
 
 @end

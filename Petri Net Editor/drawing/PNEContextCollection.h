@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PNETemporaryPlaceView.h"
-#import "PNEContextPlaceView.h"
 #import "PNETransitionView.h"
-
+#import "PNEPlaceView.h"
 
 /**
  @author Mathijs Saey
@@ -23,11 +21,13 @@
  very hardcoded and very dependant on the kernel.
  */
 @interface PNEContextCollection : NSObject {
-    PNEContextPlaceView *contextPlace;
+    NSArray *collection;
     
-    PNETemporaryPlaceView *prPlace;
-    PNETemporaryPlaceView *pnrPlace;
-    PNETemporaryPlaceView *negPlace;
+    PNEPlaceView *contextPlace;
+    
+    PNEPlaceView *prPlace;
+    PNEPlaceView *pnrPlace;
+    PNEPlaceView *negPlace;
     
     PNETransitionView *reqTrans;
     PNETransitionView *reqnTrans;
@@ -39,3 +39,7 @@
 //- (void) placeCollection: (CGPoint*) position;
 
 @end
+
+
+///@todo Add touchresponders to nodes. Ensure it needs 2 fingers.
+///@todo Add Context wise displaying

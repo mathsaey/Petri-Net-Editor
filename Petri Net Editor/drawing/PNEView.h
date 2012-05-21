@@ -13,8 +13,6 @@
 #import "PNEPlaceView.h"
 #import "PNEViewElement.h"
 #import "PNETransitionView.h"
-#import "PNEContextPlaceView.h"
-#import "PNETemporaryPlaceView.h"
 
 #import "PNEContextCollection.h"
 

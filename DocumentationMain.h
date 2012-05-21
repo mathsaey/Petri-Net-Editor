@@ -10,14 +10,17 @@
 @mainpage
 @section Introduction
  This is the main Documentation page of the Petri Net Editor. This documentation was made to make it easier for any developer to understand and expand the Petri Net Editor. The original code of this project was written by Mathijs Saey as part of his 3rd bachelor project at the VUB. This code was based on the kernel provided by Nicolas Cardozo. This project strives to provide the user with a visual representation of context oriented systems at runtime. This visual representation is based on general Petri Nets with inhibitor arcs. 
- The documentation of this project is made by doxygen and thus all documentation comments are made according to the doxygen standard.
  The full project can be found on github at: https://github.com/mathsaey/Petri-Net-Editor 
  
+ @section Documentation
+ The documentation of this project is made by doxygen and thus all documentation comments are made according to the doxygen standard. @ commands were favored over \ commands to make it easier to switch to another documentation tool if that would be necessary. 
+ The doxygen settings used to generate the documentation can be found in the project root directory.
+ Doxygen can be found here: http://www.stack.nl/~dimitri/doxygen/
  
 @section Overview
  The main point of this documentation is to provide an overview of all the classes in the system. All the classes can be found in the Classes section. The kernel classes are only partly documented by Nicolas Cardozo but are not omitted so that a user of this documentation can still view the public methods and members as well as their inheritance graphs.
  
- The constants that are used throughout the code can be found in the PNEConstants module found in the modules section. These constants don't influence the working of the code but can be used to fine tune the behaviour of the Petri Net drawing.
+ The constants that are used throughout the code can be found in the PNEConstants module found in the modules section. These constants don't influence the working of the code but can be used to fine tune the behaviour of the Petri Net drawing. All used strings can be found in the Localizable.strings file, which is not part of this documentation. No explanation should be needed when modifying this file.
  
  Somebody new to the code could start by looking at the PNEView class. The PNENodeView class and it's subclasses should be your next focus. Knowing these 4 classes should be enough to get a basic sense of the inner workings of the product.
  
@@ -25,16 +28,16 @@
  
  @section Updates
  When updating the kernel a few things should be checked. Obviously the drawing classes should be adjusted depending on the changes to the kernel. Furthermore the PNPlace subclasses copy methods should always return a self pointer by using \code return [self retain] \endcode
- This way the dictionaries that store the arcs in the PNTransition class store an actual reference to the place to connect rather then a copy of that place. The shame should be done for the copy method of the PNArcInscription. This ensures that PNEArcView is drawn correctly.
+ This way the dictionaries that store the arcs in the PNTransition class store an actual reference to the place to connect rather then a copy of that place. The same should be done for the copy method of the PNArcInscription. These changes ensure that a PNEArcView is drawn correctly.
  
  If new types are added then the PNEView::loadKernel function should also be adjusted accordingly.
  Further adjustments to the drawing code will probably be needed, but this depends on the kernel. Somebody with sufficient knowledge of the code (which can be obtained with the help of this documentation) shouldn't have too much trouble adjusting the code.
   
+ 
  @section Todo
  @todo Look into strange iPhone behaviour (no parsing, bad access on context creation (no problem on ipad)
  @todo Document view controllers
  @todo Check memory management
- @todo Add Context wise displaying
  @todo Move strings to constants
  @todo Further transition firing testing
  @todo fix arcs usage in kernel

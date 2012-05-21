@@ -7,6 +7,7 @@
 //
 
 #import "../interface/UITextView+utils.h"
+#import "../kernel/PNContextPlace.h"
 #import "../kernel/PNPlace.h"
 #import "PNETokenView.h"
 #import "PNENodeView.h"
@@ -21,6 +22,8 @@
  The circle can possibly contain one or more instances of PNETokenView.
  */
 @interface PNEPlaceView : PNENodeView {
+    BOOL isContextPlace; /** Checks if the place is a context place. */
+    
     NSMutableArray *tokens; /** The collection of PNETokenView that are part of this place */
     NSMutableDictionary *neighbours; /** Contains pointers to all the transitions connected to this place */
     CGFloat distanceFromMidPoint; /** The horizontal and vertical distance of a point on the circle in relation to the midpoint */

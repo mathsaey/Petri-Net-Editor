@@ -33,6 +33,7 @@
         //Add touch responders
         [self createTouchZone];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+        [tap setNumberOfTouchesRequired:1]; //Ensure only a single finger is accepted
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
         UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
         [self addTouchResponder:tap];
