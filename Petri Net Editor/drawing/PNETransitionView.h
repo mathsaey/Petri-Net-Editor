@@ -20,9 +20,7 @@
  a PNTransition is represented by a full square.
  */
 @interface PNETransitionView : PNENodeView <NSCopying> {
-    PNTransitionType type;  
+    PNTransitionType type;  /** Stores which type the original element is */
 }
 
 @end
-
-//TODO: remove self out of neighbour places

@@ -19,21 +19,25 @@
  */
 - (id) initWithElement: (PNPlace*) pnElement andSuperView: (PNEView*) view {
     if (self = [super initWithElement: pnElement andSuperView: view]) {
+        //Add extra action sheet buttons
         [nodeOptions addButtonWithTitle:@"Add token"];
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
+        
         tokens = [[NSMutableArray alloc] init];
         neighbours = [[NSMutableDictionary alloc] init];
-        [superView.places addObject:self];
-        isContextPlace = [pnElement class] == [PNContextPlace class]; 
         
+        [superView.places addObject:self];
+        
+        isContextPlace = [pnElement class] == [PNContextPlace class]; 
         if (!hasLocation) dimensions = PLACE_DIMENSION;
         
         //Add all the tokens
         for (PNToken *token in pnElement.tokens) {
             PNETokenView *tokenView = [[PNETokenView alloc] initWithElement:token andSuperView:superView];
             [self addToken:tokenView];
-            [tokenView release];}
-        } 
+            [tokenView release];
+        }
+    } 
     return self;
 }
 

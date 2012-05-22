@@ -10,4 +10,18 @@
 
 @implementation PNEContextCollection
 
+- (void) addTouchresponders {
+    for (PNENodeView* node in collection) {
+        UIPanGestureRecognizer *tap = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoublePanGesture:)];
+        tap.minimumNumberOfTouches = 2;
+        [node addTouchResponder:tap];
+        [tap release];
+    }
+    
+}
+
+- (void) handleDoublePanGesture: (UIPanGestureRecognizer *) gesture {
+    ///@todo move all nodes
+}
+
 @end

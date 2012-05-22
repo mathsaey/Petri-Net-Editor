@@ -42,6 +42,7 @@ extern CGFloat PLACE_DIMENSION; /**< Size of a place */
 extern CGFloat TRANSITION_DIMENSION; /**< Size of a transition */
 extern CGFloat LABEL_DISTANCE; /**< Distance between a node and it's label */
 extern CGFloat DASH_WIDTH; /**< Width of the dashes in a temporary place */
+extern CGFloat TOUCH_EXTRA; /**< Extra margin that gets added to the node touch rect */
 
 //Token drawing constants
 extern CGFloat TOKEN_DISTANCE; /**< Distance between tokens */

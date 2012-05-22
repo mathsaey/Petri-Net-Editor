@@ -25,6 +25,7 @@
         //Only add the option to fire a transition if it's external
         if (pnElement.priority == EXTERNAL)
             [nodeOptions addButtonWithTitle:@"Fire Transition"];
+        
         nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
         
         [superView.transitions addObject:self];

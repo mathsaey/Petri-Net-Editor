@@ -33,9 +33,9 @@
         //Add touch responders
         [self createTouchZone];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
-        [tap setNumberOfTouchesRequired:1]; //Ensure only a single finger is accepted
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
         UILongPressGestureRecognizer *hold = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongGesture:)];
+        pan.maximumNumberOfTouches = 1; //Ensure it only responds to one finger panning.
         [self addTouchResponder:tap];
         [self addTouchResponder:pan];
         [self addTouchResponder:hold];
@@ -76,12 +76,23 @@
 #pragma mark - Touch logic
 
 /**
+ This method creates a touch rect
+ @return
+    A rectangle, the size depends on the
+    node size and the TOUCH_EXTRA constant
+ */
+- (CGRect) createTouchRect {
+    return CGRectMake(xOrig - TOUCH_EXTRA , yOrig - TOUCH_EXTRA, dimensions + TOUCH_EXTRA * 2, dimensions + TOUCH_EXTRA * 2);
+}
+
+/**
  Creates an area where the
  node can receive touch input
  */
 - (void) createTouchZone {
-    touchView = [[UIView alloc] initWithFrame:CGRectMake(xOrig, yOrig, dimensions, dimensions)];
+    touchView = [[UIView alloc] initWithFrame:[self createTouchRect]];
     [superView addSubview:touchView];
+    [touchView release];
 }
 
 /**
@@ -89,7 +100,7 @@
  current location of the PNENodeView
  */
 - (void) updateTouchZone {
-    touchView.frame = CGRectMake(xOrig, yOrig, dimensions, dimensions);
+    touchView.frame = [self createTouchRect];
 }
 
 /**
