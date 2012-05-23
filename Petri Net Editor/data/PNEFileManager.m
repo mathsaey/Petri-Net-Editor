@@ -184,7 +184,7 @@
     The contents of the string to be written
  */
 -(void) putContextDeclaration: (NSString*) fileName withContents: (NSString*) contents {
-    NSString *pathName = [currentPath stringByAppendingPathComponent:fileName];
+    NSString *pathName = [[currentPath stringByAppendingPathComponent:fileName] retain];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     //Create the data to write
@@ -201,6 +201,7 @@
     }
     //Create a new file with the data
     else [fileManager createFileAtPath:pathName contents:buffer attributes:nil];
+    [pathName release];
 }
 
 /**
