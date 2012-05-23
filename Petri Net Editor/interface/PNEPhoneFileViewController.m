@@ -17,9 +17,10 @@
 }
 
 /**
- This method opens a context declaration with a name
+ This method opens a context declaration with a name.
  We hide the folder view and open up the file in the 
  now visibile file view.
+ @see PNEFileViewController::openContextDeclaration:
  */
 - (void) openContextDeclaration: (NSString*) name {
     [super openContextDeclaration:name];
@@ -32,25 +33,27 @@
     fileView.hidden = NO;
 }
 
-
+/**
+ Changes the folder (this is done in PNEFileViewController::changeFolder:)
+ Aftewards it changes the navigationbar.
+ @see PNEFileViewController::changeFolder:
+ */
 - (void) changeFolder: (NSString*) name {
-    [self closeFile];
-    [fileManager changeFolder:name];
+    [super changeFolder:name];
     
     UINavigationItem *folder = [[UINavigationItem alloc] initWithTitle:name];
     folder.rightBarButtonItem = doneButton;
-    
     [navBar pushNavigationItem:folder animated:true];
-    [self reloadData];
-    
+    [folder release];
 }
 
 /**
  This method is called by the system
  when the done button is pressed.
- To allow the user to use the toolbar 
- after typing in the fileView the done button
- hides the keyboard when we are watching the file view.
+ This can do two things. If we are currently
+ editing a file it will hide the keyboard.
+ Otherwise it hides the fileviewcontroller.
+ @see PNEFileViewController::doneButtonPressed:
  */
 - (void) doneButtonPressed:(id)sender {
     if (!fileView.hidden) {
@@ -64,7 +67,7 @@
  bar pops an item (generally when the back button is pressed).
  We use it to return to the previous folder.
  This method takes us back to the folderview if we
- are in the fileview
+ are in the fileview.
  */
 - (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item {
     if (fileView.hidden) {

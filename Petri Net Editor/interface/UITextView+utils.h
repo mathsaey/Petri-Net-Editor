@@ -17,7 +17,6 @@
  */
 @interface UITextView (utils)
 
-
 - (void) clearText;
 - (void) addText: (NSString*) string;
 

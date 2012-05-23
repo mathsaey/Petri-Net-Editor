@@ -10,11 +10,13 @@
 #import "PNEViewController.h"
 #import "../drawing/PNEView.h"
 
+/**
+ This class extends the PNEViewController
+ with iPad functionality.
+ */
 @interface PNEPadViewController : PNEViewController {
-   
     UIView *infoView; /**< This view contains the contextinformation and the log */
     UITextView *contextInformation; /** This text view displays the information of the selected contexts */
-    
     UISegmentedControl *labelVisibility; /** This segmented control is used to select if the labels are visible or not */
 }
 

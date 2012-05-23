@@ -10,7 +10,11 @@
 #import "PNEViewController.h"
 #import "../drawing/PNEView.h"
 
-
+/**
+ @author Mathijs Saey
+ This class extents the PNEViewController for the
+ iPhone version.
+*/
 @interface PNEPhoneViewController : PNEViewController {
     UIBarButtonItem *logButton; /**< This button controls the visibility of the log */
     UIView *viewContainer; /**< This view contains the PNEView and the log */

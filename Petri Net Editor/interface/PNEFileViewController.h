@@ -60,11 +60,13 @@
 
 @end
 
-
+//Interface that declares protected attributes
+//for subclasses.
 @interface PNEFileViewController (protected)
 
 - (void) closeFile;
 - (void) reloadData;
+- (void) changeFolder: (NSString*) name;
 - (void) openContextDeclaration: (NSString*) name;
 
 @end

@@ -133,11 +133,11 @@
             </objects>
             <point key="canvasLocation" x="1302" y="-837"/>
         </scene>
-        <!--File View Controller-->
+        <!--Pad File View Controller-->
         <scene sceneID="7nE-CR-fzf">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cs-Kb-uWa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="aXD-PW-OAf" customClass="PNEFileViewController" sceneMemberID="viewController">
+                <viewController id="aXD-PW-OAf" customClass="PNEPadFileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iJZ-pb-UUP">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -255,6 +255,9 @@
                 <relationship kind="outlet" name="parseButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="saveButton" candidateClass="UIBarButtonItem"/>
             </relationships>
+        </class>
+        <class className="PNEPadFileViewController" superclassName="PNEFileViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEPadFileViewController.h"/>
         </class>
         <class className="PNEPadViewController" superclassName="PNEViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PNEPadViewController.h"/>

@@ -10,11 +10,7 @@
 
 /**
  This class contains the iPhone version
- of the PNEFileViewController. The only 
- real difference is that only the folder or the 
- file view can be visible.
- To compensate this some extra behaviour is added to
- some methods.
+ of the PNEFileViewController.
  */
 @interface PNEPhoneFileViewController : PNEFileViewController
 

@@ -69,6 +69,11 @@
     [petriNetView checkPositions];
 }
 
+/**
+ This is called by the system when the iPad is about to be rotated.
+ It calls the rotatePad: function which handles the hidding or displaying
+ of some elements depending on the orientation.
+ */
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self rotatePad:toInterfaceOrientation];

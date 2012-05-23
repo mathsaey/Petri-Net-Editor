@@ -59,8 +59,11 @@
  to repopulate itself
  */
 - (void) reloadData {
-    files = [fileManager getFilesInFolder];
-    folders = [fileManager getFoldersInFolder];
+    [files release];
+    [folders release];
+    
+    files = [[fileManager getFilesInFolder] retain];
+    folders = [[fileManager getFoldersInFolder] retain];
     [folderView reloadData];
 }
 
@@ -95,7 +98,8 @@
 #pragma mark - File handling
 
 /**
- Opens a context declaration file.
+ Opens a context declaration file. And puts the
+ contents in the file viewer.
  */
 - (void) openContextDeclaration: (NSString*) name {
     currentFileName = name;
@@ -120,20 +124,13 @@
 }
 
 /**
- Opens a folder and adjusts
- the navigation bar
+ Opens a folder, the subclasses
+ also change the navigation bar contents
  */
 - (void) changeFolder: (NSString*) name {
     [self closeFile];
     [fileManager changeFolder:name];
-    
-    UINavigationItem *folder = [[UINavigationItem alloc] initWithTitle:name];
-    folder.rightBarButtonItem = addFolderButton;
-    
-    [navBar pushNavigationItem:folder animated:true];
     [self reloadData];
-    [folder release];
-
 }
 
 #pragma mark UITableView delegate methods
@@ -207,6 +204,7 @@
 - (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item {
     [fileManager returnToFolder];
     [self reloadData];
+    [self closeFile];
 }
 
 /**
