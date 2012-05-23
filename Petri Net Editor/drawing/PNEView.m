@@ -10,7 +10,7 @@
 
 @implementation PNEView
 
-@synthesize arcs, places, transitions;
+@synthesize arcs, places, transitions, collections;
 @synthesize log, contextInformation;
 @synthesize showLabels;
 @synthesize manager;
@@ -24,6 +24,7 @@
         arcs = [[NSMutableArray alloc] init];
         places = [[NSMutableArray alloc] init];
         transitions = [[NSMutableArray alloc] init];
+        collections = [[NSMutableArray alloc] init];
         currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
     }
     return self;
@@ -33,6 +34,7 @@
     [arcs release];
     [places release];
     [transitions release];
+    [collections release];
     
     [super dealloc];    
 }
@@ -142,16 +144,6 @@
     }
 }
 
-/**
- Replaces the kernel and draws it.
- @param kernel
-    The new kernel to be drawn
- */
-- (void) drawFromKernel: (PNManager*) kernel {
-    manager = kernel;
-    [self loadKernel];
-}
-
 /** 
  Returns a UIImage of the PNEView
  @return The UIImage representation of the PNEView
@@ -194,6 +186,7 @@
     [arcs removeAllObjects];
     [places removeAllObjects];
     [transitions removeAllObjects];
+    [collections removeAllObjects];
     
     for (PNPlace* place in manager.places) {
         [[PNEPlaceView alloc] initWithElement:place andSuperView:self];
@@ -203,6 +196,11 @@
     }
     for (PNTransition* trans in manager.transitions) {
         [[PNETransitionView alloc] initWithElement:trans andSuperView:self];
+    }
+    
+    for (PNEPlaceView* place in places) {
+        if ([place.element class] == [PNContextPlace class])
+            [[PNEContextCollection alloc] initWithContextPlace:place andView:self];
     }
     
     [self refreshPositions];
@@ -278,7 +276,7 @@
     if (shouldReset) currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
     
     for (PNEPlaceView* place in places) {
-        if (!place.hasLocation || shouldReset) {
+        if (!place.hasLocation) {
             [self placeNode:place withPosition:&currentLocation];
             currentLocation.x += X_NODE_DISTANCE;
         }
@@ -289,10 +287,14 @@
     currentLocation.x = START_OFFSET_X;
     
     for (PNETransitionView* trans in transitions) {
-        if (!trans.hasLocation || shouldReset) {
+        if (!trans.hasLocation) {
             [self placeNode:trans withPosition:&currentLocation];
             currentLocation.x += X_NODE_DISTANCE;
         }
+    }
+    
+    for (PNEContextCollection *collection in collections) {
+        [collection placeContext];
     }
     
     [self setNeedsDisplay];

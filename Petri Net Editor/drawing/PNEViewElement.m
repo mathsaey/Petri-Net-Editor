@@ -10,7 +10,7 @@
 
 @implementation PNEViewElement
 
-@synthesize element;
+@synthesize element, superView;
 
 #pragma mark - Lifecycle
 

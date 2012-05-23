@@ -28,6 +28,9 @@ extern CGFloat START_OFFSET_Y; /**< Y position of the first node */
 extern CGFloat X_NODE_DISTANCE; /**< horizontal distance between 2 nodes */
 extern CGFloat Y_NODE_DISTANCE; /**< vertical distance between 2 nodes */
 
+extern CGFloat Y_CONTEXT_DISTANCE; /**< vertical distance between nodes in the same context */
+extern CGFloat X_CONTEXT_DISTANCE; /**< horizontal distance between nodes in the same context */
+
 //Element Drawing constants
 //=========================
 

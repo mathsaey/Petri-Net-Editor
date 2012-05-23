@@ -20,6 +20,7 @@
 		D506818D1563FFE400E54839 /* logo_iPhone_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D506818B1563FFE400E54839 /* logo_iPhone_small.png */; };
 		D50681901564011500E54839 /* DoxygenConfig in Resources */ = {isa = PBXBuildFile; fileRef = D506818F1564011500E54839 /* DoxygenConfig */; };
 		D50681981564184200E54839 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D50681971564184200E54839 /* Localizable.strings */; };
+		D52697CF156D4C2500A95766 /* PNEPadFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52697CE156D4C2500A95766 /* PNEPadFileViewController.m */; };
 		D52D1185149A963200A8A310 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D52D1184149A963200A8A310 /* .gitignore */; };
 		D52E1DCC14B2975600C2C897 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D52E1DCB14B2975600C2C897 /* README.md */; };
 		D541C4451469C6C8002DB7F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D541C4441469C6C8002DB7F4 /* UIKit.framework */; };
@@ -80,6 +81,8 @@
 		D506818E1564010A00E54839 /* DocumentationMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentationMain.h; sourceTree = "<group>"; };
 		D506818F1564011500E54839 /* DoxygenConfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DoxygenConfig; sourceTree = "<group>"; };
 		D50681971564184200E54839 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "Petri Net Editor/resources/Localizable.strings"; sourceTree = "<group>"; };
+		D52697CD156D4C2500A95766 /* PNEPadFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PNEPadFileViewController.h; path = interface/PNEPadFileViewController.h; sourceTree = "<group>"; };
+		D52697CE156D4C2500A95766 /* PNEPadFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PNEPadFileViewController.m; path = interface/PNEPadFileViewController.m; sourceTree = "<group>"; };
 		D52D1184149A963200A8A310 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D52E1DCB14B2975600C2C897 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D541C4401469C6C8002DB7F4 /* Petri Net Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Petri Net Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,6 +321,8 @@
 				D5B3B570154EB84800F20DC0 /* MainStoryboard_iPad.storyboard */,
 				D5B3B571154EB84800F20DC0 /* PNEPadViewController.h */,
 				D5B3B572154EB84800F20DC0 /* PNEPadViewController.m */,
+				D52697CD156D4C2500A95766 /* PNEPadFileViewController.h */,
+				D52697CE156D4C2500A95766 /* PNEPadFileViewController.m */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 				D58816E3155EF22700B26EF6 /* PNEFileManager.m in Sources */,
 				D50681741563D22B00E54839 /* PNEContextCollection.m in Sources */,
 				D58BAC231564544800287794 /* PNEPhoneFileViewController.m in Sources */,
+				D52697CF156D4C2500A95766 /* PNEPadFileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

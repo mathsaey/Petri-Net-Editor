@@ -22,6 +22,7 @@
     }
 
 @property (readonly) id element;
+@property (readonly) PNEView *superView;
 
 - (void) removeElement;
 - (id) initWithElement: (PNElement*) pnElement andSuperView: (PNEView*) view;

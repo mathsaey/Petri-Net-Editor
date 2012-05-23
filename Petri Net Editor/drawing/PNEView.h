@@ -56,6 +56,7 @@
 @property (nonatomic, readonly) NSMutableArray *arcs;
 @property (nonatomic, readonly) NSMutableArray *places;
 @property (nonatomic, readonly) NSMutableArray *transitions;
+@property (nonatomic, readonly) NSMutableArray *collections;
 
 //Adding elements
 - (void) addArc;

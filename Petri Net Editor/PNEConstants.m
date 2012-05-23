@@ -16,6 +16,9 @@ const CGFloat START_OFFSET_Y = 30;
 const CGFloat X_NODE_DISTANCE = 100;
 const CGFloat Y_NODE_DISTANCE = 100;
 
+const CGFloat Y_CONTEXT_DISTANCE = 50;
+const CGFloat X_CONTEXT_DISTANCE = 70;
+
 const int MAX_TOKENS = 3;
 const CGFloat LINE_WIDTH = 2;
 const CGFloat ARC_END_SIZE = 10;
@@ -28,7 +31,7 @@ const CGFloat LABEL_DISTANCE = 5;
 const CGFloat TOKEN_DISTANCE = 2;
 const CGFloat TOKEN_DIMENSION = 15; 
 const CGFloat DASH_WIDTH = 10;
-const CGFloat TOUCH_EXTRA = 30;
+const CGFloat TOUCH_EXTRA = 40;
 
 const CGFloat ARC_TOUCH_MIN = 5;
 const CGFloat ARC_TOUCH_BASE = 40; 

@@ -10,6 +10,7 @@
 
 #import "PNETransitionView.h"
 #import "PNEPlaceView.h"
+#import "PNEView.h"
 
 /**
  @author Mathijs Saey
@@ -26,8 +27,10 @@
     PNEPlaceView *contextPlace;
     
     PNEPlaceView *prPlace;
-    PNEPlaceView *pnrPlace;
+    PNEPlaceView *prnPlace;
     PNEPlaceView *negPlace;
+    
+    PNETransitionView *clTrans;
     
     PNETransitionView *reqTrans;
     PNETransitionView *reqnTrans;
@@ -36,10 +39,8 @@
     PNETransitionView *deacTrans;
 }
 
-//- (void) placeCollection: (CGPoint*) position;
+- (id) initWithContextPlace: (PNEPlaceView*) cPlace andView: (PNEView*) view;
+- (void) placeContext;
 
 @end
 
-
-///@todo Add touchresponders to nodes. Ensure it needs 2 fingers.
-///@todo Add Context wise displaying

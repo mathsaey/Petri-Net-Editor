@@ -345,6 +345,7 @@
     xOrig = origin.x;
     yOrig = origin.y;
     
+    hasLocation = true;
     [self updateTouchZone];
 }
 

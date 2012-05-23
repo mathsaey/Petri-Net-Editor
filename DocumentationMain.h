@@ -36,7 +36,6 @@
  
  @section Todo
  @todo Look into strange iPhone behaviour (no parsing, bad access on context creation (no problem on ipad)
- @todo Document view controllers
  @todo Check memory management
  @todo Move strings to constants
  @todo Further transition firing testing
