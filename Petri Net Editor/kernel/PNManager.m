@@ -68,10 +68,10 @@ static PNManager *sharedManager = nil;
         marking = [[PNMarking alloc] init];
         transitionQueue = [[NSMutableArray alloc] init];
         dependencies=[[NSMutableDictionary alloc] initWithCapacity:4];
-        [dependencies setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt: EXCLUSION]]; 
-        [dependencies setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt: WEAK]]; 
-        [dependencies setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt: STRONG]]; 
-        [dependencies setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt: REQUIREMENT]]; 
+        [dependencies setObject:[[[NSMutableArray alloc] init] autorelease] forKey:[NSNumber numberWithInt: EXCLUSION]]; 
+        [dependencies setObject:[[[NSMutableArray alloc] init] autorelease] forKey:[NSNumber numberWithInt: WEAK]]; 
+        [dependencies setObject:[[[NSMutableArray alloc] init] autorelease] forKey:[NSNumber numberWithInt: STRONG]]; 
+        [dependencies setObject:[[[NSMutableArray alloc] init] autorelease] forKey:[NSNumber numberWithInt: REQUIREMENT]]; 
         threadMapping = [[NSMutableDictionary alloc] init]; //<id (NSNumber), color (NSThread)>
     }
     return self;
