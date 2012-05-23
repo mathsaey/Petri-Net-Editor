@@ -79,7 +79,7 @@
  This method shows a method to the user
  */
 - (void) printError: (NSString*) errorMessage {
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Error:" message:errorMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"FILEVIEW_ERROR_TITLE", nil) message:errorMessage delegate:self cancelButtonTitle:NSLocalizedString(@"OK_BUTTON", nil) otherButtonTitles: nil];
     [error show];
     [error release];
 }
@@ -89,7 +89,7 @@
  sheet where he can enter a name.
  */
 - (void) printAskNameField: (NSString*) title {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"CANCEL_BUTTON", nil) otherButtonTitles:NSLocalizedString(@"OK_BUTTON", nil), nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert show];
     [alert release];
@@ -187,10 +187,13 @@
  */
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSString *cellLabel = [folderView cellForRowAtIndexPath:indexPath].textLabel.text;
+        NSString *cellLabel = [[folderView cellForRowAtIndexPath:indexPath].textLabel.text retain];
+        
         if ([cellLabel isEqualToString:currentFileName]) [self closeFile];
+        
         [fileManager eraseElement:cellLabel];
         [self reloadData];
+        [cellLabel release];
     }
 }
 
@@ -218,12 +221,12 @@
     if (buttonIndex != alertView.cancelButtonIndex) {
         NSString* name = [alertView textFieldAtIndex:0].text;  
         
-        if ([alertView.title isEqualToString:@"File name:"]) {
+        if ([alertView.title isEqualToString:NSLocalizedString(@"FILE_VIEW_FILE_NAME_TITLE", nil)]) {
             [fileManager putContextDeclaration:name withContents:@""];
             [self openContextDeclaration:name];
         }
         
-        else if ([alertView.title isEqualToString:@"Folder name:"]) {
+        else if ([alertView.title isEqualToString:NSLocalizedString(@"FILE_VIEW_FOLDER_NAME_TITLE", nil)]) {
             [fileManager addFolder:name];
         }
         
@@ -236,7 +239,7 @@
  the user pushes the add folder button.
  */
 - (IBAction)addFolderButtonPressed:(id)sender {
-    [self printAskNameField:@"Folder name:"];
+    [self printAskNameField:NSLocalizedString(@"FILE_VIEW_FOLDER_NAME_TITLE", nil)];
 }
 
 /**
@@ -244,7 +247,7 @@
  the user pushes the new file button.
  */
 - (IBAction)addFileButtonPressed:(id)sender {
-    [self printAskNameField:@"File name:"];
+    [self printAskNameField:NSLocalizedString(@"FILE_VIEW_FILE_NAME_TITLE", nil)];
 }
 
 /**
@@ -262,7 +265,7 @@
 - (IBAction)saveButtonPressed:(id)sender {
     if (currentFileName != nil)
         [self saveContextDeclaration];
-    else [self printError:@"There is no open file!"];
+    else [self printError:NSLocalizedString(@"FILE_VIEW_NO_OPEN_FILE", nil)];
 }
 
 /**
@@ -288,8 +291,8 @@
         [mailComposer release];
     }
     
-    else if (currentFileName == nil) [self printError:@"There is no open file!"];
-    else [self printError:@"It's not possible to send emails on this device"];
+    else if (currentFileName == nil) [self printError:NSLocalizedString(@"FILE_VIEW_NO_OPEN_FILE", nil)];
+    else [self printError:NSLocalizedString(@"FILE_VIEW_NO_MAIL", nil)];
 }
 
 /**
@@ -309,7 +312,7 @@
         [self saveContextDeclaration];
         [self parseContextDeclaration];
     }
-    else [self printError:@"There is no open file!"];
+    else [self printError:NSLocalizedString(@"FILE_VIEW_NO_OPEN_FILE", nil)];
 }
 
 /**
