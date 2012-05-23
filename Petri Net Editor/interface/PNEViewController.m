@@ -23,7 +23,11 @@
     if (self) {
         [super viewDidLoad];
         petriNetView.log = log;
-        addOptionsSheet = [[UIActionSheet alloc] initWithTitle:@"Add:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Context", @"Transition", @"Arc" , nil];
+        addOptionsSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ADD_TITLE", nil) delegate:self 
+                                             cancelButtonTitle:NSLocalizedString(@"CANCEL_BUTTON", nil) destructiveButtonTitle:nil
+                                             otherButtonTitles:NSLocalizedString(@"CONTEXT_TITLE", nil), 
+                           NSLocalizedString(@"TRANS_TITLE", nil),
+                           NSLocalizedString(@"ARC_TITLE", nil) , nil];
     }
     return self;
 }
