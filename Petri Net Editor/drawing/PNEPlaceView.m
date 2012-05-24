@@ -54,9 +54,6 @@
  matching PNPlace is removed.
  */
 - (void) removeElement {   
-    //NSArray *inputs = [[NSArray alloc] init];
-    //NSArray *outputs = [[NSArray alloc] init];
-    
     for (PNETransitionView *trans in neighbours) {
         if ([[neighbours objectForKey:trans] boolValue]) 
             [trans.element removeInput: element];

@@ -30,7 +30,7 @@
     UIActionSheet *nodeOptions; /** Action sheet that presents the user with options */
 }
 
-@property (readonly) BOOL hasLocation;
+@property (readwrite) BOOL hasLocation;
 @property (readonly) BOOL isMarked;
 @property (readonly) CGFloat xOrig;
 @property (readonly) CGFloat yOrig;

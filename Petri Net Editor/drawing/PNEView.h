@@ -75,7 +75,4 @@
 - (void) loadKernel;
 - (void) updatePlaces;
 
-//Testing code
-- (void) insertData;
-
 @end

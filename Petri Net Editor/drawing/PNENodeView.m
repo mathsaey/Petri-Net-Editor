@@ -59,6 +59,7 @@
 
 - (void) dealloc {
     [nodeOptions release];
+    //[label release];
     [super dealloc];
 }
 
@@ -341,6 +342,8 @@
         origin.y = superView.bounds.size.height - dimensions;
     if (origin.y < 0)
         origin.y = 0;
+    if (origin.x < 0)
+        origin.x = 0;
     
     xOrig = origin.x;
     yOrig = origin.y;

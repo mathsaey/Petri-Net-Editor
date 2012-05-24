@@ -16,7 +16,6 @@
 
 - (id) init {
 	if((self = [super init])) {
-		tokens = [[NSMutableArray alloc] init];
 		capacity = -1; //default value for infinite capacity
 	}
 	return self;
@@ -24,14 +23,12 @@
 
 - (id) initWithName:(NSString *) newName {
 	if((self = [super initWithName: newName])) {
-		tokens = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
 - (id) initWithName:(NSString *) newName AndCapacity: (int) newCapacity{
 	if((self = [super initWithName: newName])) {
-		tokens = [[NSMutableArray alloc] init];
       	capacity = newCapacity;
 	}
 	return self;
@@ -49,7 +46,6 @@
 }
 
 - (void)dealloc { 
-	[tokens release];
     [super dealloc]; 
 }
 ///------------------------------------------------------------

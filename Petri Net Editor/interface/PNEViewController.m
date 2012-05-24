@@ -83,7 +83,6 @@
 - (IBAction)trashButtonPressed:(id)sender {
     [PNManager trashManager];
     [petriNetView loadKernel];
-    [petriNetView resetPositions];
 }
 
 /**

@@ -105,9 +105,11 @@
 }
 
 /**
- This method places the context elements depending on the position of the contextPlace
+ This method places the context elements depending on the position of the contextPlace.
  */
-- (void) placeContext {
+- (void) placeContext: (CGPoint) orig {
+    [contextPlace moveNode:CGPointMake(orig.x, orig.y + ([self getHeight] / 2) - contextPlace.dimensions / 2)];
+    
     [actTrans moveNode:[self getRightPointFrom:contextPlace To:actTrans WithVerticalDistance:Y_CONTEXT_DISTANCE shouldFlip:false]];
     [deacTrans moveNode:[self getRightPointFrom:contextPlace To:deacTrans WithVerticalDistance:Y_CONTEXT_DISTANCE shouldFlip:true]];
     
@@ -120,10 +122,12 @@
     [reqTrans moveNode:[self getRightPointFrom:prPlace To:reqTrans WithVerticalDistance:0 shouldFlip:false]];
     [reqnTrans moveNode:[self getRightPointFrom:prnPlace To:reqnTrans WithVerticalDistance:0 shouldFlip:false]];
     [clTrans moveNode:[self getRightPointFrom:negPlace To:clTrans WithVerticalDistance:0 shouldFlip:false]];
-
-
-
 }
+
+- (CGFloat) getHeight {
+    return negPlace.yOrig + negPlace.dimensions - prPlace.yOrig;
+}
+
 
 
 @end

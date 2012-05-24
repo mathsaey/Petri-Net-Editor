@@ -273,30 +273,29 @@
     only new elements are moved to a location.
  */
 - (void) updatePositions: (BOOL) shouldReset {
-    if (shouldReset) currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
-    
-    for (PNEPlaceView* place in places) {
-        if (!place.hasLocation) {
-            [self placeNode:place withPosition:&currentLocation];
-            currentLocation.x += X_NODE_DISTANCE;
+    //Remove all locations
+    if (shouldReset) {
+        currentLocation = CGPointMake(START_OFFSET_X, START_OFFSET_Y);
+        for (PNENodeView* node in [places arrayByAddingObjectsFromArray:transitions]) {
+            node.hasLocation = false;
         }
     }
     
-    //We switch lines when we start to draw the transitions
-    currentLocation.y += Y_NODE_DISTANCE;
-    currentLocation.x = START_OFFSET_X;
-    
-    for (PNETransitionView* trans in transitions) {
-        if (!trans.hasLocation) {
-            [self placeNode:trans withPosition:&currentLocation];
-            currentLocation.x += X_NODE_DISTANCE;
-        }
-    }
-    
+    //Place all the contexts
     for (PNEContextCollection *collection in collections) {
-        [collection placeContext];
+        if (!collection.contextPlace.hasLocation) {
+            [collection placeContext: currentLocation];
+            currentLocation.y += Y_NODE_DISTANCE + [collection getHeight];
+        }
     }
     
+    //Place all the elements not part of a context
+    for (PNENodeView* node in [places arrayByAddingObjectsFromArray:transitions]) {
+        if (!node.hasLocation) {
+            [self placeNode:node withPosition:&currentLocation];
+            currentLocation.x += X_NODE_DISTANCE;
+        }
+    }
     [self setNeedsDisplay];
 }
 
@@ -316,35 +315,6 @@
     for (PNEArcView* arc in arcs) {
         [arc drawArc];
     }
-}
-
-#pragma mark - TestCode
-
-- (void) insertData {  
-    /*    EXCLUSION
-     PNPlace *pPause = [manager addPlaceWithName:@"Pause"];
-     PNPlace *pPlay = [manager addPlaceWithName:@"Play"];
-     [manager addExclusionBetween:pPause and:pPlay];    
- */
-    /*     WEAK
-     PNPlace *pCafeteria = [manager addPlaceWithName:@"Cafeteria"];
-     PNPlace *pNoise = [manager addPlaceWithName:@"Noise"];
-     [manager addWeakInclusionFrom:pCafeteria To:pNoise];    
-     */
-    /*     STRONG
-     PNPlace *pBrussel = [manager addPlaceWithName:@"Brussels"];
-     PNPlace *pBelgium = [manager addPlaceWithName:@"Belgium"];
-     [manager addStrongInclusionFrom:pBrussel To:pBelgium];    
-     */
-//    /*     REQUIREMENT
-     PNPlace *pVideo = [manager addPlaceWithName:@"Video"];
-     PNPlace *pH = [manager addPlaceWithName:@"H"];
-     [manager addRequirementTo:pVideo Of:pH];    
-//     */
-   
-    
-    
-    [self loadKernel];
 }
 
 @end

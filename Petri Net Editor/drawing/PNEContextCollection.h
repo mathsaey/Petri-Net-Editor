@@ -39,8 +39,11 @@
     PNETransitionView *deacTrans;
 }
 
+@property (readonly) PNEPlaceView* contextPlace;
+
 - (id) initWithContextPlace: (PNEPlaceView*) cPlace andView: (PNEView*) view;
-- (void) placeContext;
+- (void) placeContext: (CGPoint) orig;
+- (CGFloat) getHeight;
 
 @end
 

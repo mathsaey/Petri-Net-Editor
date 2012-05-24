@@ -214,6 +214,8 @@
         startAngle = atan(yDistance/xDistance) + M_PI_2;
     if (arrowStart.y > arrowEnd.y && arrowStart.x < arrowEnd.x) 
         startAngle = M_PI_2 - atan(yDistance/xDistance);
+    if (yDistance == 0)
+        startAngle = M_PI_2;
     
     
     //Create the arrow
