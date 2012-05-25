@@ -57,6 +57,10 @@ typedef enum {
 
 /**
  This function looks up the CGColor of a certain code
+ @param code
+    The code we should look up
+ @return
+    The color
  */
 - (CGColorRef) lookupColor: (NSNumber*) code {
     int ref = [code integerValue];

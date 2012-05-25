@@ -14,6 +14,7 @@
 
 /**
  @author Mathijs Saey
+ 
  This class contains a collection of all
  places and transitions part of a context
  This makes it easier to group elements of a certain context.
@@ -22,7 +23,7 @@
  very hardcoded and very dependant on the kernel.
  */
 @interface PNEContextCollection : NSObject {
-    NSArray *collection;
+    NSMutableArray *collection;
     
     PNEPlaceView *contextPlace;
     
@@ -42,6 +43,7 @@
 @property (readonly) PNEPlaceView* contextPlace;
 
 - (id) initWithContextPlace: (PNEPlaceView*) cPlace andView: (PNEView*) view;
+- (void) removeElement: (PNENodeView*) node;
 - (void) placeContext: (CGPoint) orig;
 - (CGFloat) getHeight;
 

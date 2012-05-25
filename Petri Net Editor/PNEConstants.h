@@ -35,7 +35,6 @@ extern CGFloat X_CONTEXT_DISTANCE; /**< horizontal distance between nodes in the
 //=========================
 
 //general
-extern int MAX_TOKENS; /**< Maximum tokens of a place before we just draw the number of tokens */
 extern CGFloat LINE_WIDTH; /**< Width of a drawn line */
 extern CGFloat ARC_END_SIZE; /**< Size of the arrow / circle at the end of the arc */
 extern CGFloat HL_LINE_WIDTH; /**< Width of the highlight line */
@@ -68,23 +67,5 @@ extern CGFloat ARC_TOUCH_MIN;
  The lower this number the higher the memory consumption will be.
  */
 extern CGFloat ARC_TOUCH_BASE; 
-
-//String Constants
-//================
-extern NSString *CONTEXT_INFO_PREFIX; /**< Prefix of context info */
-
-extern NSString *FIRE_TRANSITION_PREFIX; /**< Prefix when firing a transition */
-extern NSString *CHANGE_LABEL_PREFIX; /**< Prefix wen changin a label */
-
-extern NSString *CANCEL_BUTTON_NAME; /**< Name of the cancel button */
-extern NSString *DELETE_BUTTON_NAME; /**< Name of the delete button */
-
-/** title of the UIAlertView button when adding a context
- This must be different from ADD_TRANSITION_ALERTVIEW_TITLE */
-extern NSString *ADD_CONTEXT_ALERTVIEW_TITLE;
-
-/** title of the UIAlertView button when adding a transition 
- This must be different from ADD_CONTEXT_ALERTVIEW_TITLE */
-extern NSString *ADD_TRANSITION_ALERTVIEW_TITLE; 
 
 ///@}

@@ -23,8 +23,8 @@
 }
 
 - (void) dealloc {
-    //[basePath release];
-    //[currentPath release];
+    [basePath release];
+    [currentPath release];
     [super dealloc];
 }
 

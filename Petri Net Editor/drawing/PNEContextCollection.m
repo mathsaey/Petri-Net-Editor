@@ -54,7 +54,14 @@
                 self.deacTrans = trans;
         }
         
-        collection = [[NSArray alloc] initWithObjects:cPlace, prPlace, prnPlace, negPlace, clTrans, reqTrans, reqnTrans, actTrans, deacTrans, nil];
+        collection = [[NSMutableArray alloc] initWithObjects:
+                      cPlace, prPlace, prnPlace, negPlace, 
+                      clTrans, reqTrans, reqnTrans, 
+                      actTrans, deacTrans, nil];
+        
+        for (PNENodeView *node in collection) {
+            node.collection = self;
+        }
         
         [self addTouchresponders];
         [view.collections addObject:self];
@@ -79,6 +86,10 @@
     self.deacTrans = nil;
 }
 
+/**
+ This method adds the context 
+ touch responders to all the context elements
+ */
 - (void) addTouchresponders {
     for (PNENodeView* node in collection) {
         UIPanGestureRecognizer *tap = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoublePanGesture:)];
@@ -88,17 +99,41 @@
     }
 }
 
+/**
+ This method is called by the system
+ when a node receives a pan (dragging)
+ gesture with at least 2 fingers
+ */
 - (void) handleDoublePanGesture: (UIPanGestureRecognizer *) gesture {
-    CGPoint translation = [gesture translationInView:contextPlace.superView];
+    CGPoint velocity = [gesture translationInView:contextPlace.superView];
     [gesture setTranslation:CGPointMake(0, 0) inView:contextPlace.superView];
-    
+
     for (PNENodeView* node in collection) {
-        [node moveNode:CGPointMake(node.xOrig + translation.x, node.yOrig + translation.y)];
+        [node moveNode:CGPointMake(node.xOrig + velocity.x, node.yOrig + velocity.y)];
     }
-    
     [contextPlace.superView setNeedsDisplay];
 }
+
+/**
+ This method calculates where to draw a node
+ in relation to another node.
+ @param fromNode
+    The node that will be left of the new node
+ @param toNode
+    The node that will be positioned
+ @param distance
+    The height difference between both nodes
+ @param shouldFlip
+    This determines if the toNode needs to be placed
+    above or below the fromNode
+ 
+ @return
+    The point where the toNode should be placed
+ */
 - (CGPoint) getRightPointFrom: (PNENodeView*) fromNode To: (PNENodeView*) toNode WithVerticalDistance: (CGFloat) distance shouldFlip: (BOOL) flip {
+    //Ensure we always have a reference point
+    if (fromNode == nil) fromNode = contextPlace;
+        
     int multiplier = flip ? 1 : -1;
     CGFloat y = fromNode.yOrig + (((fromNode.dimensions - toNode.dimensions) / 2) + multiplier * distance);
     return CGPointMake(fromNode.xOrig + fromNode.dimensions + X_CONTEXT_DISTANCE, y);
@@ -107,7 +142,7 @@
 /**
  This method places the context elements depending on the position of the contextPlace.
  */
-- (void) placeContext: (CGPoint) orig {
+- (void) placeContext: (CGPoint) orig {    
     [contextPlace moveNode:CGPointMake(orig.x, orig.y + ([self getHeight] / 2) - contextPlace.dimensions / 2)];
     
     [actTrans moveNode:[self getRightPointFrom:contextPlace To:actTrans WithVerticalDistance:Y_CONTEXT_DISTANCE shouldFlip:false]];
@@ -124,10 +159,36 @@
     [clTrans moveNode:[self getRightPointFrom:negPlace To:clTrans WithVerticalDistance:0 shouldFlip:false]];
 }
 
+/**
+ This method calculates the height
+ difference between the top and 
+ bottom node.
+ @return 
+    The height difference
+ */
 - (CGFloat) getHeight {
-    return negPlace.yOrig + negPlace.dimensions - prPlace.yOrig;
+    //Return the number based on the way
+    //placeContext places the nodes.
+    //This needs to be hardcoded since we
+    //cannot calculate the height before 
+    //positioning otherwise
+    return 2.5 * Y_CONTEXT_DISTANCE;
 }
 
-
+/**
+ Removed an element from the collection
+ This is used when a single node from the collection
+ is deleted.
+ 
+ This method is there to keep the collection array
+ up to data so we don't worry about updating the
+ other ivars.
+ 
+ @param node
+    The node to remove
+ */
+- (void) removeElement: (PNENodeView*) node {
+    [collection removeObject:node];
+}
 
 @end

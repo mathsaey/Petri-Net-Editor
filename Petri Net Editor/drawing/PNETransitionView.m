@@ -24,9 +24,9 @@
         
         //Only add the option to fire a transition if it's external
         if (pnElement.priority == EXTERNAL)
-            [nodeOptions addButtonWithTitle:@"Fire Transition"];
+            [nodeOptions addButtonWithTitle:NSLocalizedString(@"TRANS_FIRE_BUTTON", nil)];
         
-        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
+        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:NSLocalizedString(@"CANCEL_BUTTON", nil)];
         
         [superView.transitions addObject:self];
         type = pnElement.priority;
@@ -98,7 +98,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
     
-    if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Fire Transition") {
+    if ([actionSheet buttonTitleAtIndex:buttonIndex] == NSLocalizedString(@"TRANS_FIRE_BUTTON", nil)) {
         [self fireTransition];
     }
 }
@@ -109,13 +109,13 @@
 - (void) fireTransition {
     @try {
         [superView.manager fireTransition:element];
-        [superView.log addText:[NSString stringWithFormat:@"%@ \n \t %@",FIRE_TRANSITION_PREFIX, label]];
+        [superView.log addText:[NSString stringWithFormat:NSLocalizedString(@"LOG_TRANS_FIRE", nil), label]];
         [superView updatePlaces];
     }
     @catch (NSException *exception) {
-        NSString *title = [NSString stringWithFormat:@"Error firing transition %@", label];
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"TRANS_FIRE_ERROR", nil), label];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:[exception reason]
-                                      delegate: self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                      delegate: self cancelButtonTitle:NSLocalizedString(@"OK_BUTTON", nil) otherButtonTitles:nil];
         [alert show];
         [alert release];
     }

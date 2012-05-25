@@ -178,6 +178,7 @@
         }
         [contexts setObject:[manager addPlaceWithName:line] forKey:line];
     }
+    
     //Context with capacity
     else if ([components count] == 2) {
         NSString *contextName = [components objectAtIndex:0];

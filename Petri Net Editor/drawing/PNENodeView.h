@@ -10,6 +10,7 @@
 #import "../PNEConstants.h"
 #import "PNEViewElement.h"
 
+@class PNEContextCollection;
 
 /**
  @author Mathijs Saey
@@ -28,8 +29,11 @@
 
     UIView *touchView; /** View that contains the touch responders of the node */
     UIActionSheet *nodeOptions; /** Action sheet that presents the user with options */
+    
+    PNEContextCollection *collection;
 }
 
+@property (readwrite, weak) PNEContextCollection *collection;
 @property (readwrite) BOOL hasLocation;
 @property (readonly) BOOL isMarked;
 @property (readonly) CGFloat xOrig;

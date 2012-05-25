@@ -169,7 +169,6 @@ static PNManager *sharedManager = nil;
     NSMutableArray *tmpTransitions = [[NSMutableArray alloc] init];
     
     NSParameterAssert(aPlace);
-    [places removeObject:aPlace];
     for(PNPlace *p in [self temporaryPlaces]) {
         if([[p label] hasSuffix:[aPlace label]])
             [tmpPlaces addObject:p];
@@ -185,6 +184,7 @@ static PNManager *sharedManager = nil;
     for (PNTransition *trans in tmpTransitions) {
         [transitions removeObject:trans];
     }
+    [places removeObject:aPlace];
     
     [tmpPlaces release];
     [tmpTransitions release];

@@ -8,41 +8,36 @@
 
 // This file contains the constants used throughout the code
 
+//Font constants
 const CGFloat MAIN_FONT_SIZE = 20;
 const char *MAIN_FONT_NAME = "Helvetica Neue";
 
+//Full petri net drawing constants
 const CGFloat START_OFFSET_X = 30;
 const CGFloat START_OFFSET_Y = 30;
 const CGFloat X_NODE_DISTANCE = 100;
 const CGFloat Y_NODE_DISTANCE = 100;
-
 const CGFloat Y_CONTEXT_DISTANCE = 50;
 const CGFloat X_CONTEXT_DISTANCE = 70;
 
-const int MAX_TOKENS = 3;
+//Element drawing constants
 const CGFloat LINE_WIDTH = 2;
 const CGFloat ARC_END_SIZE = 10;
 const CGFloat HL_LINE_WIDTH = 5;
 
+//Node drawing
 const CGFloat PLACE_DIMENSION = 45;
 const CGFloat TRANSITION_DIMENSION = 25;
 const CGFloat LABEL_DISTANCE = 5;
 
+//Token drawing
 const CGFloat TOKEN_DISTANCE = 2;
 const CGFloat TOKEN_DIMENSION = 15; 
+
+//Dashed line drawing
 const CGFloat DASH_WIDTH = 10;
 const CGFloat TOUCH_EXTRA = 40;
 
+//Arc drawing
 const CGFloat ARC_TOUCH_MIN = 5;
 const CGFloat ARC_TOUCH_BASE = 40; 
-
-const NSString *CONTEXT_INFO_PREFIX = @"Selected context: ";
-
-const NSString *FIRE_TRANSITION_PREFIX = @"Fired transition: ";
-const NSString *CHANGE_LABEL_PREFIX = @"Changed label: ";
-
-const NSString *CANCEL_BUTTON_NAME = @"Cancel";
-const NSString *DELETE_BUTTON_NAME = @"Delete";
-
-const NSString *ADD_CONTEXT_ALERTVIEW_TITLE = @"Context name:";
-const NSString *ADD_TRANSITION_ALERTVIEW_TITLE = @"Transition name:";

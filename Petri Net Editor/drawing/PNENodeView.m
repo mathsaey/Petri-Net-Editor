@@ -11,7 +11,7 @@
 
 @implementation PNENodeView
 
-@synthesize xOrig, yOrig, label, dimensions, isMarked, hasLocation;
+@synthesize xOrig, yOrig, label, dimensions, isMarked, hasLocation, collection;
 
 #pragma mark - Lifecycle
 
@@ -47,9 +47,9 @@
         //Initialise the action sheet, 
         //we initialise the cancel button later so it appears at the bottom
         nodeOptions = [[UIActionSheet alloc] 
-                       initWithTitle:@"Options:" delegate:self 
-                       cancelButtonTitle:nil destructiveButtonTitle:DELETE_BUTTON_NAME 
-                       otherButtonTitles: @"Change label", nil];
+                       initWithTitle:NSLocalizedString(@"NODE_AS_TITLE", nil)  delegate:self 
+                       cancelButtonTitle:nil destructiveButtonTitle:NSLocalizedString(@"DELETE_BUTTON", nil)  
+                       otherButtonTitles: NSLocalizedString(@"NODE_CHANGE_LABEL", nil) , nil];
         isMarked = false;
         label = [pnElement.label retain];
         pnElement.view = self;
@@ -59,17 +59,18 @@
 
 - (void) dealloc {
     [nodeOptions release];
-    //[label release];
+    [label release];
     [super dealloc];
 }
 
 /**
  Removes the touch zone,
  the actual removing is done 
- in PNETransitionView and in
- PNEPlaceView
+ in PNETransitionView::removeElement and in
+ PNEPlaceView::removeElement
  */
 - (void) removeElement {
+    [collection removeElement:self];
     [self removeTouchZone];
     [superView loadKernel];
 }
@@ -156,8 +157,11 @@
  @see PNEPlaceView#actionSheet:clickedButtonAtIndex:
  */
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Change label") {
-        UIAlertView *popup = [[UIAlertView alloc] initWithTitle:@"Name" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Confirm", nil];
+    if ([actionSheet buttonTitleAtIndex:buttonIndex] == NSLocalizedString(@"NODE_CHANGE_LABEL", nil)) {
+        UIAlertView *popup = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"NODE_NAME_TITLE", nil)
+                                                        message:nil delegate:self 
+                                              cancelButtonTitle:NSLocalizedString(@"CANCEL_BUTTON", nil) 
+                                              otherButtonTitles:NSLocalizedString(@"OK_BUTTON", nil) , nil];
         popup.alertViewStyle = UIAlertViewStylePlainTextInput;
         [popup textFieldAtIndex:0].placeholder = label;
         [popup show];
@@ -177,7 +181,7 @@
     if (buttonIndex != alertView.cancelButtonIndex) {
         NSString *newLabel = [alertView textFieldAtIndex:0].text;
         
-        [superView.log addText:[NSString stringWithFormat:@"%@ \n \t %@ \n \t to: %@",CHANGE_LABEL_PREFIX, label, newLabel]];
+        [superView.log addText:[NSString stringWithFormat:NSLocalizedString(@"LOG_CHANGE_LABEL", nil), label, newLabel]];
         
         [label release];
         [newLabel retain];
@@ -225,67 +229,130 @@
 
 #pragma mark - Arc attachement point functions
 
+/**
+ Gets the middle top point of the node.
+ */
 - (CGPoint) getTopEdge {
     return CGPointMake(xOrig + (dimensions / 2) , yOrig);
 }
 
+/**
+ Gets the middle of the left side of the node
+ */
 - (CGPoint) getLeftEdge {
     return CGPointMake(xOrig, yOrig + (dimensions / 2));
 }
 
+/**
+ Gets the middle of the right side of the node
+ */
 - (CGPoint) getRightEdge {
     return CGPointMake(xOrig + dimensions, yOrig + (dimensions / 2));
 }
 
+/**
+ Gets the middle of the bottom of the node
+ */
 - (CGPoint) getBottomEdge {
     return CGPointMake(xOrig + (dimensions / 2), yOrig + dimensions);
 }
 
+/**
+ Gets the upper left point of the node
+ */
 - (CGPoint) getLeftTopPoint {
     return CGPointMake(xOrig, yOrig);
-    
-}
-- (CGPoint) getRightTopPoint {
-    return CGPointMake(xOrig + dimensions, yOrig);
-    
-}
-- (CGPoint) getLeftBottomPoint {
-    return CGPointMake(xOrig, yOrig + dimensions);
-    
 }
 
+/**
+ Gets the upper right point of the node
+ */
+- (CGPoint) getRightTopPoint {
+    return CGPointMake(xOrig + dimensions, yOrig);
+}
+
+/**
+ Gets the bottom left point of the node
+ */
+- (CGPoint) getLeftBottomPoint {
+    return CGPointMake(xOrig, yOrig + dimensions);
+}
+
+/**
+ Gets the bottom right point of the node.
+*/
 - (CGPoint) getRightBottomPoint {
     return CGPointMake(xOrig + dimensions, yOrig + dimensions);
 }
 
+/**
+ Checks if a certain node lies below this node
+ @return 
+    true if the node lies lower then the self node
+ */
 - (BOOL) isLower: (PNENodeView*) node {
     return node.yOrig > yOrig + dimensions;
 }
 
+/**
+ Checks if a certain node lies above this node
+ @return 
+    true if the node is higher then the self node
+ */
 - (BOOL) isHigher: (PNENodeView*) node {
     return node.yOrig + node.dimensions < yOrig;
 }
 
+/**
+ Checks if a certain node lies to the left of this node
+ @return 
+    true if the node lies left of the self node
+ */
 - (BOOL) isLeft: (PNENodeView*) node {
     return node.xOrig + node.dimensions < xOrig;
 }
 
+/**
+ Checks if a certain node lies to the right of this node
+ @return 
+    true if the node lies right of the self node
+ */
 - (BOOL) isRight: (PNENodeView*) node {
     return node.xOrig > xOrig + dimensions;
 }
 
+/**
+ Checks if a node lies to the bottom left of this node
+ @return 
+    true if the node lies to the bottom left of the self node
+ */
 - (BOOL) isLeftAndLower: (PNENodeView*) node {
     return [self isLeft:node] && [self isLower:node];
 }
 
+/**
+ Checks if a node lies to the bottom right of this node
+ @return 
+    true if the node lies to the bottom right of the self node
+ */
 - (BOOL) isRightAndLower: (PNENodeView*) node {
     return [self isRight:node] && [self isLower:node];
 }
 
+/**
+ Checks if a node lies to the top left of this node
+ @return 
+    true if the node lies to the top left of the self node
+ */
 - (BOOL) isLeftAndHigher: (PNENodeView*) node {
     return [self isLeft:node] && [self isHigher:node];
 }
 
+/**
+ Checks if a node lies to the top right of this node
+ @return 
+    true if the node lies to the top right of the self node
+ */
 - (BOOL) isRightAndHigher: (PNENodeView*) node {
     return [self isRight:node] && [self isHigher:node];
 }

@@ -16,8 +16,8 @@
  iOS file handling specific to the application.
  */
 @interface PNEFileManager : NSObject {
-    NSString *basePath;
-    NSString *currentPath;
+    NSString *basePath; /**< Path that leads to the application document folder */
+    NSString *currentPath; /**< Path to the current file/directory */
 }
 
 - (void) putContextDeclaration: (NSString*) fileName withContents: (NSString*) contents;

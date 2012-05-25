@@ -23,7 +23,9 @@
         weight = [pnElement flowFunction];
         touchViews = [[NSMutableArray alloc] init];
                 
-        options = [[UIActionSheet alloc] initWithTitle:@"Options:" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Convert", nil];
+        options = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ARC_AS_TITLE", nil) delegate:self 
+                                     cancelButtonTitle:NSLocalizedString(@"CANCEL_BUTTON", nil) destructiveButtonTitle:@"Delete"
+                                     otherButtonTitles:NSLocalizedString(@"ARC_CONVERT_TITLE", nil), nil];
     }
     return self;
 }
@@ -136,7 +138,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.destructiveButtonIndex)
         [self removeElement];
-    else if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Convert")
+    else if ([actionSheet buttonTitleAtIndex:buttonIndex] == NSLocalizedString(@"ARC_CONVERT_TITLE", nil))
         [self changeType];
 }
 
@@ -151,9 +153,9 @@
     
     if([toNode class] == [PNEPlaceView class] && tmpElement.type == NORMAL) {
         UIAlertView *popup = [[UIAlertView alloc] 
-                              initWithTitle:@"Error" 
-                              message:@"You cannot add an inhibitor arc as output!" 
-                              delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                              initWithTitle:NSLocalizedString(@"ERROR_TITLE", nil) 
+                              message:NSLocalizedString(@"ARC_CONVERT_TITLE", nil) 
+                              delegate:nil cancelButtonTitle:NSLocalizedString(@"OK_BUTTON", nil) otherButtonTitles: nil];
         [popup show];
         [popup release];
         return;
@@ -208,13 +210,13 @@
     //Calculate the angle
     if (arrowStart.y < arrowEnd.y && arrowStart.x < arrowEnd.x)
         startAngle = M_PI_2 + atan(yDistance/xDistance);
-    if (arrowStart.y < arrowEnd.y && arrowStart.x > arrowEnd.x) 
+    else if (arrowStart.y < arrowEnd.y && arrowStart.x > arrowEnd.x) 
         startAngle = M_PI_2 - atan(yDistance/xDistance);
-    if (arrowStart.y > arrowEnd.y && arrowStart.x > arrowEnd.x)
+    else if (arrowStart.y > arrowEnd.y && arrowStart.x > arrowEnd.x)
         startAngle = atan(yDistance/xDistance) + M_PI_2;
-    if (arrowStart.y > arrowEnd.y && arrowStart.x < arrowEnd.x) 
+    else if (arrowStart.y > arrowEnd.y && arrowStart.x < arrowEnd.x) 
         startAngle = M_PI_2 - atan(yDistance/xDistance);
-    if (yDistance == 0)
+    else if (yDistance == 0)
         startAngle = M_PI_2;
     
     

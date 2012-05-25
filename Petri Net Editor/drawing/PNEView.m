@@ -60,6 +60,9 @@
 
 /**
  Adds the arc to the kernel after a place and transition have been selected
+ @param isPlaceFirst
+    if true the arc goes from the place to the transition
+    if false the arc goes from the transition to the place
  */
 - (void) finishAddingArc: (BOOL) isPlaceFirst {
     PNArcInscription *arc = [[PNArcInscription alloc] initWithType:NORMAL];

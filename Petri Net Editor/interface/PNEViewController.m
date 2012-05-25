@@ -40,12 +40,28 @@
 
 #pragma mark - View lifecycle
 
+/**
+ [abstract] This method is called by the system to ask if the device
+ can rotate.
+ @param interfaceOrientation
+    The orientation that might be supported
+ @return 
+    true if the viewcontroller supports the interfaceorientation
+ @see PNEPadViewController::shouldAutorotateToInterfaceOrientation:
+ @see PNEPhoneViewController::shouldAutorotateToInterfaceOrientation:
+ */
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     NSLog(@"Abstract version of shouldAutorotateToInterfaceOrientation (PNEViewController) called!");
     return false;
 }
 
+/**
+ This method is called by the system when the device will
+ be rotated
+ @param interfaceOrientation
+ The orientation that will be assumed.
+ */
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [petriNetView setNeedsDisplay];
@@ -78,7 +94,6 @@
 
 /**
  This method empties the kernel.
- TODO: add a confirmation window to stop accidental trashing.
  */
 - (IBAction)trashButtonPressed:(id)sender {
     [PNManager trashManager];
@@ -92,8 +107,8 @@
 - (void) askLabel: (NSString*) title {
     UIAlertView *popup = [[UIAlertView alloc] 
                           initWithTitle:title message:nil 
-                          delegate:self cancelButtonTitle:@"Cancel" 
-                          otherButtonTitles:@"Confirm", nil];
+                          delegate:self cancelButtonTitle:NSLocalizedString(@"CANCEL_BUTTON", nil) 
+                          otherButtonTitles:NSLocalizedString(@"OK_BUTTON", nil), nil];
     popup.alertViewStyle = UIAlertViewStylePlainTextInput;
     [popup show];
     [popup release];
@@ -121,10 +136,10 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
         case 0:
-            [self askLabel:ADD_CONTEXT_ALERTVIEW_TITLE];
+            [self askLabel:NSLocalizedString(@"ADD_CONTEXT_TITLE", nil)];
             break;
         case 1:
-            [self askLabel:ADD_TRANSITION_ALERTVIEW_TITLE];
+            [self askLabel:NSLocalizedString(@"ADD_TRANS_TITLE", nil)];
             break;
         case 2: 
             [petriNetView addArc];
@@ -142,7 +157,7 @@
         NSString *name = [alertView textFieldAtIndex:0].text;
         [name retain];
         
-        if (alertView.title == ADD_CONTEXT_ALERTVIEW_TITLE)
+        if (alertView.title == NSLocalizedString(@"ADD_CONTEXT_TITLE", nil))
             [self addContext:name];
         else [self addTransition:name];
         [name release];

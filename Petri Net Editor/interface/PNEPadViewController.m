@@ -80,6 +80,14 @@
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
+/**
+ This method is called by the system to see if the 
+ application should respond to a rotation of the device.
+ @param interfaceOrientation
+    The orientation that might be supported
+ @return 
+    true if the viewcontroller supports the interfaceorientation
+ */
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;

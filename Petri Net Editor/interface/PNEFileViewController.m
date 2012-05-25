@@ -79,7 +79,7 @@
  This method shows a method to the user
  */
 - (void) printError: (NSString*) errorMessage {
-    UIAlertView *error = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"FILEVIEW_ERROR_TITLE", nil) message:errorMessage delegate:self cancelButtonTitle:NSLocalizedString(@"OK_BUTTON", nil) otherButtonTitles: nil];
+    UIAlertView *error = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"ERROR_TITLE", nil) message:errorMessage delegate:self cancelButtonTitle:NSLocalizedString(@"OK_BUTTON", nil) otherButtonTitles: nil];
     [error show];
     [error release];
 }

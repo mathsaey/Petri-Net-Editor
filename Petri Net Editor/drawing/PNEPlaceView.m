@@ -20,8 +20,8 @@
 - (id) initWithElement: (PNPlace*) pnElement andSuperView: (PNEView*) view {
     if (self = [super initWithElement: pnElement andSuperView: view]) {
         //Add extra action sheet buttons
-        [nodeOptions addButtonWithTitle:@"Add token"];
-        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:CANCEL_BUTTON_NAME];
+        [nodeOptions addButtonWithTitle:NSLocalizedString(@"PLACE_ADD_TOKEN", nil)];
+        nodeOptions.cancelButtonIndex = [nodeOptions addButtonWithTitle:NSLocalizedString(@"CANCEL_BUTTON", nil)];
         
         tokens = [[NSMutableArray alloc] init];
         neighbours = [[NSMutableDictionary alloc] init];
@@ -53,7 +53,7 @@
  every PNArcInscription connected to the
  matching PNPlace is removed.
  */
-- (void) removeElement {   
+- (void) removeElement {  
     for (PNETransitionView *trans in neighbours) {
         if ([[neighbours objectForKey:trans] boolValue]) 
             [trans.element removeInput: element];
@@ -120,7 +120,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [super actionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
     
-    if ([actionSheet buttonTitleAtIndex:buttonIndex] == @"Add token") {
+    if ([actionSheet buttonTitleAtIndex:buttonIndex] == NSLocalizedString(@"PLACE_ADD_TOKEN", nil)) {
         PNToken *newToken = [[PNToken alloc] init];
         [element addToken:newToken];
         [superView updatePlaces];
@@ -147,8 +147,12 @@
 
 #pragma mark - Help functions
 
+/**
+ This method adds the context info to the context 
+ info textview.
+ */
 - (void) addContextInfo {
-    [superView.contextInformation addText:[NSString stringWithFormat:@"%@ %@ \n \t tokens: %d", CONTEXT_INFO_PREFIX, label, [tokens count]]];
+    [superView.contextInformation addText:[NSString stringWithFormat:NSLocalizedString(@"CONTEXT_INFO", nil), label, [tokens count]]];
 }
 
 /**

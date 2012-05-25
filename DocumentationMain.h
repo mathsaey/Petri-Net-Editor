@@ -29,15 +29,11 @@
  @section Updates
  When updating the kernel a few things should be checked. Obviously the drawing classes should be adjusted depending on the changes to the kernel. Furthermore the PNPlace subclasses copy methods should always return a self pointer by using \code return [self retain] \endcode
  This way the dictionaries that store the arcs in the PNTransition class store an actual reference to the place to connect rather then a copy of that place. The same should be done for the copy method of the PNArcInscription. These changes ensure that a PNEArcView is drawn correctly.
+
+ If the definition of a context changes the n the PNEContextCollection class should be updated accordingly. This class is very hardcoded and very dependent on the kernel (this is due to the way the Petri Net is created in the kernel).
  
  If new types are added then the PNEView::loadKernel function should also be adjusted accordingly.
  Further adjustments to the drawing code will probably be needed, but this depends on the kernel. Somebody with sufficient knowledge of the code (which can be obtained with the help of this documentation) shouldn't have too much trouble adjusting the code.
+
   
- 
- @section Todo
- @todo Look into strange iPhone behaviour (no parsing, bad access on context creation (no problem on ipad)
- @todo Check memory management
- @todo Move strings to constants
- @todo Further transition firing testing
- @todo fix arcs usage in kernel
 */
