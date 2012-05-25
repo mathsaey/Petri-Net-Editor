@@ -22,7 +22,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [super viewDidLoad];
-        petriNetView.log = log;
         addOptionsSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ADD_TITLE", nil) delegate:self 
                                              cancelButtonTitle:NSLocalizedString(@"CANCEL_BUTTON", nil) destructiveButtonTitle:nil
                                              otherButtonTitles:NSLocalizedString(@"CONTEXT_TITLE", nil), 
@@ -39,6 +38,25 @@
 }
 
 #pragma mark - View lifecycle
+
+/**
+ This method is called by the system
+ when the view finished loading.
+ */
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    petriNetView.log = log;
+}
+
+/**
+ This method is called by the system
+ when the view will reappear
+ */
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [petriNetView loadKernel];
+}
 
 /**
  [abstract] This method is called by the system to ask if the device
