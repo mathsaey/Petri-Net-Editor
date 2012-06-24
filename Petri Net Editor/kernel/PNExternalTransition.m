@@ -35,8 +35,10 @@
     return YES;
 }
 
+/*
 -(void) fireWithColor:(NSNumber *)color {
     int flow;
+    
     for(PNPlace *outp in [outputs keyEnumerator]) {
         flow = [[outputs objectForKey:outp] flowFunction];
         PNToken *tok = [outp getTokenOfColor:color];
@@ -51,4 +53,5 @@
 	}
 
 }
+*/
 @end

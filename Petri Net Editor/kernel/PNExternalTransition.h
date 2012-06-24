@@ -24,6 +24,6 @@
 /**
  @see PNTransition
  */
--(void) fireWithColor:(NSNumber *)color;
+//-(void) fireWithColor:(NSNumber *)color;
 
 @end

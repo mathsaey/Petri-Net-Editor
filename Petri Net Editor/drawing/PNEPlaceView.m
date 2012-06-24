@@ -32,11 +32,7 @@
         if (!hasLocation) dimensions = PLACE_DIMENSION;
         
         //Add all the tokens
-        for (PNToken *token in pnElement.tokens) {
-            PNETokenView *tokenView = [[PNETokenView alloc] initWithElement:token andSuperView:superView];
-            [self addToken:tokenView];
-            [tokenView release];
-        }
+        [self updatePlace];
     } 
     return self;
 }
@@ -122,9 +118,10 @@
     
     if ([actionSheet buttonTitleAtIndex:buttonIndex] == NSLocalizedString(@"PLACE_ADD_TOKEN", nil)) {
         PNToken *newToken = [[PNToken alloc] init];
+        [newToken autorelease];
+        
         [element addToken:newToken];
         [superView updatePlaces];
-        [newToken release];
     }
 }
 

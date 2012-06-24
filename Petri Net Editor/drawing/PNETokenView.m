@@ -16,8 +16,6 @@
  */
 - (id) initWithElement: (PNToken*) pnElement andSuperView: (PNEView*) view {
     if(self = [super init]) {
-        element = pnElement;
-        superView = view;
         tokenColor = [self lookupColor:pnElement.color];}
     return self;
 }
