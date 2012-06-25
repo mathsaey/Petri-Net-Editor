@@ -21,9 +21,4 @@
  */
 -(BOOL) checkEnabledWithColor:(NSNumber *)color;
 
-/**
- @see PNTransition
- */
-//-(void) fireWithColor:(NSNumber *)color;
-
 @end
